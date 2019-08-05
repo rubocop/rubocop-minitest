@@ -5,8 +5,7 @@ require "rubocop/minitest/version"
 Gem::Specification.new do |spec|
   spec.name          = "rubocop-minitest"
   spec.version       = Rubocop::Minitest::VERSION
-  spec.authors       = ["Koichi ITO"]
-  spec.email         = ["koic.ito@gmail.com"]
+  spec.authors       = ['Bozhidar Batsov', 'Jonas Arvidsson', 'Koichi ITO']
 
   spec.summary       = %q{TODO: Write a short summary, because RubyGems requires one.}
   spec.description   = %q{TODO: Write a longer description or delete this line.}
