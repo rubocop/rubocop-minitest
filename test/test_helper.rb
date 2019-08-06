@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-require 'rubocop/minitest'
+require "rubocop/minitest"
 require "minitest/autorun"
-require 'minitest/pride'
+require "minitest/pride"
