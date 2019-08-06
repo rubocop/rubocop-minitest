@@ -1,6 +1,6 @@
 require "test_helper"
 
-class MiniTestTest < Minitest::Test
+class MinitestTest < Minitest::Test
   def test_rubocop_minitest_gem_has_a_version_number
     refute_nil Rubocop::Minitest::VERSION
   end
