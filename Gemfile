@@ -1,4 +1,9 @@
-source "https://rubygems.org"
+# frozen_string_literal: true
 
-# Specify your gem's dependencies in rubocop-minitest.gemspec
+source 'https://rubygems.org'
+
 gemspec
+
+gem 'rubocop', github: 'rubocop-hq/rubocop'
+gem 'rubocop-performance', '~> 1.4.0'
+gem 'yard', '~> 0.9'
