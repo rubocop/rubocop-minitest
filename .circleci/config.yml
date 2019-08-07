@@ -18,7 +18,9 @@ jobs:
     steps:
       - checkout
       - run: bundle install
-      - run: bundle exec rake
+      - run:
+          name: Run Minitest
+          command: bundle exec rake test
 
 workflows:
   build:
