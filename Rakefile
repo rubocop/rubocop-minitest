@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'bundler'
-require "bundler/gem_tasks"
+require 'bundler/gem_tasks'
 
 Dir['tasks/**/*.rake'].each { |t| load t }
 
@@ -18,7 +18,7 @@ require 'rake/testtask'
 
 Rake::TestTask.new do |t|
   t.libs << 'test'
-  t.pattern = FileList["test/**/*_test.rb"]
+  t.pattern = FileList['test/**/*_test.rb']
 end
 
 desc 'Run RuboCop over itself'

@@ -1,4 +1,6 @@
-require "test_helper"
+# frozen_string_literal: true
+
+require 'test_helper'
 
 class MinitestTest < Minitest::Test
   def test_rubocop_minitest_gem_has_a_version_number
