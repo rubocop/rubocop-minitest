@@ -6,7 +6,7 @@ require 'rubocop/minitest/version'
 
 Gem::Specification.new do |spec|
   spec.name          = 'rubocop-minitest'
-  spec.version       = Rubocop::Minitest::VERSION
+  spec.version       = RuboCop::Minitest::VERSION
   spec.authors       = ['Bozhidar Batsov', 'Jonas Arvidsson', 'Koichi ITO']
 
   spec.summary       = 'This namespace is reserved by RuboCop HQ.'
