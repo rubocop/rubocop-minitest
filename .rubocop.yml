@@ -24,6 +24,10 @@ Style/FormatStringToken:
   Exclude:
     - test/**/*
 
+Metrics/ClassLength:
+  Exclude:
+    - test/**/*
+
 Layout/EndOfLine:
   EnforcedStyle: lf
 

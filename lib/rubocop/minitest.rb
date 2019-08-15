@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'yaml'
-
 module RuboCop
   # RuboCop minitest project namespace
   module Minitest

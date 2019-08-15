@@ -1,0 +1,9 @@
+AllCops:
+  Include:
+    - '**/test/**/*'
+
+Minitest/AssertNil:
+  Description: 'Check if your test uses `assert_nil` instead of `assert_equal(nil, something)`.'
+  StyleGuide: 'https://github.com/rubocop-hq/minitest-style-guide#assert-nil'
+  Enabled: true
+  VersionAdded: '0.1'
