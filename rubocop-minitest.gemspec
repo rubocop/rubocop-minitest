@@ -13,6 +13,7 @@ Gem::Specification.new do |spec|
   spec.description   = 'This namespace is reserved by RuboCop HQ.'
   spec.license       = 'MIT'
 
+  spec.required_ruby_version = '>= 2.3.0'
   spec.metadata['homepage_uri'] =  'https://github.com/rubocop-hq/rubocop-minitest'
   spec.metadata['source_code_uri'] = 'https://github.com/rubocop-hq/rubocop-minitest'
 
