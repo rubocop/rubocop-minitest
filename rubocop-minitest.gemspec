@@ -9,8 +9,11 @@ Gem::Specification.new do |spec|
   spec.version = RuboCop::Minitest::VERSION
   spec.authors = ['Bozhidar Batsov', 'Jonas Arvidsson', 'Koichi ITO']
 
-  spec.summary = 'This namespace is reserved by RuboCop HQ.'
-  spec.description = 'This namespace is reserved by RuboCop HQ.'
+  spec.summary = 'Automatic Minitest code style checking tool.'
+  spec.description = <<~DESCRIPTION
+    Automatic Minitest code style checking tool.
+    A RuboCop extension focused on enforcing Minitest best practices and coding conventions.
+  DESCRIPTION
   spec.license = 'MIT'
 
   spec.required_ruby_version = '>= 2.3.0'
