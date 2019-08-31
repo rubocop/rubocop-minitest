@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require 'pathname'
+require 'yaml'
+
 require 'rubocop'
 
 require_relative 'rubocop/minitest'
