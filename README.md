@@ -1,6 +1,6 @@
 # RuboCop Minitest
 
-This is a repository reserved for minitest-specific analysis for your projects, as an extension to [RuboCop](https://github.com/rubocop-hq/rubocop).
+A [RuboCop](https://github.com/rubocop-hq/rubocop) extension focused on enforcing Minitest best practices and coding conventions.
 
 ## Installation
 
@@ -68,3 +68,12 @@ Minitest/AssertNil:
   Exclude:
     - test/my_file_to_ignore_test.rb
 ```
+
+## Contributing
+
+Checkout the [contribution guidelines](CONTRIBUTING.md).
+
+## License
+
+`rubocop-minitest` is MIT licensed. [See the accompanying file](LICENSE.txt) for
+the full text.
