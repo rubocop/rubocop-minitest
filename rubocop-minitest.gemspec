@@ -14,8 +14,13 @@ Gem::Specification.new do |spec|
   spec.license       = 'MIT'
 
   spec.required_ruby_version = '>= 2.3.0'
-  spec.metadata['homepage_uri'] =  'https://github.com/rubocop-hq/rubocop-minitest'
-  spec.metadata['source_code_uri'] = 'https://github.com/rubocop-hq/rubocop-minitest'
+  spec.metadata = {
+    'homepage_uri' => 'https://github.com/rubocop-hq/rubocop-minitest',
+    'changelog_uri' => 'https://github.com/rubocop-hq/rubocop-minitest/blob/master/CHANGELOG.md',
+    'source_code_uri' => 'https://github.com/rubocop-hq/rubocop-minitest',
+    'documentation_uri' => 'https://github.com/rubocop-hq/rubocop-minitest/manual',
+    'bug_tracker_uri' => 'https://github.com/rubocop-hq/rubocop-minitest/issues'
+  }
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
