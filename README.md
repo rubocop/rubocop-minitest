@@ -1,5 +1,8 @@
 # RuboCop Minitest
 
+[![Gem Version](https://badge.fury.io/rb/rubocop-minitest.svg)](https://badge.fury.io/rb/rubocop-minitest)
+[![CircleCI](https://circleci.com/gh/rubocop-hq/rubocop-minitest.svg?style=svg)](https://circleci.com/gh/rubocop-hq/rubocop-minitest)
+
 A [RuboCop](https://github.com/rubocop-hq/rubocop) extension focused on enforcing Minitest best practices and coding conventions.
 
 ## Installation
