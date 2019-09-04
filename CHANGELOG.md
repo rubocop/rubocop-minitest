@@ -3,6 +3,7 @@
 ### New features
 
 * [#11](https://github.com/rubocop-hq/rubocop-minitest/pull/11): Add new `Minitest/RefuteNil` cop. ([@tejasbubane ][])
+* [#8](https://github.com/rubocop-hq/rubocop-minitest/pull/8): Add new `Minitest/AssertTruthy` cop. ([@abhaynikam ][])
 
 ## 0.1.0 (2019-09-01)
 
@@ -14,3 +15,4 @@
 [@koic]: https://github.com/koic
 [@duduribeiro]: https://github.com/duduribeiro
 [@tejasbubane]: https://github.com/tejasbubane
+[@abhaynikam]: https://github.com/abhaynikam

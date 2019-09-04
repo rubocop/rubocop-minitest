@@ -8,6 +8,12 @@ Minitest/AssertNil:
   Enabled: true
   VersionAdded: '0.1'
 
+Minitest/AssertTruthy:
+  Description: 'Check if your test uses `assert(actual)` instead of `assert_equal(true, actual)`.'
+  StyleGuide: 'https://github.com/rubocop-hq/minitest-style-guide#assert-truthy'
+  Enabled: true
+  VersionAdded: '0.2'
+
 Minitest/RefuteNil:
   Description: 'Check if your test uses `refute_nil` instead of `refute_equal(nil, something)`.'
   StyleGuide: 'https://github.com/rubocop-hq/minitest-style-guide#refute-nil'

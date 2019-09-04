@@ -24,6 +24,31 @@ assert_nil(actual, 'the message')
 
 * [https://github.com/rubocop-hq/minitest-style-guide#assert-nil](https://github.com/rubocop-hq/minitest-style-guide#assert-nil)
 
+## Minitest/AssertTruthy
+
+Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+--- | --- | --- | --- | ---
+Enabled | Yes | Yes  | 0.2 | -
+
+Check if your test uses `assert(actual)`
+instead of `assert_equal(true, actual)`.
+
+### Examples
+
+```ruby
+# bad
+assert_equal(true, actual)
+assert_equal(true, actual, 'the message')
+
+# good
+assert(actual)
+assert(actual, 'the message')
+```
+
+### References
+
+* [https://github.com/rubocop-hq/minitest-style-guide#assert-truthy](https://github.com/rubocop-hq/minitest-style-guide#assert-truthy)
+
 ## Minitest/RefuteNil
 
 Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
