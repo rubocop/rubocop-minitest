@@ -8,6 +8,12 @@ Minitest/AssertNil:
   Enabled: true
   VersionAdded: '0.1'
 
+Minitest/AssertEmpty:
+  Description: 'Check if your test uses `assert_empty` instead of `assert(actual.empty?)`.'
+  StyleGuide: 'https://github.com/rubocop-hq/minitest-style-guide#assert-empty'
+  Enabled: true
+  VersionAdded: '0.2'
+
 Minitest/AssertIncludes:
   Description: 'Check if your test uses `assert_includes` instead of `assert(collection.includes?(actual))`.'
   StyleGuide: 'https://github.com/rubocop-hq/minitest-style-guide#assert-includes'
