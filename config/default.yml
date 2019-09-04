@@ -8,6 +8,12 @@ Minitest/AssertNil:
   Enabled: true
   VersionAdded: '0.1'
 
+Minitest/AssertIncludes:
+  Description: 'Check if your test uses `assert_includes` instead of `assert(collection.includes?(actual))`.'
+  StyleGuide: 'https://github.com/rubocop-hq/minitest-style-guide#assert-includes'
+  Enabled: true
+  VersionAdded: '0.2'
+
 Minitest/AssertTruthy:
   Description: 'Check if your test uses `assert(actual)` instead of `assert_equal(true, actual)`.'
   StyleGuide: 'https://github.com/rubocop-hq/minitest-style-guide#assert-truthy'

@@ -1,5 +1,30 @@
 # Minitest
 
+## Minitest/AssertIncludes
+
+Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+--- | --- | --- | --- | ---
+Enabled | Yes | Yes  | 0.2 | -
+
+Check if your test uses `assert_includes`
+instead of `assert(collection.includes?(actual))`.
+
+### Examples
+
+```ruby
+# bad
+assert(collection.includes?(actual))
+assert(collection.includes?(actual), 'the message')
+
+# good
+assert_includes(collection, actual)
+assert_includes(collection, actual, 'the message')
+```
+
+### References
+
+* [https://github.com/rubocop-hq/minitest-style-guide#assert-includes](https://github.com/rubocop-hq/minitest-style-guide#assert-includes)
+
 ## Minitest/AssertNil
 
 Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
