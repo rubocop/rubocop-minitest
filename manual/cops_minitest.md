@@ -28,7 +28,7 @@ assert_nil(actual, 'the message')
 
 Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
 --- | --- | --- | --- | ---
-Enabled | Yes | Yes  | 0.1.1 | -
+Enabled | Yes | Yes  | 0.2 | -
 
 Check if your test uses `refute_nil` instead of `refute_equal(nil, something)`.
 

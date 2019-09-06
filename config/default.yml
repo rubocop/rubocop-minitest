@@ -12,4 +12,4 @@ Minitest/RefuteNil:
   Description: 'Check if your test uses `refute_nil` instead of `refute_equal(nil, something)`.'
   StyleGuide: 'https://github.com/rubocop-hq/minitest-style-guide#refute-nil'
   Enabled: true
-  VersionAdded: '0.1.1'
+  VersionAdded: '0.2'
