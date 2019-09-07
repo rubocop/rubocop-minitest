@@ -9,5 +9,5 @@ pages:
 - Usage: usage.md
 - Cops: cops.md
 - Cops Documentation:
-    - Rails Cops: cops_minitest.md
+    - Minitest Cops: cops_minitest.md
 theme: readthedocs
