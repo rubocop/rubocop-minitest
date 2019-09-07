@@ -1,0 +1,13 @@
+site_name: "A RuboCop extension focused on enforcing Minitest best practices and coding conventions."
+repo_url: https://github.com/rubocop-hq/rubocop-minitest
+edit_uri: edit/master/manual/
+copyright: "Copyright &copy; 2019 Bozhidar Batsov, Jonas Arvidsson, Koichi ITO, and RuboCop contributors"
+docs_dir: manual
+pages:
+- Home: index.md
+- Installation: installation.md
+- Usage: usage.md
+- Cops: cops.md
+- Cops Documentation:
+    - Rails Cops: cops_minitest.md
+theme: readthedocs
