@@ -1,5 +1,29 @@
 # Minitest
 
+## Minitest/AssertEmpty
+
+Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+--- | --- | --- | --- | ---
+Enabled | Yes | Yes  | 0.2 | -
+
+Check if your test uses `assert_empty` instead of `assert(actual.empty?)`.
+
+### Examples
+
+```ruby
+# bad
+assert(actual.empty?)
+assert(actual.empty?, 'the message')
+
+# good
+assert_empty(actual)
+assert_empty(actual, 'the message')
+```
+
+### References
+
+* [https://github.com/rubocop-hq/minitest-style-guide#assert-empty](https://github.com/rubocop-hq/minitest-style-guide#assert-empty)
+
 ## Minitest/AssertIncludes
 
 Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
