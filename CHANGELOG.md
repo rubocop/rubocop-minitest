@@ -6,6 +6,7 @@
 * [#8](https://github.com/rubocop-hq/rubocop-minitest/pull/8): Add new `Minitest/AssertTruthy` cop. ([@abhaynikam ][])
 * [#9](https://github.com/rubocop-hq/rubocop-minitest/pull/9): Add new `Minitest/AssertIncludes` cop. ([@abhaynikam ][])
 * [#10](https://github.com/rubocop-hq/rubocop-minitest/pull/10): Add new `Minitest/AssertEmpty` cop. ([@abhaynikam ][])
+* [#12](https://github.com/rubocop-hq/rubocop-minitest/pull/12): Modify `Minitest/AssertTruthy` to check for `refute_equal`. ([@tejasbubane ][])
 
 ## 0.1.0 (2019-09-01)
 

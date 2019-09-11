@@ -80,7 +80,8 @@ Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChan
 Enabled | Yes | Yes  | 0.2 | -
 
 Check if your test uses `assert(actual)`
-instead of `assert_equal(true, actual)`.
+instead of `assert_equal(true, actual)` &
+`refute(actual)` instead of `refute_equal(true, actual)`
 
 ### Examples
 
@@ -88,10 +89,14 @@ instead of `assert_equal(true, actual)`.
 # bad
 assert_equal(true, actual)
 assert_equal(true, actual, 'the message')
+refute_equal(true, actual)
+refute_equal(true, actual, 'the message')
 
 # good
 assert(actual)
 assert(actual, 'the message')
+refute(actual)
+refute(actual, 'the message')
 ```
 
 ### References
