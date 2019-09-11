@@ -7,7 +7,7 @@ class AssertNilTest < Minitest::Test
     @cop = RuboCop::Cop::Minitest::AssertNil.new
   end
 
-  def test_adds_offense_for_use_of_assert_equal_nil
+  def test_registers_offense_when_using_assert_equal_with_nil
     assert_offense(<<~RUBY, @cop)
       class FooTest < Minitest::Test
         def test_do_something
@@ -26,7 +26,7 @@ class AssertNilTest < Minitest::Test
     RUBY
   end
 
-  def test_adds_offense_for_use_of_assert_equal_nil_with_message
+  def test_registers_offense_when_using_assert_equal_with_nil_and_message
     assert_offense(<<~RUBY, @cop)
       class FooTest < Minitest::Test
         def test_do_something
@@ -45,7 +45,7 @@ class AssertNilTest < Minitest::Test
     RUBY
   end
 
-  def test_adds_offense_for_use_of_assert_equal_with_a_method_call
+  def test_registers_offense_when_using_assert_equal_with_a_method_call
     assert_offense(<<~RUBY, @cop)
       class FooTest < Minitest::Test
         def test_do_something
@@ -64,7 +64,7 @@ class AssertNilTest < Minitest::Test
     RUBY
   end
 
-  def test_adds_offense_for_use_of_assert_equal_with_a_string_variable_in_message
+  def test_registers_offense_when_using_assert_equal_with_variable_message
     assert_offense(<<~RUBY, @cop)
       class FooTest < Minitest::Test
         def test_do_something
@@ -85,7 +85,7 @@ class AssertNilTest < Minitest::Test
     RUBY
   end
 
-  def test_adds_offense_for_use_of_assert_equal_with_a_constant_in_message
+  def test_registers_offense_when_using_assert_equal_with_constant_message
     assert_offense(<<~RUBY, @cop)
       class FooTest < Minitest::Test
         MESSAGE = 'the message'
@@ -108,7 +108,7 @@ class AssertNilTest < Minitest::Test
     RUBY
   end
 
-  def test_does_not_offend_if_using_assert_nil
+  def test_does_not_register_offense_when_using_assert_nil_method
     assert_no_offenses(<<~RUBY, @cop)
       class FooTest < Minitest::Test
         def test_do_something

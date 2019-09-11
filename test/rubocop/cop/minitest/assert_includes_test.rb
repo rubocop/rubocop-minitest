@@ -7,7 +7,7 @@ class AssertIncludesTest < Minitest::Test
     @cop = RuboCop::Cop::Minitest::AssertIncludes.new
   end
 
-  def test_adds_offense_for_use_of_assert_collection_includes
+  def test_registers_offense_when_using_assert_with_includes
     assert_offense(<<~RUBY, @cop)
       class FooTest < Minitest::Test
         def test_do_something
@@ -26,7 +26,7 @@ class AssertIncludesTest < Minitest::Test
     RUBY
   end
 
-  def test_adds_offense_for_use_of_assert_collection_includes_with_message
+  def test_registers_offense_when_using_assert_with_includes_and_message
     assert_offense(<<~RUBY, @cop)
       class FooTest < Minitest::Test
         def test_do_something
@@ -45,7 +45,7 @@ class AssertIncludesTest < Minitest::Test
     RUBY
   end
 
-  def test_adds_offense_for_use_of_assert_collection_includes_with_variable_in_message
+  def test_registers_offense_when_using_assert_with_includes_and_variable_message
     assert_offense(<<~RUBY, @cop)
       class FooTest < Minitest::Test
         def test_do_something
@@ -66,7 +66,7 @@ class AssertIncludesTest < Minitest::Test
     RUBY
   end
 
-  def test_adds_offense_for_use_of_assert_collection_includes_with_constant_in_message
+  def test_registers_offense_when_using_assert_with_includes_and_constant_message
     assert_offense(<<~RUBY, @cop)
       class FooTest < Minitest::Test
         MESSAGE = 'the message'
@@ -89,7 +89,7 @@ class AssertIncludesTest < Minitest::Test
     RUBY
   end
 
-  def test_does_not_offend_if_using_assert_nil
+  def test_does_not_register_offense_when_using_assert_nil_method
     assert_no_offenses(<<~RUBY, @cop)
       class FooTest < Minitest::Test
         def test_do_something
