@@ -1,5 +1,7 @@
 ## master (unreleased)
 
+## 0.2.0 (2019-09-21)
+
 ### New features
 
 * [#11](https://github.com/rubocop-hq/rubocop-minitest/pull/11): Add new `Minitest/RefuteNil` cop. ([@tejasbubane ][])
