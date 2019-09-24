@@ -1,4 +1,4 @@
-AllCops:
+Minitest:
   Include:
     - '**/test/**/*'
 
