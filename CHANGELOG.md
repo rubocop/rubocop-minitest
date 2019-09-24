@@ -2,6 +2,10 @@
 
 ## master (unreleased)
 
+### Bug fixes
+
+* [#13](https://github.com/rubocop-hq/rubocop-minitest/issues/13): Fix the execution target specified in `Include` parameter. ([@koic][])
+
 ## 0.2.0 (2019-09-21)
 
 ### New features
