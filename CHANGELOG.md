@@ -2,6 +2,10 @@
 
 ## master (unreleased)
 
+### New features
+
+* [#17](https://github.com/rubocop-hq/rubocop-minitest/pull/17): Add new `Minitest/RefuteEmpty` cop. ([@abhaynikam][])
+
 ## 0.2.1 (2019-09-24)
 
 ### Bug fixes

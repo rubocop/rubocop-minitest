@@ -98,6 +98,26 @@ assert(actual, 'the message')
 
 * [https://github.com/rubocop-hq/minitest-style-guide#assert-truthy](https://github.com/rubocop-hq/minitest-style-guide#assert-truthy)
 
+## Minitest/RefuteEmpty
+
+Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+--- | --- | --- | --- | ---
+Enabled | Yes | Yes  | - | -
+
+Check if your test uses `refute_empty` instead of `refute(actual.empty?)`.
+
+### Examples
+
+```ruby
+# bad
+assert(actual.empty?)
+assert(actual.empty?, 'the message')
+
+# good
+refute_empty(actual)
+refute_empty(actual, 'the message')
+```
+
 ## Minitest/RefuteNil
 
 Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged

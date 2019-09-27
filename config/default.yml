@@ -31,3 +31,9 @@ Minitest/RefuteNil:
   StyleGuide: 'https://github.com/rubocop-hq/minitest-style-guide#refute-nil'
   Enabled: true
   VersionAdded: '0.2'
+
+Minitest/RefuteEmpty:
+  Description: 'Check if your test uses `refute_empty` instead of `refute(actual.empty?)`.'
+  StyleGuide: 'https://github.com/rubocop-hq/minitest-style-guide#refute-empty'
+  Enabled: true
+  VersionAdded: '0.3'
