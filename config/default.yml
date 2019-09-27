@@ -31,3 +31,9 @@ Minitest/RefuteNil:
   StyleGuide: 'https://github.com/rubocop-hq/minitest-style-guide#refute-nil'
   Enabled: true
   VersionAdded: '0.2'
+
+Minitest/RefuteIncludes:
+  Description: 'This cop enforces the test to use `refute_includes` instead of using `refute(collection.include?(object))`.'
+  StyleGuide: 'https://github.com/rubocop-hq/minitest-style-guide#refute-includes'
+  Enabled: true
+  VersionAdded: '0.3'

@@ -2,6 +2,10 @@
 
 ## master (unreleased)
 
+### New features
+
+* [#15](https://github.com/rubocop-hq/rubocop-minitest/pull/15): Add new `Minitest/RefuteIncludes` cop. ([@abhaynikam][])
+
 ### Bug fixes
 
 * [#19](https://github.com/rubocop-hq/rubocop-minitest/pull/19): Fix a false negative for `Minitest/AssertIncludes` when using `include` method in arguments of `assert` method. ([@abhaynikam][])
