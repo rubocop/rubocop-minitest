@@ -43,3 +43,9 @@ Minitest/RefuteIncludes:
   StyleGuide: 'https://github.com/rubocop-hq/minitest-style-guide#refute-includes'
   Enabled: true
   VersionAdded: '0.3'
+
+Minitest/RefuteFalse:
+  Description: 'Check if your test uses `refute(actual)` instead of `assert_equal(false, actual)`.'
+  StyleGuide: 'https://github.com/rubocop-hq/minitest-style-guide#refute-false'
+  Enabled: true
+  VersionAdded: '0.3'
