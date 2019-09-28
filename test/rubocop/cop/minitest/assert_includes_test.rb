@@ -89,7 +89,7 @@ class AssertIncludesTest < Minitest::Test
     RUBY
   end
 
-  def test_does_not_register_offense_when_using_assert_nil_method
+  def test_does_not_register_offense_when_using_assert_includes_method
     assert_no_offenses(<<~RUBY, @cop)
       class FooTest < Minitest::Test
         def test_do_something
