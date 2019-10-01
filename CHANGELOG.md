@@ -2,6 +2,10 @@
 
 ## master (unreleased)
 
+### Bug fixes
+
+* [#19](https://github.com/rubocop-hq/rubocop-minitest/pull/19): Fix a false negative for `Minitest/AssertIncludes` when using `include` method in arguments of `assert` method. ([@abhaynikam][])
+
 ## 0.2.1 (2019-09-24)
 
 ### Bug fixes

@@ -4,12 +4,12 @@ module RuboCop
   module Cop
     module Minitest
       # Check if your test uses `assert_includes`
-      # instead of `assert(collection.includes?(actual))`.
+      # instead of `assert(collection.include?(actual))`.
       #
       # @example
       #   # bad
-      #   assert(collection.includes?(actual))
-      #   assert(collection.includes?(actual), 'the message')
+      #   assert(collection.include?(actual))
+      #   assert(collection.include?(actual), 'the message')
       #
       #   # good
       #   assert_includes(collection, actual)
@@ -20,7 +20,7 @@ module RuboCop
               '`assert(%<receiver>s)`.'
 
         def_node_matcher :assert_with_includes, <<~PATTERN
-          (send nil? :assert $(send $_ :includes? $_) $...)
+          (send nil? :assert $(send $_ :include? $_) $...)
         PATTERN
 
         def on_send(node)

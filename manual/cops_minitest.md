@@ -31,14 +31,14 @@ Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChan
 Enabled | Yes | Yes  | 0.2 | -
 
 Check if your test uses `assert_includes`
-instead of `assert(collection.includes?(actual))`.
+instead of `assert(collection.include?(actual))`.
 
 ### Examples
 
 ```ruby
 # bad
-assert(collection.includes?(actual))
-assert(collection.includes?(actual), 'the message')
+assert(collection.include?(actual))
+assert(collection.include?(actual), 'the message')
 
 # good
 assert_includes(collection, actual)
