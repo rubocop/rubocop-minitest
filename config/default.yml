@@ -15,7 +15,7 @@ Minitest/AssertEmpty:
   VersionAdded: '0.2'
 
 Minitest/AssertIncludes:
-  Description: 'Check if your test uses `assert_includes` instead of `assert(collection.includes?(actual))`.'
+  Description: 'Check if your test uses `assert_includes` instead of `assert(collection.include?(actual))`.'
   StyleGuide: 'https://github.com/rubocop-hq/minitest-style-guide#assert-includes'
   Enabled: true
   VersionAdded: '0.2'

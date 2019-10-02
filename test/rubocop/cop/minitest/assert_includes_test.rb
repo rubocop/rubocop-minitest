@@ -7,12 +7,12 @@ class AssertIncludesTest < Minitest::Test
     @cop = RuboCop::Cop::Minitest::AssertIncludes.new
   end
 
-  def test_registers_offense_when_using_assert_with_includes
+  def test_registers_offense_when_using_assert_with_include
     assert_offense(<<~RUBY, @cop)
       class FooTest < Minitest::Test
         def test_do_something
-          assert(collection.includes?(actual))
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_includes(collection, actual)` over `assert(collection.includes?(actual))`.
+          assert(collection.include?(actual))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_includes(collection, actual)` over `assert(collection.include?(actual))`.
         end
       end
     RUBY
@@ -26,12 +26,12 @@ class AssertIncludesTest < Minitest::Test
     RUBY
   end
 
-  def test_registers_offense_when_using_assert_with_includes_and_message
+  def test_registers_offense_when_using_assert_with_include_and_message
     assert_offense(<<~RUBY, @cop)
       class FooTest < Minitest::Test
         def test_do_something
-          assert(collection.includes?(actual), 'the message')
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_includes(collection, actual, 'the message')` over `assert(collection.includes?(actual), 'the message')`.
+          assert(collection.include?(actual), 'the message')
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_includes(collection, actual, 'the message')` over `assert(collection.include?(actual), 'the message')`.
         end
       end
     RUBY
@@ -45,13 +45,13 @@ class AssertIncludesTest < Minitest::Test
     RUBY
   end
 
-  def test_registers_offense_when_using_assert_with_includes_and_variable_message
+  def test_registers_offense_when_using_assert_with_include_and_variable_message
     assert_offense(<<~RUBY, @cop)
       class FooTest < Minitest::Test
         def test_do_something
           message = 'the message'
-          assert(collection.includes?(actual), message)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_includes(collection, actual, message)` over `assert(collection.includes?(actual), message)`.
+          assert(collection.include?(actual), message)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_includes(collection, actual, message)` over `assert(collection.include?(actual), message)`.
         end
       end
     RUBY
@@ -66,14 +66,14 @@ class AssertIncludesTest < Minitest::Test
     RUBY
   end
 
-  def test_registers_offense_when_using_assert_with_includes_and_constant_message
+  def test_registers_offense_when_using_assert_with_include_and_constant_message
     assert_offense(<<~RUBY, @cop)
       class FooTest < Minitest::Test
         MESSAGE = 'the message'
 
         def test_do_something
-          assert(collection.includes?(actual), MESSAGE)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_includes(collection, actual, MESSAGE)` over `assert(collection.includes?(actual), MESSAGE)`.
+          assert(collection.include?(actual), MESSAGE)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_includes(collection, actual, MESSAGE)` over `assert(collection.include?(actual), MESSAGE)`.
         end
       end
     RUBY
