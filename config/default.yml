@@ -26,6 +26,12 @@ Minitest/AssertTruthy:
   Enabled: true
   VersionAdded: '0.2'
 
+Minitest/RefuteEqual:
+  Description: 'Check if your test uses `refute_equal` instead of `assert(expected != object)` or `assert(! expected == object))`.'
+  StyleGuide: 'https://github.com/rubocop-hq/minitest-style-guide#refute-equal'
+  Enabled: true
+  VersionAdded: '0.3'
+
 Minitest/RefuteNil:
   Description: 'This cop enforces the test to use `refute_nil` instead of using `refute_equal(nil, something)`.'
   StyleGuide: 'https://github.com/rubocop-hq/minitest-style-guide#refute-nil'
