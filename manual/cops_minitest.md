@@ -98,6 +98,31 @@ assert(actual, 'the message')
 
 * [https://github.com/rubocop-hq/minitest-style-guide#assert-truthy](https://github.com/rubocop-hq/minitest-style-guide#assert-truthy)
 
+## Minitest/RefuteEmpty
+
+Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+--- | --- | --- | --- | ---
+Enabled | Yes | Yes  | 0.3 | -
+
+This cop enforces to use `refute_empty` instead of
+using `refute(object.empty?)`.
+
+### Examples
+
+```ruby
+# bad
+refute(object.empty?)
+refute(object.empty?, 'the message')
+
+# good
+refute_empty(object)
+refute_empty(object, 'the message')
+```
+
+### References
+
+* [https://github.com/rubocop-hq/minitest-style-guide#refute-empty](https://github.com/rubocop-hq/minitest-style-guide#refute-empty)
+
 ## Minitest/RefuteIncludes
 
 Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
