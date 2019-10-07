@@ -98,6 +98,31 @@ assert(actual, 'the message')
 
 * [https://github.com/rubocop-hq/minitest-style-guide#assert-truthy](https://github.com/rubocop-hq/minitest-style-guide#assert-truthy)
 
+## Minitest/RefuteIncludes
+
+Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+--- | --- | --- | --- | ---
+Enabled | Yes | Yes  | 0.3 | -
+
+This cop enforces the test to use `refute_includes`
+instead of using `refute(collection.include?(object))`.
+
+### Examples
+
+```ruby
+# bad
+refute(collection.include?(object))
+refute(collection.include?(object), 'the message')
+
+# good
+refute_includes(collection, object)
+refute_includes(collection, object, 'the message')
+```
+
+### References
+
+* [https://github.com/rubocop-hq/minitest-style-guide#refute-includes](https://github.com/rubocop-hq/minitest-style-guide#refute-includes)
+
 ## Minitest/RefuteNil
 
 Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
