@@ -3,8 +3,8 @@
 module RuboCop
   module Cop
     module Minitest
-      # Check if your test uses `assert(actual)`
-      # instead of `assert_equal(true, actual)`.
+      # This cop enforces the test to use `assert(actual)`
+      # instead of using `assert_equal(true, actual)`.
       #
       # @example
       #   # bad

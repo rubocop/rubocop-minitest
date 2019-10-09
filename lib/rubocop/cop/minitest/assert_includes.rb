@@ -3,8 +3,8 @@
 module RuboCop
   module Cop
     module Minitest
-      # Check if your test uses `assert_includes`
-      # instead of `assert(collection.include?(actual))`.
+      # This cop enforces the test to use `assert_includes`
+      # instead of using `assert(collection.include?(actual))`.
       #
       # @example
       #   # bad
