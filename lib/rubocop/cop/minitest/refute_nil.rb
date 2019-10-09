@@ -3,7 +3,8 @@
 module RuboCop
   module Cop
     module Minitest
-      # Check if your test uses `refute_nil` instead of `refute_equal(nil, something)`.
+      # This cop enforces the test to use `refute_nil`
+      # instead of using `refute_equal(nil, something)`.
       #
       # @example
       #   # bad

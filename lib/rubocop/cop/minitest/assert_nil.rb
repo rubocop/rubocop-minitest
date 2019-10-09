@@ -3,7 +3,8 @@
 module RuboCop
   module Cop
     module Minitest
-      # Check if your test uses `assert_nil` instead of `assert_equal(nil, something)`.
+      # This cop enforces the test to use `assert_nil`
+      # instead of using `assert_equal(nil, something)`.
       #
       # @example
       #   # bad

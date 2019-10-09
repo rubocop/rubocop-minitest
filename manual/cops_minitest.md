@@ -6,7 +6,8 @@ Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChan
 --- | --- | --- | --- | ---
 Enabled | Yes | Yes  | 0.2 | -
 
-Check if your test uses `assert_empty` instead of `assert(actual.empty?)`.
+This cop enforces the test to use `assert_empty`
+instead of using `assert(actual.empty?)`.
 
 ### Examples
 
@@ -30,8 +31,8 @@ Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChan
 --- | --- | --- | --- | ---
 Enabled | Yes | Yes  | 0.2 | -
 
-Check if your test uses `assert_includes`
-instead of `assert(collection.include?(actual))`.
+This cop enforces the test to use `assert_includes`
+instead of using `assert(collection.include?(actual))`.
 
 ### Examples
 
@@ -55,7 +56,8 @@ Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChan
 --- | --- | --- | --- | ---
 Enabled | Yes | Yes  | 0.1 | -
 
-Check if your test uses `assert_nil` instead of `assert_equal(nil, something)`.
+This cop enforces the test to use `assert_nil`
+instead of using `assert_equal(nil, something)`.
 
 ### Examples
 
@@ -79,8 +81,8 @@ Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChan
 --- | --- | --- | --- | ---
 Enabled | Yes | Yes  | 0.2 | -
 
-Check if your test uses `assert(actual)`
-instead of `assert_equal(true, actual)`.
+This cop enforces the test to use `assert(actual)`
+instead of using `assert_equal(true, actual)`.
 
 ### Examples
 
@@ -154,7 +156,8 @@ Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChan
 --- | --- | --- | --- | ---
 Enabled | Yes | Yes  | 0.2 | -
 
-Check if your test uses `refute_nil` instead of `refute_equal(nil, something)`.
+This cop enforces the test to use `refute_nil`
+instead of using `refute_equal(nil, something)`.
 
 ### Examples
 

@@ -3,7 +3,8 @@
 module RuboCop
   module Cop
     module Minitest
-      # Check if your test uses `assert_empty` instead of `assert(actual.empty?)`.
+      # This cop enforces the test to use `assert_empty`
+      # instead of using `assert(actual.empty?)`.
       #
       # @example
       #   # bad

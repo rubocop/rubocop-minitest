@@ -3,31 +3,31 @@ Minitest:
     - '**/test/**/*'
 
 Minitest/AssertNil:
-  Description: 'Check if your test uses `assert_nil` instead of `assert_equal(nil, something)`.'
+  Description: 'This cop enforces the test to use `assert_nil` instead of using `assert_equal(nil, something)`.'
   StyleGuide: 'https://github.com/rubocop-hq/minitest-style-guide#assert-nil'
   Enabled: true
   VersionAdded: '0.1'
 
 Minitest/AssertEmpty:
-  Description: 'Check if your test uses `assert_empty` instead of `assert(actual.empty?)`.'
+  Description: 'This cop enforces the test to use `assert_empty` instead of using `assert(actual.empty?)`.'
   StyleGuide: 'https://github.com/rubocop-hq/minitest-style-guide#assert-empty'
   Enabled: true
   VersionAdded: '0.2'
 
 Minitest/AssertIncludes:
-  Description: 'Check if your test uses `assert_includes` instead of `assert(collection.include?(actual))`.'
+  Description: 'This cop enforces the test to use `assert_includes` instead of using `assert(collection.include?(actual))`.'
   StyleGuide: 'https://github.com/rubocop-hq/minitest-style-guide#assert-includes'
   Enabled: true
   VersionAdded: '0.2'
 
 Minitest/AssertTruthy:
-  Description: 'Check if your test uses `assert(actual)` instead of `assert_equal(true, actual)`.'
+  Description: 'This cop enforces the test to use `assert(actual)` instead of using `assert_equal(true, actual)`.'
   StyleGuide: 'https://github.com/rubocop-hq/minitest-style-guide#assert-truthy'
   Enabled: true
   VersionAdded: '0.2'
 
 Minitest/RefuteNil:
-  Description: 'Check if your test uses `refute_nil` instead of `refute_equal(nil, something)`.'
+  Description: 'This cop enforces the test to use `refute_nil` instead of using `refute_equal(nil, something)`.'
   StyleGuide: 'https://github.com/rubocop-hq/minitest-style-guide#refute-nil'
   Enabled: true
   VersionAdded: '0.2'
