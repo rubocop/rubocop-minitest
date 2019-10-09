@@ -6,6 +6,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 gemspec
 
+gem 'bump', require: false
 gem 'rake'
 gem 'rubocop', github: 'rubocop-hq/rubocop'
 gem 'rubocop-performance', '~> 1.4.0'
