@@ -64,50 +64,6 @@ class AssertTruthyTest < Minitest::Test
     RUBY
   end
 
-  def test_registers_offense_when_using_assert_equal_with_variable_message
-    assert_offense(<<~RUBY, @cop)
-      class FooTest < Minitest::Test
-        def test_do_something
-          message = 'the message'
-          assert_equal(true, somestuff, message)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert(somestuff, message)` over `assert_equal(true, somestuff, message)`.
-        end
-      end
-    RUBY
-
-    assert_correction(<<~RUBY, @cop)
-      class FooTest < Minitest::Test
-        def test_do_something
-          message = 'the message'
-          assert(somestuff, message)
-        end
-      end
-    RUBY
-  end
-
-  def test_registers_offense_when_using_assert_equal_with_constant_message
-    assert_offense(<<~RUBY, @cop)
-      class FooTest < Minitest::Test
-        MESSAGE = 'the message'
-
-        def test_do_something
-          assert_equal(true, somestuff, MESSAGE)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert(somestuff, MESSAGE)` over `assert_equal(true, somestuff, MESSAGE)`.
-        end
-      end
-    RUBY
-
-    assert_correction(<<~RUBY, @cop)
-      class FooTest < Minitest::Test
-        MESSAGE = 'the message'
-
-        def test_do_something
-          assert(somestuff, MESSAGE)
-        end
-      end
-    RUBY
-  end
-
   def test_does_not_register_offense_when_using_assert_method
     assert_no_offenses(<<~RUBY, @cop)
       class FooTest < Minitest::Test
