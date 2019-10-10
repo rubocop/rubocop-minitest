@@ -4,16 +4,16 @@ module RuboCop
   module Cop
     module Minitest
       # This cop enforces the test to use `assert_empty`
-      # instead of using `assert(actual.empty?)`.
+      # instead of using `assert(object.empty?)`.
       #
       # @example
       #   # bad
-      #   assert(actual.empty?)
-      #   assert(actual.empty?, 'the message')
+      #   assert(object.empty?)
+      #   assert(object.empty?, 'the message')
       #
       #   # good
-      #   assert_empty(actual)
-      #   assert_empty(actual, 'the message')
+      #   assert_empty(object)
+      #   assert_empty(object, 'the message')
       #
       class AssertEmpty < Cop
         MSG = 'Prefer using `assert_empty(%<arguments>s)` over ' \

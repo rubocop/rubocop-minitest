@@ -11,8 +11,8 @@ class AssertIncludesTest < Minitest::Test
     assert_offense(<<~RUBY, @cop)
       class FooTest < Minitest::Test
         def test_do_something
-          assert(collection.include?(actual))
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_includes(collection, actual)` over `assert(collection.include?(actual))`.
+          assert(collection.include?(object))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_includes(collection, object)` over `assert(collection.include?(object))`.
         end
       end
     RUBY
@@ -20,7 +20,7 @@ class AssertIncludesTest < Minitest::Test
     assert_correction(<<~RUBY, @cop)
       class FooTest < Minitest::Test
         def test_do_something
-          assert_includes(collection, actual)
+          assert_includes(collection, object)
         end
       end
     RUBY
@@ -30,8 +30,8 @@ class AssertIncludesTest < Minitest::Test
     assert_offense(<<~RUBY, @cop)
       class FooTest < Minitest::Test
         def test_do_something
-          assert(collection.include?(actual), 'the message')
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_includes(collection, actual, 'the message')` over `assert(collection.include?(actual), 'the message')`.
+          assert(collection.include?(object), 'the message')
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_includes(collection, object, 'the message')` over `assert(collection.include?(object), 'the message')`.
         end
       end
     RUBY
@@ -39,7 +39,7 @@ class AssertIncludesTest < Minitest::Test
     assert_correction(<<~RUBY, @cop)
       class FooTest < Minitest::Test
         def test_do_something
-          assert_includes(collection, actual, 'the message')
+          assert_includes(collection, object, 'the message')
         end
       end
     RUBY
@@ -49,7 +49,7 @@ class AssertIncludesTest < Minitest::Test
     assert_no_offenses(<<~RUBY, @cop)
       class FooTest < Minitest::Test
         def test_do_something
-          assert_includes(collection, actual)
+          assert_includes(collection, object)
         end
       end
     RUBY

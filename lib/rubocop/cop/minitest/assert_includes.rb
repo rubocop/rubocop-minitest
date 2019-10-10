@@ -4,16 +4,16 @@ module RuboCop
   module Cop
     module Minitest
       # This cop enforces the test to use `assert_includes`
-      # instead of using `assert(collection.include?(actual))`.
+      # instead of using `assert(collection.include?(object))`.
       #
       # @example
       #   # bad
-      #   assert(collection.include?(actual))
-      #   assert(collection.include?(actual), 'the message')
+      #   assert(collection.include?(object))
+      #   assert(collection.include?(object), 'the message')
       #
       #   # good
-      #   assert_includes(collection, actual)
-      #   assert_includes(collection, actual, 'the message')
+      #   assert_includes(collection, object)
+      #   assert_includes(collection, object, 'the message')
       #
       class AssertIncludes < Cop
         MSG = 'Prefer using `assert_includes(%<arguments>s)` over ' \

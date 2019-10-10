@@ -7,18 +7,18 @@ Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChan
 Enabled | Yes | Yes  | 0.2 | -
 
 This cop enforces the test to use `assert_empty`
-instead of using `assert(actual.empty?)`.
+instead of using `assert(object.empty?)`.
 
 ### Examples
 
 ```ruby
 # bad
-assert(actual.empty?)
-assert(actual.empty?, 'the message')
+assert(object.empty?)
+assert(object.empty?, 'the message')
 
 # good
-assert_empty(actual)
-assert_empty(actual, 'the message')
+assert_empty(object)
+assert_empty(object, 'the message')
 ```
 
 ### References
@@ -32,18 +32,18 @@ Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChan
 Enabled | Yes | Yes  | 0.2 | -
 
 This cop enforces the test to use `assert_includes`
-instead of using `assert(collection.include?(actual))`.
+instead of using `assert(collection.include?(object))`.
 
 ### Examples
 
 ```ruby
 # bad
-assert(collection.include?(actual))
-assert(collection.include?(actual), 'the message')
+assert(collection.include?(object))
+assert(collection.include?(object), 'the message')
 
 # good
-assert_includes(collection, actual)
-assert_includes(collection, actual, 'the message')
+assert_includes(collection, object)
+assert_includes(collection, object, 'the message')
 ```
 
 ### References
