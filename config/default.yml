@@ -9,13 +9,13 @@ Minitest/AssertNil:
   VersionAdded: '0.1'
 
 Minitest/AssertEmpty:
-  Description: 'This cop enforces the test to use `assert_empty` instead of using `assert(actual.empty?)`.'
+  Description: 'This cop enforces the test to use `assert_empty` instead of using `assert(object.empty?)`.'
   StyleGuide: 'https://github.com/rubocop-hq/minitest-style-guide#assert-empty'
   Enabled: true
   VersionAdded: '0.2'
 
 Minitest/AssertIncludes:
-  Description: 'This cop enforces the test to use `assert_includes` instead of using `assert(collection.include?(actual))`.'
+  Description: 'This cop enforces the test to use `assert_includes` instead of using `assert(collection.include?(object))`.'
   StyleGuide: 'https://github.com/rubocop-hq/minitest-style-guide#assert-includes'
   Enabled: true
   VersionAdded: '0.2'
