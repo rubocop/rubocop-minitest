@@ -125,6 +125,30 @@ refute_empty(object, 'the message')
 
 * [https://github.com/rubocop-hq/minitest-style-guide#refute-empty](https://github.com/rubocop-hq/minitest-style-guide#refute-empty)
 
+## Minitest/RefuteEqual
+
+Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+--- | --- | --- | --- | ---
+Enabled | Yes | Yes  | 0.3 | -
+
+This cop enforces the usages of `refute_equal(expected, object)`
+over `assert_equal(expected != actual)` or `assert(! expected -= actual)`.
+
+### Examples
+
+```ruby
+# bad
+assert("rubocop-minitest" != actual)
+assert(! "rubocop-minitest" == actual)
+
+# good
+refute_equal("rubocop-minitest", actual)
+```
+
+### References
+
+* [https://github.com/rubocop-hq/minitest-style-guide#refute-equal](https://github.com/rubocop-hq/minitest-style-guide#refute-equal)
+
 ## Minitest/RefuteFalse
 
 Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
