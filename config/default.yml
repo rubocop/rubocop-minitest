@@ -20,6 +20,12 @@ Minitest/AssertIncludes:
   Enabled: true
   VersionAdded: '0.2'
 
+Minitest/AssertRespondTo:
+  Description: 'This cop enforces the test to use `assert_respond_to(object, :some_method)` over `assert(object.respond_to?(:some_method))`.'
+  StyleGuide: 'https://github.com/rubocop-hq/minitest-style-guide#assert-responds-to-method'
+  Enabled: true
+  VersionAdded: '0.3'
+
 Minitest/AssertTruthy:
   Description: 'This cop enforces the test to use `assert(actual)` instead of using `assert_equal(true, actual)`.'
   StyleGuide: 'https://github.com/rubocop-hq/minitest-style-guide#assert-truthy'

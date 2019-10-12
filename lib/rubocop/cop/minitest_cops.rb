@@ -3,6 +3,7 @@
 require_relative 'minitest/assert_empty'
 require_relative 'minitest/assert_nil'
 require_relative 'minitest/assert_includes'
+require_relative 'minitest/assert_respond_to'
 require_relative 'minitest/assert_truthy'
 require_relative 'minitest/refute_empty'
 require_relative 'minitest/refute_false'

@@ -8,6 +8,7 @@
 * [#18](https://github.com/rubocop-hq/rubocop-minitest/pull/18): Add new `Minitest/RefuteFalse` cop. ([@duduribeiro][])
 * [#20](https://github.com/rubocop-hq/rubocop-minitest/pull/20): Add new `Minitest/RefuteEmpty` cop. ([@abhaynikam][])
 * [#21](https://github.com/rubocop-hq/rubocop-minitest/pull/21): Add new `Minitest/RefuteEqual` cop. ([@duduribeiro][])
+* [#27](https://github.com/rubocop-hq/rubocop-minitest/pull/27): Add new `Minitest/AssertRespondTo` cop. ([@duduribeiro][])
 
 ### Bug fixes
 
