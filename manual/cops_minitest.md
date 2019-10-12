@@ -131,7 +131,7 @@ Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChan
 --- | --- | --- | --- | ---
 Enabled | Yes | Yes  | 0.3 | -
 
-This cop enforces the usages of `refute_equal(expected, object)`
+This cop enforces the use of `refute_equal(expected, object)`
 over `assert_equal(expected != actual)` or `assert(! expected -= actual)`.
 
 ### Examples
@@ -155,7 +155,7 @@ Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChan
 --- | --- | --- | --- | ---
 Enabled | Yes | Yes  | 0.3 | -
 
-This cop enforces the usages of `refute(object)`
+This cop enforces the use of `refute(object)`
 over `assert_equal(false, object)`.
 
 ### Examples
