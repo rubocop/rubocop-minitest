@@ -75,6 +75,31 @@ assert_nil(actual, 'the message')
 
 * [https://github.com/rubocop-hq/minitest-style-guide#assert-nil](https://github.com/rubocop-hq/minitest-style-guide#assert-nil)
 
+## Minitest/AssertRespondTo
+
+Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+--- | --- | --- | --- | ---
+Enabled | Yes | Yes  | 0.3 | -
+
+This cop enforces the use of `assert_respond_to(object, :some_method)`
+over `assert(object.respond_to?(:some_method))`.
+
+### Examples
+
+```ruby
+# bad
+assert(object.respond_to?(:some_method))
+assert(object.respond_to?(:some_method), 'the message')
+
+# good
+assert_respond_to(object, :some_method)
+assert_respond_to(object, :some_method, 'the message')
+```
+
+### References
+
+* [https://github.com/rubocop-hq/minitest-style-guide#assert-responds-to-method](https://github.com/rubocop-hq/minitest-style-guide#assert-responds-to-method)
+
 ## Minitest/AssertTruthy
 
 Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
