@@ -2,6 +2,8 @@
 
 ## master (unreleased)
 
+## 0.3.0 (2019-10-13)
+
 ### New features
 
 * [#15](https://github.com/rubocop-hq/rubocop-minitest/pull/15): Add new `Minitest/RefuteIncludes` cop. ([@abhaynikam][])
