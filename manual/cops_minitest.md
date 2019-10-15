@@ -157,7 +157,7 @@ Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChan
 Enabled | Yes | Yes  | 0.3 | -
 
 This cop enforces the use of `refute_equal(expected, object)`
-over `assert_equal(expected != actual)` or `assert(! expected -= actual)`.
+over `assert_equal(expected != actual)` or `assert(! expected == actual)`.
 
 ### Examples
 
