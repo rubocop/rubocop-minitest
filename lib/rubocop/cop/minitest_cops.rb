@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative 'minitest/assert_empty'
+require_relative 'minitest/assert_equal'
 require_relative 'minitest/assert_nil'
 require_relative 'minitest/assert_includes'
 require_relative 'minitest/assert_respond_to'
