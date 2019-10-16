@@ -4,7 +4,7 @@ module RuboCop
   module Cop
     module Minitest
       # This cop enforces the use of `refute_equal(expected, object)`
-      # over `assert_equal(expected != actual)` or `assert(! expected -= actual)`.
+      # over `assert_equal(expected != actual)` or `assert(! expected == actual)`.
       #
       # @example
       #   # bad
