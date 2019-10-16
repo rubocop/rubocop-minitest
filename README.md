@@ -4,6 +4,7 @@
 [![CircleCI](https://circleci.com/gh/rubocop-hq/rubocop-minitest.svg?style=svg)](https://circleci.com/gh/rubocop-hq/rubocop-minitest)
 
 A [RuboCop](https://github.com/rubocop-hq/rubocop) extension focused on enforcing Minitest best practices and coding conventions.
+The library is based on the guidelines outlined in the community [Minitest Style Guide](https://minitest.rubystyle.guide).
 
 ## Installation
 
@@ -61,7 +62,7 @@ end
 
 All cops are located under
 [`lib/rubocop/cop/minitest`](lib/rubocop/cop/minitest), and contain
-examples/documentation.
+examples/documentation. The documentation is published [here](https://docs.rubocop.org/projects/minitest).
 
 In your `.rubocop.yml`, you may treat the Minitest cops just like any other
 cop. For example:
