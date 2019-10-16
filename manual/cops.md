@@ -2,6 +2,7 @@
 #### Department [Minitest](cops_minitest.md)
 
 * [Minitest/AssertEmpty](cops_minitest.md#minitestassertempty)
+* [Minitest/AssertEqual](cops_minitest.md#minitestassertequal)
 * [Minitest/AssertIncludes](cops_minitest.md#minitestassertincludes)
 * [Minitest/AssertNil](cops_minitest.md#minitestassertnil)
 * [Minitest/AssertRespondTo](cops_minitest.md#minitestassertrespondto)

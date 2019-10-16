@@ -14,6 +14,12 @@ Minitest/AssertEmpty:
   Enabled: true
   VersionAdded: '0.2'
 
+Minitest/AssertEqual:
+  Description: 'This cop enforces the test to use `assert_equal` instead of using `assert(expected == actual)`.'
+  StyleGuide: 'https://github.com/rubocop-hq/minitest-style-guide#assert-equal-arguments-order'
+  Enabled: true
+  VersionAdded: '0.4'
+
 Minitest/AssertIncludes:
   Description: 'This cop enforces the test to use `assert_includes` instead of using `assert(collection.include?(object))`.'
   StyleGuide: 'https://github.com/rubocop-hq/minitest-style-guide#assert-includes'

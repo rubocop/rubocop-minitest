@@ -5,6 +5,7 @@
 ### New features
 
 * [#29](https://github.com/rubocop-hq/rubocop-minitest/pull/29): Add new `Minitest/RefuteRespondTo` cop.  ([@herwinw][])
+* [#31](https://github.com/rubocop-hq/rubocop-minitest/pull/31): Add new `Minitest/AssertEqual` cop. ([@herwinw][])
 
 ## 0.3.0 (2019-10-13)
 

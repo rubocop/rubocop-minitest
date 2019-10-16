@@ -25,6 +25,29 @@ assert_empty(object, 'the message')
 
 * [https://github.com/rubocop-hq/minitest-style-guide#assert-empty](https://github.com/rubocop-hq/minitest-style-guide#assert-empty)
 
+## Minitest/AssertEqual
+
+Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+--- | --- | --- | --- | ---
+Enabled | Yes | Yes  | 0.4 | -
+
+This cop enforces the use of `assert_equal(expected, actual)`
+over `assert(expected == actual)`.
+
+### Examples
+
+```ruby
+# bad
+assert("rubocop-minitest" == actual)
+
+# good
+assert_equal("rubocop-minitest", actual)
+```
+
+### References
+
+* [https://github.com/rubocop-hq/minitest-style-guide#assert-equal-arguments-order](https://github.com/rubocop-hq/minitest-style-guide#assert-equal-arguments-order)
+
 ## Minitest/AssertIncludes
 
 Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
