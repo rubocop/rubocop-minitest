@@ -248,3 +248,28 @@ refute_nil(actual, 'the message')
 ### References
 
 * [https://github.com/rubocop-hq/minitest-style-guide#refute-nil](https://github.com/rubocop-hq/minitest-style-guide#refute-nil)
+
+## Minitest/RefuteRespondTo
+
+Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+--- | --- | --- | --- | ---
+Enabled | Yes | Yes  | 0.4 | -
+
+This cop enforces the use of `refute_respond_to(object, :some_method)`
+over `refute(object.respond_to?(:some_method))`.
+
+### Examples
+
+```ruby
+# bad
+refute(object.respond_to?(:some_method))
+refute(object.respond_to?(:some_method), 'the message')
+
+# good
+refute_respond_to(object, :some_method)
+refute_respond_to(object, :some_method, 'the message')
+```
+
+### References
+
+* [https://github.com/rubocop-hq/minitest-style-guide#refute-respond-to](https://github.com/rubocop-hq/minitest-style-guide#refute-respond-to)

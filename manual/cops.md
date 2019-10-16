@@ -11,5 +11,6 @@
 * [Minitest/RefuteFalse](cops_minitest.md#minitestrefutefalse)
 * [Minitest/RefuteIncludes](cops_minitest.md#minitestrefuteincludes)
 * [Minitest/RefuteNil](cops_minitest.md#minitestrefutenil)
+* [Minitest/RefuteRespondTo](cops_minitest.md#minitestrefuterespondto)
 
 <!-- END_COP_LIST -->
