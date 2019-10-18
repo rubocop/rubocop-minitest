@@ -7,6 +7,10 @@
 * [#29](https://github.com/rubocop-hq/rubocop-minitest/pull/29): Add new `Minitest/RefuteRespondTo` cop.  ([@herwinw][])
 * [#31](https://github.com/rubocop-hq/rubocop-minitest/pull/31): Add new `Minitest/AssertEqual` cop. ([@herwinw][])
 
+### Bug fixes
+
+* [#25](https://github.com/rubocop-hq/rubocop-minitest/issues/25): Add `Enabled: true` to `Minitest` department config to suppress `Warning: Minitest does not support Enabled parameter`. ([@koic][])
+
 ## 0.3.0 (2019-10-13)
 
 ### New features
