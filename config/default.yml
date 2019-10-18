@@ -1,4 +1,5 @@
 Minitest:
+  Enabled: true
   Include:
     - '**/test/**/*'
 
