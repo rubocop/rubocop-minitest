@@ -3,12 +3,6 @@ Minitest:
   Include:
     - '**/test/**/*'
 
-Minitest/AssertNil:
-  Description: 'This cop enforces the test to use `assert_nil` instead of using `assert_equal(nil, something)`.'
-  StyleGuide: 'https://github.com/rubocop-hq/minitest-style-guide#assert-nil'
-  Enabled: true
-  VersionAdded: '0.1'
-
 Minitest/AssertEmpty:
   Description: 'This cop enforces the test to use `assert_empty` instead of using `assert(object.empty?)`.'
   StyleGuide: 'https://github.com/rubocop-hq/minitest-style-guide#assert-empty'
@@ -27,6 +21,12 @@ Minitest/AssertIncludes:
   Enabled: true
   VersionAdded: '0.2'
 
+Minitest/AssertNil:
+  Description: 'This cop enforces the test to use `assert_nil` instead of using `assert_equal(nil, something)`.'
+  StyleGuide: 'https://github.com/rubocop-hq/minitest-style-guide#assert-nil'
+  Enabled: true
+  VersionAdded: '0.1'
+
 Minitest/AssertRespondTo:
   Description: 'This cop enforces the test to use `assert_respond_to(object, :some_method)` over `assert(object.respond_to?(:some_method))`.'
   StyleGuide: 'https://github.com/rubocop-hq/minitest-style-guide#assert-responds-to-method'
@@ -39,21 +39,21 @@ Minitest/AssertTruthy:
   Enabled: true
   VersionAdded: '0.2'
 
+Minitest/RefuteEmpty:
+  Description: 'This cop enforces to use `refute_empty` instead of using `refute(object.empty?)`.'
+  StyleGuide: 'https://github.com/rubocop-hq/minitest-style-guide#refute-empty'
+  Enabled: true
+  VersionAdded: '0.3'
+
 Minitest/RefuteEqual:
   Description: 'Check if your test uses `refute_equal` instead of `assert(expected != object)` or `assert(! expected == object))`.'
   StyleGuide: 'https://github.com/rubocop-hq/minitest-style-guide#refute-equal'
   Enabled: true
   VersionAdded: '0.3'
 
-Minitest/RefuteNil:
-  Description: 'This cop enforces the test to use `refute_nil` instead of using `refute_equal(nil, something)`.'
-  StyleGuide: 'https://github.com/rubocop-hq/minitest-style-guide#refute-nil'
-  Enabled: true
-  VersionAdded: '0.2'
-
-Minitest/RefuteEmpty:
-  Description: 'This cop enforces to use `refute_empty` instead of using `refute(object.empty?)`.'
-  StyleGuide: 'https://github.com/rubocop-hq/minitest-style-guide#refute-empty'
+Minitest/RefuteFalse:
+  Description: 'Check if your test uses `refute(actual)` instead of `assert_equal(false, actual)`.'
+  StyleGuide: 'https://github.com/rubocop-hq/minitest-style-guide#refute-false'
   Enabled: true
   VersionAdded: '0.3'
 
@@ -63,14 +63,14 @@ Minitest/RefuteIncludes:
   Enabled: true
   VersionAdded: '0.3'
 
+Minitest/RefuteNil:
+  Description: 'This cop enforces the test to use `refute_nil` instead of using `refute_equal(nil, something)`.'
+  StyleGuide: 'https://github.com/rubocop-hq/minitest-style-guide#refute-nil'
+  Enabled: true
+  VersionAdded: '0.2'
+
 Minitest/RefuteRespondTo:
   Description: 'This cop enforces the test to use `refute_respond_to(object, :some_method)` over `refute(object.respond_to?(:some_method))`.'
   StyleGuide: 'https://github.com/rubocop-hq/minitest-style-guide#refute-respond-to'
   Enabled: true
   VersionAdded: '0.4'
-
-Minitest/RefuteFalse:
-  Description: 'Check if your test uses `refute(actual)` instead of `assert_equal(false, actual)`.'
-  StyleGuide: 'https://github.com/rubocop-hq/minitest-style-guide#refute-false'
-  Enabled: true
-  VersionAdded: '0.3'
