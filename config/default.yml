@@ -69,6 +69,12 @@ Minitest/RefuteIncludes:
   Enabled: true
   VersionAdded: '0.3'
 
+Minitest/RefuteInstanceOf:
+  Description: 'This cop enforces the test to use `refute_instance_of(Class, object)` over `refute(object.instance_of?(Class))`.'
+  StyleGuide: 'https://github.com/rubocop-hq/minitest-style-guide#refute-instance-of'
+  Enabled: true
+  VersionAdded: '0.4'
+
 Minitest/RefuteNil:
   Description: 'This cop enforces the test to use `refute_nil` instead of using `refute_equal(nil, something)`.'
   StyleGuide: 'https://github.com/rubocop-hq/minitest-style-guide#refute-nil'

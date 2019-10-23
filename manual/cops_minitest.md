@@ -272,6 +272,31 @@ refute_includes(collection, object, 'the message')
 
 * [https://github.com/rubocop-hq/minitest-style-guide#refute-includes](https://github.com/rubocop-hq/minitest-style-guide#refute-includes)
 
+## Minitest/RefuteInstanceOf
+
+Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+--- | --- | --- | --- | ---
+Enabled | Yes | Yes  | 0.4 | -
+
+This cop enforces the use of `refute_instance_of(Class, object)`
+over `refute(object.instance_of?(Class))`.
+
+### Examples
+
+```ruby
+# bad
+refute(object.instance_of?(Class))
+refute(object.instance_of?(Class), 'the message')
+
+# good
+refute_instance_of(Class, object)
+refute_instance_of(Class, object, 'the message')
+```
+
+### References
+
+* [https://github.com/rubocop-hq/minitest-style-guide#refute-instance-of](https://github.com/rubocop-hq/minitest-style-guide#refute-instance-of)
+
 ## Minitest/RefuteNil
 
 Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
@@ -303,7 +328,7 @@ Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChan
 --- | --- | --- | --- | ---
 Enabled | Yes | Yes  | 0.4 | -
 
-This cop enforces the use of `refute_respond_to(object, :some_method)`
+This cop enforces the test to use `refute_respond_to(object, :some_method)`
 over `refute(object.respond_to?(:some_method))`.
 
 ### Examples
