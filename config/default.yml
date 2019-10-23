@@ -21,6 +21,12 @@ Minitest/AssertIncludes:
   Enabled: true
   VersionAdded: '0.2'
 
+Minitest/AssertInstanceOf:
+  Description: 'This cop enforces the test to use `assert_instance_of(Class, object)` over `assert(object.instance_of?(Class))`'
+  StyleGuide: 'https://github.com/rubocop-hq/minitest-style-guide#assert-instance-of'
+  Enabled: true
+  VersionAdded: '0.4'
+
 Minitest/AssertNil:
   Description: 'This cop enforces the test to use `assert_nil` instead of using `assert_equal(nil, something)`.'
   StyleGuide: 'https://github.com/rubocop-hq/minitest-style-guide#assert-nil'

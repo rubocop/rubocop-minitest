@@ -73,6 +73,31 @@ assert_includes(collection, object, 'the message')
 
 * [https://github.com/rubocop-hq/minitest-style-guide#assert-includes](https://github.com/rubocop-hq/minitest-style-guide#assert-includes)
 
+## Minitest/AssertInstanceOf
+
+Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+--- | --- | --- | --- | ---
+Enabled | Yes | Yes  | 0.4 | -
+
+This cop enforces the test to use `assert_instance_of(Class, object)`
+over `assert(object.instance_of?(Class))`.
+
+### Examples
+
+```ruby
+# bad
+assert(object.instance_of?(Class))
+assert(object.instance_of?(Class), 'the message')
+
+# good
+assert_instance_of(Class, object)
+assert_instance_of(Class, object, 'the message')
+```
+
+### References
+
+* [https://github.com/rubocop-hq/minitest-style-guide#assert-instance-of](https://github.com/rubocop-hq/minitest-style-guide#assert-instance-of)
+
 ## Minitest/AssertNil
 
 Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
