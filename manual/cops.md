@@ -4,6 +4,7 @@
 * [Minitest/AssertEmpty](cops_minitest.md#minitestassertempty)
 * [Minitest/AssertEqual](cops_minitest.md#minitestassertequal)
 * [Minitest/AssertIncludes](cops_minitest.md#minitestassertincludes)
+* [Minitest/AssertInstanceOf](cops_minitest.md#minitestassertinstanceof)
 * [Minitest/AssertNil](cops_minitest.md#minitestassertnil)
 * [Minitest/AssertRespondTo](cops_minitest.md#minitestassertrespondto)
 * [Minitest/AssertTruthy](cops_minitest.md#minitestasserttruthy)

@@ -6,6 +6,7 @@
 
 * [#29](https://github.com/rubocop-hq/rubocop-minitest/pull/29): Add new `Minitest/RefuteRespondTo` cop.  ([@herwinw][])
 * [#31](https://github.com/rubocop-hq/rubocop-minitest/pull/31): Add new `Minitest/AssertEqual` cop. ([@herwinw][])
+* [#34](https://github.com/rubocop-hq/rubocop-minitest/pull/34): Add new `Minitest/AssertInstanceOf` cop. ([@abhaynikam][])
 
 ### Bug fixes
 
