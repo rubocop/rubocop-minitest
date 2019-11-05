@@ -12,6 +12,7 @@
 * [Minitest/RefuteEqual](cops_minitest.md#minitestrefuteequal)
 * [Minitest/RefuteFalse](cops_minitest.md#minitestrefutefalse)
 * [Minitest/RefuteIncludes](cops_minitest.md#minitestrefuteincludes)
+* [Minitest/RefuteInstanceOf](cops_minitest.md#minitestrefuteinstanceof)
 * [Minitest/RefuteNil](cops_minitest.md#minitestrefutenil)
 * [Minitest/RefuteRespondTo](cops_minitest.md#minitestrefuterespondto)
 
