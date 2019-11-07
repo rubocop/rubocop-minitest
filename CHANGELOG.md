@@ -2,6 +2,8 @@
 
 ## master (unreleased)
 
+## 0.4.0 (2019-11-07)
+
 ### New features
 
 * [#29](https://github.com/rubocop-hq/rubocop-minitest/pull/29): Add new `Minitest/RefuteRespondTo` cop.  ([@herwinw][])
