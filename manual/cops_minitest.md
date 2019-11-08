@@ -138,10 +138,12 @@ over `assert(object.respond_to?(:some_method))`.
 # bad
 assert(object.respond_to?(:some_method))
 assert(object.respond_to?(:some_method), 'the message')
+assert(respond_to?(:some_method))
 
 # good
 assert_respond_to(object, :some_method)
 assert_respond_to(object, :some_method, 'the message')
+assert_respond_to(self, some_method)
 ```
 
 ### References
@@ -337,10 +339,12 @@ over `refute(object.respond_to?(:some_method))`.
 # bad
 refute(object.respond_to?(:some_method))
 refute(object.respond_to?(:some_method), 'the message')
+refute(respond_to?(:some_method))
 
 # good
 refute_respond_to(object, :some_method)
 refute_respond_to(object, :some_method, 'the message')
+refute_respond_to(self, :some_method)
 ```
 
 ### References
