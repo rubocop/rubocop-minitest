@@ -10,10 +10,12 @@ module RuboCop
       #   # bad
       #   assert(object.respond_to?(:some_method))
       #   assert(object.respond_to?(:some_method), 'the message')
+      #   assert(respond_to?(:some_method))
       #
       #   # good
       #   assert_respond_to(object, :some_method)
       #   assert_respond_to(object, :some_method, 'the message')
+      #   assert_respond_to(self, some_method)
       #
       class AssertRespondTo < Cop
         MSG = 'Prefer using `assert_respond_to(%<preferred>s)` over ' \
@@ -26,9 +28,8 @@ module RuboCop
         def on_send(node)
           assert_with_respond_to(node) do |over, object, method, rest_args|
             custom_message = rest_args.first
-            preferred = [object, method, custom_message]
-                        .compact.map(&:source).join(', ')
-            over      = [over, custom_message].compact.map(&:source).join(', ')
+            preferred = build_preferred_arguments(object, method, custom_message)
+            over = [over, custom_message].compact.map(&:source).join(', ')
             message = format(MSG, preferred: preferred, over: over)
             add_offense(node, message: message)
           end
@@ -38,12 +39,19 @@ module RuboCop
           lambda do |corrector|
             assert_with_respond_to(node) do |_, object, method, rest_args|
               custom_message = rest_args.first
-              preferred = [object, method, custom_message]
-                          .compact.map(&:source).join(', ')
+              preferred = build_preferred_arguments(object, method, custom_message)
               replacement = "assert_respond_to(#{preferred})"
               corrector.replace(node.loc.expression, replacement)
             end
           end
+        end
+
+        private
+
+        def build_preferred_arguments(receiver, method, message)
+          receiver = receiver ? receiver.source : 'self'
+
+          [receiver, method.source, message&.source].compact.join(', ')
         end
       end
     end

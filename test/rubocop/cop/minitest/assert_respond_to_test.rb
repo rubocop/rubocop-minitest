@@ -45,6 +45,25 @@ class AssertRespondToTest < Minitest::Test
     RUBY
   end
 
+  def test_registers_offense_when_using_assert_calling_respond_to_with_receiver_omitted
+    assert_offense(<<~RUBY, @cop)
+      class FooTest < Minitest::Test
+        def test_do_something
+          assert(respond_to?(:some_method))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_respond_to(self, :some_method)` over `assert(respond_to?(:some_method))`.
+        end
+      end
+    RUBY
+
+    assert_correction(<<~RUBY, @cop)
+      class FooTest < Minitest::Test
+        def test_do_something
+          assert_respond_to(self, :some_method)
+        end
+      end
+    RUBY
+  end
+
   def test_does_not_register_offense_when_using_assert_respond_to
     assert_no_offenses(<<~RUBY, @cop)
       class FooTest < Minitest::Test
