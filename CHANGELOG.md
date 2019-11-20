@@ -2,6 +2,10 @@
 
 ## master (unreleased)
 
+### New features
+
+* [#32](https://github.com/rubocop-hq/rubocop-minitest/issues/32): Add new `Minitest/AssertEmptyLiteral` cop. ([@tejasbubane][])
+
 ## 0.4.1 (2019-11-10)
 
 ### Bug fixes

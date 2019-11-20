@@ -25,6 +25,26 @@ assert_empty(object, 'the message')
 
 * [https://github.com/rubocop-hq/minitest-style-guide#assert-empty](https://github.com/rubocop-hq/minitest-style-guide#assert-empty)
 
+## Minitest/AssertEmptyLiteral
+
+Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+--- | --- | --- | --- | ---
+Enabled | Yes | No | 0.5 | -
+
+This cop enforces the test to use `assert_empty`
+instead of using `assert([], object)`.
+
+### Examples
+
+```ruby
+# bad
+assert([], object)
+assert({}, object)
+
+# good
+assert_empty(object)
+```
+
 ## Minitest/AssertEqual
 
 Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
