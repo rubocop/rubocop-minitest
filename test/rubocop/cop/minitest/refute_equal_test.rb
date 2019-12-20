@@ -121,6 +121,31 @@ class RefuteEqualTest < Minitest::Test
     RUBY
   end
 
+  def test_registers_offense_when_using_refute_equal_operator_with_heredoc_message
+    assert_offense(<<~RUBY, @cop)
+      class FooTest < Minitest::Test
+        def test_do_something
+          assert(!'rubocop-minitest' == actual, <<~MESSAGE
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_equal('rubocop-minitest', actual, <<~MESSAGE)` over `assert(!'rubocop-minitest' == actual, <<~MESSAGE)`.
+            the message
+          MESSAGE
+          )
+        end
+      end
+    RUBY
+
+    assert_correction(<<~RUBY, @cop)
+      class FooTest < Minitest::Test
+        def test_do_something
+          refute_equal('rubocop-minitest', actual, <<~MESSAGE
+            the message
+          MESSAGE
+          )
+        end
+      end
+    RUBY
+  end
+
   def test_does_not_register_offense_when_using_refute_equal
     assert_no_offenses(<<~RUBY, @cop)
       class FooTest < Minitest::Test

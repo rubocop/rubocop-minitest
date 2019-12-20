@@ -14,6 +14,8 @@ module RuboCop
       #   assert_equal("rubocop-minitest", actual)
       #
       class AssertEqual < Cop
+        include ArgumentRangeHelper
+
         MSG = 'Prefer using `assert_equal(%<preferred>s)` over ' \
               '`assert(%<over>s)`.'
 
@@ -22,9 +24,7 @@ module RuboCop
         PATTERN
 
         def on_send(node)
-          assert_equal(node) do
-            |first_receiver_arg, expected, actual, rest_receiver_arg|
-
+          assert_equal(node) do |first_receiver_arg, expected, actual, rest_receiver_arg|
             message = rest_receiver_arg.first
             preferred = [expected.source, actual.source, message&.source]
                         .compact.join(', ')
@@ -38,18 +38,13 @@ module RuboCop
 
         def autocorrect(node)
           lambda do |corrector|
-            assert_equal(node) do |_receiver, expected, actual, rest_receiver_arg|
-              message = rest_receiver_arg.first
-              replacement = node_arguments(expected, actual, message)
-              corrector.replace(node.loc.expression, "assert_equal(#{replacement})")
+            assert_equal(node) do |_, expected, actual|
+              corrector.replace(node.loc.selector, 'assert_equal')
+
+              replacement = [expected, actual].map(&:source).join(', ')
+              corrector.replace(first_argument_range(node), replacement)
             end
           end
-        end
-
-        private
-
-        def node_arguments(expected, actual, message)
-          [expected.source, actual.source, message&.source].compact.join(', ')
         end
       end
     end

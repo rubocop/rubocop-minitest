@@ -64,6 +64,31 @@ class RefuteNilTest < Minitest::Test
     RUBY
   end
 
+  def test_registers_offense_when_using_refute_equal_with_nil_and_heredoc_message
+    assert_offense(<<~RUBY, @cop)
+      class FooTest < Minitest::Test
+        def test_do_something
+          refute_equal(nil, obj.do_something, <<~MESSAGE
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_nil(obj.do_something, <<~MESSAGE)` over `refute_equal(nil, obj.do_something, <<~MESSAGE)`.
+            the message
+          MESSAGE
+          )
+        end
+      end
+    RUBY
+
+    assert_correction(<<~RUBY, @cop)
+      class FooTest < Minitest::Test
+        def test_do_something
+          refute_nil(obj.do_something, <<~MESSAGE
+            the message
+          MESSAGE
+          )
+        end
+      end
+    RUBY
+  end
+
   def test_does_not_register_offense_when_using_refute_nil_method
     assert_no_offenses(<<~RUBY, @cop)
       class FooTest < Minitest::Test

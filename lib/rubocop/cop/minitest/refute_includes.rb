@@ -16,6 +16,8 @@ module RuboCop
       #   refute_includes(collection, object, 'the message')
       #
       class RefuteIncludes < Cop
+        include ArgumentRangeHelper
+
         MSG = 'Prefer using `refute_includes(%<arguments>s)` over ' \
               '`refute(%<receiver>s)`.'
 
@@ -39,12 +41,11 @@ module RuboCop
 
         def autocorrect(node)
           lambda do |corrector|
-            refute_with_includes(node) do
-              |_receiver, collection, object, rest_receiver_arg|
+            refute_with_includes(node) do |_, collection, actual|
+              corrector.replace(node.loc.selector, 'refute_includes')
 
-              message = rest_receiver_arg.first
-              replacement = node_arguments(collection, object, message)
-              corrector.replace(node.loc.expression, "refute_includes(#{replacement})")
+              replacement = [collection, actual].map(&:source).join(', ')
+              corrector.replace(first_argument_range(node), replacement)
             end
           end
         end

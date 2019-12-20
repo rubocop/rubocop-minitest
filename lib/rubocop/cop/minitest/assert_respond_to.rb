@@ -18,6 +18,8 @@ module RuboCop
       #   assert_respond_to(self, some_method)
       #
       class AssertRespondTo < Cop
+        include ArgumentRangeHelper
+
         MSG = 'Prefer using `assert_respond_to(%<preferred>s)` over ' \
               '`assert(%<over>s)`.'
 
@@ -37,11 +39,12 @@ module RuboCop
 
         def autocorrect(node)
           lambda do |corrector|
-            assert_with_respond_to(node) do |_, object, method, rest_args|
-              custom_message = rest_args.first
-              preferred = build_preferred_arguments(object, method, custom_message)
-              replacement = "assert_respond_to(#{preferred})"
-              corrector.replace(node.loc.expression, replacement)
+            assert_with_respond_to(node) do |_, object, method|
+              corrector.replace(node.loc.selector, 'assert_respond_to')
+
+              object = object ? object.source : 'self'
+              replacement = [object, method.source].join(', ')
+              corrector.replace(first_argument_range(node), replacement)
             end
           end
         end

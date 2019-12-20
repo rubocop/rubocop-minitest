@@ -16,6 +16,8 @@ module RuboCop
       #   assert_empty(object, 'the message')
       #
       class AssertEmpty < Cop
+        include ArgumentRangeHelper
+
         MSG = 'Prefer using `assert_empty(%<arguments>s)` over ' \
               '`assert(%<receiver>s)`.'
 
@@ -37,11 +39,9 @@ module RuboCop
 
         def autocorrect(node)
           lambda do |corrector|
-            assert_with_empty(node) do |_first_receiver_arg, actual, rest_receiver_arg|
-              message = rest_receiver_arg.first
-
-              replacement = [actual.source, message&.source].compact.join(', ')
-              corrector.replace(node.loc.expression, "assert_empty(#{replacement})")
+            assert_with_empty(node) do |_, actual_arg|
+              corrector.replace(node.loc.selector, 'assert_empty')
+              corrector.replace(first_argument_range(node), actual_arg.source)
             end
           end
         end
