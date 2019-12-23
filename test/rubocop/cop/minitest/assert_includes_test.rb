@@ -45,6 +45,31 @@ class AssertIncludesTest < Minitest::Test
     RUBY
   end
 
+  def test_registers_offense_when_using_assert_with_include_and_heredoc_message
+    assert_offense(<<~RUBY, @cop)
+      class FooTest < Minitest::Test
+        def test_do_something
+          assert(collection.include?(object), <<~MESSAGE
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_includes(collection, object, <<~MESSAGE)` over `assert(collection.include?(object), <<~MESSAGE)`.
+            the message
+          MESSAGE
+          )
+        end
+      end
+    RUBY
+
+    assert_correction(<<~RUBY, @cop)
+      class FooTest < Minitest::Test
+        def test_do_something
+          assert_includes(collection, object, <<~MESSAGE
+            the message
+          MESSAGE
+          )
+        end
+      end
+    RUBY
+  end
+
   def test_does_not_register_offense_when_using_assert_includes_method
     assert_no_offenses(<<~RUBY, @cop)
       class FooTest < Minitest::Test

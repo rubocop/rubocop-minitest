@@ -64,6 +64,31 @@ class AssertTruthyTest < Minitest::Test
     RUBY
   end
 
+  def test_registers_offense_when_using_assert_equal_with_true_and_heredoc_message
+    assert_offense(<<~RUBY, @cop)
+      class FooTest < Minitest::Test
+        def test_do_something
+          assert_equal(true, obj.is_something?, <<~MESSAGE
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert(obj.is_something?, <<~MESSAGE)` over `assert_equal(true, obj.is_something?, <<~MESSAGE)`.
+            the message
+          MESSAGE
+          )
+        end
+      end
+    RUBY
+
+    assert_correction(<<~RUBY, @cop)
+      class FooTest < Minitest::Test
+        def test_do_something
+          assert(obj.is_something?, <<~MESSAGE
+            the message
+          MESSAGE
+          )
+        end
+      end
+    RUBY
+  end
+
   def test_does_not_register_offense_when_using_assert_method
     assert_no_offenses(<<~RUBY, @cop)
       class FooTest < Minitest::Test

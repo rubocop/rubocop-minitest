@@ -16,6 +16,8 @@ module RuboCop
       #   refute(actual, 'the message')
       #
       class RefuteFalse < Cop
+        include ArgumentRangeHelper
+
         MSG = 'Prefer using `refute(%<arguments>s)` over ' \
               '`assert_equal(false, %<arguments>s)`.'
 
@@ -35,9 +37,12 @@ module RuboCop
 
         def autocorrect(node)
           lambda do |corrector|
-            arguments = node.arguments.reject(&:false_type?)
-            replacement = arguments.map(&:source).join(', ')
-            corrector.replace(node.loc.expression, "refute(#{replacement})")
+            assert_equal_with_false(node) do |actual|
+              corrector.replace(node.loc.selector, 'refute')
+              corrector.replace(
+                first_and_second_arguments_range(node), actual.source
+              )
+            end
           end
         end
       end

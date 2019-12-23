@@ -16,6 +16,8 @@ module RuboCop
       #   refute_empty(object, 'the message')
       #
       class RefuteEmpty < Cop
+        include ArgumentRangeHelper
+
         MSG = 'Prefer using `refute_empty(%<arguments>s)` over ' \
               '`refute(%<receiver>s)`.'
 
@@ -37,11 +39,9 @@ module RuboCop
 
         def autocorrect(node)
           lambda do |corrector|
-            refute_with_empty(node) do |_first_receiver_arg, object, rest_receiver_arg|
-              message = rest_receiver_arg.first
-
-              replacement = [object.source, message&.source].compact.join(', ')
-              corrector.replace(node.loc.expression, "refute_empty(#{replacement})")
+            refute_with_empty(node) do |_, actual_arg|
+              corrector.replace(node.loc.selector, 'refute_empty')
+              corrector.replace(first_argument_range(node), actual_arg.source)
             end
           end
         end

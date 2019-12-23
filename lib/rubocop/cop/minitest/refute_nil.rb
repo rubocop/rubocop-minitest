@@ -16,6 +16,8 @@ module RuboCop
       #   refute_nil(actual, 'the message')
       #
       class RefuteNil < Cop
+        include ArgumentRangeHelper
+
         MSG = 'Prefer using `refute_nil(%<arguments>s)` over ' \
               '`refute_equal(nil, %<arguments>s)`.'
 
@@ -35,9 +37,12 @@ module RuboCop
 
         def autocorrect(node)
           lambda do |corrector|
-            arguments = node.arguments.reject(&:nil_type?)
-            replacement = arguments.map(&:source).join(', ')
-            corrector.replace(node.loc.expression, "refute_nil(#{replacement})")
+            refute_equal_with_nil(node) do |actual|
+              corrector.replace(node.loc.selector, 'refute_nil')
+              corrector.replace(
+                first_and_second_arguments_range(node), actual.source
+              )
+            end
           end
         end
       end

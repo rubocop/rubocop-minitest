@@ -45,6 +45,31 @@ class AssertInstanceOfTest < Minitest::Test
     RUBY
   end
 
+  def test_registers_offense_when_using_assert_instance_of_operator_with_heredoc_message
+    assert_offense(<<~RUBY, @cop)
+      class FooTest < Minitest::Test
+        def test_do_something
+          assert(object.instance_of?(SomeClass), <<~MESSAGE
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_instance_of(SomeClass, object, <<~MESSAGE)` over `assert(object.instance_of?(SomeClass), <<~MESSAGE)`.
+            the message
+          MESSAGE
+          )
+        end
+      end
+    RUBY
+
+    assert_correction(<<~RUBY, @cop)
+      class FooTest < Minitest::Test
+        def test_do_something
+          assert_instance_of(SomeClass, object, <<~MESSAGE
+            the message
+          MESSAGE
+          )
+        end
+      end
+    RUBY
+  end
+
   def test_does_not_register_offense_when_using_assert_instance_of_method
     assert_no_offenses(<<~RUBY, @cop)
       class FooTest < Minitest::Test

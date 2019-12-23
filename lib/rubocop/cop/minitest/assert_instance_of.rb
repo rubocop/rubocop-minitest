@@ -16,6 +16,8 @@ module RuboCop
       #   assert_instance_of(Class, object, 'the message')
       #
       class AssertInstanceOf < Cop
+        include ArgumentRangeHelper
+
         MSG = 'Prefer using `assert_instance_of(%<arguments>s)` over ' \
               '`assert(%<receiver>s)`.'
 
@@ -24,9 +26,7 @@ module RuboCop
         PATTERN
 
         def on_send(node)
-          assert_with_instance_of(node) do
-            |first_receiver_arg, object, method, rest_args|
-
+          assert_with_instance_of(node) do |first_receiver_arg, object, method, rest_args|
             message = rest_args.first
             arguments = node_arguments(object, method, message)
             receiver = [first_receiver_arg.source, message&.source].compact.join(', ')
@@ -39,12 +39,11 @@ module RuboCop
 
         def autocorrect(node)
           lambda do |corrector|
-            assert_with_instance_of(node) do |_, object, method, rest_args|
-              message = rest_args.first
-              arguments = node_arguments(object, method, message)
+            assert_with_instance_of(node) do |_, object, method|
+              corrector.replace(node.loc.selector, 'assert_instance_of')
 
-              replacement = "assert_instance_of(#{arguments})"
-              corrector.replace(node.loc.expression, replacement)
+              replacement = [method, object].map(&:source).join(', ')
+              corrector.replace(first_argument_range(node), replacement)
             end
           end
         end

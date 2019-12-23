@@ -16,6 +16,8 @@ module RuboCop
       #   assert_includes(collection, object, 'the message')
       #
       class AssertIncludes < Cop
+        include ArgumentRangeHelper
+
         MSG = 'Prefer using `assert_includes(%<arguments>s)` over ' \
               '`assert(%<receiver>s)`.'
 
@@ -39,12 +41,11 @@ module RuboCop
 
         def autocorrect(node)
           lambda do |corrector|
-            assert_with_includes(node) do
-              |_receiver, collection, actual, rest_receiver_arg|
+            assert_with_includes(node) do |_, collection, actual|
+              corrector.replace(node.loc.selector, 'assert_includes')
 
-              message = rest_receiver_arg.first
-              replacement = node_arguments(collection, actual, message)
-              corrector.replace(node.loc.expression, "assert_includes(#{replacement})")
+              replacement = [collection, actual].map(&:source).join(', ')
+              corrector.replace(first_argument_range(node), replacement)
             end
           end
         end

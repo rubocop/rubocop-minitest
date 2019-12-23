@@ -16,6 +16,8 @@ module RuboCop
       #   assert_nil(actual, 'the message')
       #
       class AssertNil < Cop
+        include ArgumentRangeHelper
+
         MSG = 'Prefer using `assert_nil(%<arguments>s)` over ' \
               '`assert_equal(nil, %<arguments>s)`.'
 
@@ -35,9 +37,12 @@ module RuboCop
 
         def autocorrect(node)
           lambda do |corrector|
-            arguments = node.arguments.reject(&:nil_type?)
-            replacement = arguments.map(&:source).join(', ')
-            corrector.replace(node.loc.expression, "assert_nil(#{replacement})")
+            assert_equal_with_nil(node) do |actual|
+              corrector.replace(node.loc.selector, 'assert_nil')
+              corrector.replace(
+                first_and_second_arguments_range(node), actual.source
+              )
+            end
           end
         end
       end
