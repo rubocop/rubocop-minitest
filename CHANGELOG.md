@@ -2,6 +2,8 @@
 
 ## master (unreleased)
 
+## 0.5.1 (2019-12-25)
+
 * [#42](https://github.com/rubocop-hq/rubocop-minitest/issues/42): Fix an incorrect autocorrect for some cops of `Minitest` department when using heredoc message. ([@koic][])
 
 ## 0.5.0 (2019-11-24)
