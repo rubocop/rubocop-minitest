@@ -16,8 +16,8 @@ gem install rubocop-minitest
 
 or if you use bundler put this in your `Gemfile`
 
-```
-gem 'rubocop-minitest'
+```ruby
+gem 'rubocop-minitest', require: false
 ```
 
 ## Usage
