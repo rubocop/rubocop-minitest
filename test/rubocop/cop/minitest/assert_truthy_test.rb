@@ -3,12 +3,8 @@
 require 'test_helper'
 
 class AssertTruthyTest < Minitest::Test
-  def setup
-    @cop = RuboCop::Cop::Minitest::AssertTruthy.new
-  end
-
   def test_registers_offense_when_using_assert_equal_with_true
-    assert_offense(<<~RUBY, @cop)
+    assert_offense(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
           assert_equal(true, somestuff)
@@ -17,7 +13,7 @@ class AssertTruthyTest < Minitest::Test
       end
     RUBY
 
-    assert_correction(<<~RUBY, @cop)
+    assert_correction(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
           assert(somestuff)
@@ -27,7 +23,7 @@ class AssertTruthyTest < Minitest::Test
   end
 
   def test_registers_offense_when_using_assert_equal_with_true_and_message
-    assert_offense(<<~RUBY, @cop)
+    assert_offense(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
           assert_equal(true, somestuff, 'the message')
@@ -36,7 +32,7 @@ class AssertTruthyTest < Minitest::Test
       end
     RUBY
 
-    assert_correction(<<~RUBY, @cop)
+    assert_correction(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
           assert(somestuff, 'the message')
@@ -46,7 +42,7 @@ class AssertTruthyTest < Minitest::Test
   end
 
   def test_registers_offense_when_using_assert_equal_with_a_method_call
-    assert_offense(<<~RUBY, @cop)
+    assert_offense(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
           assert_equal(true, obj.is_something?, 'the message')
@@ -55,7 +51,7 @@ class AssertTruthyTest < Minitest::Test
       end
     RUBY
 
-    assert_correction(<<~RUBY, @cop)
+    assert_correction(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
           assert(obj.is_something?, 'the message')
@@ -65,7 +61,7 @@ class AssertTruthyTest < Minitest::Test
   end
 
   def test_registers_offense_when_using_assert_equal_with_true_and_heredoc_message
-    assert_offense(<<~RUBY, @cop)
+    assert_offense(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
           assert_equal(true, obj.is_something?, <<~MESSAGE
@@ -77,7 +73,7 @@ class AssertTruthyTest < Minitest::Test
       end
     RUBY
 
-    assert_correction(<<~RUBY, @cop)
+    assert_correction(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
           assert(obj.is_something?, <<~MESSAGE
@@ -90,7 +86,7 @@ class AssertTruthyTest < Minitest::Test
   end
 
   def test_does_not_register_offense_when_using_assert_method
-    assert_no_offenses(<<~RUBY, @cop)
+    assert_no_offenses(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_somethingra
           assert(somestuff)
