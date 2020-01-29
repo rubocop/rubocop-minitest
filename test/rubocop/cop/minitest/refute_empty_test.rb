@@ -3,12 +3,8 @@
 require 'test_helper'
 
 class RefuteEmptyTest < Minitest::Test
-  def setup
-    @cop = RuboCop::Cop::Minitest::RefuteEmpty.new
-  end
-
   def test_registers_offense_when_using_refute_with_empty
-    assert_offense(<<~RUBY, @cop)
+    assert_offense(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
           refute(somestuff.empty?)
@@ -17,7 +13,7 @@ class RefuteEmptyTest < Minitest::Test
       end
     RUBY
 
-    assert_correction(<<~RUBY, @cop)
+    assert_correction(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
           refute_empty(somestuff)
@@ -27,7 +23,7 @@ class RefuteEmptyTest < Minitest::Test
   end
 
   def test_registers_offense_when_using_refute_with_empty_and_message
-    assert_offense(<<~RUBY, @cop)
+    assert_offense(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
           refute(somestuff.empty?, 'the message')
@@ -36,7 +32,7 @@ class RefuteEmptyTest < Minitest::Test
       end
     RUBY
 
-    assert_correction(<<~RUBY, @cop)
+    assert_correction(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
           refute_empty(somestuff, 'the message')
@@ -46,7 +42,7 @@ class RefuteEmptyTest < Minitest::Test
   end
 
   def test_registers_offense_when_using_refute_with_empty_and_heredoc_message
-    assert_offense(<<~RUBY, @cop)
+    assert_offense(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
           refute(somestuff.empty?, <<~MESSAGE
@@ -58,7 +54,7 @@ class RefuteEmptyTest < Minitest::Test
       end
     RUBY
 
-    assert_correction(<<~RUBY, @cop)
+    assert_correction(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
           refute_empty(somestuff, <<~MESSAGE
@@ -71,7 +67,7 @@ class RefuteEmptyTest < Minitest::Test
   end
 
   def refute_empty_method
-    assert_no_offenses(<<~RUBY, @cop)
+    assert_no_offenses(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
           refute_empty(somestuff)

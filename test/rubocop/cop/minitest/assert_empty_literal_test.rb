@@ -3,12 +3,8 @@
 require 'test_helper'
 
 class AssertEmptyLiteralTest < Minitest::Test
-  def setup
-    @cop = RuboCop::Cop::Minitest::AssertEmptyLiteral.new
-  end
-
   def test_registers_offense_when_asserting_empty_array
-    assert_offense(<<~RUBY, @cop)
+    assert_offense(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
           assert([], somestuff)
@@ -19,7 +15,7 @@ class AssertEmptyLiteralTest < Minitest::Test
   end
 
   def test_registers_offense_when_asserting_empty_hash
-    assert_offense(<<~RUBY, @cop)
+    assert_offense(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
           assert({}, somestuff)
@@ -30,7 +26,7 @@ class AssertEmptyLiteralTest < Minitest::Test
   end
 
   def test_does_not_register_offense_when_using_assert_equal
-    assert_no_offenses(<<~RUBY, @cop)
+    assert_no_offenses(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
           assert_equal(['somestuff'], somestuff)
@@ -40,7 +36,7 @@ class AssertEmptyLiteralTest < Minitest::Test
   end
 
   def test_does_not_register_offense_when_using_assert_with_single_parameter
-    assert_no_offenses(<<~RUBY, @cop)
+    assert_no_offenses(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
           assert(somestuff)

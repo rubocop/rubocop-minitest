@@ -3,12 +3,8 @@
 require 'test_helper'
 
 class RefuteInstanceOfTest < Minitest::Test
-  def setup
-    @cop = RuboCop::Cop::Minitest::RefuteInstanceOf.new
-  end
-
   def test_registers_offense_when_using_refute_with_instance_of
-    assert_offense(<<~RUBY, @cop)
+    assert_offense(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
           refute(object.instance_of?(SomeClass))
@@ -17,7 +13,7 @@ class RefuteInstanceOfTest < Minitest::Test
       end
     RUBY
 
-    assert_correction(<<~RUBY, @cop)
+    assert_correction(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
           refute_instance_of(SomeClass, object)
@@ -27,7 +23,7 @@ class RefuteInstanceOfTest < Minitest::Test
   end
 
   def test_registers_offense_when_using_refute_with_instance_of_and_message
-    assert_offense(<<~RUBY, @cop)
+    assert_offense(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
           refute(object.instance_of?(SomeClass), 'the message')
@@ -36,7 +32,7 @@ class RefuteInstanceOfTest < Minitest::Test
       end
     RUBY
 
-    assert_correction(<<~RUBY, @cop)
+    assert_correction(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
           refute_instance_of(SomeClass, object, 'the message')
@@ -46,7 +42,7 @@ class RefuteInstanceOfTest < Minitest::Test
   end
 
   def test_registers_offense_when_using_refute_instance_of_operator_with_heredoc_message
-    assert_offense(<<~RUBY, @cop)
+    assert_offense(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
           refute(object.instance_of?(SomeClass), <<~MESSAGE
@@ -58,7 +54,7 @@ class RefuteInstanceOfTest < Minitest::Test
       end
     RUBY
 
-    assert_correction(<<~RUBY, @cop)
+    assert_correction(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
           refute_instance_of(SomeClass, object, <<~MESSAGE
@@ -71,7 +67,7 @@ class RefuteInstanceOfTest < Minitest::Test
   end
 
   def refute_instance_of_method
-    assert_no_offenses(<<~RUBY, @cop)
+    assert_no_offenses(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
           refute_instance_of(SomeClass, object)
