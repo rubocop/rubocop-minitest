@@ -86,7 +86,7 @@ class ProjectTest < Minitest::Test
   def test_entry_has_a_unique_contributor_name
     contributor_names = @lines.grep(/\A\[@/).map(&:chomp)
 
-    assert_equal(contributor_names.size, contributor_names.uniq.size)
+    assert_equal(contributor_names.uniq.size, contributor_names.size)
   end
 
   def test_body_does_not_start_with_a_lower_case
