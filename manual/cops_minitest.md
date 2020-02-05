@@ -118,6 +118,31 @@ assert_instance_of(Class, object, 'the message')
 
 * [https://github.com/rubocop-hq/minitest-style-guide#assert-instance-of](https://github.com/rubocop-hq/minitest-style-guide#assert-instance-of)
 
+## Minitest/AssertMatch
+
+Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+--- | --- | --- | --- | ---
+Enabled | Yes | Yes  | 0.6 | -
+
+This cop enforces the test to use `assert_match`
+instead of using `assert(matcher.match(string))`.
+
+### Examples
+
+```ruby
+# bad
+assert(matcher.match(string))
+assert(matcher.match(string), 'the message')
+
+# good
+assert_match(regex, string)
+assert_match(matcher, string, 'the message')
+```
+
+### References
+
+* [https://github.com/rubocop-hq/minitest-style-guide#assert-match](https://github.com/rubocop-hq/minitest-style-guide#assert-match)
+
 ## Minitest/AssertNil
 
 Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
@@ -318,6 +343,31 @@ refute_instance_of(Class, object, 'the message')
 ### References
 
 * [https://github.com/rubocop-hq/minitest-style-guide#refute-instance-of](https://github.com/rubocop-hq/minitest-style-guide#refute-instance-of)
+
+## Minitest/RefuteMatch
+
+Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+--- | --- | --- | --- | ---
+Enabled | Yes | Yes  | 0.6 | -
+
+This cop enforces the test to use `refute_match`
+instead of using `refute(matcher.match(string))`.
+
+### Examples
+
+```ruby
+# bad
+refute(matcher.match(string))
+refute(matcher.match(string), 'the message')
+
+# good
+refute_match(matcher, string)
+refute_match(matcher, string, 'the message')
+```
+
+### References
+
+* [https://github.com/rubocop-hq/minitest-style-guide#refute-match](https://github.com/rubocop-hq/minitest-style-guide#refute-match)
 
 ## Minitest/RefuteNil
 

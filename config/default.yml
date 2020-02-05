@@ -20,6 +20,12 @@ Minitest/AssertEqual:
   Enabled: true
   VersionAdded: '0.4'
 
+Minitest/AssertMatch:
+  Description: 'This cop enforces the test to use `assert_match` instead of using `assert(matcher.match(object))`.'
+  StyleGuide: 'https://github.com/rubocop-hq/minitest-style-guide#assert-match'
+  Enabled: true
+  VersionAdded: '0.6'
+
 Minitest/AssertIncludes:
   Description: 'This cop enforces the test to use `assert_includes` instead of using `assert(collection.include?(object))`.'
   StyleGuide: 'https://github.com/rubocop-hq/minitest-style-guide#assert-includes'
@@ -73,6 +79,12 @@ Minitest/RefuteIncludes:
   StyleGuide: 'https://github.com/rubocop-hq/minitest-style-guide#refute-includes'
   Enabled: true
   VersionAdded: '0.3'
+
+Minitest/RefuteMatch:
+  Description: 'This cop enforces the test to use `refute_match` instead of using `refute(matcher.match(object))`.'
+  StyleGuide: 'https://github.com/rubocop-hq/minitest-style-guide#refute-match'
+  Enabled: true
+  VersionAdded: '0.6'
 
 Minitest/RefuteInstanceOf:
   Description: 'This cop enforces the test to use `refute_instance_of(Class, object)` over `refute(object.instance_of?(Class))`.'

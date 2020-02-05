@@ -2,6 +2,8 @@
 
 ## master (unreleased)
 
+ * New cops `AssertMatch` and `RefuteMatch` check for use of `assert_match`/`refute_match` instead of `assert(foo.match(bar))`/`refute(foo.match(bar))`
+
 ## 0.5.1 (2019-12-25)
 
 ### Bug fixes
