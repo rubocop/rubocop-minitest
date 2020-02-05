@@ -3,12 +3,8 @@
 require 'test_helper'
 
 class AssertMatchTest < Minitest::Test
-  def setup
-    @cop = RuboCop::Cop::Minitest::AssertMatch.new
-  end
-
   def test_registers_offense_when_using_assert_with_match
-    assert_offense(<<~RUBY, @cop)
+    assert_offense(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
           assert(matcher.match(object))
@@ -17,7 +13,7 @@ class AssertMatchTest < Minitest::Test
       end
     RUBY
 
-    assert_correction(<<~RUBY, @cop)
+    assert_correction(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
           assert_match(matcher, object)
@@ -36,7 +32,7 @@ class AssertMatchTest < Minitest::Test
       end
     RUBY
 
-    assert_correction(<<~RUBY, @cop)
+    assert_correction(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
           assert_match(matcher, object, 'the message')
@@ -46,7 +42,7 @@ class AssertMatchTest < Minitest::Test
   end
 
   def test_registers_offense_when_using_assert_with_match_and_heredoc_message
-    assert_offense(<<~RUBY, @cop)
+    assert_offense(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
           assert(matcher.match(object), <<~MESSAGE
@@ -58,7 +54,7 @@ class AssertMatchTest < Minitest::Test
       end
     RUBY
 
-    assert_correction(<<~RUBY, @cop)
+    assert_correction(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
           assert_match(matcher, object, <<~MESSAGE
@@ -71,7 +67,7 @@ class AssertMatchTest < Minitest::Test
   end
 
   def test_does_not_register_offense_when_using_assert_match
-    assert_no_offenses(<<~RUBY, @cop)
+    assert_no_offenses(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
           assert_match(matcher, object)

@@ -2,7 +2,9 @@
 
 ## master (unreleased)
 
- * New cops `AssertMatch` and `RefuteMatch` check for use of `assert_match`/`refute_match` instead of `assert(foo.match(bar))`/`refute(foo.match(bar))`
+### New features
+
+* [#49](https://github.com/rubocop-hq/rubocop-minitest/pull/49): New cops `AssertMatch` and `RefuteMatch` check for use of `assert_match`/`refute_match` instead of `assert(foo.match(bar))`/`refute(foo.match(bar))`. ([@fsateler][])
 
 ## 0.5.1 (2019-12-25)
 
@@ -76,3 +78,4 @@
 [@tejasbubane]: https://github.com/tejasbubane
 [@abhaynikam]: https://github.com/abhaynikam
 [@herwinw]: https://github.com/herwinw
+[@fsateler]: https://github.com/fsateler

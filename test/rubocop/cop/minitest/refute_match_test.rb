@@ -3,12 +3,8 @@
 require 'test_helper'
 
 class RefuteMatchTest < Minitest::Test
-  def setup
-    @cop = RuboCop::Cop::Minitest::RefuteMatch.new
-  end
-
   def test_registers_offense_when_using_refute_with_match
-    assert_offense(<<~RUBY, @cop)
+    assert_offense(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
           refute(matcher.match(object))
@@ -17,7 +13,7 @@ class RefuteMatchTest < Minitest::Test
       end
     RUBY
 
-    assert_correction(<<~RUBY, @cop)
+    assert_correction(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
           refute_match(matcher, object)
@@ -27,7 +23,7 @@ class RefuteMatchTest < Minitest::Test
   end
 
   def test_registers_offense_when_using_refute_with_match_and_message
-    assert_offense(<<~RUBY, @cop)
+    assert_offense(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
           refute(matcher.match(object), 'the message')
@@ -36,7 +32,7 @@ class RefuteMatchTest < Minitest::Test
       end
     RUBY
 
-    assert_correction(<<~RUBY, @cop)
+    assert_correction(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
           refute_match(matcher, object, 'the message')
@@ -46,7 +42,7 @@ class RefuteMatchTest < Minitest::Test
   end
 
   def test_registers_offense_when_using_refute_with_match_and_heredoc_message
-    assert_offense(<<~RUBY, @cop)
+    assert_offense(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
           refute(matcher.match(object), <<~MESSAGE
@@ -58,7 +54,7 @@ class RefuteMatchTest < Minitest::Test
       end
     RUBY
 
-    assert_correction(<<~RUBY, @cop)
+    assert_correction(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
           refute_match(matcher, object, <<~MESSAGE
@@ -71,7 +67,7 @@ class RefuteMatchTest < Minitest::Test
   end
 
   def refute_match
-    assert_no_offenses(<<~RUBY, @cop)
+    assert_no_offenses(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
           refute_match(matcher, object)
