@@ -2,6 +2,8 @@
 
 ## master (unreleased)
 
+## 0.6.0 (2020-02-07)
+
 ### New features
 
 * [#49](https://github.com/rubocop-hq/rubocop-minitest/pull/49): New cops `AssertMatch` and `RefuteMatch` check for use of `assert_match`/`refute_match` instead of `assert(foo.match(bar))`/`refute(foo.match(bar))`. ([@fsateler][])
