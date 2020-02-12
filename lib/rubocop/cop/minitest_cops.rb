@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative 'mixin/argument_range_helper'
+require_relative 'mixin/includes_cop_rule'
 require_relative 'minitest/assert_empty'
 require_relative 'minitest/assert_empty_literal'
 require_relative 'minitest/assert_equal'

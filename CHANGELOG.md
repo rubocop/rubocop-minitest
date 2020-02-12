@@ -5,6 +5,7 @@
 ### Bug fixes
 
 * [#52](https://github.com/rubocop-hq/rubocop-minitest/issues/52): Make `Minitest/RefuteFalse` cop aware of `assert(!test)`. ([@koic][])
+* [#52](https://github.com/rubocop-hq/rubocop-minitest/issues/52): Fix a false negative for `Minitest/AssertIncludes` and `Minitest/RefuteIncludes` when an argument is enclosed in redundant parentheses. ([@koic][])
 
 ## 0.6.0 (2020-02-07)
 

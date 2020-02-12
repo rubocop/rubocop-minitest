@@ -16,45 +16,9 @@ module RuboCop
       #   refute_includes(collection, object, 'the message')
       #
       class RefuteIncludes < Cop
-        include ArgumentRangeHelper
+        extend IncludesCopRule
 
-        MSG = 'Prefer using `refute_includes(%<arguments>s)` over ' \
-              '`refute(%<receiver>s)`.'
-
-        def_node_matcher :refute_with_includes, <<~PATTERN
-          (send nil? :refute $(send $_ :include? $_) $...)
-        PATTERN
-
-        def on_send(node)
-          refute_with_includes(node) do
-            |first_receiver_arg, collection, object, rest_receiver_arg|
-
-            message = rest_receiver_arg.first
-            arguments = node_arguments(collection, object, message)
-            receiver = [first_receiver_arg.source, message&.source].compact.join(', ')
-
-            offense_message = format(MSG, arguments: arguments, receiver: receiver)
-
-            add_offense(node, message: offense_message)
-          end
-        end
-
-        def autocorrect(node)
-          lambda do |corrector|
-            refute_with_includes(node) do |_, collection, actual|
-              corrector.replace(node.loc.selector, 'refute_includes')
-
-              replacement = [collection, actual].map(&:source).join(', ')
-              corrector.replace(first_argument_range(node), replacement)
-            end
-          end
-        end
-
-        private
-
-        def node_arguments(collection, object, message)
-          [collection.source, object.source, message&.source].compact.join(', ')
-        end
+        rule target_method: :refute, prefer_method: :refute_includes
       end
     end
   end
