@@ -2,6 +2,10 @@
 
 ## master (unreleased)
 
+### Bug fixes
+
+* [#52](https://github.com/rubocop-hq/rubocop-minitest/issues/52): Make `Minitest/RefuteFalse` cop aware of `assert(!test)`. ([@koic][])
+
 ## 0.6.0 (2020-02-07)
 
 ### New features

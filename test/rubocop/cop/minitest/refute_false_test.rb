@@ -85,6 +85,44 @@ class RefuteFalseTest < Minitest::Test
     RUBY
   end
 
+  def test_registers_offense_when_using_assert_with_test_condition
+    assert_offense(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          assert(!test)
+          ^^^^^^^^^^^^^ Prefer using `refute(test)` over `assert(!test)`.
+        end
+      end
+    RUBY
+
+    assert_correction(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          refute(test)
+        end
+      end
+    RUBY
+  end
+
+  def test_registers_offense_when_using_assert_with_bang_test_and_message
+    assert_offense(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          assert(!test, 'the message')
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute(test, 'the message')` over `assert(!test, 'the message')`.
+        end
+      end
+    RUBY
+
+    assert_correction(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          refute(test, 'the message')
+        end
+      end
+    RUBY
+  end
+
   def test_does_not_register_offense_when_using_refute_method
     assert_no_offenses(<<~RUBY)
       class FooTest < Minitest::Test

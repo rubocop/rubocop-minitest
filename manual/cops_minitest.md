@@ -285,6 +285,9 @@ over `assert_equal(false, object)`.
 assert_equal(false, actual)
 assert_equal(false, actual, 'the message')
 
+assert(!test)
+assert(!test, 'the message')
+
 # good
 refute(actual)
 refute(actual, 'the message')

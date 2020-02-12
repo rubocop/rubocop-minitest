@@ -11,6 +11,9 @@ module RuboCop
       #   assert_equal(false, actual)
       #   assert_equal(false, actual, 'the message')
       #
+      #   assert(!test)
+      #   assert(!test, 'the message')
+      #
       #   # good
       #   refute(actual)
       #   refute(actual, 'the message')
@@ -18,29 +21,50 @@ module RuboCop
       class RefuteFalse < Cop
         include ArgumentRangeHelper
 
-        MSG = 'Prefer using `refute(%<arguments>s)` over ' \
+        MSG_FOR_ASSERT_EQUAL = 'Prefer using `refute(%<arguments>s)` over ' \
               '`assert_equal(false, %<arguments>s)`.'
+        MSG_FOR_ASSERT = 'Prefer using `refute(%<arguments>s)` over ' \
+              '`assert(!%<arguments>s)`.'
 
         def_node_matcher :assert_equal_with_false, <<~PATTERN
           (send nil? :assert_equal false $_ $...)
         PATTERN
 
+        def_node_matcher :assert_with_bang_argument, <<~PATTERN
+          (send nil? :assert (send $_ :!) $...)
+        PATTERN
+
         def on_send(node)
-          assert_equal_with_false(node) do |actual, rest_receiver_arg|
-            message = rest_receiver_arg.first
+          actual, rest_receiver_arg = assert_equal_with_false(node) ||
+                                      assert_with_bang_argument(node)
+          return unless actual
 
-            arguments = [actual.source, message&.source].compact.join(', ')
+          message_argument = rest_receiver_arg.first
 
-            add_offense(node, message: format(MSG, arguments: arguments))
-          end
+          arguments = [actual.source, message_argument&.source].compact.join(', ')
+
+          message = if node.method?(:assert_equal)
+                      MSG_FOR_ASSERT_EQUAL
+                    else
+                      MSG_FOR_ASSERT
+                    end
+
+          add_offense(node, message: format(message, arguments: arguments))
         end
 
         def autocorrect(node)
           lambda do |corrector|
+            corrector.replace(node.loc.selector, 'refute')
+
             assert_equal_with_false(node) do |actual|
-              corrector.replace(node.loc.selector, 'refute')
               corrector.replace(
                 first_and_second_arguments_range(node), actual.source
+              )
+            end
+
+            assert_with_bang_argument(node) do |actual|
+              corrector.replace(
+                first_argument_range(node), actual.source
               )
             end
           end
