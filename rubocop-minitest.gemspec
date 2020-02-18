@@ -18,10 +18,10 @@ Gem::Specification.new do |spec|
 
   spec.required_ruby_version = '>= 2.3.0'
   spec.metadata = {
-    'homepage_uri' => 'https://docs.rubocop.org/projects/minitest',
+    'homepage_uri' => 'https://docs.rubocop.org/projects/minitest/',
     'changelog_uri' => 'https://github.com/rubocop-hq/rubocop-minitest/blob/master/CHANGELOG.md',
     'source_code_uri' => 'https://github.com/rubocop-hq/rubocop-minitest',
-    'documentation_uri' => 'https://docs.rubocop.org/projects/minitest',
+    'documentation_uri' => 'https://docs.rubocop.org/projects/minitest/',
     'bug_tracker_uri' => 'https://github.com/rubocop-hq/rubocop-minitest/issues'
   }
 
