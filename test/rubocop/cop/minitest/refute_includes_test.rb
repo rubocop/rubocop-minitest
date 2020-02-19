@@ -95,7 +95,7 @@ class RefuteIncludesTest < Minitest::Test
     RUBY
   end
 
-  def test_registers_offense_when_using_refute_with_non_include_method
+  def test_does_not_registers_offense_when_using_refute_with_non_include_method
     assert_no_offenses(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
