@@ -2,6 +2,8 @@
 
 ## master (unreleased)
 
+## 0.6.2 (2020-02-19)
+
 ### Bug fixes
 
 * [#55](https://github.com/rubocop-hq/rubocop-minitest/issues/55): Fix an error for `Minitest/AssertIncludes` when using local variable argument. ([@koic][])
