@@ -14,7 +14,7 @@ module RuboCop
           def on_send(node)
             return unless node.method?(:#{target_method})
             return unless (arguments = peel_redundant_parentheses_from(node.arguments))
-            return unless arguments.first.method?(:include?)
+            return unless arguments.first.respond_to?(:method?) && arguments.first.method?(:include?)
 
             add_offense(node, message: offense_message(arguments))
           end

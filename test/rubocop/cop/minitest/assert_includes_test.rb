@@ -104,4 +104,15 @@ class AssertIncludesTest < Minitest::Test
       end
     RUBY
   end
+
+  def test_does_not_registers_offense_when_using_assert_with_local_variable
+    assert_no_offenses(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          collection = []
+          assert(collection)
+        end
+      end
+    RUBY
+  end
 end
