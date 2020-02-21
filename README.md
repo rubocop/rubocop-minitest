@@ -73,6 +73,10 @@ Minitest/AssertNil:
     - test/my_file_to_ignore_test.rb
 ```
 
+## Documentation
+
+You can read a lot more about RuboCop Minitest in its [official docs](https://docs.rubocop.org/projects/minitest/).
+
 ## Contributing
 
 Checkout the [contribution guidelines](CONTRIBUTING.md).
