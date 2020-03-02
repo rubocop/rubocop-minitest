@@ -66,7 +66,7 @@ class RefuteMatchTest < Minitest::Test
     RUBY
   end
 
-  def refute_match
+  def test_does_not_register_offense_when_using_refute_match
     assert_no_offenses(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
