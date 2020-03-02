@@ -66,6 +66,25 @@ class RefuteMatchTest < Minitest::Test
     RUBY
   end
 
+  def test_registers_offense_when_using_refute_with_match_in_redundant_parentheses
+    assert_offense(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          refute((matcher.match(string)))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_match(matcher, string)` over `refute(matcher.match(string))`.
+        end
+      end
+    RUBY
+
+    assert_correction(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          refute_match((matcher, string))
+        end
+      end
+    RUBY
+  end
+
   def test_does_not_register_offense_when_using_refute_match
     assert_no_offenses(<<~RUBY)
       class FooTest < Minitest::Test

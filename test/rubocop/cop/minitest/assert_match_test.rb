@@ -66,6 +66,25 @@ class AssertMatchTest < Minitest::Test
     RUBY
   end
 
+  def test_registers_offense_when_using_assert_with_match_in_redundant_parentheses
+    assert_offense(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          assert((matcher.match(string)))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_match(matcher, string)` over `assert(matcher.match(string))`.
+        end
+      end
+    RUBY
+
+    assert_correction(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          assert_match((matcher, string))
+        end
+      end
+    RUBY
+  end
+
   def test_does_not_register_offense_when_using_assert_match
     assert_no_offenses(<<~RUBY)
       class FooTest < Minitest::Test
