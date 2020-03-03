@@ -18,44 +18,9 @@ module RuboCop
       #   assert_respond_to(self, :do_something)
       #
       class AssertRespondTo < Cop
-        include ArgumentRangeHelper
+        extend MinitestCopRule
 
-        MSG = 'Prefer using `assert_respond_to(%<preferred>s)` over ' \
-              '`assert(%<over>s)`.'
-
-        def_node_matcher :assert_with_respond_to, <<~PATTERN
-          (send nil? :assert $(send $_ :respond_to? $_) $...)
-        PATTERN
-
-        def on_send(node)
-          assert_with_respond_to(node) do |over, object, method, rest_args|
-            custom_message = rest_args.first
-            preferred = build_preferred_arguments(object, method, custom_message)
-            over = [over, custom_message].compact.map(&:source).join(', ')
-            message = format(MSG, preferred: preferred, over: over)
-            add_offense(node, message: message)
-          end
-        end
-
-        def autocorrect(node)
-          lambda do |corrector|
-            assert_with_respond_to(node) do |_, object, method|
-              corrector.replace(node.loc.selector, 'assert_respond_to')
-
-              object = object ? object.source : 'self'
-              replacement = [object, method.source].join(', ')
-              corrector.replace(first_argument_range(node), replacement)
-            end
-          end
-        end
-
-        private
-
-        def build_preferred_arguments(receiver, method, message)
-          receiver = receiver ? receiver.source : 'self'
-
-          [receiver, method.source, message&.source].compact.join(', ')
-        end
+        rule :assert, target_method: :respond_to?, prefer_method: :assert_respond_to
       end
     end
   end

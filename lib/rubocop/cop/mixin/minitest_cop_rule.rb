@@ -24,9 +24,10 @@ module RuboCop
               corrector.replace(node.loc.selector, '#{prefer_method}')
 
               arguments = peel_redundant_parentheses_from(node.arguments)
+              receiver = correct_receiver(arguments.first.receiver)
 
               new_arguments = [
-                arguments.first.receiver.source,
+                receiver,
                 arguments.first.arguments.map(&:source)
               ].join(', ')
 
@@ -59,17 +60,22 @@ module RuboCop
           end
 
           def new_arguments(arguments)
+            receiver = correct_receiver(arguments.first.receiver)
             message_argument = arguments.last if arguments.first != arguments.last
 
             [
-              arguments.first.receiver,
-              arguments.first.arguments.first,
-              message_argument
-            ].compact.map(&:source).join(', ')
+              receiver,
+              arguments.first.arguments.first.source,
+              message_argument&.source
+            ].compact.join(', ')
           end
 
           def enclosed_in_redundant_parentheses?(node)
             node.arguments.first.begin_type?
+          end
+
+          def correct_receiver(receiver)
+            receiver ? receiver.source : 'self'
           end
         RUBY
       end
