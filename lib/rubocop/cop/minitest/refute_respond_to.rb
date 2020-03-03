@@ -3,19 +3,19 @@
 module RuboCop
   module Cop
     module Minitest
-      # This cop enforces the test to use `refute_respond_to(object, :some_method)`
-      # over `refute(object.respond_to?(:some_method))`.
+      # This cop enforces the test to use `refute_respond_to(object, :do_something)`
+      # over `refute(object.respond_to?(:do_something))`.
       #
       # @example
       #   # bad
-      #   refute(object.respond_to?(:some_method))
-      #   refute(object.respond_to?(:some_method), 'the message')
-      #   refute(respond_to?(:some_method))
+      #   refute(object.respond_to?(:do_something))
+      #   refute(object.respond_to?(:do_something), 'message')
+      #   refute(respond_to?(:do_something))
       #
       #   # good
-      #   refute_respond_to(object, :some_method)
-      #   refute_respond_to(object, :some_method, 'the message')
-      #   refute_respond_to(self, :some_method)
+      #   refute_respond_to(object, :do_something)
+      #   refute_respond_to(object, :do_something, 'message')
+      #   refute_respond_to(self, :do_something)
       #
       class RefuteRespondTo < Cop
         include ArgumentRangeHelper

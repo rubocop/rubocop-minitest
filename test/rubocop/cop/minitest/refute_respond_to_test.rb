@@ -7,8 +7,8 @@ class RefuteRespondToTest < Minitest::Test
     assert_offense(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
-          refute(object.respond_to?(:some_method))
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_respond_to(object, :some_method)` over `refute(object.respond_to?(:some_method))`.
+          refute(object.respond_to?(:do_something))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_respond_to(object, :do_something)` over `refute(object.respond_to?(:do_something))`.
         end
       end
     RUBY
@@ -16,7 +16,7 @@ class RefuteRespondToTest < Minitest::Test
     assert_correction(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
-          refute_respond_to(object, :some_method)
+          refute_respond_to(object, :do_something)
         end
       end
     RUBY
@@ -26,8 +26,8 @@ class RefuteRespondToTest < Minitest::Test
     assert_offense(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
-          refute(object.respond_to?(:some_method), 'the message')
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_respond_to(object, :some_method, 'the message')` over `refute(object.respond_to?(:some_method), 'the message')`.
+          refute(object.respond_to?(:do_something), 'message')
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_respond_to(object, :do_something, 'message')` over `refute(object.respond_to?(:do_something), 'message')`.
         end
       end
     RUBY
@@ -35,7 +35,7 @@ class RefuteRespondToTest < Minitest::Test
     assert_correction(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
-          refute_respond_to(object, :some_method, 'the message')
+          refute_respond_to(object, :do_something, 'message')
         end
       end
     RUBY
@@ -45,8 +45,8 @@ class RefuteRespondToTest < Minitest::Test
     assert_offense(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
-          refute(respond_to?(:some_method))
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_respond_to(self, :some_method)` over `refute(respond_to?(:some_method))`.
+          refute(respond_to?(:do_something))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_respond_to(self, :do_something)` over `refute(respond_to?(:do_something))`.
         end
       end
     RUBY
@@ -54,7 +54,7 @@ class RefuteRespondToTest < Minitest::Test
     assert_correction(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
-          refute_respond_to(self, :some_method)
+          refute_respond_to(self, :do_something)
         end
       end
     RUBY
@@ -64,9 +64,9 @@ class RefuteRespondToTest < Minitest::Test
     assert_offense(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
-          refute(respond_to?(:some_method), <<~MESSAGE
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_respond_to(self, :some_method, <<~MESSAGE)` over `refute(respond_to?(:some_method), <<~MESSAGE)`.
-            the message
+          refute(respond_to?(:do_something), <<~MESSAGE
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_respond_to(self, :do_something, <<~MESSAGE)` over `refute(respond_to?(:do_something), <<~MESSAGE)`.
+            message
           MESSAGE
           )
         end
@@ -76,8 +76,8 @@ class RefuteRespondToTest < Minitest::Test
     assert_correction(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
-          refute_respond_to(self, :some_method, <<~MESSAGE
-            the message
+          refute_respond_to(self, :do_something, <<~MESSAGE
+            message
           MESSAGE
           )
         end
@@ -89,7 +89,7 @@ class RefuteRespondToTest < Minitest::Test
     assert_no_offenses(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
-          refute_respond_to('rubocop-minitest', :some_method)
+          refute_respond_to('rubocop-minitest', :do_something)
         end
       end
     RUBY

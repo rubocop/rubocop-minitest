@@ -45,7 +45,7 @@ Minitest/AssertNil:
   VersionAdded: '0.1'
 
 Minitest/AssertRespondTo:
-  Description: 'This cop enforces the test to use `assert_respond_to(object, :some_method)` over `assert(object.respond_to?(:some_method))`.'
+  Description: 'This cop enforces the test to use `assert_respond_to(object, :do_something)` over `assert(object.respond_to?(:do_something))`.'
   StyleGuide: 'https://github.com/rubocop-hq/minitest-style-guide#assert-responds-to-method'
   Enabled: true
   VersionAdded: '0.3'
@@ -99,7 +99,7 @@ Minitest/RefuteNil:
   VersionAdded: '0.2'
 
 Minitest/RefuteRespondTo:
-  Description: 'This cop enforces the test to use `refute_respond_to(object, :some_method)` over `refute(object.respond_to?(:some_method))`.'
+  Description: 'This cop enforces the test to use `refute_respond_to(object, :do_something)` over `refute(object.respond_to?(:do_something))`.'
   StyleGuide: 'https://github.com/rubocop-hq/minitest-style-guide#refute-respond-to'
   Enabled: true
   VersionAdded: '0.4'

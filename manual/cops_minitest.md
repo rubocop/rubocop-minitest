@@ -174,21 +174,21 @@ Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChan
 --- | --- | --- | --- | ---
 Enabled | Yes | Yes  | 0.3 | -
 
-This cop enforces the use of `assert_respond_to(object, :some_method)`
-over `assert(object.respond_to?(:some_method))`.
+This cop enforces the use of `assert_respond_to(object, :do_something)`
+over `assert(object.respond_to?(:do_something))`.
 
 ### Examples
 
 ```ruby
 # bad
-assert(object.respond_to?(:some_method))
-assert(object.respond_to?(:some_method), 'the message')
-assert(respond_to?(:some_method))
+assert(object.respond_to?(:do_something))
+assert(object.respond_to?(:do_something), 'message')
+assert(respond_to?(:do_something))
 
 # good
-assert_respond_to(object, :some_method)
-assert_respond_to(object, :some_method, 'the message')
-assert_respond_to(self, some_method)
+assert_respond_to(object, :do_something)
+assert_respond_to(object, :do_something, 'message')
+assert_respond_to(self, :do_something)
 ```
 
 ### References
@@ -403,21 +403,21 @@ Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChan
 --- | --- | --- | --- | ---
 Enabled | Yes | Yes  | 0.4 | -
 
-This cop enforces the test to use `refute_respond_to(object, :some_method)`
-over `refute(object.respond_to?(:some_method))`.
+This cop enforces the test to use `refute_respond_to(object, :do_something)`
+over `refute(object.respond_to?(:do_something))`.
 
 ### Examples
 
 ```ruby
 # bad
-refute(object.respond_to?(:some_method))
-refute(object.respond_to?(:some_method), 'the message')
-refute(respond_to?(:some_method))
+refute(object.respond_to?(:do_something))
+refute(object.respond_to?(:do_something), 'message')
+refute(respond_to?(:do_something))
 
 # good
-refute_respond_to(object, :some_method)
-refute_respond_to(object, :some_method, 'the message')
-refute_respond_to(self, :some_method)
+refute_respond_to(object, :do_something)
+refute_respond_to(object, :do_something, 'message')
+refute_respond_to(self, :do_something)
 ```
 
 ### References
