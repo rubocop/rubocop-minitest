@@ -16,43 +16,9 @@ module RuboCop
       #   refute_instance_of(Class, object, 'the message')
       #
       class RefuteInstanceOf < Cop
-        include ArgumentRangeHelper
+        extend MinitestCopRule
 
-        MSG = 'Prefer using `refute_instance_of(%<arguments>s)` over ' \
-              '`refute(%<receiver>s)`.'
-
-        def_node_matcher :refute_with_instance_of, <<~PATTERN
-          (send nil? :refute $(send $_ :instance_of? $_) $...)
-        PATTERN
-
-        def on_send(node)
-          refute_with_instance_of(node) do |first_receiver_arg, object, method, rest_args|
-            message = rest_args.first
-            arguments = node_arguments(object, method, message)
-            receiver = [first_receiver_arg.source, message&.source].compact.join(', ')
-
-            offense_message = format(MSG, arguments: arguments, receiver: receiver)
-
-            add_offense(node, message: offense_message)
-          end
-        end
-
-        def autocorrect(node)
-          lambda do |corrector|
-            refute_with_instance_of(node) do |_, object, method|
-              corrector.replace(node.loc.selector, 'refute_instance_of')
-
-              replacement = [method, object].map(&:source).join(', ')
-              corrector.replace(first_argument_range(node), replacement)
-            end
-          end
-        end
-
-        private
-
-        def node_arguments(object, method, message)
-          [method, object, message].compact.map(&:source).join(', ')
-        end
+        rule :refute, target_method: :instance_of?, inverse: true
       end
     end
   end

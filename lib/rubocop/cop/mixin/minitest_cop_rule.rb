@@ -4,7 +4,7 @@ module RuboCop
   module Cop
     # Define the rule for `Minitest/AssertIncludes` and `Minitest/RefuteIncludes` cops.
     module MinitestCopRule
-      def rule(assertion_method, target_method:, preferred_method: nil)
+      def rule(assertion_method, target_method:, preferred_method: nil, inverse: false)
         if preferred_method.nil?
           preferred_method = "#{assertion_method}_#{target_method.to_s.delete('?')}"
         end
@@ -28,12 +28,8 @@ module RuboCop
               corrector.replace(node.loc.selector, '#{preferred_method}')
 
               arguments = peel_redundant_parentheses_from(node.arguments)
-              receiver = correct_receiver(arguments.first.receiver)
 
-              new_arguments = [
-                receiver,
-                arguments.first.arguments.map(&:source)
-              ].join(', ')
+              new_arguments = new_arguments(arguments).join(', ')
 
               if enclosed_in_redundant_parentheses?(node)
                 new_arguments = '(' + new_arguments + ')'
@@ -52,7 +48,12 @@ module RuboCop
           end
 
           def offense_message(arguments)
-            new_arguments = new_arguments(arguments)
+            message_argument = arguments.last if arguments.first != arguments.last
+
+            new_arguments = [
+              new_arguments(arguments),
+              message_argument&.source
+            ].flatten.compact.join(', ')
 
             original_arguments = arguments.map(&:source).join(', ')
 
@@ -65,13 +66,13 @@ module RuboCop
 
           def new_arguments(arguments)
             receiver = correct_receiver(arguments.first.receiver)
-            message_argument = arguments.last if arguments.first != arguments.last
+            method_argument = arguments.first.arguments.first.source
 
-            [
-              receiver,
-              arguments.first.arguments.first.source,
-              message_argument&.source
-            ].compact.join(', ')
+            if #{inverse}
+              [method_argument, receiver]
+            else
+              [receiver, method_argument]
+            end
           end
 
           def enclosed_in_redundant_parentheses?(node)
