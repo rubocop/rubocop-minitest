@@ -16,9 +16,9 @@ module RuboCop
       #   refute_includes(collection, object, 'the message')
       #
       class RefuteIncludes < Cop
-        extend IncludesCopRule
+        extend MinitestCopRule
 
-        rule target_method: :refute, prefer_method: :refute_includes
+        rule :refute, target_method: :include?, prefer_method: :refute_includes
       end
     end
   end

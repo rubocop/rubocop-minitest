@@ -3,18 +3,18 @@
 module RuboCop
   module Cop
     # Define the rule for `Minitest/AssertIncludes` and `Minitest/RefuteIncludes` cops.
-    module IncludesCopRule
-      def rule(target_method:, prefer_method:)
+    module MinitestCopRule
+      def rule(assertion_method, target_method:, prefer_method:)
         class_eval(<<~RUBY, __FILE__, __LINE__ + 1)
           include ArgumentRangeHelper
 
           MSG = 'Prefer using `#{prefer_method}(%<new_arguments>s)` over ' \
-                '`#{target_method}(%<original_arguments>s)`.'
+                '`#{assertion_method}(%<original_arguments>s)`.'
 
           def on_send(node)
-            return unless node.method?(:#{target_method})
+            return unless node.method?(:#{assertion_method})
             return unless (arguments = peel_redundant_parentheses_from(node.arguments))
-            return unless arguments.first.respond_to?(:method?) && arguments.first.method?(:include?)
+            return unless arguments.first.respond_to?(:method?) && arguments.first.method?(:#{target_method})
 
             add_offense(node, message: offense_message(arguments))
           end
