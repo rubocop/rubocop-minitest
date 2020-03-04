@@ -20,7 +20,7 @@ module RuboCop
       class RefuteRespondTo < Cop
         extend MinitestCopRule
 
-        rule :refute, target_method: :respond_to?, preferred_method: :refute_respond_to
+        rule :refute, target_method: :respond_to?
       end
     end
   end

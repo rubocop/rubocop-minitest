@@ -4,7 +4,11 @@ module RuboCop
   module Cop
     # Define the rule for `Minitest/AssertIncludes` and `Minitest/RefuteIncludes` cops.
     module MinitestCopRule
-      def rule(assertion_method, target_method:, preferred_method:)
+      def rule(assertion_method, target_method:, preferred_method: nil)
+        if preferred_method.nil?
+          preferred_method = "#{assertion_method}_#{target_method.to_s.delete('?')}"
+        end
+
         class_eval(<<~RUBY, __FILE__, __LINE__ + 1)
           include ArgumentRangeHelper
 
