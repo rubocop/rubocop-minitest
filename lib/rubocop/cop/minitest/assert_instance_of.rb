@@ -16,43 +16,9 @@ module RuboCop
       #   assert_instance_of(Class, object, 'the message')
       #
       class AssertInstanceOf < Cop
-        include ArgumentRangeHelper
+        extend MinitestCopRule
 
-        MSG = 'Prefer using `assert_instance_of(%<arguments>s)` over ' \
-              '`assert(%<receiver>s)`.'
-
-        def_node_matcher :assert_with_instance_of, <<~PATTERN
-          (send nil? :assert $(send $_ :instance_of? $_) $...)
-        PATTERN
-
-        def on_send(node)
-          assert_with_instance_of(node) do |first_receiver_arg, object, method, rest_args|
-            message = rest_args.first
-            arguments = node_arguments(object, method, message)
-            receiver = [first_receiver_arg.source, message&.source].compact.join(', ')
-
-            offense_message = format(MSG, arguments: arguments, receiver: receiver)
-
-            add_offense(node, message: offense_message)
-          end
-        end
-
-        def autocorrect(node)
-          lambda do |corrector|
-            assert_with_instance_of(node) do |_, object, method|
-              corrector.replace(node.loc.selector, 'assert_instance_of')
-
-              replacement = [method, object].map(&:source).join(', ')
-              corrector.replace(first_argument_range(node), replacement)
-            end
-          end
-        end
-
-        private
-
-        def node_arguments(object, method, message)
-          [method, object, message].compact.map(&:source).join(', ')
-        end
+        rule :assert, target_method: :instance_of?, inverse: true
       end
     end
   end
