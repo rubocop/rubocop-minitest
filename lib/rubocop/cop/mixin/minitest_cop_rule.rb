@@ -4,11 +4,11 @@ module RuboCop
   module Cop
     # Define the rule for `Minitest/AssertIncludes` and `Minitest/RefuteIncludes` cops.
     module MinitestCopRule
-      def rule(assertion_method, target_method:, prefer_method:)
+      def rule(assertion_method, target_method:, preferred_method:)
         class_eval(<<~RUBY, __FILE__, __LINE__ + 1)
           include ArgumentRangeHelper
 
-          MSG = 'Prefer using `#{prefer_method}(%<new_arguments>s)` over ' \
+          MSG = 'Prefer using `#{preferred_method}(%<new_arguments>s)` over ' \
                 '`#{assertion_method}(%<original_arguments>s)`.'
 
           def on_send(node)
@@ -21,7 +21,7 @@ module RuboCop
 
           def autocorrect(node)
             lambda do |corrector|
-              corrector.replace(node.loc.selector, '#{prefer_method}')
+              corrector.replace(node.loc.selector, '#{preferred_method}')
 
               arguments = peel_redundant_parentheses_from(node.arguments)
               receiver = correct_receiver(arguments.first.receiver)

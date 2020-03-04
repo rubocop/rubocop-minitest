@@ -18,7 +18,7 @@ module RuboCop
       class AssertMatch < Cop
         extend MinitestCopRule
 
-        rule :assert, target_method: :match, prefer_method: :assert_match
+        rule :assert, target_method: :match, preferred_method: :assert_match
       end
     end
   end
