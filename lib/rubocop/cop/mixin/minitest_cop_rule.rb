@@ -66,13 +66,11 @@ module RuboCop
 
           def new_arguments(arguments)
             receiver = correct_receiver(arguments.first.receiver)
-            method_argument = arguments.first.arguments.first.source
+            method_argument = arguments.first.arguments.first&.source
 
-            if #{inverse}
-              [method_argument, receiver]
-            else
-              [receiver, method_argument]
-            end
+            new_arguments = [receiver, method_argument].compact
+            new_arguments.reverse! if #{inverse}
+            new_arguments
           end
 
           def enclosed_in_redundant_parentheses?(node)

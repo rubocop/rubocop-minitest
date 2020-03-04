@@ -7,6 +7,7 @@
 * [#58](https://github.com/rubocop-hq/rubocop-minitest/pull/58): Fix a false negative for `Minitest/AssertMatch` and `Minitest/RefuteMatch` when an argument is enclosed in redundant parentheses. ([@koic][])
 * [#59](https://github.com/rubocop-hq/rubocop-minitest/pull/59): Fix a false negative for `Minitest/AssertRespondTo` and `Minitest/RefuteRespondTo` when an argument is enclosed in redundant parentheses. ([@koic][])
 * [#61](https://github.com/rubocop-hq/rubocop-minitest/pull/61): Fix a false negative for `Minitest/AssertInstanceOf` and `Minitest/RefuteInstanceOf` when an argument is enclosed in redundant parentheses. ([@koic][])
+* [#62](https://github.com/rubocop-hq/rubocop-minitest/pull/62): Fix a false negative for `Minitest/AssertEmpty` and `Minitest/RefuteEmpty` when an argument is enclosed in redundant parentheses. ([@koic][])
 
 ## 0.6.2 (2020-02-19)
 

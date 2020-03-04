@@ -16,35 +16,9 @@ module RuboCop
       #   refute_empty(object, 'the message')
       #
       class RefuteEmpty < Cop
-        include ArgumentRangeHelper
+        extend MinitestCopRule
 
-        MSG = 'Prefer using `refute_empty(%<arguments>s)` over ' \
-              '`refute(%<receiver>s)`.'
-
-        def_node_matcher :refute_with_empty, <<~PATTERN
-          (send nil? :refute $(send $_ :empty?) $...)
-        PATTERN
-
-        def on_send(node)
-          refute_with_empty(node) do |first_receiver_arg, object, rest_receiver_arg|
-            message = rest_receiver_arg.first
-
-            arguments = [object.source, message&.source].compact.join(', ')
-            receiver = [first_receiver_arg.source, message&.source].compact.join(', ')
-
-            offense_message = format(MSG, arguments: arguments, receiver: receiver)
-            add_offense(node, message: offense_message)
-          end
-        end
-
-        def autocorrect(node)
-          lambda do |corrector|
-            refute_with_empty(node) do |_, actual_arg|
-              corrector.replace(node.loc.selector, 'refute_empty')
-              corrector.replace(first_argument_range(node), actual_arg.source)
-            end
-          end
-        end
+        rule :refute, target_method: :empty?
       end
     end
   end
