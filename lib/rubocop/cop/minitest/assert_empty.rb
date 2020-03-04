@@ -16,35 +16,9 @@ module RuboCop
       #   assert_empty(object, 'the message')
       #
       class AssertEmpty < Cop
-        include ArgumentRangeHelper
+        extend MinitestCopRule
 
-        MSG = 'Prefer using `assert_empty(%<arguments>s)` over ' \
-              '`assert(%<receiver>s)`.'
-
-        def_node_matcher :assert_with_empty, <<~PATTERN
-          (send nil? :assert $(send $_ :empty?) $...)
-        PATTERN
-
-        def on_send(node)
-          assert_with_empty(node) do |first_receiver_arg, actual, rest_receiver_arg|
-            message = rest_receiver_arg.first
-
-            arguments = [actual.source, message&.source].compact.join(', ')
-            receiver = [first_receiver_arg.source, message&.source].compact.join(', ')
-
-            offense_message = format(MSG, arguments: arguments, receiver: receiver)
-            add_offense(node, message: offense_message)
-          end
-        end
-
-        def autocorrect(node)
-          lambda do |corrector|
-            assert_with_empty(node) do |_, actual_arg|
-              corrector.replace(node.loc.selector, 'assert_empty')
-              corrector.replace(first_argument_range(node), actual_arg.source)
-            end
-          end
-        end
+        rule :assert, target_method: :empty?
       end
     end
   end
