@@ -9,11 +9,11 @@ module RuboCop
       # @example
       #   # bad
       #   assert(collection.include?(object))
-      #   assert(collection.include?(object), 'the message')
+      #   assert(collection.include?(object), 'message')
       #
       #   # good
       #   assert_includes(collection, object)
-      #   assert_includes(collection, object, 'the message')
+      #   assert_includes(collection, object, 'message')
       #
       class AssertIncludes < Cop
         extend MinitestCopRule

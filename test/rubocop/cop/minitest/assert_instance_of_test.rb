@@ -26,8 +26,8 @@ class AssertInstanceOfTest < Minitest::Test
     assert_offense(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
-          assert(object.instance_of?(SomeClass), 'the message')
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_instance_of(SomeClass, object, 'the message')` over `assert(object.instance_of?(SomeClass), 'the message')`.
+          assert(object.instance_of?(SomeClass), 'message')
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_instance_of(SomeClass, object, 'message')` over `assert(object.instance_of?(SomeClass), 'message')`.
         end
       end
     RUBY
@@ -35,7 +35,7 @@ class AssertInstanceOfTest < Minitest::Test
     assert_correction(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
-          assert_instance_of(SomeClass, object, 'the message')
+          assert_instance_of(SomeClass, object, 'message')
         end
       end
     RUBY
@@ -47,7 +47,7 @@ class AssertInstanceOfTest < Minitest::Test
         def test_do_something
           assert(object.instance_of?(SomeClass), <<~MESSAGE
           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_instance_of(SomeClass, object, <<~MESSAGE)` over `assert(object.instance_of?(SomeClass), <<~MESSAGE)`.
-            the message
+            message
           MESSAGE
           )
         end
@@ -58,7 +58,7 @@ class AssertInstanceOfTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           assert_instance_of(SomeClass, object, <<~MESSAGE
-            the message
+            message
           MESSAGE
           )
         end

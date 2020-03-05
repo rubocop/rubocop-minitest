@@ -26,8 +26,8 @@ class RefuteMatchTest < Minitest::Test
     assert_offense(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
-          refute(matcher.match(object), 'the message')
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_match(matcher, object, 'the message')` over `refute(matcher.match(object), 'the message')`.
+          refute(matcher.match(object), 'message')
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_match(matcher, object, 'message')` over `refute(matcher.match(object), 'message')`.
         end
       end
     RUBY
@@ -35,7 +35,7 @@ class RefuteMatchTest < Minitest::Test
     assert_correction(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
-          refute_match(matcher, object, 'the message')
+          refute_match(matcher, object, 'message')
         end
       end
     RUBY
@@ -47,7 +47,7 @@ class RefuteMatchTest < Minitest::Test
         def test_do_something
           refute(matcher.match(object), <<~MESSAGE
           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_match(matcher, object, <<~MESSAGE)` over `refute(matcher.match(object), <<~MESSAGE)`.
-            the message
+            message
           MESSAGE
           )
         end
@@ -58,7 +58,7 @@ class RefuteMatchTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           refute_match(matcher, object, <<~MESSAGE
-            the message
+            message
           MESSAGE
           )
         end

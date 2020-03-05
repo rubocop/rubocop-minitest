@@ -9,11 +9,11 @@ module RuboCop
       # @example
       #   # bad
       #   refute_equal(nil, actual)
-      #   refute_equal(nil, actual, 'the message')
+      #   refute_equal(nil, actual, 'message')
       #
       #   # good
       #   refute_nil(actual)
-      #   refute_nil(actual, 'the message')
+      #   refute_nil(actual, 'message')
       #
       class RefuteNil < Cop
         include ArgumentRangeHelper

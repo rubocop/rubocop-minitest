@@ -9,11 +9,11 @@ module RuboCop
       # @example
       #   # bad
       #   refute(matcher.match(string))
-      #   refute(matcher.match(string), 'the message')
+      #   refute(matcher.match(string), 'message')
       #
       #   # good
       #   refute_match(matcher, string)
-      #   refute_match(matcher, string, 'the message')
+      #   refute_match(matcher, string, 'message')
       #
       class RefuteMatch < Cop
         extend MinitestCopRule

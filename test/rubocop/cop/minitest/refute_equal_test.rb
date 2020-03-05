@@ -64,8 +64,8 @@ class RefuteEqualTest < Minitest::Test
     assert_offense(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
-          assert('rubocop-minitest' != actual, 'the message')
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_equal('rubocop-minitest', actual, 'the message')` over `assert('rubocop-minitest' != actual, 'the message')`.
+          assert('rubocop-minitest' != actual, 'message')
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_equal('rubocop-minitest', actual, 'message')` over `assert('rubocop-minitest' != actual, 'message')`.
         end
       end
     RUBY
@@ -73,7 +73,7 @@ class RefuteEqualTest < Minitest::Test
     assert_correction(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
-          refute_equal('rubocop-minitest', actual, 'the message')
+          refute_equal('rubocop-minitest', actual, 'message')
         end
       end
     RUBY
@@ -102,8 +102,8 @@ class RefuteEqualTest < Minitest::Test
     assert_offense(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
-          assert(! 'rubocop-minitest' == object, 'the message')
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_equal('rubocop-minitest', object, 'the message')` over `assert(! 'rubocop-minitest' == object, 'the message')`.
+          assert(! 'rubocop-minitest' == object, 'message')
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_equal('rubocop-minitest', object, 'message')` over `assert(! 'rubocop-minitest' == object, 'message')`.
         end
       end
     RUBY
@@ -111,7 +111,7 @@ class RefuteEqualTest < Minitest::Test
     assert_correction(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
-          refute_equal('rubocop-minitest', object, 'the message')
+          refute_equal('rubocop-minitest', object, 'message')
         end
       end
     RUBY
@@ -123,7 +123,7 @@ class RefuteEqualTest < Minitest::Test
         def test_do_something
           assert(!'rubocop-minitest' == actual, <<~MESSAGE
           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_equal('rubocop-minitest', actual, <<~MESSAGE)` over `assert(!'rubocop-minitest' == actual, <<~MESSAGE)`.
-            the message
+            message
           MESSAGE
           )
         end
@@ -134,7 +134,7 @@ class RefuteEqualTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           refute_equal('rubocop-minitest', actual, <<~MESSAGE
-            the message
+            message
           MESSAGE
           )
         end

@@ -9,11 +9,11 @@ module RuboCop
       # @example
       #   # bad
       #   refute(collection.include?(object))
-      #   refute(collection.include?(object), 'the message')
+      #   refute(collection.include?(object), 'message')
       #
       #   # good
       #   refute_includes(collection, object)
-      #   refute_includes(collection, object, 'the message')
+      #   refute_includes(collection, object, 'message')
       #
       class RefuteIncludes < Cop
         extend MinitestCopRule

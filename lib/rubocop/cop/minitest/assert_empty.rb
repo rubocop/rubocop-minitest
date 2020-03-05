@@ -9,11 +9,11 @@ module RuboCop
       # @example
       #   # bad
       #   assert(object.empty?)
-      #   assert(object.empty?, 'the message')
+      #   assert(object.empty?, 'message')
       #
       #   # good
       #   assert_empty(object)
-      #   assert_empty(object, 'the message')
+      #   assert_empty(object, 'message')
       #
       class AssertEmpty < Cop
         extend MinitestCopRule

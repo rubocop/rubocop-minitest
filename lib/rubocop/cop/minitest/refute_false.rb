@@ -9,14 +9,14 @@ module RuboCop
       # @example
       #   # bad
       #   assert_equal(false, actual)
-      #   assert_equal(false, actual, 'the message')
+      #   assert_equal(false, actual, 'message')
       #
       #   assert(!test)
-      #   assert(!test, 'the message')
+      #   assert(!test, 'message')
       #
       #   # good
       #   refute(actual)
-      #   refute(actual, 'the message')
+      #   refute(actual, 'message')
       #
       class RefuteFalse < Cop
         include ArgumentRangeHelper

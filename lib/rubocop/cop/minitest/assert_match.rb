@@ -9,11 +9,11 @@ module RuboCop
       # @example
       #   # bad
       #   assert(matcher.match(string))
-      #   assert(matcher.match(string), 'the message')
+      #   assert(matcher.match(string), 'message')
       #
       #   # good
       #   assert_match(regex, string)
-      #   assert_match(matcher, string, 'the message')
+      #   assert_match(matcher, string, 'message')
       #
       class AssertMatch < Cop
         extend MinitestCopRule

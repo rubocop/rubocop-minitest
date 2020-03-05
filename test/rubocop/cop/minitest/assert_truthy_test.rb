@@ -26,8 +26,8 @@ class AssertTruthyTest < Minitest::Test
     assert_offense(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
-          assert_equal(true, somestuff, 'the message')
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert(somestuff, 'the message')` over `assert_equal(true, somestuff, 'the message')`.
+          assert_equal(true, somestuff, 'message')
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert(somestuff, 'message')` over `assert_equal(true, somestuff, 'message')`.
         end
       end
     RUBY
@@ -35,7 +35,7 @@ class AssertTruthyTest < Minitest::Test
     assert_correction(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
-          assert(somestuff, 'the message')
+          assert(somestuff, 'message')
         end
       end
     RUBY
@@ -45,8 +45,8 @@ class AssertTruthyTest < Minitest::Test
     assert_offense(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
-          assert_equal(true, obj.is_something?, 'the message')
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert(obj.is_something?, 'the message')` over `assert_equal(true, obj.is_something?, 'the message')`.
+          assert_equal(true, obj.is_something?, 'message')
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert(obj.is_something?, 'message')` over `assert_equal(true, obj.is_something?, 'message')`.
         end
       end
     RUBY
@@ -54,7 +54,7 @@ class AssertTruthyTest < Minitest::Test
     assert_correction(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
-          assert(obj.is_something?, 'the message')
+          assert(obj.is_something?, 'message')
         end
       end
     RUBY
@@ -66,7 +66,7 @@ class AssertTruthyTest < Minitest::Test
         def test_do_something
           assert_equal(true, obj.is_something?, <<~MESSAGE
           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert(obj.is_something?, <<~MESSAGE)` over `assert_equal(true, obj.is_something?, <<~MESSAGE)`.
-            the message
+            message
           MESSAGE
           )
         end
@@ -77,7 +77,7 @@ class AssertTruthyTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           assert(obj.is_something?, <<~MESSAGE
-            the message
+            message
           MESSAGE
           )
         end

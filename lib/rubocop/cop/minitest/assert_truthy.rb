@@ -9,11 +9,11 @@ module RuboCop
       # @example
       #   # bad
       #   assert_equal(true, actual)
-      #   assert_equal(true, actual, 'the message')
+      #   assert_equal(true, actual, 'message')
       #
       #   # good
       #   assert(actual)
-      #   assert(actual, 'the message')
+      #   assert(actual, 'message')
       #
       class AssertTruthy < Cop
         include ArgumentRangeHelper

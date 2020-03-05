@@ -26,8 +26,8 @@ class RefuteFalseTest < Minitest::Test
     assert_offense(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
-          assert_equal(false, somestuff, 'the message')
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute(somestuff, 'the message')` over `assert_equal(false, somestuff, 'the message')`.
+          assert_equal(false, somestuff, 'message')
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute(somestuff, 'message')` over `assert_equal(false, somestuff, 'message')`.
         end
       end
     RUBY
@@ -35,7 +35,7 @@ class RefuteFalseTest < Minitest::Test
     assert_correction(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
-          refute(somestuff, 'the message')
+          refute(somestuff, 'message')
         end
       end
     RUBY
@@ -45,8 +45,8 @@ class RefuteFalseTest < Minitest::Test
     assert_offense(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
-          assert_equal(false, obj.do_something, 'the message')
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute(obj.do_something, 'the message')` over `assert_equal(false, obj.do_something, 'the message')`.
+          assert_equal(false, obj.do_something, 'message')
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute(obj.do_something, 'message')` over `assert_equal(false, obj.do_something, 'message')`.
         end
       end
     RUBY
@@ -54,7 +54,7 @@ class RefuteFalseTest < Minitest::Test
     assert_correction(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
-          refute(obj.do_something, 'the message')
+          refute(obj.do_something, 'message')
         end
       end
     RUBY
@@ -66,7 +66,7 @@ class RefuteFalseTest < Minitest::Test
         def test_do_something
           assert_equal(false, obj.do_something, <<~MESSAGE
           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute(obj.do_something, <<~MESSAGE)` over `assert_equal(false, obj.do_something, <<~MESSAGE)`.
-            the message
+            message
           MESSAGE
           )
         end
@@ -77,7 +77,7 @@ class RefuteFalseTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           refute(obj.do_something, <<~MESSAGE
-            the message
+            message
           MESSAGE
           )
         end
@@ -108,8 +108,8 @@ class RefuteFalseTest < Minitest::Test
     assert_offense(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
-          assert(!test, 'the message')
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute(test, 'the message')` over `assert(!test, 'the message')`.
+          assert(!test, 'message')
+          ^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute(test, 'message')` over `assert(!test, 'message')`.
         end
       end
     RUBY
@@ -117,7 +117,7 @@ class RefuteFalseTest < Minitest::Test
     assert_correction(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
-          refute(test, 'the message')
+          refute(test, 'message')
         end
       end
     RUBY

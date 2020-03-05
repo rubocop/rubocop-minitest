@@ -26,8 +26,8 @@ class RefuteEmptyTest < Minitest::Test
     assert_offense(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
-          refute(somestuff.empty?, 'the message')
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_empty(somestuff, 'the message')` over `refute(somestuff.empty?, 'the message')`.
+          refute(somestuff.empty?, 'message')
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_empty(somestuff, 'message')` over `refute(somestuff.empty?, 'message')`.
         end
       end
     RUBY
@@ -35,7 +35,7 @@ class RefuteEmptyTest < Minitest::Test
     assert_correction(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
-          refute_empty(somestuff, 'the message')
+          refute_empty(somestuff, 'message')
         end
       end
     RUBY
@@ -47,7 +47,7 @@ class RefuteEmptyTest < Minitest::Test
         def test_do_something
           refute(somestuff.empty?, <<~MESSAGE
           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_empty(somestuff, <<~MESSAGE)` over `refute(somestuff.empty?, <<~MESSAGE)`.
-            the message
+            message
           MESSAGE
           )
         end
@@ -58,7 +58,7 @@ class RefuteEmptyTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           refute_empty(somestuff, <<~MESSAGE
-            the message
+            message
           MESSAGE
           )
         end

@@ -14,11 +14,11 @@ instead of using `assert(object.empty?)`.
 ```ruby
 # bad
 assert(object.empty?)
-assert(object.empty?, 'the message')
+assert(object.empty?, 'message')
 
 # good
 assert_empty(object)
-assert_empty(object, 'the message')
+assert_empty(object, 'message')
 ```
 
 ### References
@@ -82,11 +82,11 @@ instead of using `assert(collection.include?(object))`.
 ```ruby
 # bad
 assert(collection.include?(object))
-assert(collection.include?(object), 'the message')
+assert(collection.include?(object), 'message')
 
 # good
 assert_includes(collection, object)
-assert_includes(collection, object, 'the message')
+assert_includes(collection, object, 'message')
 ```
 
 ### References
@@ -107,11 +107,11 @@ over `assert(object.instance_of?(Class))`.
 ```ruby
 # bad
 assert(object.instance_of?(Class))
-assert(object.instance_of?(Class), 'the message')
+assert(object.instance_of?(Class), 'message')
 
 # good
 assert_instance_of(Class, object)
-assert_instance_of(Class, object, 'the message')
+assert_instance_of(Class, object, 'message')
 ```
 
 ### References
@@ -132,11 +132,11 @@ instead of using `assert(matcher.match(string))`.
 ```ruby
 # bad
 assert(matcher.match(string))
-assert(matcher.match(string), 'the message')
+assert(matcher.match(string), 'message')
 
 # good
 assert_match(regex, string)
-assert_match(matcher, string, 'the message')
+assert_match(matcher, string, 'message')
 ```
 
 ### References
@@ -157,11 +157,11 @@ instead of using `assert_equal(nil, something)`.
 ```ruby
 # bad
 assert_equal(nil, actual)
-assert_equal(nil, actual, 'the message')
+assert_equal(nil, actual, 'message')
 
 # good
 assert_nil(actual)
-assert_nil(actual, 'the message')
+assert_nil(actual, 'message')
 ```
 
 ### References
@@ -209,11 +209,11 @@ instead of using `assert_equal(true, actual)`.
 ```ruby
 # bad
 assert_equal(true, actual)
-assert_equal(true, actual, 'the message')
+assert_equal(true, actual, 'message')
 
 # good
 assert(actual)
-assert(actual, 'the message')
+assert(actual, 'message')
 ```
 
 ### References
@@ -234,11 +234,11 @@ using `refute(object.empty?)`.
 ```ruby
 # bad
 refute(object.empty?)
-refute(object.empty?, 'the message')
+refute(object.empty?, 'message')
 
 # good
 refute_empty(object)
-refute_empty(object, 'the message')
+refute_empty(object, 'message')
 ```
 
 ### References
@@ -283,14 +283,14 @@ over `assert_equal(false, object)`.
 ```ruby
 # bad
 assert_equal(false, actual)
-assert_equal(false, actual, 'the message')
+assert_equal(false, actual, 'message')
 
 assert(!test)
-assert(!test, 'the message')
+assert(!test, 'message')
 
 # good
 refute(actual)
-refute(actual, 'the message')
+refute(actual, 'message')
 ```
 
 ### References
@@ -311,11 +311,11 @@ instead of using `refute(collection.include?(object))`.
 ```ruby
 # bad
 refute(collection.include?(object))
-refute(collection.include?(object), 'the message')
+refute(collection.include?(object), 'message')
 
 # good
 refute_includes(collection, object)
-refute_includes(collection, object, 'the message')
+refute_includes(collection, object, 'message')
 ```
 
 ### References
@@ -336,11 +336,11 @@ over `refute(object.instance_of?(Class))`.
 ```ruby
 # bad
 refute(object.instance_of?(Class))
-refute(object.instance_of?(Class), 'the message')
+refute(object.instance_of?(Class), 'message')
 
 # good
 refute_instance_of(Class, object)
-refute_instance_of(Class, object, 'the message')
+refute_instance_of(Class, object, 'message')
 ```
 
 ### References
@@ -361,11 +361,11 @@ instead of using `refute(matcher.match(string))`.
 ```ruby
 # bad
 refute(matcher.match(string))
-refute(matcher.match(string), 'the message')
+refute(matcher.match(string), 'message')
 
 # good
 refute_match(matcher, string)
-refute_match(matcher, string, 'the message')
+refute_match(matcher, string, 'message')
 ```
 
 ### References
@@ -386,11 +386,11 @@ instead of using `refute_equal(nil, something)`.
 ```ruby
 # bad
 refute_equal(nil, actual)
-refute_equal(nil, actual, 'the message')
+refute_equal(nil, actual, 'message')
 
 # good
 refute_nil(actual)
-refute_nil(actual, 'the message')
+refute_nil(actual, 'message')
 ```
 
 ### References

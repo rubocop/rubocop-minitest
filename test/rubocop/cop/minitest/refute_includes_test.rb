@@ -26,8 +26,8 @@ class RefuteIncludesTest < Minitest::Test
     assert_offense(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
-          refute(collection.include?(object), 'the message')
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_includes(collection, object, 'the message')` over `refute(collection.include?(object), 'the message')`.
+          refute(collection.include?(object), 'message')
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_includes(collection, object, 'message')` over `refute(collection.include?(object), 'message')`.
         end
       end
     RUBY
@@ -35,7 +35,7 @@ class RefuteIncludesTest < Minitest::Test
     assert_correction(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
-          refute_includes(collection, object, 'the message')
+          refute_includes(collection, object, 'message')
         end
       end
     RUBY
@@ -47,7 +47,7 @@ class RefuteIncludesTest < Minitest::Test
         def test_do_something
           refute(collection.include?(object), <<~MESSAGE
           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_includes(collection, object, <<~MESSAGE)` over `refute(collection.include?(object), <<~MESSAGE)`.
-            the message
+            message
           MESSAGE
           )
         end
@@ -58,7 +58,7 @@ class RefuteIncludesTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           refute_includes(collection, object, <<~MESSAGE
-            the message
+            message
           MESSAGE
           )
         end

@@ -26,8 +26,8 @@ class RefuteNilTest < Minitest::Test
     assert_offense(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
-          refute_equal(nil, somestuff, 'the message')
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_nil(somestuff, 'the message')` over `refute_equal(nil, somestuff, 'the message')`.
+          refute_equal(nil, somestuff, 'message')
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_nil(somestuff, 'message')` over `refute_equal(nil, somestuff, 'message')`.
         end
       end
     RUBY
@@ -35,7 +35,7 @@ class RefuteNilTest < Minitest::Test
     assert_correction(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
-          refute_nil(somestuff, 'the message')
+          refute_nil(somestuff, 'message')
         end
       end
     RUBY
@@ -45,8 +45,8 @@ class RefuteNilTest < Minitest::Test
     assert_offense(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
-          refute_equal(nil, obj.do_something, 'the message')
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_nil(obj.do_something, 'the message')` over `refute_equal(nil, obj.do_something, 'the message')`.
+          refute_equal(nil, obj.do_something, 'message')
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_nil(obj.do_something, 'message')` over `refute_equal(nil, obj.do_something, 'message')`.
         end
       end
     RUBY
@@ -54,7 +54,7 @@ class RefuteNilTest < Minitest::Test
     assert_correction(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
-          refute_nil(obj.do_something, 'the message')
+          refute_nil(obj.do_something, 'message')
         end
       end
     RUBY
@@ -66,7 +66,7 @@ class RefuteNilTest < Minitest::Test
         def test_do_something
           refute_equal(nil, obj.do_something, <<~MESSAGE
           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_nil(obj.do_something, <<~MESSAGE)` over `refute_equal(nil, obj.do_something, <<~MESSAGE)`.
-            the message
+            message
           MESSAGE
           )
         end
@@ -77,7 +77,7 @@ class RefuteNilTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           refute_nil(obj.do_something, <<~MESSAGE
-            the message
+            message
           MESSAGE
           )
         end

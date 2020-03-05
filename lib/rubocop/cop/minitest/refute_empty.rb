@@ -9,11 +9,11 @@ module RuboCop
       # @example
       #   # bad
       #   refute(object.empty?)
-      #   refute(object.empty?, 'the message')
+      #   refute(object.empty?, 'message')
       #
       #   # good
       #   refute_empty(object)
-      #   refute_empty(object, 'the message')
+      #   refute_empty(object, 'message')
       #
       class RefuteEmpty < Cop
         extend MinitestCopRule

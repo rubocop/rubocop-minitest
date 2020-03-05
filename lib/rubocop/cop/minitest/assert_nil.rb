@@ -9,11 +9,11 @@ module RuboCop
       # @example
       #   # bad
       #   assert_equal(nil, actual)
-      #   assert_equal(nil, actual, 'the message')
+      #   assert_equal(nil, actual, 'message')
       #
       #   # good
       #   assert_nil(actual)
-      #   assert_nil(actual, 'the message')
+      #   assert_nil(actual, 'message')
       #
       class AssertNil < Cop
         include ArgumentRangeHelper

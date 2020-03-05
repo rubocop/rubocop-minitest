@@ -9,11 +9,11 @@ module RuboCop
       # @example
       #   # bad
       #   refute(object.instance_of?(Class))
-      #   refute(object.instance_of?(Class), 'the message')
+      #   refute(object.instance_of?(Class), 'message')
       #
       #   # good
       #   refute_instance_of(Class, object)
-      #   refute_instance_of(Class, object, 'the message')
+      #   refute_instance_of(Class, object, 'message')
       #
       class RefuteInstanceOf < Cop
         extend MinitestCopRule

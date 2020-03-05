@@ -26,8 +26,8 @@ class AssertIncludesTest < Minitest::Test
     assert_offense(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
-          assert(collection.include?(object), 'the message')
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_includes(collection, object, 'the message')` over `assert(collection.include?(object), 'the message')`.
+          assert(collection.include?(object), 'message')
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_includes(collection, object, 'message')` over `assert(collection.include?(object), 'message')`.
         end
       end
     RUBY
@@ -35,7 +35,7 @@ class AssertIncludesTest < Minitest::Test
     assert_correction(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
-          assert_includes(collection, object, 'the message')
+          assert_includes(collection, object, 'message')
         end
       end
     RUBY
@@ -47,7 +47,7 @@ class AssertIncludesTest < Minitest::Test
         def test_do_something
           assert(collection.include?(object), <<~MESSAGE
           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_includes(collection, object, <<~MESSAGE)` over `assert(collection.include?(object), <<~MESSAGE)`.
-            the message
+            message
           MESSAGE
           )
         end
@@ -58,7 +58,7 @@ class AssertIncludesTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           assert_includes(collection, object, <<~MESSAGE
-            the message
+            message
           MESSAGE
           )
         end

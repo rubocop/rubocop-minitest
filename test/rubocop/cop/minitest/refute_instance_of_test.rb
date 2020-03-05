@@ -26,8 +26,8 @@ class RefuteInstanceOfTest < Minitest::Test
     assert_offense(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
-          refute(object.instance_of?(SomeClass), 'the message')
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_instance_of(SomeClass, object, 'the message')` over `refute(object.instance_of?(SomeClass), 'the message')`.
+          refute(object.instance_of?(SomeClass), 'message')
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_instance_of(SomeClass, object, 'message')` over `refute(object.instance_of?(SomeClass), 'message')`.
         end
       end
     RUBY
@@ -35,7 +35,7 @@ class RefuteInstanceOfTest < Minitest::Test
     assert_correction(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
-          refute_instance_of(SomeClass, object, 'the message')
+          refute_instance_of(SomeClass, object, 'message')
         end
       end
     RUBY
@@ -47,7 +47,7 @@ class RefuteInstanceOfTest < Minitest::Test
         def test_do_something
           refute(object.instance_of?(SomeClass), <<~MESSAGE
           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_instance_of(SomeClass, object, <<~MESSAGE)` over `refute(object.instance_of?(SomeClass), <<~MESSAGE)`.
-            the message
+            message
           MESSAGE
           )
         end
@@ -58,7 +58,7 @@ class RefuteInstanceOfTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           refute_instance_of(SomeClass, object, <<~MESSAGE
-            the message
+            message
           MESSAGE
           )
         end

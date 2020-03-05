@@ -9,11 +9,11 @@ module RuboCop
       # @example
       #   # bad
       #   assert(object.instance_of?(Class))
-      #   assert(object.instance_of?(Class), 'the message')
+      #   assert(object.instance_of?(Class), 'message')
       #
       #   # good
       #   assert_instance_of(Class, object)
-      #   assert_instance_of(Class, object, 'the message')
+      #   assert_instance_of(Class, object, 'message')
       #
       class AssertInstanceOf < Cop
         extend MinitestCopRule

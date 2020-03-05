@@ -26,8 +26,8 @@ class AssertNilTest < Minitest::Test
     assert_offense(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
-          assert_equal(nil, somestuff, 'the message')
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_nil(somestuff, 'the message')` over `assert_equal(nil, somestuff, 'the message')`.
+          assert_equal(nil, somestuff, 'message')
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_nil(somestuff, 'message')` over `assert_equal(nil, somestuff, 'message')`.
         end
       end
     RUBY
@@ -35,7 +35,7 @@ class AssertNilTest < Minitest::Test
     assert_correction(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
-          assert_nil(somestuff, 'the message')
+          assert_nil(somestuff, 'message')
         end
       end
     RUBY
@@ -45,8 +45,8 @@ class AssertNilTest < Minitest::Test
     assert_offense(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
-          assert_equal(nil, obj.do_something, 'the message')
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_nil(obj.do_something, 'the message')` over `assert_equal(nil, obj.do_something, 'the message')`.
+          assert_equal(nil, obj.do_something, 'message')
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_nil(obj.do_something, 'message')` over `assert_equal(nil, obj.do_something, 'message')`.
         end
       end
     RUBY
@@ -54,7 +54,7 @@ class AssertNilTest < Minitest::Test
     assert_correction(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
-          assert_nil(obj.do_something, 'the message')
+          assert_nil(obj.do_something, 'message')
         end
       end
     RUBY
@@ -66,7 +66,7 @@ class AssertNilTest < Minitest::Test
         def test_do_something
           assert_equal(nil, obj.do_something, <<~MESSAGE
           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_nil(obj.do_something, <<~MESSAGE)` over `assert_equal(nil, obj.do_something, <<~MESSAGE)`.
-            the message
+            message
           MESSAGE
           )
         end
@@ -77,7 +77,7 @@ class AssertNilTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           assert_nil(obj.do_something, <<~MESSAGE
-            the message
+            message
           MESSAGE
           )
         end

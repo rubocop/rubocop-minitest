@@ -26,8 +26,8 @@ class AssertMatchTest < Minitest::Test
     assert_offense(<<~RUBY, @cop)
       class FooTest < Minitest::Test
         def test_do_something
-          assert(matcher.match(object), 'the message')
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_match(matcher, object, 'the message')` over `assert(matcher.match(object), 'the message')`.
+          assert(matcher.match(object), 'message')
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_match(matcher, object, 'message')` over `assert(matcher.match(object), 'message')`.
         end
       end
     RUBY
@@ -35,7 +35,7 @@ class AssertMatchTest < Minitest::Test
     assert_correction(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
-          assert_match(matcher, object, 'the message')
+          assert_match(matcher, object, 'message')
         end
       end
     RUBY
@@ -47,7 +47,7 @@ class AssertMatchTest < Minitest::Test
         def test_do_something
           assert(matcher.match(object), <<~MESSAGE
           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_match(matcher, object, <<~MESSAGE)` over `assert(matcher.match(object), <<~MESSAGE)`.
-            the message
+            message
           MESSAGE
           )
         end
@@ -58,7 +58,7 @@ class AssertMatchTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           assert_match(matcher, object, <<~MESSAGE
-            the message
+            message
           MESSAGE
           )
         end
