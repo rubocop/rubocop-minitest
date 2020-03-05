@@ -10,6 +10,7 @@
 * [Minitest/AssertNil](cops_minitest.md#minitestassertnil)
 * [Minitest/AssertRespondTo](cops_minitest.md#minitestassertrespondto)
 * [Minitest/AssertTruthy](cops_minitest.md#minitestasserttruthy)
+* [Minitest/GlobalExpectations](cops_minitest.md#minitestglobalexpectations)
 * [Minitest/RefuteEmpty](cops_minitest.md#minitestrefuteempty)
 * [Minitest/RefuteEqual](cops_minitest.md#minitestrefuteequal)
 * [Minitest/RefuteFalse](cops_minitest.md#minitestrefutefalse)

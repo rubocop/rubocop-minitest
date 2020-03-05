@@ -2,6 +2,10 @@
 
 ## master (unreleased)
 
+### New features
+
+* [#60](https://github.com/rubocop-hq/rubocop-minitest/issues/60): Add new cop `Minitest/GlobalExpectations` to check for deprecated global expectations. ([@tejasbubane][])
+
 ### Bug fixes
 
 * [#58](https://github.com/rubocop-hq/rubocop-minitest/pull/58): Fix a false negative for `Minitest/AssertMatch` and `Minitest/RefuteMatch` when an argument is enclosed in redundant parentheses. ([@koic][])
