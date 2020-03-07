@@ -56,6 +56,11 @@ Minitest/AssertTruthy:
   Enabled: true
   VersionAdded: '0.2'
 
+Minitest/GlobalExpectations:
+  Description: 'This cop checks for deprecated global expectations.'
+  Enabled: true
+  VersionAdded: '0.7'
+
 Minitest/RefuteEmpty:
   Description: 'This cop enforces to use `refute_empty` instead of using `refute(object.empty?)`.'
   StyleGuide: 'https://github.com/rubocop-hq/minitest-style-guide#refute-empty'

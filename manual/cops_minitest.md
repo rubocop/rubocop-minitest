@@ -220,6 +220,27 @@ assert(actual, 'message')
 
 * [https://github.com/rubocop-hq/minitest-style-guide#assert-truthy](https://github.com/rubocop-hq/minitest-style-guide#assert-truthy)
 
+## Minitest/GlobalExpectations
+
+Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+--- | --- | --- | --- | ---
+Enabled | Yes | Yes  | 0.7 | -
+
+This Cop checks for deprecated global expectations
+and autocorrects them to use expect format.
+
+### Examples
+
+```ruby
+# bad
+n.must_equal 42
+n.wont_match b
+
+# good
+_(n).must_equal 42
+_(n).wont_match b
+```
+
 ## Minitest/RefuteEmpty
 
 Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
