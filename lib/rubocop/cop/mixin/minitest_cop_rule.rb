@@ -2,9 +2,26 @@
 
 module RuboCop
   module Cop
-    # Define the rule for `Minitest/AssertIncludes` and `Minitest/RefuteIncludes` cops.
+    # Provide a method to define offense rule for Minitest cops.
     module MinitestCopRule
-      def rule(assertion_method, target_method:, preferred_method: nil, inverse: false)
+      #
+      # Define offense rule for Minitest cops.
+      #
+      # @example
+      #   define_rule :assert, target_method: :match
+      #   define_rule :refute, target_method: :match
+      #   define_rule :assert, target_method: :include?, preferred_method: :assert_includes
+      #   define_rule :assert, target_method: :instance_of?, inverse: true
+      #
+      # @param assertion_method [Symbol] Assertion method like `assert` or `refute`.
+      # @param target_method [Symbol] Method name offensed by assertion method arguments.
+      # @param preferred_method [Symbol] An optional param. Custom method name replaced by
+      #                                  auto-correction. The preferred method name that connects
+      #                                  `assertion_method` and `target_method` with `_` is
+      #                                  the default name.
+      # @param inverse [Boolean] An optional param. Order of arguments replaced by auto-correction.
+      #
+      def define_rule(assertion_method, target_method:, preferred_method: nil, inverse: false)
         if preferred_method.nil?
           preferred_method = "#{assertion_method}_#{target_method.to_s.delete('?')}"
         end

@@ -18,7 +18,7 @@ module RuboCop
       class AssertEmpty < Cop
         extend MinitestCopRule
 
-        rule :assert, target_method: :empty?
+        define_rule :assert, target_method: :empty?
       end
     end
   end

@@ -18,7 +18,7 @@ module RuboCop
       class RefuteEmpty < Cop
         extend MinitestCopRule
 
-        rule :refute, target_method: :empty?
+        define_rule :refute, target_method: :empty?
       end
     end
   end

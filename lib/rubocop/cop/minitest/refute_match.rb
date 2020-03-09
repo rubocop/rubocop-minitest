@@ -18,7 +18,7 @@ module RuboCop
       class RefuteMatch < Cop
         extend MinitestCopRule
 
-        rule :refute, target_method: :match
+        define_rule :refute, target_method: :match
       end
     end
   end

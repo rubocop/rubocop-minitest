@@ -18,7 +18,7 @@ module RuboCop
       class RefuteIncludes < Cop
         extend MinitestCopRule
 
-        rule :refute, target_method: :include?, preferred_method: :refute_includes
+        define_rule :refute, target_method: :include?, preferred_method: :refute_includes
       end
     end
   end

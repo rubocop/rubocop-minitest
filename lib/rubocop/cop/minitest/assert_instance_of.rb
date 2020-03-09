@@ -18,7 +18,7 @@ module RuboCop
       class AssertInstanceOf < Cop
         extend MinitestCopRule
 
-        rule :assert, target_method: :instance_of?, inverse: true
+        define_rule :assert, target_method: :instance_of?, inverse: true
       end
     end
   end

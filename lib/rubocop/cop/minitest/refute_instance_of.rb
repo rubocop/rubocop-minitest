@@ -18,7 +18,7 @@ module RuboCop
       class RefuteInstanceOf < Cop
         extend MinitestCopRule
 
-        rule :refute, target_method: :instance_of?, inverse: true
+        define_rule :refute, target_method: :instance_of?, inverse: true
       end
     end
   end

@@ -20,7 +20,7 @@ module RuboCop
       class AssertRespondTo < Cop
         extend MinitestCopRule
 
-        rule :assert, target_method: :respond_to?
+        define_rule :assert, target_method: :respond_to?
       end
     end
   end
