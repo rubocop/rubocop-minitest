@@ -2,6 +2,8 @@
 
 ## master (unreleased)
 
+## 0.7.0 (2020-03-09)
+
 ### New features
 
 * [#60](https://github.com/rubocop-hq/rubocop-minitest/issues/60): Add new cop `Minitest/GlobalExpectations` to check for deprecated global expectations. ([@tejasbubane][])
