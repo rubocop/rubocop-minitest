@@ -35,6 +35,12 @@ class GlobalExpectationsTest < Minitest::Test
         ^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `_(A.foo.bar).must_equal 42`.
       end
     RUBY
+
+    assert_correction(<<~RUBY)
+      it 'does something' do
+        _(A.foo.bar).must_equal 42
+      end
+    RUBY
   end
 
   RuboCop::Cop::Minitest::GlobalExpectations::BLOCK_MATCHERS.each do |matcher|

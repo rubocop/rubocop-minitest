@@ -46,7 +46,7 @@ module RuboCop
           return unless global_expectation?(node)
 
           lambda do |corrector|
-            receiver = node.receiver.loc.selector
+            receiver = node.receiver.source_range
 
             if BLOCK_MATCHERS.include?(node.method_name)
               corrector.insert_before(receiver, '_ { ')
