@@ -2,6 +2,10 @@
 
 ## master (unreleased)
 
+### New features
+
+* [#66](https://github.com/rubocop-hq/rubocop-minitest/issues/66): Support all expectations of `Minitest::Expectations` for `Minitest/GlobalExpectations` cop. ([@koic][])
+
 ### Bug fixes
 
 * [#60](https://github.com/rubocop-hq/rubocop-minitest/issues/60): Fix `Minitest/GlobalExpectations` autocorrection for chained methods. ([@tejasbubane][])
