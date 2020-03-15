@@ -19,6 +19,142 @@ class GlobalExpectationsTest < Minitest::Test
       RUBY
     end
 
+    define_method(:"test_registers_offense_when_using_global_#{matcher}_for_lvar") do
+      assert_offense(<<~RUBY)
+        it 'does something' do
+          n = do_something
+          n.#{matcher} 42
+          #{'^' * (matcher.length + 5)} Prefer using `_(n).#{matcher} 42`.
+        end
+      RUBY
+
+      assert_correction(<<~RUBY)
+        it 'does something' do
+          n = do_something
+          _(n).#{matcher} 42
+        end
+      RUBY
+    end
+
+    define_method(:"test_registers_offense_when_using_global_#{matcher}_for_ivar") do
+      assert_offense(<<~RUBY)
+        it 'does something' do
+          @n = do_something
+          @n.#{matcher} 42
+          #{'^' * (matcher.length + 6)} Prefer using `_(@n).#{matcher} 42`.
+        end
+      RUBY
+
+      assert_correction(<<~RUBY)
+        it 'does something' do
+          @n = do_something
+          _(@n).#{matcher} 42
+        end
+      RUBY
+    end
+
+    define_method(:"test_registers_offense_when_using_global_#{matcher}_for_cvar") do
+      assert_offense(<<~RUBY)
+        it 'does something' do
+          @@n = do_something
+          @@n.#{matcher} 42
+          #{'^' * (matcher.length + 7)} Prefer using `_(@@n).#{matcher} 42`.
+        end
+      RUBY
+
+      assert_correction(<<~RUBY)
+        it 'does something' do
+          @@n = do_something
+          _(@@n).#{matcher} 42
+        end
+      RUBY
+    end
+
+    define_method(:"test_registers_offense_when_using_global_#{matcher}_for_gvar") do
+      assert_offense(<<~RUBY)
+        it 'does something' do
+          $n = do_something
+          $n.#{matcher} 42
+          #{'^' * (matcher.length + 6)} Prefer using `_($n).#{matcher} 42`.
+        end
+      RUBY
+
+      assert_correction(<<~RUBY)
+        it 'does something' do
+          $n = do_something
+          _($n).#{matcher} 42
+        end
+      RUBY
+    end
+
+    define_method(:"test_registers_offense_when_using_global_#{matcher}_for_hash_as_lvar") do
+      assert_offense(<<~RUBY)
+        it 'does something' do
+          n = do_something
+          n[:foo].#{matcher} 42
+          #{'^' * (matcher.length + 11)} Prefer using `_(n[:foo]).#{matcher} 42`.
+        end
+      RUBY
+
+      assert_correction(<<~RUBY)
+        it 'does something' do
+          n = do_something
+          _(n[:foo]).#{matcher} 42
+        end
+      RUBY
+    end
+
+    define_method(:"test_registers_offense_when_using_global_#{matcher}_for_hash_as_ivar") do
+      assert_offense(<<~RUBY)
+        it 'does something' do
+          @n = do_something
+          @n[:foo].#{matcher} 42
+          #{'^' * (matcher.length + 12)} Prefer using `_(@n[:foo]).#{matcher} 42`.
+        end
+      RUBY
+
+      assert_correction(<<~RUBY)
+        it 'does something' do
+          @n = do_something
+          _(@n[:foo]).#{matcher} 42
+        end
+      RUBY
+    end
+
+    define_method(:"test_registers_offense_when_using_global_#{matcher}_for_hash_as_cvar") do
+      assert_offense(<<~RUBY)
+        it 'does something' do
+          @@n = do_something
+          @@n[:foo].#{matcher} 42
+          #{'^' * (matcher.length + 13)} Prefer using `_(@@n[:foo]).#{matcher} 42`.
+        end
+      RUBY
+
+      assert_correction(<<~RUBY)
+        it 'does something' do
+          @@n = do_something
+          _(@@n[:foo]).#{matcher} 42
+        end
+      RUBY
+    end
+
+    define_method(:"test_registers_offense_when_using_global_#{matcher}_for_hash_as_gvar") do
+      assert_offense(<<~RUBY)
+        it 'does something' do
+          $n = do_something
+          $n[:foo].#{matcher} 42
+          #{'^' * (matcher.length + 12)} Prefer using `_($n[:foo]).#{matcher} 42`.
+        end
+      RUBY
+
+      assert_correction(<<~RUBY)
+        it 'does something' do
+          $n = do_something
+          _($n[:foo]).#{matcher} 42
+        end
+      RUBY
+    end
+
     define_method(:"test_no_offense_when_using_expect_form_of_#{matcher}") do
       assert_no_offenses(<<~RUBY)
         it 'does something' do

@@ -33,7 +33,11 @@ module RuboCop
         end.join(' ').freeze
 
         def_node_matcher :global_expectation?, <<~PATTERN
-          (send (send _ _) {#{MATCHERS_STR}} ...)
+          (send {
+            (send _ _)
+            ({lvar ivar cvar gvar} _)
+            (send {(send _ _) ({lvar ivar cvar gvar} _)} _ _)
+          } {#{MATCHERS_STR}} ...)
         PATTERN
 
         def on_send(node)
