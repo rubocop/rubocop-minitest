@@ -226,19 +226,21 @@ Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChan
 --- | --- | --- | --- | ---
 Enabled | Yes | Yes  | 0.7 | -
 
-This Cop checks for deprecated global expectations
+This cop checks for deprecated global expectations
 and autocorrects them to use expect format.
 
 ### Examples
 
 ```ruby
 # bad
-n.must_equal 42
-n.wont_match b
+musts.must_equal expected_musts
+wonts.wont_match expected_wonts
+musts.must_raise TypeError
 
 # good
-_(n).must_equal 42
-_(n).wont_match b
+_(musts).must_equal expected_musts
+_(wonts).wont_match expected_wonts
+_ { musts }.must_raise TypeError
 ```
 
 ## Minitest/RefuteEmpty
