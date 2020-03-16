@@ -8,7 +8,7 @@ class GlobalExpectationsTest < Minitest::Test
       assert_offense(<<~RUBY)
         it 'does something' do
           n.#{matcher} 42
-          #{'^' * (matcher.length + 5)} Prefer using `_(n).#{matcher} 42`.
+          ^ Use `_(n)` instead.
         end
       RUBY
 
@@ -24,7 +24,7 @@ class GlobalExpectationsTest < Minitest::Test
         it 'does something' do
           n = do_something
           n.#{matcher} 42
-          #{'^' * (matcher.length + 5)} Prefer using `_(n).#{matcher} 42`.
+          ^ Use `_(n)` instead.
         end
       RUBY
 
@@ -41,7 +41,7 @@ class GlobalExpectationsTest < Minitest::Test
         it 'does something' do
           @n = do_something
           @n.#{matcher} 42
-          #{'^' * (matcher.length + 6)} Prefer using `_(@n).#{matcher} 42`.
+          ^^ Use `_(@n)` instead.
         end
       RUBY
 
@@ -58,7 +58,7 @@ class GlobalExpectationsTest < Minitest::Test
         it 'does something' do
           @@n = do_something
           @@n.#{matcher} 42
-          #{'^' * (matcher.length + 7)} Prefer using `_(@@n).#{matcher} 42`.
+          ^^^ Use `_(@@n)` instead.
         end
       RUBY
 
@@ -75,7 +75,7 @@ class GlobalExpectationsTest < Minitest::Test
         it 'does something' do
           $n = do_something
           $n.#{matcher} 42
-          #{'^' * (matcher.length + 6)} Prefer using `_($n).#{matcher} 42`.
+          ^^ Use `_($n)` instead.
         end
       RUBY
 
@@ -92,7 +92,7 @@ class GlobalExpectationsTest < Minitest::Test
         it 'does something' do
           n = do_something
           n[:foo].#{matcher} 42
-          #{'^' * (matcher.length + 11)} Prefer using `_(n[:foo]).#{matcher} 42`.
+          ^^^^^^^ Use `_(n[:foo])` instead.
         end
       RUBY
 
@@ -109,7 +109,7 @@ class GlobalExpectationsTest < Minitest::Test
         it 'does something' do
           @n = do_something
           @n[:foo].#{matcher} 42
-          #{'^' * (matcher.length + 12)} Prefer using `_(@n[:foo]).#{matcher} 42`.
+          ^^^^^^^^ Use `_(@n[:foo])` instead.
         end
       RUBY
 
@@ -126,7 +126,7 @@ class GlobalExpectationsTest < Minitest::Test
         it 'does something' do
           @@n = do_something
           @@n[:foo].#{matcher} 42
-          #{'^' * (matcher.length + 13)} Prefer using `_(@@n[:foo]).#{matcher} 42`.
+          ^^^^^^^^^ Use `_(@@n[:foo])` instead.
         end
       RUBY
 
@@ -143,7 +143,7 @@ class GlobalExpectationsTest < Minitest::Test
         it 'does something' do
           $n = do_something
           $n[:foo].#{matcher} 42
-          #{'^' * (matcher.length + 12)} Prefer using `_($n[:foo]).#{matcher} 42`.
+          ^^^^^^^^ Use `_($n[:foo])` instead.
         end
       RUBY
 
@@ -168,7 +168,7 @@ class GlobalExpectationsTest < Minitest::Test
     assert_offense(<<~RUBY)
       it 'does something' do
         A.foo.bar.must_equal 42
-        ^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `_(A.foo.bar).must_equal 42`.
+        ^^^^^^^^^ Use `_(A.foo.bar)` instead.
       end
     RUBY
 
@@ -184,7 +184,7 @@ class GlobalExpectationsTest < Minitest::Test
       assert_offense(<<~RUBY)
         it 'does something' do
           n.#{matcher} 42
-          #{'^' * (matcher.length + 5)} Prefer using `_ { n }.#{matcher} 42`.
+          ^ Use `_ { n }` instead.
         end
       RUBY
 
