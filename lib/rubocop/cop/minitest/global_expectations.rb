@@ -17,7 +17,7 @@ module RuboCop
       #   _(wonts).wont_match expected_wonts
       #   _ { musts }.must_raise TypeError
       class GlobalExpectations < Cop
-        MSG = 'Prefer using `%<corrected>s`.'
+        MSG = 'Use `%<preferred>s` instead.'
 
         VALUE_MATCHERS = %i[
           must_be_empty must_equal must_be_close_to must_be_within_delta
@@ -45,8 +45,8 @@ module RuboCop
         def on_send(node)
           return unless global_expectation?(node)
 
-          message = format(MSG, corrected: correct_suggestion(node))
-          add_offense(node, message: message)
+          message = format(MSG, preferred: preferred_receiver(node))
+          add_offense(node, location: node.receiver.source_range, message: message)
         end
 
         def autocorrect(node)
@@ -67,12 +67,12 @@ module RuboCop
 
         private
 
-        def correct_suggestion(node)
+        def preferred_receiver(node)
           source = node.receiver.source
           if BLOCK_MATCHERS.include?(node.method_name)
-            node.source.sub(source, "_ { #{source} }")
+            "_ { #{source} }"
           else
-            node.source.sub(source, "_(#{source})")
+            "_(#{source})"
           end
         end
       end
