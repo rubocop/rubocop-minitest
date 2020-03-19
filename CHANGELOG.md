@@ -10,6 +10,7 @@
 
 * [#60](https://github.com/rubocop-hq/rubocop-minitest/issues/60): Fix `Minitest/GlobalExpectations` autocorrection for chained methods. ([@tejasbubane][])
 * [#69](https://github.com/rubocop-hq/rubocop-minitest/pull/69): Fix a false negative for `Minitest/GlobalExpectations` cop when using a variable or a hash index for receiver. ([@koic][])
+* [#71](https://github.com/rubocop-hq/rubocop-minitest/pull/71): Fix a false negative for `Minitest/AssertEqual` when an argument is enclosed in redundant parentheses. ([@koic][])
 
 ## 0.7.0 (2020-03-09)
 
