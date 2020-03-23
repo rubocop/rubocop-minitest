@@ -104,6 +104,25 @@ class AssertEqualTest < Minitest::Test
     RUBY
   end
 
+  def test_registers_offense_when_using_assert_with_equal_in_redundant_parentheses
+    assert_offense(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          assert(('rubocop-minitest' == actual))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_equal('rubocop-minitest', actual)` over `assert('rubocop-minitest' == actual)`.
+        end
+      end
+    RUBY
+
+    assert_correction(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          assert_equal(('rubocop-minitest', actual))
+        end
+      end
+    RUBY
+  end
+
   def test_does_not_register_offense_when_using_assert_equal
     assert_no_offenses(<<~RUBY)
       class FooTest < Minitest::Test
