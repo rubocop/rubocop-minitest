@@ -2,6 +2,8 @@
 
 ## master (unreleased)
 
+## 0.8.0 (2020-03-24)
+
 ### New features
 
 * [#66](https://github.com/rubocop-hq/rubocop-minitest/issues/66): Support all expectations of `Minitest::Expectations` for `Minitest/GlobalExpectations` cop. ([@koic][])
