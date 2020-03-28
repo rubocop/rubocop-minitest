@@ -22,9 +22,7 @@ module RuboCop
       # @param inverse [Boolean] An optional param. Order of arguments replaced by auto-correction.
       #
       def define_rule(assertion_method, target_method:, preferred_method: nil, inverse: false)
-        if preferred_method.nil?
-          preferred_method = "#{assertion_method}_#{target_method.to_s.delete('?')}"
-        end
+        preferred_method = "#{assertion_method}_#{target_method.to_s.delete('?')}" if preferred_method.nil?
 
         class_eval(<<~RUBY, __FILE__, __LINE__ + 1)
           include ArgumentRangeHelper
