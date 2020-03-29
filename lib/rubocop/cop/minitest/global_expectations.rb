@@ -30,27 +30,43 @@ module RuboCop
 
         BLOCK_MATCHERS = %i[must_output must_raise must_be_silent must_throw].freeze
 
-        MATCHERS_STR = (VALUE_MATCHERS + BLOCK_MATCHERS).map do |m|
+        VALUE_MATCHERS_STR = VALUE_MATCHERS.map do |m|
           ":#{m}"
         end.join(' ').freeze
 
-        def_node_matcher :global_expectation?, <<~PATTERN
-          (send {
-            (send _ _)
-            ({lvar ivar cvar gvar} _)
-            (send {(send _ _) ({lvar ivar cvar gvar} _)} _ _)
-          } {#{MATCHERS_STR}} ...)
+        BLOCK_MATCHERS_STR = BLOCK_MATCHERS.map do |m|
+          ":#{m}"
+        end.join(' ').freeze
+
+        # There are aliases for the `_` method - `expect` and `value`
+        DSL_METHODS_LIST = %w[_ value expect].map do |n|
+          ":#{n}"
+        end.join(' ').freeze
+
+        def_node_matcher :value_global_expectation?, <<~PATTERN
+          (send !(send nil? {#{DSL_METHODS_LIST}} _) {#{VALUE_MATCHERS_STR}} _)
+        PATTERN
+
+        def_node_matcher :block_global_expectation?, <<~PATTERN
+          (send
+            [
+              !(send nil? {#{DSL_METHODS_LIST}} _)
+              !(block (send nil? {#{DSL_METHODS_LIST}}) _ _)
+            ]
+            {#{BLOCK_MATCHERS_STR}}
+            _
+          )
         PATTERN
 
         def on_send(node)
-          return unless global_expectation?(node)
+          return unless value_global_expectation?(node) || block_global_expectation?(node)
 
           message = format(MSG, preferred: preferred_receiver(node))
           add_offense(node, location: node.receiver.source_range, message: message)
         end
 
         def autocorrect(node)
-          return unless global_expectation?(node)
+          return unless value_global_expectation?(node) || block_global_expectation?(node)
 
           lambda do |corrector|
             receiver = node.receiver.source_range

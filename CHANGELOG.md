@@ -2,6 +2,10 @@
 
 ## master (unreleased)
 
+### Bug fixes
+
+* [#72](https://github.com/rubocop-hq/rubocop-minitest/pull/72): Fix some false negatives for `Minitest/GlobalExpectations`. ([@andrykonchin][])
+
 ## 0.8.0 (2020-03-24)
 
 ### New features
@@ -119,3 +123,4 @@
 [@abhaynikam]: https://github.com/abhaynikam
 [@herwinw]: https://github.com/herwinw
 [@fsateler]: https://github.com/fsateler
+[@andrykonchin]: https://github.com/andrykonchin

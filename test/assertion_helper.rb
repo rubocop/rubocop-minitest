@@ -29,9 +29,7 @@ module AssertionHelper
     @cop.instance_variable_get(:@options)[:auto_correct] = true
 
     expected_annotations = RuboCop::RSpec::ExpectOffense::AnnotatedSource.parse(source)
-    if expected_annotations.plain_source == source
-      raise 'Use `assert_no_offenses` to assert that no offenses are found'
-    end
+    raise 'Use `assert_no_offenses` to assert that no offenses are found' if expected_annotations.plain_source == source
 
     @processed_source = inspect_source(expected_annotations.plain_source, @cop, file)
 
