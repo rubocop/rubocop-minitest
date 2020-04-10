@@ -2,6 +2,7 @@ Minitest:
   Enabled: true
   Include:
     - '**/test/**/*'
+    - '**/*_test.rb'
 
 Minitest/AssertEmpty:
   Description: 'This cop enforces the test to use `assert_empty` instead of using `assert(object.empty?)`.'
