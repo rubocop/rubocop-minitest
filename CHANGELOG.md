@@ -2,6 +2,10 @@
 
 ## master (unreleased)
 
+### Bug fixes
+
+* [#75](https://github.com/rubocop-hq/rubocop-minitest/issues/75): Fix a false negative for `Minitest/GlobalExpectations` when using global expectation methods with no arguments. ([@koic][])
+
 ### Changes
 
 * [#73](https://github.com/rubocop-hq/rubocop-minitest/issues/73): The Minitest department works on file names end with `_test.rb` by default. ([@koic][])
