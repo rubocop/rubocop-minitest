@@ -2,6 +2,10 @@
 
 ## master (unreleased)
 
+### Changes
+
+* [#73](https://github.com/rubocop-hq/rubocop-minitest/issues/73): The Minitest department works on file names end with `_test.rb` by default. ([@koic][])
+
 ## 0.8.1 (2020-04-06)
 
 ### Bug fixes
