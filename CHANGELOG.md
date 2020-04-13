@@ -2,6 +2,8 @@
 
 ## master (unreleased)
 
+## 0.9.0 (2020-04-13)
+
 ### Bug fixes
 
 * [#75](https://github.com/rubocop-hq/rubocop-minitest/issues/75): Fix a false negative for `Minitest/GlobalExpectations` when using global expectation methods with no arguments. ([@koic][])
