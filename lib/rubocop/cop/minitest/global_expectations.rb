@@ -44,7 +44,7 @@ module RuboCop
         end.join(' ').freeze
 
         def_node_matcher :value_global_expectation?, <<~PATTERN
-          (send !(send nil? {#{DSL_METHODS_LIST}} _) {#{VALUE_MATCHERS_STR}} _)
+          (send !(send nil? {#{DSL_METHODS_LIST}} _) {#{VALUE_MATCHERS_STR}} ...)
         PATTERN
 
         def_node_matcher :block_global_expectation?, <<~PATTERN
