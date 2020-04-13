@@ -8,7 +8,7 @@ require:
   - rubocop-minitest
 
 AllCops:
-  TargetRubyVersion: 2.3
+  TargetRubyVersion: 2.4
 
 Naming/PredicateName:
   # Method define macros for dynamically generated method.

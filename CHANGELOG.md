@@ -9,6 +9,7 @@
 ### Changes
 
 * [#73](https://github.com/rubocop-hq/rubocop-minitest/issues/73): The Minitest department works on file names end with `_test.rb` by default. ([@koic][])
+* [#77](https://github.com/rubocop-hq/rubocop-minitest/pull/77): **(BREAKING)** Drop support for Ruby 2.3. ([@koic][])
 
 ## 0.8.1 (2020-04-06)
 
