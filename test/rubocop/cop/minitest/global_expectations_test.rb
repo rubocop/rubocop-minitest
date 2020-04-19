@@ -295,20 +295,20 @@ class GlobalExpectationsTest < Minitest::Test
         end
       RUBY
     end
+  end
 
-    def test_registers_offense_when_using_global_expectations_without_arguments
-      assert_offense(<<~RUBY)
-        it 'does something' do
-          n.must_be_nil
-          ^ Use `_(n)` instead.
-        end
-      RUBY
+  def test_registers_offense_when_using_global_expectations_without_arguments
+    assert_offense(<<~RUBY)
+      it 'does something' do
+        n.must_be_nil
+        ^ Use `_(n)` instead.
+      end
+    RUBY
 
-      assert_correction(<<~RUBY)
-        it 'does something' do
-          _(n).must_be_nil
-        end
-      RUBY
-    end
+    assert_correction(<<~RUBY)
+      it 'does something' do
+        _(n).must_be_nil
+      end
+    RUBY
   end
 end
