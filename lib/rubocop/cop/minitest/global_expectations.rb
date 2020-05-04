@@ -72,11 +72,9 @@ module RuboCop
             receiver = node.receiver.source_range
 
             if BLOCK_MATCHERS.include?(node.method_name)
-              corrector.insert_before(receiver, '_ { ')
-              corrector.insert_after(receiver, ' }')
+              corrector.wrap(receiver, '_ { ', ' }')
             else
-              corrector.insert_before(receiver, '_(')
-              corrector.insert_after(receiver, ')')
+              corrector.wrap(receiver, '_(', ')')
             end
           end
         end
