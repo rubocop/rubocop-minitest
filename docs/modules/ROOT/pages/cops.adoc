@@ -1,0 +1,24 @@
+// START_COP_LIST
+
+==== Department xref:cops_minitest.adoc[Minitest]
+
+* link:cops_minitest.md#minitestassertempty[Minitest/AssertEmpty]
+* link:cops_minitest.md#minitestassertemptyliteral[Minitest/AssertEmptyLiteral]
+* link:cops_minitest.md#minitestassertequal[Minitest/AssertEqual]
+* link:cops_minitest.md#minitestassertincludes[Minitest/AssertIncludes]
+* link:cops_minitest.md#minitestassertinstanceof[Minitest/AssertInstanceOf]
+* link:cops_minitest.md#minitestassertmatch[Minitest/AssertMatch]
+* link:cops_minitest.md#minitestassertnil[Minitest/AssertNil]
+* link:cops_minitest.md#minitestassertrespondto[Minitest/AssertRespondTo]
+* link:cops_minitest.md#minitestasserttruthy[Minitest/AssertTruthy]
+* link:cops_minitest.md#minitestglobalexpectations[Minitest/GlobalExpectations]
+* link:cops_minitest.md#minitestrefuteempty[Minitest/RefuteEmpty]
+* link:cops_minitest.md#minitestrefuteequal[Minitest/RefuteEqual]
+* link:cops_minitest.md#minitestrefutefalse[Minitest/RefuteFalse]
+* link:cops_minitest.md#minitestrefuteincludes[Minitest/RefuteIncludes]
+* link:cops_minitest.md#minitestrefuteinstanceof[Minitest/RefuteInstanceOf]
+* link:cops_minitest.md#minitestrefutematch[Minitest/RefuteMatch]
+* link:cops_minitest.md#minitestrefutenil[Minitest/RefuteNil]
+* link:cops_minitest.md#minitestrefuterespondto[Minitest/RefuteRespondTo]
+
+// END_COP_LIST

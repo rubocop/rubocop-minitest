@@ -1,0 +1,1 @@
+A https://github.com/rubocop-hq/rubocop[RuboCop] extension focused on enforcing Minitest best practices and coding conventions.
