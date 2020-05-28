@@ -1,3 +1,5 @@
+= Installation
+
 Just install the `rubocop-minitest` gem
 
 [source,sh]
