@@ -62,7 +62,7 @@ end
 
 All cops are located under
 [`lib/rubocop/cop/minitest`](lib/rubocop/cop/minitest), and contain
-examples/documentation. The documentation is published [here](https://docs.rubocop.org/projects/minitest).
+examples/documentation. The documentation is published [here](https://docs.rubocop.org/rubocop-minitest/).
 
 In your `.rubocop.yml`, you may treat the Minitest cops just like any other
 cop. For example:
@@ -75,7 +75,7 @@ Minitest/AssertNil:
 
 ## Documentation
 
-You can read a lot more about RuboCop Minitest in its [official docs](https://docs.rubocop.org/projects/minitest/).
+You can read a lot more about RuboCop Minitest in its [official docs](https://docs.rubocop.org/rubocop-minitest/).
 
 ## Contributing
 
