@@ -11,14 +11,14 @@ class ProjectTest < Minitest::Test
     @entries = @lines.grep(/^\*/).map(&:chomp)
 
     @issues = @entries.map do |entry|
-      entry.match(/\[(?<number>[#\d]+)\]\((?<url>[^\)]+)\)/)
+      entry.match(/\[(?<number>[#\d]+)\]\((?<url>[^)]+)\)/)
     end.compact
 
     @bodies = @entries.map do |entry|
       entry.gsub(/`[^`]+`/, '``').sub(
         /^\*\s*(?:\[.+?\):\s*)?/, ''
       ).sub(
-        /\s*\([^\)]+\)$/, ''
+        /\s*\([^)]+\)$/, ''
       )
     end
   end
@@ -97,7 +97,7 @@ class ProjectTest < Minitest::Test
 
   def test_body_ends_with_a_punctuation
     @bodies.each do |body|
-      assert_match(/[\.\!]$/, body)
+      assert_match(/[.!]$/, body)
     end
   end
 end
