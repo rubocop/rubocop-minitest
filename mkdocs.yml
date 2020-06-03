@@ -1,8 +1,8 @@
 site_name: "A RuboCop extension focused on enforcing Minitest best practices and coding conventions."
 repo_url: https://github.com/rubocop-hq/rubocop-minitest
-edit_uri: edit/master/manual/
+edit_uri: edit/master/legacy-docs/
 copyright: "Copyright &copy; 2019 Bozhidar Batsov, Jonas Arvidsson, Koichi ITO, and RuboCop contributors"
-docs_dir: manual
+docs_dir: legacy-docs
 pages:
 - Home: index.md
 - Installation: installation.md
