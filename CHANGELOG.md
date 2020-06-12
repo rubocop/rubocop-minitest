@@ -2,6 +2,10 @@
 
 ## master (unreleased)
 
+### Changes
+
+* [#82](https://github.com/rubocop-hq/rubocop-minitest/pull/82): Drop support for RuboCop 0.81 or lower. ([@koic][])
+
 ## 0.9.0 (2020-04-13)
 
 ### Bug fixes
