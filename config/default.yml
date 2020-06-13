@@ -6,7 +6,7 @@ Minitest:
 
 Minitest/AssertEmpty:
   Description: 'This cop enforces the test to use `assert_empty` instead of using `assert(object.empty?)`.'
-  StyleGuide: 'https://github.com/rubocop-hq/minitest-style-guide#assert-empty'
+  StyleGuide: 'https://minitest.rubystyle.guide#assert-empty'
   Enabled: true
   VersionAdded: '0.2'
 
@@ -17,43 +17,43 @@ Minitest/AssertEmptyLiteral:
 
 Minitest/AssertEqual:
   Description: 'This cop enforces the test to use `assert_equal` instead of using `assert(expected == actual)`.'
-  StyleGuide: 'https://github.com/rubocop-hq/minitest-style-guide#assert-equal-arguments-order'
+  StyleGuide: 'https://minitest.rubystyle.guide#assert-equal-arguments-order'
   Enabled: true
   VersionAdded: '0.4'
 
 Minitest/AssertMatch:
   Description: 'This cop enforces the test to use `assert_match` instead of using `assert(matcher.match(object))`.'
-  StyleGuide: 'https://github.com/rubocop-hq/minitest-style-guide#assert-match'
+  StyleGuide: 'https://minitest.rubystyle.guide#assert-match'
   Enabled: true
   VersionAdded: '0.6'
 
 Minitest/AssertIncludes:
   Description: 'This cop enforces the test to use `assert_includes` instead of using `assert(collection.include?(object))`.'
-  StyleGuide: 'https://github.com/rubocop-hq/minitest-style-guide#assert-includes'
+  StyleGuide: 'https://minitest.rubystyle.guide#assert-includes'
   Enabled: true
   VersionAdded: '0.2'
 
 Minitest/AssertInstanceOf:
   Description: 'This cop enforces the test to use `assert_instance_of(Class, object)` over `assert(object.instance_of?(Class))`'
-  StyleGuide: 'https://github.com/rubocop-hq/minitest-style-guide#assert-instance-of'
+  StyleGuide: 'https://minitest.rubystyle.guide#assert-instance-of'
   Enabled: true
   VersionAdded: '0.4'
 
 Minitest/AssertNil:
   Description: 'This cop enforces the test to use `assert_nil` instead of using `assert_equal(nil, something)`.'
-  StyleGuide: 'https://github.com/rubocop-hq/minitest-style-guide#assert-nil'
+  StyleGuide: 'https://minitest.rubystyle.guide#assert-nil'
   Enabled: true
   VersionAdded: '0.1'
 
 Minitest/AssertRespondTo:
   Description: 'This cop enforces the test to use `assert_respond_to(object, :do_something)` over `assert(object.respond_to?(:do_something))`.'
-  StyleGuide: 'https://github.com/rubocop-hq/minitest-style-guide#assert-responds-to-method'
+  StyleGuide: 'https://minitest.rubystyle.guide#assert-responds-to-method'
   Enabled: true
   VersionAdded: '0.3'
 
 Minitest/AssertTruthy:
   Description: 'This cop enforces the test to use `assert(actual)` instead of using `assert_equal(true, actual)`.'
-  StyleGuide: 'https://github.com/rubocop-hq/minitest-style-guide#assert-truthy'
+  StyleGuide: 'https://minitest.rubystyle.guide#assert-truthy'
   Enabled: true
   VersionAdded: '0.2'
 
@@ -64,48 +64,48 @@ Minitest/GlobalExpectations:
 
 Minitest/RefuteEmpty:
   Description: 'This cop enforces to use `refute_empty` instead of using `refute(object.empty?)`.'
-  StyleGuide: 'https://github.com/rubocop-hq/minitest-style-guide#refute-empty'
+  StyleGuide: 'https://minitest.rubystyle.guide#refute-empty'
   Enabled: true
   VersionAdded: '0.3'
 
 Minitest/RefuteEqual:
   Description: 'Check if your test uses `refute_equal` instead of `assert(expected != object)` or `assert(! expected == object))`.'
-  StyleGuide: 'https://github.com/rubocop-hq/minitest-style-guide#refute-equal'
+  StyleGuide: 'https://minitest.rubystyle.guide#refute-equal'
   Enabled: true
   VersionAdded: '0.3'
 
 Minitest/RefuteFalse:
   Description: 'Check if your test uses `refute(actual)` instead of `assert_equal(false, actual)`.'
-  StyleGuide: 'https://github.com/rubocop-hq/minitest-style-guide#refute-false'
+  StyleGuide: 'https://minitest.rubystyle.guide#refute-false'
   Enabled: true
   VersionAdded: '0.3'
 
 Minitest/RefuteIncludes:
   Description: 'This cop enforces the test to use `refute_includes` instead of using `refute(collection.include?(object))`.'
-  StyleGuide: 'https://github.com/rubocop-hq/minitest-style-guide#refute-includes'
+  StyleGuide: 'https://minitest.rubystyle.guide#refute-includes'
   Enabled: true
   VersionAdded: '0.3'
 
 Minitest/RefuteMatch:
   Description: 'This cop enforces the test to use `refute_match` instead of using `refute(matcher.match(object))`.'
-  StyleGuide: 'https://github.com/rubocop-hq/minitest-style-guide#refute-match'
+  StyleGuide: 'https://minitest.rubystyle.guide#refute-match'
   Enabled: true
   VersionAdded: '0.6'
 
 Minitest/RefuteInstanceOf:
   Description: 'This cop enforces the test to use `refute_instance_of(Class, object)` over `refute(object.instance_of?(Class))`.'
-  StyleGuide: 'https://github.com/rubocop-hq/minitest-style-guide#refute-instance-of'
+  StyleGuide: 'https://minitest.rubystyle.guide#refute-instance-of'
   Enabled: true
   VersionAdded: '0.4'
 
 Minitest/RefuteNil:
   Description: 'This cop enforces the test to use `refute_nil` instead of using `refute_equal(nil, something)`.'
-  StyleGuide: 'https://github.com/rubocop-hq/minitest-style-guide#refute-nil'
+  StyleGuide: 'https://minitest.rubystyle.guide#refute-nil'
   Enabled: true
   VersionAdded: '0.2'
 
 Minitest/RefuteRespondTo:
   Description: 'This cop enforces the test to use `refute_respond_to(object, :do_something)` over `refute(object.respond_to?(:do_something))`.'
-  StyleGuide: 'https://github.com/rubocop-hq/minitest-style-guide#refute-respond-to'
+  StyleGuide: 'https://minitest.rubystyle.guide#refute-respond-to'
   Enabled: true
   VersionAdded: '0.4'

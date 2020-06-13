@@ -30,7 +30,7 @@ assert_empty(object, 'message')
 
 === References
 
-* https://github.com/rubocop-hq/minitest-style-guide#assert-empty
+* https://minitest.rubystyle.guide#assert-empty
 
 == Minitest/AssertEmptyLiteral
 
@@ -87,7 +87,7 @@ assert_equal("rubocop-minitest", actual)
 
 === References
 
-* https://github.com/rubocop-hq/minitest-style-guide#assert-equal-arguments-order
+* https://minitest.rubystyle.guide#assert-equal-arguments-order
 
 == Minitest/AssertIncludes
 
@@ -119,7 +119,7 @@ assert_includes(collection, object, 'message')
 
 === References
 
-* https://github.com/rubocop-hq/minitest-style-guide#assert-includes
+* https://minitest.rubystyle.guide#assert-includes
 
 == Minitest/AssertInstanceOf
 
@@ -151,7 +151,7 @@ assert_instance_of(Class, object, 'message')
 
 === References
 
-* https://github.com/rubocop-hq/minitest-style-guide#assert-instance-of
+* https://minitest.rubystyle.guide#assert-instance-of
 
 == Minitest/AssertMatch
 
@@ -183,7 +183,7 @@ assert_match(matcher, string, 'message')
 
 === References
 
-* https://github.com/rubocop-hq/minitest-style-guide#assert-match
+* https://minitest.rubystyle.guide#assert-match
 
 == Minitest/AssertNil
 
@@ -215,7 +215,7 @@ assert_nil(actual, 'message')
 
 === References
 
-* https://github.com/rubocop-hq/minitest-style-guide#assert-nil
+* https://minitest.rubystyle.guide#assert-nil
 
 == Minitest/AssertRespondTo
 
@@ -249,7 +249,7 @@ assert_respond_to(self, :do_something)
 
 === References
 
-* https://github.com/rubocop-hq/minitest-style-guide#assert-responds-to-method
+* https://minitest.rubystyle.guide#assert-responds-to-method
 
 == Minitest/AssertTruthy
 
@@ -281,7 +281,7 @@ assert(actual, 'message')
 
 === References
 
-* https://github.com/rubocop-hq/minitest-style-guide#assert-truthy
+* https://minitest.rubystyle.guide#assert-truthy
 
 == Minitest/GlobalExpectations
 
@@ -343,7 +343,7 @@ refute_empty(object, 'message')
 
 === References
 
-* https://github.com/rubocop-hq/minitest-style-guide#refute-empty
+* https://minitest.rubystyle.guide#refute-empty
 
 == Minitest/RefuteEqual
 
@@ -374,7 +374,7 @@ refute_equal("rubocop-minitest", actual)
 
 === References
 
-* https://github.com/rubocop-hq/minitest-style-guide#refute-equal
+* https://minitest.rubystyle.guide#refute-equal
 
 == Minitest/RefuteFalse
 
@@ -409,7 +409,7 @@ refute(actual, 'message')
 
 === References
 
-* https://github.com/rubocop-hq/minitest-style-guide#refute-false
+* https://minitest.rubystyle.guide#refute-false
 
 == Minitest/RefuteIncludes
 
@@ -441,7 +441,7 @@ refute_includes(collection, object, 'message')
 
 === References
 
-* https://github.com/rubocop-hq/minitest-style-guide#refute-includes
+* https://minitest.rubystyle.guide#refute-includes
 
 == Minitest/RefuteInstanceOf
 
@@ -473,7 +473,7 @@ refute_instance_of(Class, object, 'message')
 
 === References
 
-* https://github.com/rubocop-hq/minitest-style-guide#refute-instance-of
+* https://minitest.rubystyle.guide#refute-instance-of
 
 == Minitest/RefuteMatch
 
@@ -505,7 +505,7 @@ refute_match(matcher, string, 'message')
 
 === References
 
-* https://github.com/rubocop-hq/minitest-style-guide#refute-match
+* https://minitest.rubystyle.guide#refute-match
 
 == Minitest/RefuteNil
 
@@ -537,7 +537,7 @@ refute_nil(actual, 'message')
 
 === References
 
-* https://github.com/rubocop-hq/minitest-style-guide#refute-nil
+* https://minitest.rubystyle.guide#refute-nil
 
 == Minitest/RefuteRespondTo
 
@@ -571,4 +571,4 @@ refute_respond_to(self, :do_something)
 
 === References
 
-* https://github.com/rubocop-hq/minitest-style-guide#refute-respond-to
+* https://minitest.rubystyle.guide#refute-respond-to
