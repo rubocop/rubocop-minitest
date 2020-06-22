@@ -313,6 +313,10 @@ _(wonts).wont_match expected_wonts
 _ { musts }.must_raise TypeError
 ----
 
+=== References
+
+* https://minitest.rubystyle.guide#global-expectations
+
 == Minitest/RefuteEmpty
 
 |===

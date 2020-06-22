@@ -59,6 +59,7 @@ Minitest/AssertTruthy:
 
 Minitest/GlobalExpectations:
   Description: 'This cop checks for deprecated global expectations.'
+  StyleGuide: 'https://minitest.rubystyle.guide#global-expectations'
   Enabled: true
   VersionAdded: '0.7'
 
