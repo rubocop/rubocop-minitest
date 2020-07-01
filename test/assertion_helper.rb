@@ -2,6 +2,7 @@
 
 # Laziness copied from rubocop source code
 require 'rubocop/rspec/expect_offense'
+require 'rubocop/cop/legacy/corrector'
 
 module AssertionHelper
   private
@@ -41,7 +42,7 @@ module AssertionHelper
   def assert_correction(correction)
     raise '`assert_correction` must follow `assert_offense`' unless @processed_source
 
-    corrector = RuboCop::Cop::Corrector.new(
+    corrector = RuboCop::Cop::Legacy::Corrector.new(
       @processed_source.buffer, @cop.corrections
     )
     new_source = corrector.rewrite
@@ -63,10 +64,10 @@ module AssertionHelper
   end
 
   def investigate(cop, processed_source)
-    forces = RuboCop::Cop::Force.all.each_with_object([]) do |klass, instances|
-      next unless cop.join_force?(klass)
-
-      instances << klass.new([cop])
+    needed = Hash.new { |h, k| h[k] = [] }
+    Array(cop.class.joining_forces).each { |force| needed[force] << cop }
+    forces = needed.map do |force_class, joining_cops|
+      force_class.new(joining_cops)
     end
 
     commissioner = RuboCop::Cop::Commissioner.new([cop], forces, raise_error: true)
