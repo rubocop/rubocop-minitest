@@ -39,6 +39,12 @@ Minitest/AssertInstanceOf:
   Enabled: true
   VersionAdded: '0.4'
 
+Minitest/AssertKindOf:
+  Description: 'This cop enforces the test to use `assert_kind_of(Class, object)` over `assert(object.kind_of?(Class))`'
+  StyleGuide: 'https://github.com/rubocop-hq/minitest-style-guide#assert-kind-of'
+  Enabled: 'pending'
+  VersionAdded: '0.10'
+
 Minitest/AssertNil:
   Description: 'This cop enforces the test to use `assert_nil` instead of using `assert_equal(nil, something)`.'
   StyleGuide: 'https://minitest.rubystyle.guide#assert-nil'
@@ -98,6 +104,12 @@ Minitest/RefuteInstanceOf:
   StyleGuide: 'https://minitest.rubystyle.guide#refute-instance-of'
   Enabled: true
   VersionAdded: '0.4'
+
+Minitest/RefuteKindOf:
+  Description: 'This cop enforces the test to use `refute_kind_of(Class, object)` over `refute(object.kind_of?(Class))`.'
+  StyleGuide: 'https://github.com/rubocop-hq/minitest-style-guide#refute-kind-of'
+  Enabled: 'pending'
+  VersionAdded: '0.10'
 
 Minitest/RefuteNil:
   Description: 'This cop enforces the test to use `refute_nil` instead of using `refute_equal(nil, something)`.'

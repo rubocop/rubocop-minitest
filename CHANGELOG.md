@@ -2,6 +2,10 @@
 
 ## master (unreleased)
 
+### New features
+
+* [#84](https://github.com/rubocop-hq/rubocop-minitest/pull/84): New cops `AssertKindOf` and `RefuteKindOf` check for use of `assert_kind_of`/`refute_kind_of` instead of `assert(foo.kind_of?(Class))`/`refute(foo.kind_of?(Class))`. ([@fatkodima][])
+
 ### Changes
 
 * [#82](https://github.com/rubocop-hq/rubocop-minitest/pull/82): Drop support for RuboCop 0.81 or lower. ([@koic][])
@@ -141,3 +145,4 @@
 [@herwinw]: https://github.com/herwinw
 [@fsateler]: https://github.com/fsateler
 [@andrykonchin]: https://github.com/andrykonchin
+[@fatkodima]: https://github.com/fatkodima
