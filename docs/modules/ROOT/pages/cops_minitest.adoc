@@ -39,9 +39,9 @@ assert_empty(object, 'message')
 
 | Enabled
 | Yes
-| No
+| Yes (Unsafe)
 | 0.5
-| -
+| 0.10
 |===
 
 This cop enforces the test to use `assert_empty`

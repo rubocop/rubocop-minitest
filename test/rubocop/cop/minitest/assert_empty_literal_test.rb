@@ -12,6 +12,14 @@ class AssertEmptyLiteralTest < Minitest::Test
         end
       end
     RUBY
+
+    assert_correction(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          assert_empty(somestuff)
+        end
+      end
+    RUBY
   end
 
   def test_registers_offense_when_asserting_empty_hash
@@ -20,6 +28,14 @@ class AssertEmptyLiteralTest < Minitest::Test
         def test_do_something
           assert({}, somestuff)
           ^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_empty(somestuff)` over `assert({}, somestuff)`.
+        end
+      end
+    RUBY
+
+    assert_correction(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          assert_empty(somestuff)
         end
       end
     RUBY

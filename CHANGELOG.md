@@ -5,6 +5,7 @@
 ### New features
 
 * [#84](https://github.com/rubocop-hq/rubocop-minitest/pull/84): New cops `AssertKindOf` and `RefuteKindOf` check for use of `assert_kind_of`/`refute_kind_of` instead of `assert(foo.kind_of?(Class))`/`refute(foo.kind_of?(Class))`. ([@fatkodima][])
+* [#85](https://github.com/rubocop-hq/rubocop-minitest/pull/85): Add autocorrect to `Rails/AssertEmptyLiteral` cop. ([@fatkodima][])
 
 ### Changes
 
