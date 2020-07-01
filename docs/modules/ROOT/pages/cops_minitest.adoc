@@ -283,6 +283,36 @@ assert_respond_to(self, :do_something)
 
 * https://minitest.rubystyle.guide#assert-responds-to-method
 
+== Minitest/AssertSilent
+
+|===
+| Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+
+| Pending
+| Yes
+| Yes
+| 0.10
+| -
+|===
+
+This cop enforces the test to use `assert_silent { ... }`
+instead of using `assert_output('', '') { ... }`.
+
+=== Examples
+
+[source,ruby]
+----
+# bad
+assert_output('', '') { puts object.do_something }
+
+# good
+assert_silent { puts object.do_something }
+----
+
+=== References
+
+* https://github.com/rubocop-hq/minitest-style-guide#assert-silent
+
 == Minitest/AssertTruthy
 
 |===

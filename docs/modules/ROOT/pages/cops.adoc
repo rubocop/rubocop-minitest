@@ -11,6 +11,7 @@
 * xref:cops_minitest.adoc#minitestassertmatch[Minitest/AssertMatch]
 * xref:cops_minitest.adoc#minitestassertnil[Minitest/AssertNil]
 * xref:cops_minitest.adoc#minitestassertrespondto[Minitest/AssertRespondTo]
+* xref:cops_minitest.adoc#minitestassertsilent[Minitest/AssertSilent]
 * xref:cops_minitest.adoc#minitestasserttruthy[Minitest/AssertTruthy]
 * xref:cops_minitest.adoc#minitestglobalexpectations[Minitest/GlobalExpectations]
 * xref:cops_minitest.adoc#minitestrefuteempty[Minitest/RefuteEmpty]
