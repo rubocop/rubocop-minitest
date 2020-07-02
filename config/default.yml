@@ -23,6 +23,12 @@ Minitest/AssertEqual:
   Enabled: true
   VersionAdded: '0.4'
 
+Minitest/AssertInDelta:
+  Description: 'This cop enforces the test to use `assert_in_delta` instead of using `assert_equal` to compare floats.'
+  StyleGuide: 'https://minitest.rubystyle.guide/#assert-in-delta'
+  Enabled: 'pending'
+  VersionAdded: '0.10'
+
 Minitest/AssertMatch:
   Description: 'This cop enforces the test to use `assert_match` instead of using `assert(matcher.match(object))`.'
   StyleGuide: 'https://minitest.rubystyle.guide#assert-match'
@@ -112,6 +118,12 @@ Minitest/RefuteFalse:
   StyleGuide: 'https://minitest.rubystyle.guide#refute-false'
   Enabled: true
   VersionAdded: '0.3'
+
+Minitest/RefuteInDelta:
+  Description: 'This cop enforces the test to use `refute_in_delta` instead of using `refute_equal` to compare floats.'
+  StyleGuide: 'https://minitest.rubystyle.guide/#refute-in-delta'
+  Enabled: 'pending'
+  VersionAdded: '0.10'
 
 Minitest/RefuteIncludes:
   Description: 'This cop enforces the test to use `refute_includes` instead of using `refute(collection.include?(object))`.'

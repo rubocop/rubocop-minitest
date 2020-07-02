@@ -89,6 +89,38 @@ assert_equal("rubocop-minitest", actual)
 
 * https://minitest.rubystyle.guide#assert-equal-arguments-order
 
+== Minitest/AssertInDelta
+
+|===
+| Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+
+| Pending
+| Yes
+| Yes
+| 0.10
+| -
+|===
+
+This cop enforces the test to use `assert_in_delta`
+instead of using `assert_equal` to compare floats.
+
+=== Examples
+
+[source,ruby]
+----
+# bad
+assert_equal(0.2, actual)
+assert_equal(0.2, actual, 'message')
+
+# good
+assert_in_delta(0.2, actual)
+assert_in_delta(0.2, actual, 0.001, 'message')
+----
+
+=== References
+
+* https://minitest.rubystyle.guide/#assert-in-delta
+
 == Minitest/AssertIncludes
 
 |===
@@ -593,6 +625,38 @@ refute(actual, 'message')
 === References
 
 * https://minitest.rubystyle.guide#refute-false
+
+== Minitest/RefuteInDelta
+
+|===
+| Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+
+| Pending
+| Yes
+| Yes
+| 0.10
+| -
+|===
+
+This cop enforces the test to use `refute_in_delta`
+instead of using `refute_equal` to compare floats.
+
+=== Examples
+
+[source,ruby]
+----
+# bad
+refute_equal(0.2, actual)
+refute_equal(0.2, actual, 'message')
+
+# good
+refute_in_delta(0.2, actual)
+refute_in_delta(0.2, actual, 0.001, 'message')
+----
+
+=== References
+
+* https://minitest.rubystyle.guide/#refute-in-delta
 
 == Minitest/RefuteIncludes
 
