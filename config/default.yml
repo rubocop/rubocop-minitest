@@ -83,6 +83,12 @@ Minitest/GlobalExpectations:
   Enabled: true
   VersionAdded: '0.7'
 
+Minitest/LiteralAsActualArgument:
+  Description: 'This cop enforces correct order of `expected` and `actual` arguments for `assert_equal`.'
+  StyleGuide: 'https://minitest.rubystyle.guide/#assert-equal-arguments-order'
+  Enabled: 'pending'
+  VersionAdded: '0.10'
+
 Minitest/MultipleAssertions:
   Description: 'This cop checks if test cases contain too many assertion calls.'
   Enabled: 'pending'
