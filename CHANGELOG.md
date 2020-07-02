@@ -4,6 +4,7 @@
 
 ### New features
 
+* [#90](https://github.com/rubocop-hq/rubocop-minitest/pull/90): Add new `Minitest/OverridenHook` cop. ([@fatkodima][])
 * [#83](https://github.com/rubocop-hq/rubocop-minitest/pull/83): New cops `AssertPathExists` and `RefutePathExists` check for use of `assert_path_exists`/`refute_path_exists` instead of `assert(File.exist?(path))`/`refute(File.exist?(path))`. ([@fatkodima][])
 * [#88](https://github.com/rubocop-hq/rubocop-minitest/pull/88): Add new `Minitest/MultipleAssertions` cop. ([@fatkodima][])
 * [#87](https://github.com/rubocop-hq/rubocop-minitest/pull/87): Add new `Minitest/AssertSilent` cop. ([@fatkodima][])

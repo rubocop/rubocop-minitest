@@ -462,6 +462,52 @@ end
 | Integer
 |===
 
+== Minitest/OverridenHook
+
+|===
+| Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+
+| Pending
+| Yes
+| No
+| 0.10
+| -
+|===
+
+This cop enforces that there is only one definition for
+each hook type.
+
+It may be expected that multiple hook definitions
+of the same type are merged somehow, but they only
+override previous definitions.
+
+=== Examples
+
+[source,ruby]
+----
+# bad
+class FooTest < Minitest::Test
+
+  # Will not be executed
+  def setup
+    setup_something
+  end
+
+  # This will override previous setup hook
+  def setup
+    setup_something_else
+  end
+end
+
+# good
+class FooTest < Minitest::Test
+  def setup
+    setup_something
+    setup_something_else
+  end
+end
+----
+
 == Minitest/RefuteEmpty
 
 |===

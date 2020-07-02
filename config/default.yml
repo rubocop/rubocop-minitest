@@ -89,6 +89,11 @@ Minitest/MultipleAssertions:
   VersionAdded: '0.10'
   Max: 3
 
+Minitest/OverridenHook:
+  Description: 'This cop enforces that there is only one definition for each hook type.'
+  Enabled: 'pending'
+  VersionAdded: '0.10'
+
 Minitest/RefuteEmpty:
   Description: 'This cop enforces to use `refute_empty` instead of using `refute(object.empty?)`.'
   StyleGuide: 'https://minitest.rubystyle.guide#refute-empty'

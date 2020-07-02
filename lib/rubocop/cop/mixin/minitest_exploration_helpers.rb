@@ -47,6 +47,15 @@ module RuboCop
         refute_same
       ].to_set.freeze
 
+      HOOKS = %i[
+        before_setup
+        setup
+        after_setup
+        before_teardown
+        teardown
+        after_teardown
+      ].to_set.freeze
+
       private
 
       def minitest_test_subclass?(class_node)
@@ -73,6 +82,10 @@ module RuboCop
 
       def assertion?(node)
         node.send_type? && ASSERTIONS.include?(node.method_name)
+      end
+
+      def hook?(node)
+        node.def_type? && HOOKS.include?(node.method_name)
       end
     end
   end
