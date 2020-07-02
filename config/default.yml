@@ -83,6 +83,12 @@ Minitest/GlobalExpectations:
   Enabled: true
   VersionAdded: '0.7'
 
+Minitest/MultipleAssertions:
+  Description: 'This cop checks if test cases contain too many assertion calls.'
+  Enabled: 'pending'
+  VersionAdded: '0.10'
+  Max: 3
+
 Minitest/RefuteEmpty:
   Description: 'This cop enforces to use `refute_empty` instead of using `refute(object.empty?)`.'
   StyleGuide: 'https://minitest.rubystyle.guide#refute-empty'
