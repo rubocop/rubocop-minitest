@@ -377,6 +377,38 @@ assert(actual, 'message')
 
 * https://minitest.rubystyle.guide#assert-truthy
 
+== Minitest/EmptyTestCase
+
+|===
+| Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+
+| Pending
+| Yes
+| Yes
+| 0.10
+| -
+|===
+
+This cop checks for empty test cases.
+
+=== Examples
+
+[source,ruby]
+----
+# bad
+class FooTest < Minitest::Test
+  def test_do_something
+  end
+end
+
+# good
+class FooTest < Minitest::Test
+  def test_do_something
+    assert_equal(foo, bar)
+  end
+end
+----
+
 == Minitest/GlobalExpectations
 
 |===
