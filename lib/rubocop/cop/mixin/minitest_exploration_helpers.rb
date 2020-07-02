@@ -47,6 +47,15 @@ module RuboCop
         refute_same
       ].to_set.freeze
 
+      LIFECYCLE_HOOK_METHODS = %i[
+        before_setup
+        setup
+        after_setup
+        before_teardown
+        teardown
+        after_teardown
+      ].to_set.freeze
+
       private
 
       def test_class?(class_node)
@@ -69,6 +78,10 @@ module RuboCop
 
       def assertion?(node)
         node.send_type? && ASSERTIONS.include?(node.method_name)
+      end
+
+      def lifecycle_hook_method?(node)
+        node.def_type? && LIFECYCLE_HOOK_METHODS.include?(node.method_name)
       end
     end
   end

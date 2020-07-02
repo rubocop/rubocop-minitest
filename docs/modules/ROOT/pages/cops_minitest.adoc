@@ -884,6 +884,39 @@ refute_respond_to(self, :do_something)
 
 * https://minitest.rubystyle.guide#refute-respond-to
 
+== Minitest/TestMethodName
+
+|===
+| Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+
+| Pending
+| Yes
+| Yes
+| 0.10
+| -
+|===
+
+This cop enforces that test method names start with `test_` prefix.
+
+=== Examples
+
+[source,ruby]
+----
+# bad
+class FooTest < Minitest::Test
+  def does_something
+    assert_equal 42, do_something
+  end
+end
+
+# good
+class FooTest < Minitest::Test
+  def test_does_something
+    assert_equal 42, do_something
+  end
+end
+----
+
 == Minitest/UnspecifiedException
 
 |===

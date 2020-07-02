@@ -6,6 +6,7 @@
 
 * [#92](https://github.com/rubocop-hq/rubocop-minitest/pull/92): Add new `Minitest/LiteralAsActualArgument` cop. ([@fatkodima][])
 * [#91](https://github.com/rubocop-hq/rubocop-minitest/pull/91): Add new `Minitest/AssertInDelta` and `Minitest/RefuteInDelta` cops. ([@fatkodima][])
+* [#89](https://github.com/rubocop-hq/rubocop-minitest/pull/89): Add new `Minitest/TestMethodName` cop. ([@fatkodima][])
 * [#83](https://github.com/rubocop-hq/rubocop-minitest/pull/83): New cops `AssertPathExists` and `RefutePathExists` check for use of `assert_path_exists`/`refute_path_exists` instead of `assert(File.exist?(path))`/`refute(File.exist?(path))`. ([@fatkodima][])
 * [#88](https://github.com/rubocop-hq/rubocop-minitest/pull/88): Add new `Minitest/MultipleAssertions` cop. ([@fatkodima][])
 * [#87](https://github.com/rubocop-hq/rubocop-minitest/pull/87): Add new `Minitest/AssertSilent` cop. ([@fatkodima][])

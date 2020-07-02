@@ -85,7 +85,7 @@ class RefuteEmptyTest < Minitest::Test
     RUBY
   end
 
-  def refute_empty_method
+  def test_refute_empty_method
     assert_no_offenses(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
