@@ -47,6 +47,15 @@ module RuboCop
         refute_same
       ].to_set.freeze
 
+      HOOKS = %i[
+        before_setup
+        setup
+        after_setup
+        before_teardown
+        teardown
+        after_teardown
+      ].to_set.freeze
+
       private
 
       def minitest_test_subclass?(class_node)
@@ -58,21 +67,33 @@ module RuboCop
       PATTERN
 
       def test_cases(class_node)
+        class_def_nodes(class_node)
+          .select { |def_node| def_node.method_name.to_s.start_with?('test_') }
+      end
+
+      def hooks(class_node)
+        class_def_nodes(class_node)
+          .select { |def_node| hook?(def_node) }
+      end
+
+      def class_def_nodes(class_node)
         class_def = class_node.body
+
         return [] unless class_def
 
-        def_nodes =
-          if class_def.def_type?
-            [class_def]
-          else
-            class_def.each_child_node(:def)
-          end
-
-        def_nodes.select { |c| c.method_name.to_s.start_with?('test_') }
+        if class_def.def_type?
+          [class_def]
+        else
+          class_def.each_child_node(:def).to_a
+        end
       end
 
       def assertion?(node)
         node.send_type? && ASSERTIONS.include?(node.method_name)
+      end
+
+      def hook?(node)
+        node.def_type? && HOOKS.include?(node.method_name)
       end
     end
   end

@@ -77,6 +77,11 @@ Minitest/AssertTruthy:
   Enabled: true
   VersionAdded: '0.2'
 
+Minitest/EmptyHook:
+  Description: 'This cop checks for empty hooks.'
+  Enabled: 'pending'
+  VersionAdded: '0.10'
+
 Minitest/GlobalExpectations:
   Description: 'This cop checks for deprecated global expectations.'
   StyleGuide: 'https://minitest.rubystyle.guide#global-expectations'
