@@ -11,6 +11,7 @@
 * xref:cops_minitest.adoc#minitestassertkindof[Minitest/AssertKindOf]
 * xref:cops_minitest.adoc#minitestassertmatch[Minitest/AssertMatch]
 * xref:cops_minitest.adoc#minitestassertnil[Minitest/AssertNil]
+* xref:cops_minitest.adoc#minitestassertoutput[Minitest/AssertOutput]
 * xref:cops_minitest.adoc#minitestassertpathexists[Minitest/AssertPathExists]
 * xref:cops_minitest.adoc#minitestassertrespondto[Minitest/AssertRespondTo]
 * xref:cops_minitest.adoc#minitestassertsilent[Minitest/AssertSilent]

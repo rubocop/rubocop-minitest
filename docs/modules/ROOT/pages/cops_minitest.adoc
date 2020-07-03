@@ -281,6 +281,38 @@ assert_nil(actual, 'message')
 
 * https://minitest.rubystyle.guide#assert-nil
 
+== Minitest/AssertOutput
+
+|===
+| Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+
+| Pending
+| Yes
+| No
+| 0.10
+| -
+|===
+
+This cop checks for opportunities to use `assert_output`.
+
+=== Examples
+
+[source,ruby]
+----
+# bad
+$stdout = StringIO.new
+puts object.method
+$stdout.rewind
+assert_match expected, $stdout.read
+
+# good
+assert_output(expected) { puts object.method }
+----
+
+=== References
+
+* https://minitest.rubystyle.guide/#assert-output
+
 == Minitest/AssertPathExists
 
 |===

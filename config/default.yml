@@ -64,6 +64,12 @@ Minitest/AssertNil:
   Enabled: true
   VersionAdded: '0.1'
 
+Minitest/AssertOutput:
+  Description: 'This cop checks for opportunities to use `assert_output`.'
+  StyleGuide: 'https://minitest.rubystyle.guide/#assert-output'
+  Enabled: 'pending'
+  VersionAdded: '0.10'
+
 Minitest/AssertPathExists:
   Description: 'This cop enforces the test to use `assert_path_exists` instead of using `assert(File.exist?(path))`.'
   StyleGuide: 'https://minitest.rubystyle.guide/#assert-path-exists'
