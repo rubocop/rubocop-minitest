@@ -7,6 +7,7 @@
 * [#83](https://github.com/rubocop-hq/rubocop-minitest/pull/83): New cops `AssertPathExists` and `RefutePathExists` check for use of `assert_path_exists`/`refute_path_exists` instead of `assert(File.exist?(path))`/`refute(File.exist?(path))`. ([@fatkodima][])
 * [#88](https://github.com/rubocop-hq/rubocop-minitest/pull/88): Add new `Minitest/MultipleAssertions` cop. ([@fatkodima][])
 * [#87](https://github.com/rubocop-hq/rubocop-minitest/pull/87): Add new `Minitest/AssertSilent` cop. ([@fatkodima][])
+* [#96](https://github.com/rubocop-hq/rubocop-minitest/pull/96): Add new `Minitest/UnspecifiedException` cop. ([@fatkodima][])
 * [#84](https://github.com/rubocop-hq/rubocop-minitest/pull/84): New cops `AssertKindOf` and `RefuteKindOf` check for use of `assert_kind_of`/`refute_kind_of` instead of `assert(foo.kind_of?(Class))`/`refute(foo.kind_of?(Class))`. ([@fatkodima][])
 * [#85](https://github.com/rubocop-hq/rubocop-minitest/pull/85): Add autocorrect to `Rails/AssertEmptyLiteral` cop. ([@fatkodima][])
 
