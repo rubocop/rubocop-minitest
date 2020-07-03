@@ -29,6 +29,11 @@ Minitest/AssertInDelta:
   Enabled: 'pending'
   VersionAdded: '0.10'
 
+Minitest/AssertionInLifecycleHook:
+  Description: 'This cop checks for usage of assertions in lifecycle hooks.'
+  Enabled: 'pending'
+  VersionAdded: '0.10'
+
 Minitest/AssertMatch:
   Description: 'This cop enforces the test to use `assert_match` instead of using `assert(matcher.match(object))`.'
   StyleGuide: 'https://minitest.rubystyle.guide#assert-match'

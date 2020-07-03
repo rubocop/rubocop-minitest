@@ -409,6 +409,39 @@ assert(actual, 'message')
 
 * https://minitest.rubystyle.guide#assert-truthy
 
+== Minitest/AssertionInLifecycleHook
+
+|===
+| Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+
+| Pending
+| Yes
+| No
+| 0.10
+| -
+|===
+
+This cop checks for usage of assertions in lifecycle hooks.
+
+=== Examples
+
+[source,ruby]
+----
+# bad
+class FooTest < Minitest::Test
+  def setup
+    assert_equal(foo, bar)
+  end
+end
+
+# good
+class FooTest < Minitest::Test
+  def test_something
+    assert_equal(foo, bar)
+  end
+end
+----
+
 == Minitest/GlobalExpectations
 
 |===
