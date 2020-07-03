@@ -148,3 +148,8 @@ Minitest/RefuteRespondTo:
   StyleGuide: 'https://minitest.rubystyle.guide#refute-respond-to'
   Enabled: true
   VersionAdded: '0.4'
+
+Minitest/RepeatedTestCaseName:
+  Description: 'This cop checks for repeated test case names.'
+  Enabled: 'pending'
+  VersionAdded: '0.10'

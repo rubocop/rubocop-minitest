@@ -785,3 +785,44 @@ refute_respond_to(self, :do_something)
 === References
 
 * https://minitest.rubystyle.guide#refute-respond-to
+
+== Minitest/RepeatedTestCaseName
+
+|===
+| Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+
+| Pending
+| Yes
+| No
+| 0.10
+| -
+|===
+
+This cop checks for repeated test case names.
+
+=== Examples
+
+[source,ruby]
+----
+# bad
+class FooTest < Minitest::Test
+  def test_do_something
+    assert_equal(foo, bar)
+  end
+
+  def test_do_something
+    assert_equal(baz, quux)
+  end
+end
+
+# good
+class FooTest < Minitest::Test
+  def test_do_something
+    assert_equal(foo, bar)
+  end
+
+  def test_do_something_when_some_condition
+    assert_equal(baz, quux)
+  end
+end
+----
