@@ -49,13 +49,9 @@ module RuboCop
 
       private
 
-      def minitest_test_subclass?(class_node)
-        minitest_test?(class_node.parent_class)
+      def test_class?(class_node)
+        class_node.parent_class && class_node.identifier.source.end_with?('Test')
       end
-
-      def_node_matcher :minitest_test?, <<~PATTERN
-        (const (const nil? :Minitest) :Test)
-      PATTERN
 
       def test_cases(class_node)
         class_def = class_node.body
