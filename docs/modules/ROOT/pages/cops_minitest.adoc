@@ -411,6 +411,40 @@ _ { musts }.must_raise TypeError
 
 * https://minitest.rubystyle.guide#global-expectations
 
+== Minitest/LiteralAsActualArgument
+
+|===
+| Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+
+| Pending
+| Yes
+| Yes
+| 0.10
+| -
+|===
+
+This cop enforces correct order of expected and
+actual arguments for `assert_equal`.
+
+=== Examples
+
+[source,ruby]
+----
+# bad
+assert_equal foo, 2
+assert_equal foo, [1, 2]
+assert_equal foo, [1, 2], 'message'
+
+# good
+assert_equal 2, foo
+assert_equal [1, 2], foo
+assert_equal [1, 2], foo, 'message'
+----
+
+=== References
+
+* https://minitest.rubystyle.guide/#assert-equal-arguments-order
+
 == Minitest/MultipleAssertions
 
 |===
