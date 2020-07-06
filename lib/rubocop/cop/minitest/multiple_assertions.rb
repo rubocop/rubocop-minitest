@@ -33,7 +33,7 @@ module RuboCop
         MSG = 'Test case has too many assertions [%<total>d/%<max>d].'
 
         def on_class(class_node)
-          return unless minitest_test_subclass?(class_node)
+          return unless test_class?(class_node)
 
           test_cases(class_node).each do |node|
             assertions_count = assertions_count(node)

@@ -19,7 +19,30 @@ class MultipleAssertionsTest < Minitest::Test
     RUBY
   end
 
-  def test_checks_only_minitest_test_children
+  def test_checks_when_inheriting_some_class_and_class_name_ending_with_test
+    assert_offense(<<~RUBY)
+      class FooTest < ActiveSupport::TestCase
+        def test_asserts_twice
+            ^^^^^^^^^^^^^^^^^^ Test case has too many assertions [2/1].
+          assert_equal(foo, bar)
+          assert_empty(array)
+        end
+      end
+    RUBY
+  end
+
+  def test_checks_when_inheriting_some_class_and_class_name_does_end_with_test
+    assert_no_offenses(<<~RUBY)
+      class Foo < Base
+        def test_asserts_twice
+          assert_equal(foo, bar)
+          assert_empty(array)
+        end
+      end
+    RUBY
+  end
+
+  def test_checks_when_not_inheriting_some_class_and_class_name_ending_with_test
     assert_no_offenses(<<~RUBY)
       class FooTest
         def test_asserts_twice
