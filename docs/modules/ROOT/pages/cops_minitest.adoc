@@ -819,3 +819,34 @@ refute_respond_to(self, :do_something)
 === References
 
 * https://minitest.rubystyle.guide#refute-respond-to
+
+== Minitest/UnspecifiedException
+
+|===
+| Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+
+| Pending
+| Yes
+| No
+| 0.10
+| -
+|===
+
+This cop checks for a specified error in `assert_raises`.
+
+=== Examples
+
+[source,ruby]
+----
+# bad
+assert_raises { raise FooException }
+assert_raises('This should have raised') { raise FooException }
+
+# good
+assert_raises(FooException) { raise FooException }
+assert_raises(FooException, 'This should have raised') { raise FooException }
+----
+
+=== References
+
+* https://minitest.rubystyle.guide#unspecified-exception

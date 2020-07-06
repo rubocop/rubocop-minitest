@@ -27,5 +27,6 @@
 * xref:cops_minitest.adoc#minitestrefutenil[Minitest/RefuteNil]
 * xref:cops_minitest.adoc#minitestrefutepathexists[Minitest/RefutePathExists]
 * xref:cops_minitest.adoc#minitestrefuterespondto[Minitest/RefuteRespondTo]
+* xref:cops_minitest.adoc#minitestunspecifiedexception[Minitest/UnspecifiedException]
 
 // END_COP_LIST
