@@ -21,26 +21,26 @@ module RuboCop
         def_node_matcher :assert_file_exists, <<~PATTERN
           (send nil? :assert
             (send
-              (const _ :File) ${:exist? :exists?} $_)
+              (const _ :File) {:exist? :exists?} $_)
               $...)
         PATTERN
 
         def on_send(node)
-          assert_file_exists(node) do |method_name, path, message|
-            message = message.first
+          assert_file_exists(node) do |path, failure_message|
+            failure_message = failure_message.first
+            good_method = build_good_method(path, failure_message)
+            message = format(MSG, good_method: good_method, bad_method: node.source)
 
-            add_offense(node,
-                        message: format(MSG, good_method: build_good_method(path, message),
-                                             bad_method: build_bad_method(method_name, path, message)))
+            add_offense(node, message: message)
           end
         end
 
         def autocorrect(node)
-          assert_file_exists(node) do |_method_name, path, message|
-            message = message.first
+          assert_file_exists(node) do |path, failure_message|
+            failure_message = failure_message.first
 
             lambda do |corrector|
-              replacement = build_good_method(path, message)
+              replacement = build_good_method(path, failure_message)
               corrector.replace(node, replacement)
             end
           end
@@ -51,15 +51,6 @@ module RuboCop
         def build_good_method(path, message)
           args = [path.source, message&.source].compact.join(', ')
           "assert_path_exists(#{args})"
-        end
-
-        def build_bad_method(method_name, path, message)
-          path_arg = "File.#{method_name}(#{path.source})"
-          if message
-            "assert(#{path_arg}, #{message.source})"
-          else
-            "assert(#{path_arg})"
-          end
         end
       end
     end
