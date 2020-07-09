@@ -63,17 +63,25 @@ module RuboCop
       end
 
       def test_cases(class_node)
+        class_def_nodes(class_node)
+          .select { |def_node| def_node.method_name.to_s.start_with?('test_') }
+      end
+
+      def lifecycle_hooks(class_node)
+        class_def_nodes(class_node)
+          .select { |def_node| lifecycle_hook_method?(def_node) }
+      end
+
+      def class_def_nodes(class_node)
         class_def = class_node.body
+
         return [] unless class_def
 
-        def_nodes =
-          if class_def.def_type?
-            [class_def]
-          else
-            class_def.each_child_node(:def)
-          end
-
-        def_nodes.select { |c| c.method_name.to_s.start_with?('test_') }
+        if class_def.def_type?
+          [class_def]
+        else
+          class_def.each_child_node(:def).to_a
+        end
       end
 
       def assertion?(node)
