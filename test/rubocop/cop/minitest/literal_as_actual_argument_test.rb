@@ -60,4 +60,24 @@ class LiteralAsActualArgumentTest < Minitest::Test
       end
     RUBY
   end
+
+  def test_does_not_register_offense_when_parens_omitted
+    assert_no_offenses(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          assert_equal 2, foo
+        end
+      end
+    RUBY
+  end
+
+  def test_does_not_register_offense_when_given_splat
+    assert_no_offenses(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          assert_equal(*foo)
+        end
+      end
+    RUBY
+  end
 end
