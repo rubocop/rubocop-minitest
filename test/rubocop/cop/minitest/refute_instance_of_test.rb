@@ -85,7 +85,7 @@ class RefuteInstanceOfTest < Minitest::Test
     RUBY
   end
 
-  def refute_instance_of_method
+  def test_refute_instance_of_method
     assert_no_offenses(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something

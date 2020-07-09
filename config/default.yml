@@ -167,6 +167,11 @@ Minitest/RefuteRespondTo:
   Enabled: true
   VersionAdded: '0.4'
 
+Minitest/TestMethodName:
+  Description: 'This cop enforces that test method names start with `test_` prefix.'
+  Enabled: 'pending'
+  VersionAdded: '0.10'
+
 Minitest/UnspecifiedException:
   Description: 'This cop checks for a specified error in `assert_raises`.'
   StyleGuide: 'https://minitest.rubystyle.guide#unspecified-exception'
