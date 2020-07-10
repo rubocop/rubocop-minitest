@@ -4,7 +4,7 @@
 
 ### New features
 
-* [#92](https://github.com/rubocop-hq/rubocop-minitest/pull/92): Add new `Minitest/LiteralAsActualArgument` cop. ([@fatkodima][])
+* [#92](https://github.com/rubocop-hq/rubocop-minitest/pull/92): Add new `Minitest/LiteralAsActualArgument` cop. ([@fatkodima][], [@tsmmark][])
 * [#95](https://github.com/rubocop-hq/rubocop-minitest/pull/95): Add new `Minitest/AssertionInLifecycleHook` cop. ([@fatkodima][])
 * [#91](https://github.com/rubocop-hq/rubocop-minitest/pull/91): Add new `Minitest/AssertInDelta` and `Minitest/RefuteInDelta` cops. ([@fatkodima][])
 * [#89](https://github.com/rubocop-hq/rubocop-minitest/pull/89): Add new `Minitest/TestMethodName` cop. ([@fatkodima][])
@@ -156,3 +156,4 @@
 [@fsateler]: https://github.com/fsateler
 [@andrykonchin]: https://github.com/andrykonchin
 [@fatkodima]: https://github.com/fatkodima
+[@tsmmark]: https://github.com/tsmmark
