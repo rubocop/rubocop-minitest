@@ -33,9 +33,16 @@ module RuboCop
 
         def autocorrect(node)
           expected, actual, message = *node.arguments
-          arguments = [actual.source, expected.source, message&.source].compact.join(', ')
 
           lambda do |corrector|
+            new_actual_source =
+              if actual.hash_type? && !actual.braces?
+                "{#{actual.source}}"
+              else
+                actual.source
+              end
+            arguments = [new_actual_source, expected.source, message&.source].compact.join(', ')
+
             corrector.replace(node, "assert_equal(#{arguments})")
           end
         end
