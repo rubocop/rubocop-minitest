@@ -18,7 +18,7 @@
 
 ### Changes
 
-* [#82](https://github.com/rubocop-hq/rubocop-minitest/pull/82): Drop support for RuboCop 0.81 or lower. ([@koic][])
+* [#104](https://github.com/rubocop-hq/rubocop-minitest/pull/104): Require RuboCop 0.87 or higher. ([@koic][])
 
 ## 0.9.0 (2020-04-13)
 
