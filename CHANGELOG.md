@@ -2,6 +2,8 @@
 
 ## master (unreleased)
 
+## 0.10.0 (2020-07-12)
+
 ### New features
 
 * [#92](https://github.com/rubocop-hq/rubocop-minitest/pull/92): Add new `Minitest/LiteralAsActualArgument` cop. ([@fatkodima][], [@tsmmark][])
