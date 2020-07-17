@@ -26,7 +26,7 @@ module RuboCop
       end
 
       def test_case?(node)
-        return false unless node.def_type? && test_case_name?(node.method_name)
+        return false unless node&.def_type? && test_case_name?(node.method_name)
 
         class_ancestor = node.each_ancestor(:class).first
         test_class?(class_ancestor)

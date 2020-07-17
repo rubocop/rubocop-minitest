@@ -47,4 +47,10 @@ class AssertOutputTest < Minitest::Test
       end
     RUBY
   end
+
+  def test_does_not_register_offense_when_using_gvar_at_top_level
+    assert_no_offenses(<<~RUBY)
+      $foo = false
+    RUBY
+  end
 end
