@@ -2,6 +2,8 @@
 
 ## master (unreleased)
 
+## 0.10.1 (2020-07-25)
+
 ### Bug fixes
 
 * [#106](https://github.com/rubocop-hq/rubocop-minitest/issues/106): Fix an error for `Minitest/AssertOutput` when using gvar at top level. ([@koic][])
