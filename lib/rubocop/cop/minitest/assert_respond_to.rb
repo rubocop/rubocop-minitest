@@ -17,7 +17,7 @@ module RuboCop
       #   assert_respond_to(object, :do_something, 'message')
       #   assert_respond_to(self, :do_something)
       #
-      class AssertRespondTo < Cop
+      class AssertRespondTo < Base
         extend MinitestCopRule
 
         define_rule :assert, target_method: :respond_to?

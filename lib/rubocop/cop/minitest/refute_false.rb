@@ -18,8 +18,9 @@ module RuboCop
       #   refute(actual)
       #   refute(actual, 'message')
       #
-      class RefuteFalse < Cop
+      class RefuteFalse < Base
         include ArgumentRangeHelper
+        extend AutoCorrector
 
         MSG_FOR_ASSERT_EQUAL = 'Prefer using `refute(%<arguments>s)` over ' \
               '`assert_equal(false, %<arguments>s)`.'
@@ -36,38 +37,29 @@ module RuboCop
         PATTERN
 
         def on_send(node)
-          actual, rest_receiver_arg = assert_equal_with_false(node) ||
-                                      assert_with_bang_argument(node)
+          actual, rest_receiver_arg = assert_equal_with_false(node) || assert_with_bang_argument(node)
           return unless actual
 
           message_argument = rest_receiver_arg.first
 
           arguments = [actual.source, message_argument&.source].compact.join(', ')
 
-          message = if node.method?(:assert_equal)
-                      MSG_FOR_ASSERT_EQUAL
-                    else
-                      MSG_FOR_ASSERT
-                    end
+          message = node.method?(:assert_equal) ? MSG_FOR_ASSERT_EQUAL : MSG_FOR_ASSERT
 
-          add_offense(node, message: format(message, arguments: arguments))
+          add_offense(node, message: format(message, arguments: arguments)) do |corrector|
+            autocorrect(corrector, node, actual)
+          end
         end
 
-        def autocorrect(node)
-          lambda do |corrector|
-            corrector.replace(node.loc.selector, 'refute')
+        private
 
-            assert_equal_with_false(node) do |actual|
-              corrector.replace(
-                first_and_second_arguments_range(node), actual.source
-              )
-            end
+        def autocorrect(corrector, node, actual)
+          corrector.replace(node.loc.selector, 'refute')
 
-            assert_with_bang_argument(node) do |actual|
-              corrector.replace(
-                first_argument_range(node), actual.source
-              )
-            end
+          if node.method?(:assert_equal)
+            corrector.replace(first_and_second_arguments_range(node), actual.source)
+          else
+            corrector.replace(first_argument_range(node), actual.source)
           end
         end
       end

@@ -20,7 +20,7 @@ module RuboCop
       #     end
       #   end
       #
-      class AssertionInLifecycleHook < Cop
+      class AssertionInLifecycleHook < Base
         include MinitestExplorationHelpers
 
         MSG = 'Do not use `%<assertion>s` in `%<hook>s` hook.'

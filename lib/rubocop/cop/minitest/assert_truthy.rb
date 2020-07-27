@@ -15,8 +15,9 @@ module RuboCop
       #   assert(actual)
       #   assert(actual, 'message')
       #
-      class AssertTruthy < Cop
+      class AssertTruthy < Base
         include ArgumentRangeHelper
+        extend AutoCorrector
 
         MSG = 'Prefer using `assert(%<arguments>s)` over ' \
               '`assert_equal(true, %<arguments>s)`.'
@@ -32,17 +33,9 @@ module RuboCop
 
             arguments = [actual.source, message&.source].compact.join(', ')
 
-            add_offense(node, message: format(MSG, arguments: arguments))
-          end
-        end
-
-        def autocorrect(node)
-          lambda do |corrector|
-            assert_equal_with_truthy(node) do |actual|
+            add_offense(node, message: format(MSG, arguments: arguments)) do |corrector|
               corrector.replace(node.loc.selector, 'assert')
-              corrector.replace(
-                first_and_second_arguments_range(node), actual.source
-              )
+              corrector.replace(first_and_second_arguments_range(node), actual.source)
             end
           end
         end

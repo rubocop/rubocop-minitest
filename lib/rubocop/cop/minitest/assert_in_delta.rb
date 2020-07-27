@@ -15,8 +15,9 @@ module RuboCop
       #   assert_in_delta(0.2, actual)
       #   assert_in_delta(0.2, actual, 0.001, 'message')
       #
-      class AssertInDelta < Cop
+      class AssertInDelta < Base
         include InDeltaMixin
+        extend AutoCorrector
 
         RESTRICT_ON_SEND = %i[assert_equal].freeze
 

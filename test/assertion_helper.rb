@@ -16,10 +16,10 @@ module AssertionHelper
   def assert_no_offenses(source, file = nil)
     setup_assertion
 
-    inspect_source(source, @cop, file)
+    offenses = inspect_source(source, @cop, file)
 
     expected_annotations = RuboCop::RSpec::ExpectOffense::AnnotatedSource.parse(source)
-    actual_annotations = expected_annotations.with_offense_annotations(@cop.offenses)
+    actual_annotations = expected_annotations.with_offense_annotations(offenses)
 
     assert_equal(source, actual_annotations.to_s)
   end
@@ -32,20 +32,43 @@ module AssertionHelper
     expected_annotations = RuboCop::RSpec::ExpectOffense::AnnotatedSource.parse(source)
     raise 'Use `assert_no_offenses` to assert that no offenses are found' if expected_annotations.plain_source == source
 
-    @processed_source = inspect_source(expected_annotations.plain_source, @cop, file)
+    @processed_source = parse_source!(expected_annotations.plain_source, file)
 
-    actual_annotations = expected_annotations.with_offense_annotations(@cop.offenses)
+    offenses = _investigate(@cop, @processed_source)
+
+    actual_annotations = expected_annotations.with_offense_annotations(offenses)
 
     assert_equal(expected_annotations.to_s, actual_annotations.to_s)
   end
 
-  def assert_correction(correction)
+  def _investigate(cop, processed_source)
+    team = RuboCop::Cop::Team.new([cop], nil, raise_error: true)
+    report = team.investigate(processed_source)
+    @last_corrector = report.correctors.first || RuboCop::Cop::Corrector.new(processed_source)
+    report.offenses
+  end
+
+  def assert_correction(correction, loop: true)
     raise '`assert_correction` must follow `assert_offense`' unless @processed_source
 
-    corrector = RuboCop::Cop::Legacy::Corrector.new(
-      @processed_source.buffer, @cop.corrections
-    )
-    new_source = corrector.rewrite
+    iteration = 0
+    new_source = loop do
+      iteration += 1
+
+      corrected_source = @last_corrector.rewrite
+
+      break corrected_source unless loop
+      break corrected_source if @last_corrector.empty? || corrected_source == @processed_source.buffer.source
+
+      if iteration > RuboCop::Runner::MAX_ITERATIONS
+        raise RuboCop::Runner::InfiniteCorrectionLoop.new(@processed_source.path, [])
+      end
+
+      # Prepare for next loop
+      @processed_source = parse_source!(corrected_source, @processed_source.path)
+
+      _investigate(@cop, @processed_source)
+    end
 
     assert_equal(correction, new_source)
   end
@@ -57,10 +80,9 @@ module AssertionHelper
 
   def inspect_source(source, cop, file = nil)
     processed_source = parse_source!(source, file)
+    raise 'Error parsing example code' unless processed_source.valid_syntax?
 
-    investigate(cop, processed_source)
-
-    processed_source
+    _investigate(cop, processed_source)
   end
 
   def investigate(cop, processed_source)
@@ -81,10 +103,8 @@ module AssertionHelper
       file.rewind
       file = file.path
     end
-    processed_source = RuboCop::ProcessedSource.new(source, ruby_version, file)
-    raise 'Error parsing example code' unless processed_source.valid_syntax?
 
-    processed_source
+    RuboCop::ProcessedSource.new(source, ruby_version, file)
   end
 
   def ruby_version

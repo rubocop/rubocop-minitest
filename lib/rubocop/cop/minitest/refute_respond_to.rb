@@ -17,7 +17,7 @@ module RuboCop
       #   refute_respond_to(object, :do_something, 'message')
       #   refute_respond_to(self, :do_something)
       #
-      class RefuteRespondTo < Cop
+      class RefuteRespondTo < Base
         extend MinitestCopRule
 
         define_rule :refute, target_method: :respond_to?

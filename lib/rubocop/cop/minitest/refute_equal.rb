@@ -14,8 +14,9 @@ module RuboCop
       #   # good
       #   refute_equal("rubocop-minitest", actual)
       #
-      class RefuteEqual < Cop
+      class RefuteEqual < Base
         include ArgumentRangeHelper
+        extend AutoCorrector
 
         MSG = 'Prefer using `refute_equal(%<preferred>s)` over ' \
               '`assert(%<over>s)`.'
@@ -29,13 +30,10 @@ module RuboCop
           preferred, over = process_not_equal(node)
           return unless preferred && over
 
-          message = format(MSG, preferred: preferred, over: over)
-          add_offense(node, message: message)
-        end
+          assert_not_equal(node) do |_, expected, actual|
+            message = format(MSG, preferred: preferred, over: over)
 
-        def autocorrect(node)
-          lambda do |corrector|
-            assert_not_equal(node) do |_, expected, actual|
+            add_offense(node, message: message) do |corrector|
               corrector.replace(node.loc.selector, 'refute_equal')
 
               replacement = [expected, actual].map(&:source).join(', ')

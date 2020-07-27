@@ -26,6 +26,7 @@ module RuboCop
 
         class_eval(<<~RUBY, __FILE__, __LINE__ + 1)
           include ArgumentRangeHelper
+          extend AutoCorrector
 
           MSG = 'Prefer using `#{preferred_method}(%<new_arguments>s)` over ' \
                 '`#{assertion_method}(%<original_arguments>s)`.'
@@ -36,23 +37,21 @@ module RuboCop
             return unless (arguments = peel_redundant_parentheses_from(node.arguments))
             return unless arguments.first.respond_to?(:method?) && arguments.first.method?(:#{target_method})
 
-            add_offense(node, message: offense_message(arguments))
+            add_offense(node, message: offense_message(arguments)) do |corrector|
+              autocorrect(corrector, node, arguments)
+            end
           end
 
-          def autocorrect(node)
-            lambda do |corrector|
-              corrector.replace(node.loc.selector, '#{preferred_method}')
+          def autocorrect(corrector, node, arguments)
+            corrector.replace(node.loc.selector, '#{preferred_method}')
 
-              arguments = peel_redundant_parentheses_from(node.arguments)
+            new_arguments = new_arguments(arguments).join(', ')
 
-              new_arguments = new_arguments(arguments).join(', ')
-
-              if enclosed_in_redundant_parentheses?(node)
-                new_arguments = '(' + new_arguments + ')'
-              end
-
-              corrector.replace(first_argument_range(node), new_arguments)
+            if enclosed_in_redundant_parentheses?(node)
+              new_arguments = '(' + new_arguments + ')'
             end
+
+            corrector.replace(first_argument_range(node), new_arguments)
           end
 
           private

@@ -15,7 +15,7 @@ module RuboCop
       #   # good
       #   assert_output(expected) { puts object.method }
       #
-      class AssertOutput < Cop
+      class AssertOutput < Base
         include MinitestExplorationHelpers
 
         MSG = 'Use `assert_output` instead of mutating %<name>s.'

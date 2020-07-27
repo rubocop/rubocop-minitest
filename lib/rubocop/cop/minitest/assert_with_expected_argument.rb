@@ -19,7 +19,7 @@ module RuboCop
       #   assert_equal(expected, actual)
       #   assert(foo, 'message')
       #
-      class AssertWithExpectedArgument < Cop
+      class AssertWithExpectedArgument < Base
         MSG = 'Did you mean to use `assert_equal(%<arguments>s)`?'
         RESTRICT_ON_SEND = %i[assert].freeze
 

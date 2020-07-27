@@ -13,7 +13,9 @@ module RuboCop
       #   # good
       #   assert_silent { puts object.do_something }
       #
-      class AssertSilent < Cop
+      class AssertSilent < Base
+        extend AutoCorrector
+
         MSG = 'Prefer using `assert_silent` over `assert_output("", "")`.'
 
         def_node_matcher :assert_silent_candidate?, <<~PATTERN
@@ -25,12 +27,12 @@ module RuboCop
         PATTERN
 
         def on_block(node)
-          add_offense(node.send_node) if assert_silent_candidate?(node)
-        end
+          return unless assert_silent_candidate?(node)
 
-        def autocorrect(node)
-          lambda do |corrector|
-            corrector.replace(node, 'assert_silent')
+          send_node = node.send_node
+
+          add_offense(send_node) do |corrector|
+            corrector.replace(send_node, 'assert_silent')
           end
         end
 

@@ -15,7 +15,7 @@ module RuboCop
       #   assert_instance_of(Class, object)
       #   assert_instance_of(Class, object, 'message')
       #
-      class AssertInstanceOf < Cop
+      class AssertInstanceOf < Base
         extend MinitestCopRule
 
         define_rule :assert, target_method: :instance_of?, inverse: true

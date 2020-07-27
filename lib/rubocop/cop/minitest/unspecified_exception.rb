@@ -14,7 +14,7 @@ module RuboCop
       #   assert_raises(FooException) { raise FooException }
       #   assert_raises(FooException, 'This should have raised') { raise FooException }
       #
-      class UnspecifiedException < Cop
+      class UnspecifiedException < Base
         MSG = 'Specify the exception being captured.'
 
         def on_block(block_node)
