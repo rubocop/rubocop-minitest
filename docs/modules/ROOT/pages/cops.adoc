@@ -1,6 +1,6 @@
 // START_COP_LIST
 
-= Department xref:cops_minitest.adoc[Minitest]
+=== Department xref:cops_minitest.adoc[Minitest]
 
 * xref:cops_minitest.adoc#minitestassertempty[Minitest/AssertEmpty]
 * xref:cops_minitest.adoc#minitestassertemptyliteral[Minitest/AssertEmptyLiteral]
