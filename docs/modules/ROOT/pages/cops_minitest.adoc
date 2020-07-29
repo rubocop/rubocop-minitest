@@ -638,7 +638,7 @@ refute_empty(object, 'message')
 |===
 
 This cop enforces the use of `refute_equal(expected, object)`
-over `assert_equal(expected != actual)` or `assert(! expected == actual)`.
+over `assert(expected != actual)` or `assert(! expected == actual)`.
 
 === Examples
 
