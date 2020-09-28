@@ -6,7 +6,7 @@ require 'rubocop/minitest/version'
 
 Gem::Specification.new do |spec|
   spec.name = 'rubocop-minitest'
-  spec.version = RuboCop::Minitest::VERSION
+  spec.version = RuboCop::Minitest::Version::STRING
   spec.authors = ['Bozhidar Batsov', 'Jonas Arvidsson', 'Koichi ITO']
 
   spec.summary = 'Automatic Minitest code style checking tool.'
@@ -21,7 +21,7 @@ Gem::Specification.new do |spec|
     'homepage_uri' => 'https://docs.rubocop.org/rubocop-minitest/',
     'changelog_uri' => 'https://github.com/rubocop-hq/rubocop-minitest/blob/master/CHANGELOG.md',
     'source_code_uri' => 'https://github.com/rubocop-hq/rubocop-minitest',
-    'documentation_uri' => 'https://docs.rubocop.org/rubocop-minitest/',
+    'documentation_uri' => "https://docs.rubocop.org/rubocop-minitest/#{RuboCop::Minitest::Version.document_version}",
     'bug_tracker_uri' => 'https://github.com/rubocop-hq/rubocop-minitest/issues'
   }
 
