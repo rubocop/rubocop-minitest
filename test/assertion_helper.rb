@@ -76,7 +76,7 @@ module AssertionHelper
   end
 
   def parse_source!(source, file = nil)
-    if file&.respond_to?(:write)
+    if file.respond_to?(:write)
       file.write(source)
       file.rewind
       file = file.path
