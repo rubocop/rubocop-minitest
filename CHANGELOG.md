@@ -2,6 +2,10 @@
 
 ## master (unreleased)
 
+### Bug fixes
+
+* [#113](https://github.com/rubocop-hq/rubocop-minitest/issues/113): This PR fixes an error for `Minitest/AssertEqual` and some cops when using `assert` with block argument. ([@koic][])
+
 ## 0.10.1 (2020-07-25)
 
 ### Bug fixes
