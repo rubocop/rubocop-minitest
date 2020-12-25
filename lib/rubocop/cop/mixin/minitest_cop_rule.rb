@@ -57,7 +57,7 @@ module RuboCop
           private
 
           def peel_redundant_parentheses_from(arguments)
-            return arguments unless arguments.first.begin_type?
+            return arguments unless arguments.first&.begin_type?
 
             peel_redundant_parentheses_from(arguments.first.children)
           end

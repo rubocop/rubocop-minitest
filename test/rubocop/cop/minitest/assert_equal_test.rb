@@ -132,4 +132,11 @@ class AssertEqualTest < Minitest::Test
       end
     RUBY
   end
+
+  # See: https://github.com/rubocop-hq/rubocop-minitest/issues/113
+  def test_does_not_register_offense_when_assert_with_block_argument
+    assert_no_offenses(<<~RUBY)
+      assert { 1 + 2 == 3 }
+    RUBY
+  end
 end
