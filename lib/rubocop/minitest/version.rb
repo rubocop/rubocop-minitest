@@ -4,7 +4,7 @@ module RuboCop
   module Minitest
     # This module holds the RuboCop Minitest version information.
     module Version
-      STRING = '0.10.1'
+      STRING = '0.10.2'
 
       def self.document_version
         STRING.match('\d+\.\d+').to_s
