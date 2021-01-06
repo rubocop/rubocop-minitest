@@ -4,6 +4,7 @@ module RuboCop
   module Cop
     module Minitest
       # This cop enforces that test method names start with `test_` prefix.
+      # It aims to prevent tests that aren't executed by forgetting to start test method name with `test_`.
       #
       # @example
       #   # bad
@@ -17,6 +18,12 @@ module RuboCop
       #   class FooTest < Minitest::Test
       #     def test_does_something
       #       assert_equal 42, do_something
+      #     end
+      #   end
+      #
+      #   # good
+      #   class FooTest < Minitest::Test
+      #     def helper_method(argument)
       #     end
       #   end
       #
@@ -54,7 +61,9 @@ module RuboCop
         end
 
         def offense?(node)
-          public?(node) && !test_method_name?(node) && !lifecycle_hook_method?(node)
+          return false if node.each_child_node(:send).none? { |send_node| assertion_method?(send_node.method_name) }
+
+          public?(node) && node.arguments.empty? && !test_method_name?(node) && !lifecycle_hook_method?(node)
         end
 
         def public?(node)
