@@ -2,6 +2,8 @@
 
 ## master (unreleased)
 
+## 0.10.3 (2021-01-12)
+
 ### Bug fixes
 
 * [#115](https://github.com/rubocop-hq/rubocop-minitest/issues/115): Fix a false positive for `Minitest/TestMethodName` for when defining test method has an argument, and test method without assertion methods. ([@koic][])
