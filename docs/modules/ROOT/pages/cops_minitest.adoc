@@ -45,15 +45,15 @@ assert_empty(object, 'message')
 |===
 
 This cop enforces the test to use `assert_empty`
-instead of using `assert([], object)`.
+instead of using `assert_equal([], object)`.
 
 === Examples
 
 [source,ruby]
 ----
 # bad
-assert([], object)
-assert({}, object)
+assert_equal([], object)
+assert_equal({}, object)
 
 # good
 assert_empty(object)

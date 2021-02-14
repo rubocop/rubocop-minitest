@@ -7,8 +7,8 @@ class AssertEmptyLiteralTest < Minitest::Test
     assert_offense(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
-          assert([], somestuff)
-          ^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_empty(somestuff)` over `assert([], somestuff)`.
+          assert_equal([], somestuff)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_empty(somestuff)` over `assert_equal([], somestuff)`.
         end
       end
     RUBY
@@ -26,8 +26,8 @@ class AssertEmptyLiteralTest < Minitest::Test
     assert_offense(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
-          assert({}, somestuff)
-          ^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_empty(somestuff)` over `assert({}, somestuff)`.
+          assert_equal({}, somestuff)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_empty(somestuff)` over `assert_equal({}, somestuff)`.
         end
       end
     RUBY
@@ -41,7 +41,7 @@ class AssertEmptyLiteralTest < Minitest::Test
     RUBY
   end
 
-  def test_does_not_register_offense_when_using_assert_equal
+  def test_does_not_register_offense_when_asserting_non_empty_array
     assert_no_offenses(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
@@ -51,11 +51,11 @@ class AssertEmptyLiteralTest < Minitest::Test
     RUBY
   end
 
-  def test_does_not_register_offense_when_using_assert_with_single_parameter
+  def test_does_not_register_offense_when_asserting_two_parameters
     assert_no_offenses(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
-          assert(somestuff)
+          assert_equal(somestuff, someotherstuff)
         end
       end
     RUBY
