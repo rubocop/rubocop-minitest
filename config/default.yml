@@ -15,7 +15,7 @@ Minitest/AssertEmptyLiteral:
   Enabled: true
   SafeAutoCorrect: false
   VersionAdded: '0.5'
-  VersionChanged: '0.10'
+  VersionChanged: '0.11'
 
 Minitest/AssertEqual:
   Description: 'This cop enforces the test to use `assert_equal` instead of using `assert(expected == actual)`.'
