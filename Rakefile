@@ -61,7 +61,7 @@ task :new_cop, [:cop] do |_task, args|
 end
 
 def bump_minor_version
-  major, minor, _patch = RuboCop::Minitest::VERSION.split('.')
+  major, minor, _patch = RuboCop::Minitest::Version::STRING.split('.')
 
   "#{major}.#{minor.succ}"
 end
