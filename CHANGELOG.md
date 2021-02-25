@@ -5,6 +5,7 @@
 ### Bug fixes
 
 * [#118](https://github.com/rubocop/rubocop-minitest/pull/118): **(BREAKING)** Fix `Minitest/AssertEmptyLiteral` by making it check for `assert_equal([], array)` instead of `assert([], array)`. ([@cstyles][])
+* [#122](https://github.com/rubocop/rubocop-minitest/pull/122): Fix `Minitest/TestMethodName` for tests with multiple assertions. ([@ghiculescu][])
 
 ## 0.10.3 (2021-01-12)
 
@@ -182,3 +183,4 @@
 [@fatkodima]: https://github.com/fatkodima
 [@tsmmark]: https://github.com/tsmmark
 [@cstyles]: https://github.com/cstyles
+[@ghiculescu]: https://github.com/ghiculescu
