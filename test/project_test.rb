@@ -68,7 +68,7 @@ class ProjectTest < Minitest::Test
     @issues.each do |issue|
       number = issue[:number].gsub(/\D/, '')
       pattern =
-        %r{^https://github\.com/rubocop-hq/rubocop-minitest/(?:issues|pull)/#{number}$}
+        %r{^https://github\.com/rubocop/rubocop-minitest/(?:issues|pull)/#{number}$}
       assert_match(pattern, issue[:url])
     end
   end

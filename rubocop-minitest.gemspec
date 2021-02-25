@@ -19,10 +19,10 @@ Gem::Specification.new do |spec|
   spec.required_ruby_version = '>= 2.4.0'
   spec.metadata = {
     'homepage_uri' => 'https://docs.rubocop.org/rubocop-minitest/',
-    'changelog_uri' => 'https://github.com/rubocop-hq/rubocop-minitest/blob/master/CHANGELOG.md',
-    'source_code_uri' => 'https://github.com/rubocop-hq/rubocop-minitest',
+    'changelog_uri' => 'https://github.com/rubocop/rubocop-minitest/blob/master/CHANGELOG.md',
+    'source_code_uri' => 'https://github.com/rubocop/rubocop-minitest',
     'documentation_uri' => "https://docs.rubocop.org/rubocop-minitest/#{RuboCop::Minitest::Version.document_version}",
-    'bug_tracker_uri' => 'https://github.com/rubocop-hq/rubocop-minitest/issues'
+    'bug_tracker_uri' => 'https://github.com/rubocop/rubocop-minitest/issues'
   }
 
   # Specify which files should be added to the gem when it is released.

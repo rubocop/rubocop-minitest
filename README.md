@@ -1,9 +1,9 @@
 # RuboCop Minitest
 
 [![Gem Version](https://badge.fury.io/rb/rubocop-minitest.svg)](https://badge.fury.io/rb/rubocop-minitest)
-[![CircleCI](https://circleci.com/gh/rubocop-hq/rubocop-minitest.svg?style=svg)](https://circleci.com/gh/rubocop-hq/rubocop-minitest)
+[![CircleCI](https://circleci.com/gh/rubocop/rubocop-minitest.svg?style=svg)](https://circleci.com/gh/rubocop/rubocop-minitest)
 
-A [RuboCop](https://github.com/rubocop-hq/rubocop) extension focused on enforcing Minitest best practices and coding conventions.
+A [RuboCop](https://github.com/rubocop/rubocop) extension focused on enforcing Minitest best practices and coding conventions.
 The library is based on the guidelines outlined in the community [Minitest Style Guide](https://minitest.rubystyle.guide).
 
 ## Installation
@@ -81,14 +81,14 @@ You can read a lot more about RuboCop Minitest in its [official docs](https://do
 
 If you use RuboCop Minitest in your project, you can include one of these badges in your readme to let people know that your code is written following the community Minitest Style Guide.
 
-[![Minitest Style Guide](https://img.shields.io/badge/code_style-rubocop-brightgreen.svg)](https://github.com/rubocop-hq/rubocop-minitest)
+[![Minitest Style Guide](https://img.shields.io/badge/code_style-rubocop-brightgreen.svg)](https://github.com/rubocop/rubocop-minitest)
 
 [![Minitest Style Guide](https://img.shields.io/badge/code_style-community-brightgreen.svg)](https://minitest.rubystyle.guide)
 
 Here are the Markdown snippets for the two badges:
 
 ``` markdown
-[![Minitest Style Guide](https://img.shields.io/badge/code_style-rubocop-brightgreen.svg)](https://github.com/rubocop-hq/rubocop-minitest)
+[![Minitest Style Guide](https://img.shields.io/badge/code_style-rubocop-brightgreen.svg)](https://github.com/rubocop/rubocop-minitest)
 
 [![Minitest Style Guide](https://img.shields.io/badge/code_style-community-brightgreen.svg)](https://minitest.rubystyle.guide)
 ```

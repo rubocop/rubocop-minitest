@@ -23,7 +23,7 @@ assert_empty(object, 'message')
 
 ### References
 
-* [https://github.com/rubocop-hq/minitest-style-guide#assert-empty](https://github.com/rubocop-hq/minitest-style-guide#assert-empty)
+* [https://github.com/rubocop/minitest-style-guide#assert-empty](https://github.com/rubocop/minitest-style-guide#assert-empty)
 
 ## Minitest/AssertEmptyLiteral
 
@@ -66,7 +66,7 @@ assert_equal("rubocop-minitest", actual)
 
 ### References
 
-* [https://github.com/rubocop-hq/minitest-style-guide#assert-equal-arguments-order](https://github.com/rubocop-hq/minitest-style-guide#assert-equal-arguments-order)
+* [https://github.com/rubocop/minitest-style-guide#assert-equal-arguments-order](https://github.com/rubocop/minitest-style-guide#assert-equal-arguments-order)
 
 ## Minitest/AssertIncludes
 
@@ -91,7 +91,7 @@ assert_includes(collection, object, 'message')
 
 ### References
 
-* [https://github.com/rubocop-hq/minitest-style-guide#assert-includes](https://github.com/rubocop-hq/minitest-style-guide#assert-includes)
+* [https://github.com/rubocop/minitest-style-guide#assert-includes](https://github.com/rubocop/minitest-style-guide#assert-includes)
 
 ## Minitest/AssertInstanceOf
 
@@ -116,7 +116,7 @@ assert_instance_of(Class, object, 'message')
 
 ### References
 
-* [https://github.com/rubocop-hq/minitest-style-guide#assert-instance-of](https://github.com/rubocop-hq/minitest-style-guide#assert-instance-of)
+* [https://github.com/rubocop/minitest-style-guide#assert-instance-of](https://github.com/rubocop/minitest-style-guide#assert-instance-of)
 
 ## Minitest/AssertMatch
 
@@ -141,7 +141,7 @@ assert_match(matcher, string, 'message')
 
 ### References
 
-* [https://github.com/rubocop-hq/minitest-style-guide#assert-match](https://github.com/rubocop-hq/minitest-style-guide#assert-match)
+* [https://github.com/rubocop/minitest-style-guide#assert-match](https://github.com/rubocop/minitest-style-guide#assert-match)
 
 ## Minitest/AssertNil
 
@@ -166,7 +166,7 @@ assert_nil(actual, 'message')
 
 ### References
 
-* [https://github.com/rubocop-hq/minitest-style-guide#assert-nil](https://github.com/rubocop-hq/minitest-style-guide#assert-nil)
+* [https://github.com/rubocop/minitest-style-guide#assert-nil](https://github.com/rubocop/minitest-style-guide#assert-nil)
 
 ## Minitest/AssertRespondTo
 
@@ -193,7 +193,7 @@ assert_respond_to(self, :do_something)
 
 ### References
 
-* [https://github.com/rubocop-hq/minitest-style-guide#assert-responds-to-method](https://github.com/rubocop-hq/minitest-style-guide#assert-responds-to-method)
+* [https://github.com/rubocop/minitest-style-guide#assert-responds-to-method](https://github.com/rubocop/minitest-style-guide#assert-responds-to-method)
 
 ## Minitest/AssertTruthy
 
@@ -218,7 +218,7 @@ assert(actual, 'message')
 
 ### References
 
-* [https://github.com/rubocop-hq/minitest-style-guide#assert-truthy](https://github.com/rubocop-hq/minitest-style-guide#assert-truthy)
+* [https://github.com/rubocop/minitest-style-guide#assert-truthy](https://github.com/rubocop/minitest-style-guide#assert-truthy)
 
 ## Minitest/GlobalExpectations
 
@@ -266,7 +266,7 @@ refute_empty(object, 'message')
 
 ### References
 
-* [https://github.com/rubocop-hq/minitest-style-guide#refute-empty](https://github.com/rubocop-hq/minitest-style-guide#refute-empty)
+* [https://github.com/rubocop/minitest-style-guide#refute-empty](https://github.com/rubocop/minitest-style-guide#refute-empty)
 
 ## Minitest/RefuteEqual
 
@@ -290,7 +290,7 @@ refute_equal("rubocop-minitest", actual)
 
 ### References
 
-* [https://github.com/rubocop-hq/minitest-style-guide#refute-equal](https://github.com/rubocop-hq/minitest-style-guide#refute-equal)
+* [https://github.com/rubocop/minitest-style-guide#refute-equal](https://github.com/rubocop/minitest-style-guide#refute-equal)
 
 ## Minitest/RefuteFalse
 
@@ -318,7 +318,7 @@ refute(actual, 'message')
 
 ### References
 
-* [https://github.com/rubocop-hq/minitest-style-guide#refute-false](https://github.com/rubocop-hq/minitest-style-guide#refute-false)
+* [https://github.com/rubocop/minitest-style-guide#refute-false](https://github.com/rubocop/minitest-style-guide#refute-false)
 
 ## Minitest/RefuteIncludes
 
@@ -343,7 +343,7 @@ refute_includes(collection, object, 'message')
 
 ### References
 
-* [https://github.com/rubocop-hq/minitest-style-guide#refute-includes](https://github.com/rubocop-hq/minitest-style-guide#refute-includes)
+* [https://github.com/rubocop/minitest-style-guide#refute-includes](https://github.com/rubocop/minitest-style-guide#refute-includes)
 
 ## Minitest/RefuteInstanceOf
 
@@ -368,7 +368,7 @@ refute_instance_of(Class, object, 'message')
 
 ### References
 
-* [https://github.com/rubocop-hq/minitest-style-guide#refute-instance-of](https://github.com/rubocop-hq/minitest-style-guide#refute-instance-of)
+* [https://github.com/rubocop/minitest-style-guide#refute-instance-of](https://github.com/rubocop/minitest-style-guide#refute-instance-of)
 
 ## Minitest/RefuteMatch
 
@@ -393,7 +393,7 @@ refute_match(matcher, string, 'message')
 
 ### References
 
-* [https://github.com/rubocop-hq/minitest-style-guide#refute-match](https://github.com/rubocop-hq/minitest-style-guide#refute-match)
+* [https://github.com/rubocop/minitest-style-guide#refute-match](https://github.com/rubocop/minitest-style-guide#refute-match)
 
 ## Minitest/RefuteNil
 
@@ -418,7 +418,7 @@ refute_nil(actual, 'message')
 
 ### References
 
-* [https://github.com/rubocop-hq/minitest-style-guide#refute-nil](https://github.com/rubocop-hq/minitest-style-guide#refute-nil)
+* [https://github.com/rubocop/minitest-style-guide#refute-nil](https://github.com/rubocop/minitest-style-guide#refute-nil)
 
 ## Minitest/RefuteRespondTo
 
@@ -445,4 +445,4 @@ refute_respond_to(self, :do_something)
 
 ### References
 
-* [https://github.com/rubocop-hq/minitest-style-guide#refute-respond-to](https://github.com/rubocop-hq/minitest-style-guide#refute-respond-to)
+* [https://github.com/rubocop/minitest-style-guide#refute-respond-to](https://github.com/rubocop/minitest-style-guide#refute-respond-to)

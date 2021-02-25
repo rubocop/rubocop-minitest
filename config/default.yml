@@ -54,7 +54,7 @@ Minitest/AssertInstanceOf:
 
 Minitest/AssertKindOf:
   Description: 'This cop enforces the test to use `assert_kind_of(Class, object)` over `assert(object.kind_of?(Class))`'
-  StyleGuide: 'https://github.com/rubocop-hq/minitest-style-guide#assert-kind-of'
+  StyleGuide: 'https://github.com/rubocop/minitest-style-guide#assert-kind-of'
   Enabled: 'pending'
   VersionAdded: '0.10'
 
@@ -84,7 +84,7 @@ Minitest/AssertRespondTo:
 
 Minitest/AssertSilent:
   Description: "This cop enforces the test to use `assert_silent { ... }` instead of using `assert_output('', '') { ... }`."
-  StyleGuide: 'https://github.com/rubocop-hq/minitest-style-guide#assert-silent'
+  StyleGuide: 'https://github.com/rubocop/minitest-style-guide#assert-silent'
   Enabled: 'pending'
   VersionAdded: '0.10'
 
@@ -156,7 +156,7 @@ Minitest/RefuteInstanceOf:
 
 Minitest/RefuteKindOf:
   Description: 'This cop enforces the test to use `refute_kind_of(Class, object)` over `refute(object.kind_of?(Class))`.'
-  StyleGuide: 'https://github.com/rubocop-hq/minitest-style-guide#refute-kind-of'
+  StyleGuide: 'https://github.com/rubocop/minitest-style-guide#refute-kind-of'
   Enabled: 'pending'
   VersionAdded: '0.10'
 
