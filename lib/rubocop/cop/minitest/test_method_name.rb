@@ -61,7 +61,7 @@ module RuboCop
         end
 
         def offense?(node)
-          return false if node.each_child_node(:send).none? { |send_node| assertion_method?(send_node.method_name) }
+          return false if assertions(node).none?
 
           public?(node) && node.arguments.empty? && !test_method_name?(node) && !lifecycle_hook_method?(node)
         end
