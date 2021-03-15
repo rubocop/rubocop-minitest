@@ -625,6 +625,38 @@ end
 | Integer
 |===
 
+== Minitest/NoAssertions
+
+|===
+| Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+
+| Disabled
+| Yes
+| No
+| 0.12
+| -
+|===
+
+This cop checks if test cases contain any assertion calls.
+
+=== Examples
+
+[source,ruby]
+----
+# bad
+class FooTest < Minitest::Test
+  def test_the_truth
+  end
+end
+
+# good
+class FooTest < Minitest::Test
+  def test_the_truth
+    assert true
+  end
+end
+----
+
 == Minitest/RefuteEmpty
 
 |===

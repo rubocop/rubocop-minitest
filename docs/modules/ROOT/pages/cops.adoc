@@ -32,6 +32,7 @@ based on the https://minitest.rubystyle.guide/[Minitest Style Guide].
 * xref:cops_minitest.adoc#minitestglobalexpectations[Minitest/GlobalExpectations]
 * xref:cops_minitest.adoc#minitestliteralasactualargument[Minitest/LiteralAsActualArgument]
 * xref:cops_minitest.adoc#minitestmultipleassertions[Minitest/MultipleAssertions]
+* xref:cops_minitest.adoc#minitestnoassertions[Minitest/NoAssertions]
 * xref:cops_minitest.adoc#minitestrefuteempty[Minitest/RefuteEmpty]
 * xref:cops_minitest.adoc#minitestrefuteequal[Minitest/RefuteEqual]
 * xref:cops_minitest.adoc#minitestrefutefalse[Minitest/RefuteFalse]

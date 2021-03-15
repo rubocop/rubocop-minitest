@@ -19,6 +19,8 @@ module RuboCop
         refute_respond_to refute_same
       ].freeze
 
+      FLUNK = 'flunk'
+
       LIFECYCLE_HOOK_METHODS = %i[
         before_setup
         setup
@@ -42,8 +44,8 @@ module RuboCop
       end
 
       def test_cases(class_node)
-        class_def_nodes(class_node)
-          .select { |def_node| test_case_name?(def_node.method_name) }
+        (class_def_nodes(class_node).select { |def_node| test_case_name?(def_node.method_name) }) +
+          test_method_calls(class_node)
       end
 
       def lifecycle_hooks(class_node)
@@ -60,6 +62,11 @@ module RuboCop
         else
           class_def.each_child_node(:def).to_a
         end
+      end
+
+      # support https://api.rubyonrails.org/classes/ActiveSupport/Testing/Declarative.html
+      def test_method_calls(class_node)
+        class_node.each_child_node(:block).select { |blk| blk.each_child_node(:send).first&.method_name.to_s == 'test' }
       end
 
       def test_case_name?(name)
@@ -82,11 +89,14 @@ module RuboCop
 
       def assertion?(node)
         node.send_type? &&
-          ASSERTION_PREFIXES.any? { |prefix| node.method_name.to_s.start_with?(prefix) }
+          ASSERTION_PREFIXES.any? do |prefix|
+            method_name = node.method_name.to_s
+            method_name == FLUNK || method_name.start_with?(prefix)
+          end
       end
 
       def assertion_method?(method_name)
-        ASSERTION_METHODS.include?(method_name)
+        method_name == FLUNK || ASSERTION_METHODS.include?(method_name)
       end
 
       def lifecycle_hook_method?(node)

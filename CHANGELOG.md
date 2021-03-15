@@ -2,6 +2,10 @@
 
 ## master (unreleased)
 
+### New features
+
+* [#124](https://github.com/rubocop/rubocop-minitest/pull/124): Add new `Minitest/NoAssertions` cop. ([@ghiculescu][])
+
 ### Changes
 
 * [#129](https://github.com/rubocop/rubocop-minitest/pull/129): Drop Ruby 2.4 support. ([@koic][])
