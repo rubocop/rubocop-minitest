@@ -441,6 +441,35 @@ assert(actual, 'message')
 
 * https://minitest.rubystyle.guide#assert-truthy
 
+== Minitest/AssertWithExpectedArgument
+
+|===
+| Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+
+| Pending
+| Yes
+| No
+| 0.11
+| -
+|===
+
+This cop tries to detect when a user accidentally used
+`assert` when they meant to use `assert_equal`.
+
+=== Examples
+
+[source,ruby]
+----
+# bad
+assert(3, my_list.length)
+assert(expected, actual)
+
+# good
+assert_equal(3, my_list.length)
+assert_equal(expected, actual)
+assert(foo, 'message')
+----
+
 == Minitest/AssertionInLifecycleHook
 
 |===

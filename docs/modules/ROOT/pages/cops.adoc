@@ -27,6 +27,7 @@ based on the https://minitest.rubystyle.guide/[Minitest Style Guide].
 * xref:cops_minitest.adoc#minitestassertrespondto[Minitest/AssertRespondTo]
 * xref:cops_minitest.adoc#minitestassertsilent[Minitest/AssertSilent]
 * xref:cops_minitest.adoc#minitestasserttruthy[Minitest/AssertTruthy]
+* xref:cops_minitest.adoc#minitestassertwithexpectedargument[Minitest/AssertWithExpectedArgument]
 * xref:cops_minitest.adoc#minitestassertioninlifecyclehook[Minitest/AssertionInLifecycleHook]
 * xref:cops_minitest.adoc#minitestglobalexpectations[Minitest/GlobalExpectations]
 * xref:cops_minitest.adoc#minitestliteralasactualargument[Minitest/LiteralAsActualArgument]

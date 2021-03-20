@@ -94,6 +94,11 @@ Minitest/AssertTruthy:
   Enabled: true
   VersionAdded: '0.2'
 
+Minitest/AssertWithExpectedArgument:
+  Description: 'This cop tries to detect when a user accidentally used `assert` when they meant to use `assert_equal`.'
+  Enabled: pending
+  VersionAdded: '0.11'
+
 Minitest/GlobalExpectations:
   Description: 'This cop checks for deprecated global expectations.'
   StyleGuide: 'https://minitest.rubystyle.guide#global-expectations'
