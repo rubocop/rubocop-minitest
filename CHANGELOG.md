@@ -13,6 +13,7 @@
 ### Changes
 
 * [#118](https://github.com/rubocop/rubocop-minitest/pull/118): **(BREAKING)** Fix `Minitest/AssertEmptyLiteral` by making it check for `assert_equal([], array)` instead of `assert([], array)`. ([@cstyles][])
+* [#125](https://github.com/rubocop/rubocop-minitest/pull/125): Require RuboCop 0.90 or higher. ([@koic][])
 
 ## 0.10.3 (2021-01-12)
 

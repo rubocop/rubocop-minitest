@@ -17,6 +17,7 @@ module RuboCop
       #
       class AssertPathExists < Cop
         MSG = 'Prefer using `%<good_method>s` over `%<bad_method>s`.'
+        RESTRICT_ON_SEND = %i[assert].freeze
 
         def_node_matcher :assert_file_exists, <<~PATTERN
           (send nil? :assert

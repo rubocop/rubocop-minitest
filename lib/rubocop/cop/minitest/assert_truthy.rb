@@ -20,6 +20,7 @@ module RuboCop
 
         MSG = 'Prefer using `assert(%<arguments>s)` over ' \
               '`assert_equal(true, %<arguments>s)`.'
+        RESTRICT_ON_SEND = %i[assert_equal].freeze
 
         def_node_matcher :assert_equal_with_truthy, <<~PATTERN
           (send nil? :assert_equal true $_ $...)

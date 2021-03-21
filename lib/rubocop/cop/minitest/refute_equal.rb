@@ -19,6 +19,7 @@ module RuboCop
 
         MSG = 'Prefer using `refute_equal(%<preferred>s)` over ' \
               '`assert(%<over>s)`.'
+        RESTRICT_ON_SEND = %i[assert].freeze
 
         def_node_matcher :assert_not_equal, <<~PATTERN
           (send nil? :assert ${(send $_ :!= $_) (send (send $_ :! ) :== $_) } $... )

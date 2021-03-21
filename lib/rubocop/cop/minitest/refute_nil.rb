@@ -20,6 +20,7 @@ module RuboCop
 
         MSG = 'Prefer using `refute_nil(%<arguments>s)` over ' \
               '`refute_equal(nil, %<arguments>s)`.'
+        RESTRICT_ON_SEND = %i[refute_equal].freeze
 
         def_node_matcher :refute_equal_with_nil, <<~PATTERN
           (send nil? :refute_equal nil $_ $...)
