@@ -2,6 +2,8 @@
 
 ## master (unreleased)
 
+## 0.11.0 (2021-03-22)
+
 ### New features
 
 * [#117](https://github.com/rubocop/rubocop-minitest/issues/117): Add new cop `Minitest/AssertWithExpectedArgument` to check for unintended usages of `assert` instead of `assert_equal`. ([@cstyles][])
