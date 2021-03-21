@@ -17,6 +17,7 @@ module RuboCop
       #
       class RefutePathExists < Cop
         MSG = 'Prefer using `%<good_method>s` over `%<bad_method>s`.'
+        RESTRICT_ON_SEND = %i[refute].freeze
 
         def_node_matcher :refute_file_exists, <<~PATTERN
           (send nil? :refute

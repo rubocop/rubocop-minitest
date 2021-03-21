@@ -30,6 +30,8 @@ module RuboCop
 
         BLOCK_MATCHERS = %i[must_output must_raise must_be_silent must_throw].freeze
 
+        RESTRICT_ON_SEND = VALUE_MATCHERS + BLOCK_MATCHERS
+
         VALUE_MATCHERS_STR = VALUE_MATCHERS.map do |m|
           ":#{m}"
         end.join(' ').freeze

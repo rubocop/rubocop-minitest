@@ -20,6 +20,7 @@ module RuboCop
 
         MSG = 'Prefer using `assert_nil(%<arguments>s)` over ' \
               '`assert_equal(nil, %<arguments>s)`.'
+        RESTRICT_ON_SEND = %i[assert_equal].freeze
 
         def_node_matcher :assert_equal_with_nil, <<~PATTERN
           (send nil? :assert_equal nil $_ $...)

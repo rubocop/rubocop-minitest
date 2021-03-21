@@ -21,6 +21,7 @@ module RuboCop
         include ArgumentRangeHelper
 
         MSG = 'Replace the literal with the first argument.'
+        RESTRICT_ON_SEND = %i[assert_equal].freeze
 
         def on_send(node)
           return unless node.method?(:assert_equal)

@@ -18,6 +18,8 @@ module RuboCop
       class AssertInDelta < Cop
         include InDeltaMixin
 
+        RESTRICT_ON_SEND = %i[assert_equal].freeze
+
         def_node_matcher :equal_floats_call, <<~PATTERN
           (send nil? :assert_equal $_ $_ $...)
         PATTERN

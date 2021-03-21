@@ -18,6 +18,8 @@ module RuboCop
       class RefuteInDelta < Cop
         include InDeltaMixin
 
+        RESTRICT_ON_SEND = %i[refute_equal].freeze
+
         def_node_matcher :equal_floats_call, <<~PATTERN
           (send nil? :refute_equal $_ $_ $...)
         PATTERN

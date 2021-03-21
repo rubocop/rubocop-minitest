@@ -29,6 +29,7 @@ module RuboCop
 
           MSG = 'Prefer using `#{preferred_method}(%<new_arguments>s)` over ' \
                 '`#{assertion_method}(%<original_arguments>s)`.'
+          RESTRICT_ON_SEND = %i[#{assertion_method}].freeze
 
           def on_send(node)
             return unless node.method?(:#{assertion_method})
