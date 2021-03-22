@@ -97,6 +97,7 @@ Minitest/AssertTruthy:
 Minitest/AssertWithExpectedArgument:
   Description: 'This cop tries to detect when a user accidentally used `assert` when they meant to use `assert_equal`.'
   Enabled: pending
+  Safe: false
   VersionAdded: '0.11'
 
 Minitest/GlobalExpectations:
