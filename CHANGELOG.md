@@ -2,6 +2,8 @@
 
 ## master (unreleased)
 
+## 0.11.1 (2021-03-31)
+
 ### Changes
 
 * [#126](https://github.com/rubocop/rubocop-minitest/issues/126): Mark `Minitest/AssertWithExpectedArgument` as unsafe. ([@koic][])
