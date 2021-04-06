@@ -16,7 +16,7 @@ Gem::Specification.new do |spec|
   DESCRIPTION
   spec.license = 'MIT'
 
-  spec.required_ruby_version = '>= 2.4.0'
+  spec.required_ruby_version = '>= 2.5.0'
   spec.metadata = {
     'homepage_uri' => 'https://docs.rubocop.org/rubocop-minitest/',
     'changelog_uri' => 'https://github.com/rubocop/rubocop-minitest/blob/master/CHANGELOG.md',

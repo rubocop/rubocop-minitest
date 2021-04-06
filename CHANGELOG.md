@@ -2,6 +2,10 @@
 
 ## master (unreleased)
 
+### Changes
+
+* [#129](https://github.com/rubocop/rubocop-minitest/pull/129): Drop Ruby 2.4 support. ([@koic][])
+
 ## 0.11.1 (2021-03-31)
 
 ### Changes
