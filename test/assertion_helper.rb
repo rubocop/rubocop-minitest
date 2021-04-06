@@ -8,7 +8,7 @@ module AssertionHelper
   private
 
   def setup
-    cop_name = self.class.to_s.sub(/Test\z/, '')
+    cop_name = self.class.to_s.delete_suffix('Test')
 
     @cop = RuboCop::Cop::Minitest.const_get(cop_name).new
   end
@@ -88,6 +88,6 @@ module AssertionHelper
   end
 
   def ruby_version
-    2.4
+    2.5
   end
 end
