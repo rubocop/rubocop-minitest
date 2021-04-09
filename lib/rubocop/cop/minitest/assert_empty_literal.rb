@@ -14,8 +14,9 @@ module RuboCop
       #   # good
       #   assert_empty(object)
       #
-      class AssertEmptyLiteral < Cop
+      class AssertEmptyLiteral < Base
         include ArgumentRangeHelper
+        extend AutoCorrector
 
         MSG = 'Prefer using `assert_empty(%<arguments>s)` over ' \
               '`assert_equal(%<literal>s, %<arguments>s)`.'
@@ -32,15 +33,9 @@ module RuboCop
             args = matchers.map(&:source).join(', ')
 
             message = format(MSG, literal: literal.source, arguments: args)
-            add_offense(node, message: message)
-          end
-        end
+            add_offense(node, message: message) do |corrector|
+              object = matchers.first
 
-        def autocorrect(node)
-          assert_equal_with_empty_literal(node) do |_literal, matchers|
-            object = matchers.first
-
-            lambda do |corrector|
               corrector.replace(node.loc.selector, 'assert_empty')
               corrector.replace(first_and_second_arguments_range(node), object.source)
             end

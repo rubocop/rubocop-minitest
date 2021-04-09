@@ -15,8 +15,9 @@ module RuboCop
       #   refute_in_delta(0.2, actual)
       #   refute_in_delta(0.2, actual, 0.001, 'message')
       #
-      class RefuteInDelta < Cop
+      class RefuteInDelta < Base
         include InDeltaMixin
+        extend AutoCorrector
 
         RESTRICT_ON_SEND = %i[refute_equal].freeze
 

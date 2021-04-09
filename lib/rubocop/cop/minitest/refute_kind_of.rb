@@ -15,7 +15,7 @@ module RuboCop
       #   refute_kind_of(Class, object)
       #   refute_kind_of(Class, object, 'message')
       #
-      class RefuteKindOf < Cop
+      class RefuteKindOf < Base
         extend MinitestCopRule
 
         define_rule :refute, target_method: :kind_of?, inverse: true

@@ -15,7 +15,7 @@ module RuboCop
       #   refute_match(matcher, string)
       #   refute_match(matcher, string, 'message')
       #
-      class RefuteMatch < Cop
+      class RefuteMatch < Base
         extend MinitestCopRule
 
         define_rule :refute, target_method: :match

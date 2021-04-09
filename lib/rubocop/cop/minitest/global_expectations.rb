@@ -16,7 +16,9 @@ module RuboCop
       #   _(musts).must_equal expected_musts
       #   _(wonts).wont_match expected_wonts
       #   _ { musts }.must_raise TypeError
-      class GlobalExpectations < Cop
+      class GlobalExpectations < Base
+        extend AutoCorrector
+
         MSG = 'Use `%<preferred>s` instead.'
 
         VALUE_MATCHERS = %i[
@@ -64,13 +66,8 @@ module RuboCop
           return unless value_global_expectation?(node) || block_global_expectation?(node)
 
           message = format(MSG, preferred: preferred_receiver(node))
-          add_offense(node, location: node.receiver.source_range, message: message)
-        end
 
-        def autocorrect(node)
-          return unless value_global_expectation?(node) || block_global_expectation?(node)
-
-          lambda do |corrector|
+          add_offense(node.receiver.source_range, message: message) do |corrector|
             receiver = node.receiver.source_range
 
             if BLOCK_MATCHERS.include?(node.method_name)

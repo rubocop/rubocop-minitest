@@ -15,7 +15,7 @@ module RuboCop
       #   assert_includes(collection, object)
       #   assert_includes(collection, object, 'message')
       #
-      class AssertIncludes < Cop
+      class AssertIncludes < Base
         extend MinitestCopRule
 
         define_rule :assert, target_method: :include?, preferred_method: :assert_includes

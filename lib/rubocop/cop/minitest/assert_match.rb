@@ -15,7 +15,7 @@ module RuboCop
       #   assert_match(regex, string)
       #   assert_match(matcher, string, 'message')
       #
-      class AssertMatch < Cop
+      class AssertMatch < Base
         extend MinitestCopRule
 
         define_rule :assert, target_method: :match

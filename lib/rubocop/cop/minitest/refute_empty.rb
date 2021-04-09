@@ -15,7 +15,7 @@ module RuboCop
       #   refute_empty(object)
       #   refute_empty(object, 'message')
       #
-      class RefuteEmpty < Cop
+      class RefuteEmpty < Base
         extend MinitestCopRule
 
         define_rule :refute, target_method: :empty?

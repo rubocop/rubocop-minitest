@@ -9,24 +9,14 @@ module RuboCop
       def on_send(node)
         equal_floats_call(node) do |expected, actual, message|
           message = message.first
+          good_method = build_good_method(expected, actual, message)
 
           if expected.float_type? || actual.float_type?
-            message = format(MSG,
-                             good_method: build_good_method(expected, actual, message),
-                             bad_method: node.source)
+            message = format(MSG, good_method: good_method, bad_method: node.source)
 
-            add_offense(node, message: message)
-          end
-        end
-      end
-
-      def autocorrect(node)
-        equal_floats_call(node) do |expected, actual, message|
-          message = message.first
-          replacement = build_good_method(expected, actual, message)
-
-          lambda do |corrector|
-            corrector.replace(node, replacement)
+            add_offense(node, message: message) do |corrector|
+              corrector.replace(node, good_method)
+            end
           end
         end
       end

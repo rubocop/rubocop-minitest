@@ -17,8 +17,9 @@ module RuboCop
       #   assert_equal [1, 2], foo
       #   assert_equal [1, 2], foo, 'message'
       #
-      class LiteralAsActualArgument < Cop
+      class LiteralAsActualArgument < Base
         include ArgumentRangeHelper
+        extend AutoCorrector
 
         MSG = 'Replace the literal with the first argument.'
         RESTRICT_ON_SEND = %i[assert_equal].freeze
@@ -27,25 +28,24 @@ module RuboCop
           return unless node.method?(:assert_equal)
 
           actual = node.arguments[1]
-          return unless actual
+          return unless actual&.recursive_basic_literal?
 
-          add_offense(node, location: all_arguments_range(node)) if actual.recursive_basic_literal?
+          add_offense(all_arguments_range(node)) do |corrector|
+            autocorrect(corrector, node)
+          end
         end
 
-        def autocorrect(node)
+        def autocorrect(corrector, node)
           expected, actual, message = *node.arguments
 
-          lambda do |corrector|
-            new_actual_source =
-              if actual.hash_type? && !actual.braces?
-                "{#{actual.source}}"
-              else
-                actual.source
-              end
-            arguments = [new_actual_source, expected.source, message&.source].compact.join(', ')
+          new_actual_source = if actual.hash_type? && !actual.braces?
+                                "{#{actual.source}}"
+                              else
+                                actual.source
+                              end
+          arguments = [new_actual_source, expected.source, message&.source].compact.join(', ')
 
-            corrector.replace(node, "assert_equal(#{arguments})")
-          end
+          corrector.replace(node, "assert_equal(#{arguments})")
         end
       end
     end

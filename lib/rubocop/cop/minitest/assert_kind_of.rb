@@ -15,7 +15,7 @@ module RuboCop
       #   assert_kind_of(Class, object)
       #   assert_kind_of(Class, object, 'message')
       #
-      class AssertKindOf < Cop
+      class AssertKindOf < Base
         extend MinitestCopRule
 
         define_rule :assert, target_method: :kind_of?, inverse: true
