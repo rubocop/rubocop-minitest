@@ -118,6 +118,11 @@ Minitest/MultipleAssertions:
   VersionAdded: '0.10'
   Max: 3
 
+Minitest/NoAssertions:
+  Description: 'This cop checks for at least one assertion (or flunk) in tests.'
+  Enabled: false
+  VersionAdded: '0.12'
+
 Minitest/RefuteEmpty:
   Description: 'This cop enforces to use `refute_empty` instead of using `refute(object.empty?)`.'
   StyleGuide: 'https://minitest.rubystyle.guide#refute-empty'
