@@ -66,7 +66,8 @@ module RuboCop
 
       # support https://api.rubyonrails.org/classes/ActiveSupport/Testing/Declarative.html
       def test_method_calls(class_node)
-        class_node.each_child_node(:block).select { |blk| blk.each_child_node(:send).first&.method_name.to_s == 'test' }
+        block_nodes = class_node.each_descendant(:block)
+        block_nodes.select { |block_node| block_node.method?(:test) }
       end
 
       def test_case_name?(name)
