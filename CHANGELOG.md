@@ -2,6 +2,8 @@
 
 ## master (unreleased)
 
+## 0.12.0 (2021-04-23)
+
 ### New features
 
 * [#124](https://github.com/rubocop/rubocop-minitest/pull/124): Add new `Minitest/NoAssertions` cop. ([@ghiculescu][])
