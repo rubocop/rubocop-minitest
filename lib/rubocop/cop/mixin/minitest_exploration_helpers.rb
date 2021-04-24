@@ -44,8 +44,7 @@ module RuboCop
       end
 
       def test_cases(class_node)
-        (class_def_nodes(class_node).select { |def_node| test_case_name?(def_node.method_name) }) +
-          test_method_calls(class_node)
+        class_def_nodes(class_node).select { |def_node| test_case_name?(def_node.method_name) }
       end
 
       def lifecycle_hooks(class_node)
@@ -62,12 +61,6 @@ module RuboCop
         else
           class_def.each_child_node(:def).to_a
         end
-      end
-
-      # support https://api.rubyonrails.org/classes/ActiveSupport/Testing/Declarative.html
-      def test_method_calls(class_node)
-        block_nodes = class_node.each_descendant(:block)
-        block_nodes.select { |block_node| block_node.method?(:test) }
       end
 
       def test_case_name?(name)
