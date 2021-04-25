@@ -93,6 +93,17 @@ class MultipleAssertionsTest < Minitest::Test
     assert_equal({ 'Max' => 2 }, @cop.config_to_allow_offenses[:exclude_limit])
   end
 
+  def test_does_not_register_offense_when_multiple_expectations_in_the_test_block
+    assert_no_offenses(<<~RUBY)
+      class FooTest < ActiveSupport::TestCase
+        test 'something' do
+          assert_equal(foo, bar)
+          assert_empty(array)
+        end
+      end
+    RUBY
+  end
+
   private
 
   def configure_max_assertions(max)

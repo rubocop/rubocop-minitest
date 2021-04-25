@@ -2,6 +2,10 @@
 
 ## master (unreleased)
 
+### Bug fixes
+
+* [#131](https://github.com/rubocop/rubocop-minitest/issues/131): Fix an error for `Minitest/MultipleAssertions` and fixes a false positive for `test` block. ([@koic][])
+
 ## 0.12.0 (2021-04-23)
 
 ### New features
