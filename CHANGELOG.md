@@ -2,6 +2,10 @@
 
 ## master (unreleased)
 
+### Changes
+
+* [#135](https://github.com/rubocop/rubocop-minitest/pull/135): Include `Minitest::Spec` path (`'**/test/**/*_spec.rb`) by defalt. ([@koic][])
+
 ## 0.12.1 (2021-04-25)
 
 ### Bug fixes

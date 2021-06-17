@@ -3,6 +3,7 @@ Minitest:
   Include:
     - '**/test/**/*'
     - '**/*_test.rb'
+    - '**/test/**/*_spec.rb' # For Minitest::Spec
 
 Minitest/AssertEmpty:
   Description: 'This cop enforces the test to use `assert_empty` instead of using `assert(object.empty?)`.'
