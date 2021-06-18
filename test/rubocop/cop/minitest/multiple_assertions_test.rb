@@ -11,7 +11,7 @@ class MultipleAssertionsTest < Minitest::Test
     assert_offense(<<~RUBY)
       class FooTest < Minitest::Test
         def test_asserts_twice
-            ^^^^^^^^^^^^^^^^^^ Test case has too many assertions [2/1].
+        ^^^^^^^^^^^^^^^^^^^^^^ Test case has too many assertions [2/1].
           assert_equal(foo, bar)
           assert_empty(array)
         end
@@ -23,7 +23,7 @@ class MultipleAssertionsTest < Minitest::Test
     assert_offense(<<~RUBY)
       class FooTest < ActiveSupport::TestCase
         def test_asserts_twice
-            ^^^^^^^^^^^^^^^^^^ Test case has too many assertions [2/1].
+        ^^^^^^^^^^^^^^^^^^^^^^ Test case has too many assertions [2/1].
           assert_equal(foo, bar)
           assert_empty(array)
         end
@@ -94,9 +94,10 @@ class MultipleAssertionsTest < Minitest::Test
   end
 
   def test_does_not_register_offense_when_multiple_expectations_in_the_test_block
-    assert_no_offenses(<<~RUBY)
+    assert_offense(<<~RUBY)
       class FooTest < ActiveSupport::TestCase
         test 'something' do
+        ^^^^^^^^^^^^^^^^^^^ Test case has too many assertions [2/1].
           assert_equal(foo, bar)
           assert_empty(array)
         end

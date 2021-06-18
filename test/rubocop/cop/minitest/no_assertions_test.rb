@@ -26,8 +26,8 @@ class NoAssertionsTest < Minitest::Test
     RUBY
   end
 
-  def test_does_not_register_offense_when_no_assertions_in_block_form
-    assert_no_offenses(<<~RUBY)
+  def test_registers_offense_when_no_assertions_in_block_form
+    assert_offense(<<~RUBY)
       class FooTest < Minitest::Test
         include Foo
 
@@ -39,6 +39,7 @@ class NoAssertionsTest < Minitest::Test
         end
 
         test "the truth" do
+        ^^^^^^^^^^^^^^^^^^^ Test case has no assertions.
         end
 
         test "another valid test" do
