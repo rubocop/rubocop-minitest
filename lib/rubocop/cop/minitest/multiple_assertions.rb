@@ -43,7 +43,7 @@ module RuboCop
             self.max = assertions_count
 
             message = format(MSG, total: assertions_count, max: max_assertions)
-            add_offense(node.loc.name, message: message)
+            add_offense(node, message: message)
           end
         end
 

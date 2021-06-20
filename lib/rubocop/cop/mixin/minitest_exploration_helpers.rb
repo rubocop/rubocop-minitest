@@ -44,7 +44,13 @@ module RuboCop
       end
 
       def test_cases(class_node)
-        class_def_nodes(class_node).select { |def_node| test_case_name?(def_node.method_name) }
+        test_cases = class_def_nodes(class_node).select { |def_node| test_case_name?(def_node.method_name) }
+
+        # Support Active Support's `test 'example' { ... }` method.
+        # https://api.rubyonrails.org/classes/ActiveSupport/Testing/Declarative.html
+        test_blocks = class_node.each_descendant(:block).select { |block_node| block_node.method?(:test) }
+
+        test_cases + test_blocks
       end
 
       def lifecycle_hooks(class_node)
