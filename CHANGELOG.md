@@ -2,6 +2,8 @@
 
 ## master (unreleased)
 
+## 0.13.0 (2021-06-20)
+
 ### New features
 
 * [#136](https://github.com/rubocop/rubocop-minitest/pull/136): Support Active Support's `test` method for `Minitest/MultipleAssertions` and `Minitest/NoAssertions` cops. ([@koic][])
