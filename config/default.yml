@@ -194,6 +194,11 @@ Minitest/TestMethodName:
   Enabled: 'pending'
   VersionAdded: '0.10'
 
+Minitest/UnreachableAssertion:
+  Description: 'This cop checks for an `assert_raises` block containing any unreachable assertions.'
+  Enabled: pending
+  VersionAdded: '0.14'
+
 Minitest/UnspecifiedException:
   Description: 'This cop checks for a specified error in `assert_raises`.'
   StyleGuide: 'https://minitest.rubystyle.guide#unspecified-exception'
