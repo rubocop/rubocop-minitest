@@ -23,6 +23,19 @@ Naming/PredicateName:
     - def_node_matcher
     - def_node_search
 
+Naming/InclusiveLanguage:
+  FlaggedTerms:
+    whitelist:
+      Suggestions:
+        - allowlist
+    blacklist:
+      Suggestions:
+        - denylist
+    master:
+      AllowedRegex:
+        - 'blob/master/'
+        - 'master \(unreleased\)'
+
 Style/FormatStringToken:
   # Because we parse a lot of source codes from strings. Percent arrays
   # look like unannotated format string tokens to this cop.
