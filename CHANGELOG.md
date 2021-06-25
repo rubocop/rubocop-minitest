@@ -2,6 +2,8 @@
 
 ## master (unreleased)
 
+* [#138](https://github.com/rubocop/rubocop-minitest/pull/138): Add new `Minitest/AssertIn` and `Minitest/RefuteIn` cops. ([@tayjohno][])
+
 ## 0.13.0 (2021-06-20)
 
 ### New features
@@ -222,3 +224,4 @@
 [@tsmmark]: https://github.com/tsmmark
 [@cstyles]: https://github.com/cstyles
 [@ghiculescu]: https://github.com/ghiculescu
+[@tayjohno]: https://github.com/tayjohno
