@@ -1109,6 +1109,38 @@ class FooTest < Minitest::Test
 end
 ----
 
+== Minitest/UnreachableAssertion
+
+|===
+| Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+
+| Pending
+| Yes
+| No
+| 0.14
+| -
+|===
+
+This cop checks for `assert_raises` has an assertion method at
+the bottom of block because the assertion will be never reached.
+
+=== Examples
+
+[source,ruby]
+----
+# bad
+assert_raises FooError do
+  obj.occur_error
+  assert_equal('foo', obj.bar) # Never asserted.
+end
+
+# good
+assert_raises FooError do
+  obj.occur_error
+end
+assert_equal('foo', obj.bar)
+----
+
 == Minitest/UnspecifiedException
 
 |===
