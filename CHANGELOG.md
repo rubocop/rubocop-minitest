@@ -2,6 +2,8 @@
 
 ## master (unreleased)
 
+## 0.14.0 (2021-07-03)
+
 ### New features
 
 * [#133](https://github.com/rubocop/rubocop-minitest/issues/133): Add new `Minitest/UnreachableAssertion` cop. ([@koic][])
