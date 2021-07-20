@@ -25,16 +25,9 @@ Naming/PredicateName:
 
 Naming/InclusiveLanguage:
   FlaggedTerms:
-    whitelist:
+    offence:
       Suggestions:
-        - allowlist
-    blacklist:
-      Suggestions:
-        - denylist
-    master:
-      AllowedRegex:
-        - 'blob/master/'
-        - 'master \(unreleased\)'
+        - offense
 
 Style/FormatStringToken:
   # Because we parse a lot of source codes from strings. Percent arrays
