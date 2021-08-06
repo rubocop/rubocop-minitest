@@ -85,6 +85,44 @@ class RefuteNilTest < Minitest::Test
     RUBY
   end
 
+  def test_registers_offense_when_using_refute_with_nil_predicate_method_call
+    assert_offense(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          refute(somestuff.nil?)
+          ^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_nil(somestuff)` over `refute(somestuff.nil?)`.
+        end
+      end
+    RUBY
+
+    assert_correction(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          refute_nil(somestuff)
+        end
+      end
+    RUBY
+  end
+
+  def test_registers_offense_when_using_refute_with_nil_predicate_method_call_and_message
+    assert_offense(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          refute(somestuff.nil?, 'message')
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_nil(somestuff, 'message')` over `refute(somestuff.nil?, 'message')`.
+        end
+      end
+    RUBY
+
+    assert_correction(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          refute_nil(somestuff, 'message')
+        end
+      end
+    RUBY
+  end
+
   def test_does_not_register_offense_when_using_refute_nil_method
     assert_no_offenses(<<~RUBY)
       class FooTest < Minitest::Test

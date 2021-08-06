@@ -261,8 +261,8 @@ assert_match(matcher, string, 'message')
 | -
 |===
 
-This cop enforces the test to use `assert_nil`
-instead of using `assert_equal(nil, something)`.
+This cop enforces the test to use `assert_nil` instead of using
+`assert_equal(nil, something)` or `assert(something.nil?)`.
 
 === Examples
 
@@ -271,6 +271,8 @@ instead of using `assert_equal(nil, something)`.
 # bad
 assert_equal(nil, actual)
 assert_equal(nil, actual, 'message')
+assert(object.nil?)
+assert(object.nil?, 'message')
 
 # good
 assert_nil(actual)
@@ -927,8 +929,8 @@ refute_match(matcher, string, 'message')
 | -
 |===
 
-This cop enforces the test to use `refute_nil`
-instead of using `refute_equal(nil, something)`.
+This cop enforces the test to use `refute_nil` instead of using
+`refute_equal(nil, something)` or `refute(something.nil?)`.
 
 === Examples
 
@@ -937,6 +939,8 @@ instead of using `refute_equal(nil, something)`.
 # bad
 refute_equal(nil, actual)
 refute_equal(nil, actual, 'message')
+refute(actual.nil?)
+refute(actual.nil?, 'message')
 
 # good
 refute_nil(actual)
