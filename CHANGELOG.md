@@ -2,6 +2,10 @@
 
 ## master (unreleased)
 
+### New features
+
+* [#140](https://github.com/rubocop/rubocop-minitest/issues/140): Make `Minitest/AssertNil` and `Minitest/RefuteNil` aware of `assert(obj.nil?)` and `refute(obj.nil?)`. ([@koic][])
+
 ## 0.14.0 (2021-07-03)
 
 ### New features

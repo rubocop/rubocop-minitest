@@ -59,7 +59,7 @@ Minitest/AssertKindOf:
   VersionAdded: '0.10'
 
 Minitest/AssertNil:
-  Description: 'This cop enforces the test to use `assert_nil` instead of using `assert_equal(nil, something)`.'
+  Description: 'This cop enforces the test to use `assert_nil` instead of using `assert_equal(nil, something)` or `assert(something.nil?)`.'
   StyleGuide: 'https://minitest.rubystyle.guide#assert-nil'
   Enabled: true
   VersionAdded: '0.1'
@@ -172,7 +172,7 @@ Minitest/RefuteKindOf:
   VersionAdded: '0.10'
 
 Minitest/RefuteNil:
-  Description: 'This cop enforces the test to use `refute_nil` instead of using `refute_equal(nil, something)`.'
+  Description: 'This cop enforces the test to use `refute_nil` instead of using `refute_equal(nil, something)` or `refute(something.nil?)`.'
   StyleGuide: 'https://minitest.rubystyle.guide#refute-nil'
   Enabled: true
   VersionAdded: '0.2'

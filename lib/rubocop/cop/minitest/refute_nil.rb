@@ -3,13 +3,15 @@
 module RuboCop
   module Cop
     module Minitest
-      # This cop enforces the test to use `refute_nil`
-      # instead of using `refute_equal(nil, something)`.
+      # This cop enforces the test to use `refute_nil` instead of using
+      # `refute_equal(nil, something)` or `refute(something.nil?)`.
       #
       # @example
       #   # bad
       #   refute_equal(nil, actual)
       #   refute_equal(nil, actual, 'message')
+      #   refute(actual.nil?)
+      #   refute(actual.nil?, 'message')
       #
       #   # good
       #   refute_nil(actual)
@@ -17,29 +19,29 @@ module RuboCop
       #
       class RefuteNil < Base
         include ArgumentRangeHelper
+        include NilAssertionHandleable
         extend AutoCorrector
 
-        MSG = 'Prefer using `refute_nil(%<arguments>s)` over ' \
-              '`refute_equal(nil, %<arguments>s)`.'
-        RESTRICT_ON_SEND = %i[refute_equal].freeze
+        ASSERTION_TYPE = 'refute'
+        RESTRICT_ON_SEND = %i[refute_equal refute].freeze
 
-        def_node_matcher :refute_equal_with_nil, <<~PATTERN
-          (send nil? :refute_equal nil $_ $...)
+        def_node_matcher :nil_refutation, <<~PATTERN
+          {
+            (send nil? :refute_equal nil $_ $...)
+            (send nil? :refute (send $_ :nil?) $...)
+          }
         PATTERN
 
         def on_send(node)
-          refute_equal_with_nil(node) do |actual, message|
-            message = message.first
-
-            arguments = [actual.source, message&.source].compact.join(', ')
-
-            add_offense(node, message: format(MSG, arguments: arguments)) do |corrector|
-              corrector.replace(node.loc.selector, 'refute_nil')
-              corrector.replace(
-                first_and_second_arguments_range(node), actual.source
-              )
-            end
+          nil_refutation(node) do |actual, message|
+            register_offense(node, actual, message)
           end
+        end
+
+        private
+
+        def assertion_type
+          ASSERTION_TYPE
         end
       end
     end
