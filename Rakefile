@@ -24,12 +24,7 @@ Rake::TestTask.new do |t|
 end
 
 desc 'Run RuboCop over itself'
-RuboCop::RakeTask.new(:internal_investigation).tap do |task|
-  if RUBY_ENGINE == 'ruby' &&
-     RbConfig::CONFIG['host_os'] !~ /mswin|msys|mingw|cygwin|bccwin|wince|emc/
-    task.options = %w[--parallel]
-  end
-end
+RuboCop::RakeTask.new(:internal_investigation)
 
 task default: %i[
   documentation_syntax_check
