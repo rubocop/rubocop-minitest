@@ -95,6 +95,3 @@ Naming/FileName:
 Metrics/ModuleLength:
   Exclude:
     - 'test/**/*.rb'
-
-Performance/ChainArrayAllocation:
-  Enabled: false
