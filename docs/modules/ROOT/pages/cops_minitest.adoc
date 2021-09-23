@@ -3,7 +3,7 @@
 == Minitest/AssertEmpty
 
 |===
-| Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+| Enabled by default | Safe | Supports autocorrection | Version Added | Version Changed
 
 | Enabled
 | Yes
@@ -35,7 +35,7 @@ assert_empty(object, 'message')
 == Minitest/AssertEmptyLiteral
 
 |===
-| Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+| Enabled by default | Safe | Supports autocorrection | Version Added | Version Changed
 
 | Enabled
 | Yes
@@ -62,7 +62,7 @@ assert_empty(object)
 == Minitest/AssertEqual
 
 |===
-| Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+| Enabled by default | Safe | Supports autocorrection | Version Added | Version Changed
 
 | Enabled
 | Yes
@@ -92,7 +92,7 @@ assert_equal("rubocop-minitest", actual)
 == Minitest/AssertInDelta
 
 |===
-| Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+| Enabled by default | Safe | Supports autocorrection | Version Added | Version Changed
 
 | Pending
 | Yes
@@ -124,7 +124,7 @@ assert_in_delta(0.2, actual, 0.001, 'message')
 == Minitest/AssertIncludes
 
 |===
-| Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+| Enabled by default | Safe | Supports autocorrection | Version Added | Version Changed
 
 | Enabled
 | Yes
@@ -156,7 +156,7 @@ assert_includes(collection, object, 'message')
 == Minitest/AssertInstanceOf
 
 |===
-| Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+| Enabled by default | Safe | Supports autocorrection | Version Added | Version Changed
 
 | Enabled
 | Yes
@@ -188,7 +188,7 @@ assert_instance_of(Class, object, 'message')
 == Minitest/AssertKindOf
 
 |===
-| Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+| Enabled by default | Safe | Supports autocorrection | Version Added | Version Changed
 
 | Pending
 | Yes
@@ -220,7 +220,7 @@ assert_kind_of(Class, object, 'message')
 == Minitest/AssertMatch
 
 |===
-| Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+| Enabled by default | Safe | Supports autocorrection | Version Added | Version Changed
 
 | Enabled
 | Yes
@@ -252,7 +252,7 @@ assert_match(matcher, string, 'message')
 == Minitest/AssertNil
 
 |===
-| Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+| Enabled by default | Safe | Supports autocorrection | Version Added | Version Changed
 
 | Enabled
 | Yes
@@ -286,7 +286,7 @@ assert_nil(actual, 'message')
 == Minitest/AssertOutput
 
 |===
-| Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+| Enabled by default | Safe | Supports autocorrection | Version Added | Version Changed
 
 | Pending
 | Yes
@@ -318,7 +318,7 @@ assert_output(expected) { puts object.method }
 == Minitest/AssertPathExists
 
 |===
-| Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+| Enabled by default | Safe | Supports autocorrection | Version Added | Version Changed
 
 | Pending
 | Yes
@@ -350,7 +350,7 @@ assert_path_exists(path, 'message')
 == Minitest/AssertRespondTo
 
 |===
-| Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+| Enabled by default | Safe | Supports autocorrection | Version Added | Version Changed
 
 | Enabled
 | Yes
@@ -384,7 +384,7 @@ assert_respond_to(self, :do_something)
 == Minitest/AssertSilent
 
 |===
-| Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+| Enabled by default | Safe | Supports autocorrection | Version Added | Version Changed
 
 | Pending
 | Yes
@@ -414,7 +414,7 @@ assert_silent { puts object.do_something }
 == Minitest/AssertTruthy
 
 |===
-| Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+| Enabled by default | Safe | Supports autocorrection | Version Added | Version Changed
 
 | Enabled
 | Yes
@@ -446,7 +446,7 @@ assert(actual, 'message')
 == Minitest/AssertWithExpectedArgument
 
 |===
-| Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+| Enabled by default | Safe | Supports autocorrection | Version Added | Version Changed
 
 | Pending
 | No
@@ -478,7 +478,7 @@ assert(foo, 'message')
 == Minitest/AssertionInLifecycleHook
 
 |===
-| Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+| Enabled by default | Safe | Supports autocorrection | Version Added | Version Changed
 
 | Pending
 | Yes
@@ -511,7 +511,7 @@ end
 == Minitest/GlobalExpectations
 
 |===
-| Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+| Enabled by default | Safe | Supports autocorrection | Version Added | Version Changed
 
 | Enabled
 | Yes
@@ -545,7 +545,7 @@ _ { musts }.must_raise TypeError
 == Minitest/LiteralAsActualArgument
 
 |===
-| Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+| Enabled by default | Safe | Supports autocorrection | Version Added | Version Changed
 
 | Pending
 | Yes
@@ -579,7 +579,7 @@ assert_equal [1, 2], foo, 'message'
 == Minitest/MultipleAssertions
 
 |===
-| Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+| Enabled by default | Safe | Supports autocorrection | Version Added | Version Changed
 
 | Pending
 | Yes
@@ -630,7 +630,7 @@ end
 == Minitest/NoAssertions
 
 |===
-| Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+| Enabled by default | Safe | Supports autocorrection | Version Added | Version Changed
 
 | Disabled
 | Yes
@@ -662,7 +662,7 @@ end
 == Minitest/RefuteEmpty
 
 |===
-| Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+| Enabled by default | Safe | Supports autocorrection | Version Added | Version Changed
 
 | Enabled
 | Yes
@@ -694,7 +694,7 @@ refute_empty(object, 'message')
 == Minitest/RefuteEqual
 
 |===
-| Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+| Enabled by default | Safe | Supports autocorrection | Version Added | Version Changed
 
 | Enabled
 | Yes
@@ -725,7 +725,7 @@ refute_equal("rubocop-minitest", actual)
 == Minitest/RefuteFalse
 
 |===
-| Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+| Enabled by default | Safe | Supports autocorrection | Version Added | Version Changed
 
 | Enabled
 | Yes
@@ -760,7 +760,7 @@ refute(actual, 'message')
 == Minitest/RefuteInDelta
 
 |===
-| Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+| Enabled by default | Safe | Supports autocorrection | Version Added | Version Changed
 
 | Pending
 | Yes
@@ -792,7 +792,7 @@ refute_in_delta(0.2, actual, 0.001, 'message')
 == Minitest/RefuteIncludes
 
 |===
-| Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+| Enabled by default | Safe | Supports autocorrection | Version Added | Version Changed
 
 | Enabled
 | Yes
@@ -824,7 +824,7 @@ refute_includes(collection, object, 'message')
 == Minitest/RefuteInstanceOf
 
 |===
-| Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+| Enabled by default | Safe | Supports autocorrection | Version Added | Version Changed
 
 | Enabled
 | Yes
@@ -856,7 +856,7 @@ refute_instance_of(Class, object, 'message')
 == Minitest/RefuteKindOf
 
 |===
-| Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+| Enabled by default | Safe | Supports autocorrection | Version Added | Version Changed
 
 | Pending
 | Yes
@@ -888,7 +888,7 @@ refute_kind_of(Class, object, 'message')
 == Minitest/RefuteMatch
 
 |===
-| Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+| Enabled by default | Safe | Supports autocorrection | Version Added | Version Changed
 
 | Enabled
 | Yes
@@ -920,7 +920,7 @@ refute_match(matcher, string, 'message')
 == Minitest/RefuteNil
 
 |===
-| Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+| Enabled by default | Safe | Supports autocorrection | Version Added | Version Changed
 
 | Enabled
 | Yes
@@ -954,7 +954,7 @@ refute_nil(actual, 'message')
 == Minitest/RefutePathExists
 
 |===
-| Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+| Enabled by default | Safe | Supports autocorrection | Version Added | Version Changed
 
 | Pending
 | Yes
@@ -986,7 +986,7 @@ refute_path_exists(path, 'message')
 == Minitest/RefuteRespondTo
 
 |===
-| Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+| Enabled by default | Safe | Supports autocorrection | Version Added | Version Changed
 
 | Enabled
 | Yes
@@ -1020,7 +1020,7 @@ refute_respond_to(self, :do_something)
 == Minitest/TestMethodName
 
 |===
-| Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+| Enabled by default | Safe | Supports autocorrection | Version Added | Version Changed
 
 | Pending
 | Yes
@@ -1060,7 +1060,7 @@ end
 == Minitest/UnreachableAssertion
 
 |===
-| Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+| Enabled by default | Safe | Supports autocorrection | Version Added | Version Changed
 
 | Pending
 | Yes
@@ -1092,7 +1092,7 @@ assert_equal('foo', obj.bar)
 == Minitest/UnspecifiedException
 
 |===
-| Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+| Enabled by default | Safe | Supports autocorrection | Version Added | Version Changed
 
 | Pending
 | Yes
