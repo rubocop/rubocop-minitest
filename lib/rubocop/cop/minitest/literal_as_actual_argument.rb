@@ -27,17 +27,16 @@ module RuboCop
         def on_send(node)
           return unless node.method?(:assert_equal)
 
-          actual = node.arguments[1]
+          expected, actual, message = *node.arguments
           return unless actual&.recursive_basic_literal?
+          return if expected.recursive_basic_literal?
 
           add_offense(all_arguments_range(node)) do |corrector|
-            autocorrect(corrector, node)
+            autocorrect(corrector, node, expected, actual, message)
           end
         end
 
-        def autocorrect(corrector, node)
-          expected, actual, message = *node.arguments
-
+        def autocorrect(corrector, node, expected, actual, message)
           new_actual_source = if actual.hash_type? && !actual.braces?
                                 "{#{actual.source}}"
                               else
