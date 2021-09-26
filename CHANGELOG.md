@@ -2,6 +2,8 @@
 
 ## master (unreleased)
 
+## 0.15.1 (2021-09-26)
+
 ### Bug fixes
 
 * [#143](https://github.com/rubocop/rubocop-minitest/issues/143): Fix an error for `Minitest/LiteralAsActualArgumentTest` when expected and actual arguments are literals. ([@koic][])
