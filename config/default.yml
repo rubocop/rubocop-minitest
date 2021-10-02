@@ -11,9 +11,8 @@ Minitest/AssertEmpty:
   VersionAdded: '0.2'
 
 Minitest/AssertEmptyLiteral:
-  Description: 'This cop enforces the test to use `assert_empty` instead of using `assert([], object)` or `assert({}, object)`.'
+  Description: 'This cop enforces the test to use `assert_empty` instead of using `assert_equal([], object)`.'
   Enabled: true
-  SafeAutoCorrect: false
   VersionAdded: '0.5'
   VersionChanged: '0.11'
 

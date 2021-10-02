@@ -39,13 +39,13 @@ assert_empty(object, 'message')
 
 | Enabled
 | Yes
-| Yes (Unsafe)
+| Yes
 | 0.5
 | 0.11
 |===
 
 This cop enforces the test to use `assert_empty`
-instead of using `assert_equal([], object)`.
+instead of using `assert_equal([], object)` or `assert_equal({}, object)`.
 
 === Examples
 
