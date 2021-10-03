@@ -4,7 +4,7 @@ module RuboCop
   module Cop
     module Minitest
       # This cop enforces the test to use `assert_empty`
-      # instead of using `assert_equal([], object)`.
+      # instead of using `assert_equal([], object)` or `assert_equal({}, object)`.
       #
       # @example
       #   # bad
