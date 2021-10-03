@@ -6,8 +6,9 @@ module RuboCop
       # This cop tries to detect when a user accidentally used
       # `assert` when they meant to use `assert_equal`.
       #
-      # It is marked as unsafe because it is not possible to determine
-      # whether the second argument of `assert` is a message or not.
+      # @safety
+      #   This cop is unsafe because it is not possible to determine
+      #   whether the second argument of `assert` is a message or not.
       #
       # @example
       #   # bad
