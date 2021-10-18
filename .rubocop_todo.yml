@@ -10,6 +10,8 @@
 # Configuration parameters: CountComments, CountAsOne, ExcludedMethods.
 Metrics/MethodLength:
   Max: 14
+  Exclude:
+    - 'test/rubocop/cop/minitest/global_expectations_test.rb'
 
 # Offense count: 1
 Style/DocumentDynamicEvalDefinition:

@@ -2,6 +2,10 @@
 
 ## master (unreleased)
 
+### New features
+
+* [#147](https://github.com/rubocop/rubocop-minitest/issues/147): Add `EnforcedStyle` config parameter for `Minitest/GlobalExpectations`. ([@gi][])
+
 ### Bug fixes
 
 * [#142](https://github.com/rubocop/rubocop-minitest/issues/142): Fix `Minitest/GlobalExpectations` autocorrect when receiver is lambda. ([@gi][])

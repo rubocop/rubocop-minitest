@@ -3,18 +3,26 @@
 require 'test_helper'
 
 class GlobalExpectationsTest < Minitest::Test
+  def setup
+    configure_enforced_style(style)
+  end
+
+  def style
+    :any
+  end
+
   RuboCop::Cop::Minitest::GlobalExpectations::VALUE_MATCHERS.each do |matcher|
     define_method(:"test_registers_offense_when_using_global_#{matcher}") do
       assert_offense(<<~RUBY)
         it 'does something' do
           n.#{matcher} 42
-          ^ Use `_(n)` instead.
+          ^ Use `#{@preferred_method}(n)` instead.
         end
       RUBY
 
       assert_correction(<<~RUBY)
         it 'does something' do
-          _(n).#{matcher} 42
+          #{@preferred_method}(n).#{matcher} 42
         end
       RUBY
     end
@@ -24,14 +32,14 @@ class GlobalExpectationsTest < Minitest::Test
         it 'does something' do
           n = do_something
           n.#{matcher} 42
-          ^ Use `_(n)` instead.
+          ^ Use `#{@preferred_method}(n)` instead.
         end
       RUBY
 
       assert_correction(<<~RUBY)
         it 'does something' do
           n = do_something
-          _(n).#{matcher} 42
+          #{@preferred_method}(n).#{matcher} 42
         end
       RUBY
     end
@@ -41,14 +49,14 @@ class GlobalExpectationsTest < Minitest::Test
         it 'does something' do
           @n = do_something
           @n.#{matcher} 42
-          ^^ Use `_(@n)` instead.
+          ^^ Use `#{@preferred_method}(@n)` instead.
         end
       RUBY
 
       assert_correction(<<~RUBY)
         it 'does something' do
           @n = do_something
-          _(@n).#{matcher} 42
+          #{@preferred_method}(@n).#{matcher} 42
         end
       RUBY
     end
@@ -58,14 +66,14 @@ class GlobalExpectationsTest < Minitest::Test
         it 'does something' do
           @@n = do_something
           @@n.#{matcher} 42
-          ^^^ Use `_(@@n)` instead.
+          ^^^ Use `#{@preferred_method}(@@n)` instead.
         end
       RUBY
 
       assert_correction(<<~RUBY)
         it 'does something' do
           @@n = do_something
-          _(@@n).#{matcher} 42
+          #{@preferred_method}(@@n).#{matcher} 42
         end
       RUBY
     end
@@ -75,14 +83,14 @@ class GlobalExpectationsTest < Minitest::Test
         it 'does something' do
           $n = do_something
           $n.#{matcher} 42
-          ^^ Use `_($n)` instead.
+          ^^ Use `#{@preferred_method}($n)` instead.
         end
       RUBY
 
       assert_correction(<<~RUBY)
         it 'does something' do
           $n = do_something
-          _($n).#{matcher} 42
+          #{@preferred_method}($n).#{matcher} 42
         end
       RUBY
     end
@@ -92,14 +100,14 @@ class GlobalExpectationsTest < Minitest::Test
         it 'does something' do
           n = do_something
           n[:foo].#{matcher} 42
-          ^^^^^^^ Use `_(n[:foo])` instead.
+          ^^^^^^^ Use `#{@preferred_method}(n[:foo])` instead.
         end
       RUBY
 
       assert_correction(<<~RUBY)
         it 'does something' do
           n = do_something
-          _(n[:foo]).#{matcher} 42
+          #{@preferred_method}(n[:foo]).#{matcher} 42
         end
       RUBY
     end
@@ -109,14 +117,14 @@ class GlobalExpectationsTest < Minitest::Test
         it 'does something' do
           @n = do_something
           @n[:foo].#{matcher} 42
-          ^^^^^^^^ Use `_(@n[:foo])` instead.
+          ^^^^^^^^ Use `#{@preferred_method}(@n[:foo])` instead.
         end
       RUBY
 
       assert_correction(<<~RUBY)
         it 'does something' do
           @n = do_something
-          _(@n[:foo]).#{matcher} 42
+          #{@preferred_method}(@n[:foo]).#{matcher} 42
         end
       RUBY
     end
@@ -126,14 +134,14 @@ class GlobalExpectationsTest < Minitest::Test
         it 'does something' do
           @@n = do_something
           @@n[:foo].#{matcher} 42
-          ^^^^^^^^^ Use `_(@@n[:foo])` instead.
+          ^^^^^^^^^ Use `#{@preferred_method}(@@n[:foo])` instead.
         end
       RUBY
 
       assert_correction(<<~RUBY)
         it 'does something' do
           @@n = do_something
-          _(@@n[:foo]).#{matcher} 42
+          #{@preferred_method}(@@n[:foo]).#{matcher} 42
         end
       RUBY
     end
@@ -143,53 +151,98 @@ class GlobalExpectationsTest < Minitest::Test
         it 'does something' do
           $n = do_something
           $n[:foo].#{matcher} 42
-          ^^^^^^^^ Use `_($n[:foo])` instead.
+          ^^^^^^^^ Use `#{@preferred_method}($n[:foo])` instead.
         end
       RUBY
 
       assert_correction(<<~RUBY)
         it 'does something' do
           $n = do_something
-          _($n[:foo]).#{matcher} 42
+          #{@preferred_method}($n[:foo]).#{matcher} 42
         end
       RUBY
     end
 
     define_method(:"test_no_offense_when_using_expect_form_of_#{matcher}") do
-      assert_no_offenses(<<~RUBY)
-        it 'does something' do
-          _(n).#{matcher} 42
-        end
-      RUBY
+      if style == :_ || style == :any
+        assert_no_offenses(<<~RUBY)
+          it 'does something' do
+            _(n).#{matcher} 42
+          end
+        RUBY
+      else
+        assert_offense(<<~RUBY)
+          it 'does something' do
+            _(n).#{matcher} 42
+            ^^^^ Use `#{@preferred_method}` instead.
+          end
+        RUBY
+
+        assert_correction(<<~RUBY)
+          it 'does something' do
+            #{@preferred_method}(n).#{matcher} 42
+          end
+        RUBY
+      end
     end
 
     define_method(:"test_no_offense_when_using_expect_form_of_#{matcher}_with_value_method") do
-      assert_no_offenses(<<~RUBY)
-        it 'does something' do
-          value(n).#{matcher} 42
-        end
-      RUBY
+      if style == :value || style == :any
+        assert_no_offenses(<<~RUBY)
+          it 'does something' do
+            value(n).#{matcher} 42
+          end
+        RUBY
+      else
+        assert_offense(<<~RUBY)
+          it 'does something' do
+            value(n).#{matcher} 42
+            ^^^^^^^^ Use `#{@preferred_method}` instead.
+          end
+        RUBY
+
+        assert_correction(<<~RUBY)
+          it 'does something' do
+            #{@preferred_method}(n).#{matcher} 42
+          end
+        RUBY
+      end
     end
 
     define_method(:"test_no_offense_when_using_expect_form_of_#{matcher}_with_expect_method") do
-      assert_no_offenses(<<~RUBY)
-        it 'does something' do
-          expect(n).#{matcher} 42
-        end
-      RUBY
+      if style == :expect || style == :any
+        assert_no_offenses(<<~RUBY)
+          it 'does something' do
+            expect(n).#{matcher} 42
+          end
+        RUBY
+      else
+        assert_offense(<<~RUBY)
+          it 'does something' do
+            expect(n).#{matcher} 42
+            ^^^^^^^^^ Use `#{@preferred_method}` instead.
+          end
+        RUBY
+
+        assert_correction(<<~RUBY)
+          it 'does something' do
+            #{@preferred_method}(n).#{matcher} 42
+          end
+        RUBY
+      end
     end
 
     define_method(:"test_registers_offense_when_using_global_#{matcher}_for_chained_hash_reference") do
       assert_offense(<<~RUBY)
         it 'does something' do
           options[:a][:b].#{matcher} 0
-          ^^^^^^^^^^^^^^^ Use `_(options[:a][:b])` instead.
+          ^^^^^^^^^^^^^^^ Use `#{@preferred_method}(options[:a][:b])` instead.
         end
       RUBY
 
       assert_correction(<<~RUBY)
         it 'does something' do
-          _(options[:a][:b]).#{matcher} 0
+          #{@preferred_method}(options[:a][:b]).#{matcher} 0
         end
       RUBY
     end
@@ -198,13 +251,13 @@ class GlobalExpectationsTest < Minitest::Test
       assert_offense(<<~RUBY)
         it 'does something' do
           foo(a).#{matcher} 0
-          ^^^^^^ Use `_(foo(a))` instead.
+          ^^^^^^ Use `#{@preferred_method}(foo(a))` instead.
         end
       RUBY
 
       assert_correction(<<~RUBY)
         it 'does something' do
-          _(foo(a)).#{matcher} 0
+          #{@preferred_method}(foo(a)).#{matcher} 0
         end
       RUBY
     end
@@ -213,13 +266,13 @@ class GlobalExpectationsTest < Minitest::Test
       assert_offense(<<~RUBY)
         it 'does something' do
           C.#{matcher}(:a)
-          ^ Use `_(C)` instead.
+          ^ Use `#{@preferred_method}(C)` instead.
         end
       RUBY
 
       assert_correction(<<~RUBY)
         it 'does something' do
-          _(C).#{matcher}(:a)
+          #{@preferred_method}(C).#{matcher}(:a)
         end
       RUBY
     end
@@ -229,13 +282,13 @@ class GlobalExpectationsTest < Minitest::Test
     assert_offense(<<~RUBY)
       it 'does something' do
         A.foo.bar.must_equal 42
-        ^^^^^^^^^ Use `_(A.foo.bar)` instead.
+        ^^^^^^^^^ Use `#{@preferred_method}(A.foo.bar)` instead.
       end
     RUBY
 
     assert_correction(<<~RUBY)
       it 'does something' do
-        _(A.foo.bar).must_equal 42
+        #{@preferred_method}(A.foo.bar).must_equal 42
       end
     RUBY
   end
@@ -245,13 +298,13 @@ class GlobalExpectationsTest < Minitest::Test
       assert_offense(<<~RUBY)
         it 'does something' do
           n.#{matcher} 42
-          ^ Use `_ { n }` instead.
+          ^ Use `#{@preferred_method} { n }` instead.
         end
       RUBY
 
       assert_correction(<<~RUBY)
         it 'does something' do
-          _ { n }.#{matcher} 42
+          #{@preferred_method} { n }.#{matcher} 42
         end
       RUBY
     end
@@ -260,55 +313,153 @@ class GlobalExpectationsTest < Minitest::Test
       assert_offense(<<~RUBY)
         it 'does something' do
           -> { n }.#{matcher} 42
-          ^^^^^^^^ Use `_ { n }` instead.
+          ^^^^^^^^ Use `#{@preferred_method} { n }` instead.
         end
       RUBY
 
       assert_correction(<<~RUBY)
         it 'does something' do
-          _ { n }.#{matcher} 42
+          #{@preferred_method} { n }.#{matcher} 42
         end
       RUBY
     end
 
     define_method(:"test_no_offense_when_using_expect_form_of_#{matcher}") do
-      assert_no_offenses(<<~RUBY)
-        it 'does something' do
-          _ { n }.#{matcher} 42
-        end
-      RUBY
+      if style == :_ || style == :any
+        assert_no_offenses(<<~RUBY)
+          it 'does something' do
+            _(n).#{matcher} 42
+          end
+        RUBY
+      else
+        assert_offense(<<~RUBY)
+          it 'does something' do
+            _(n).#{matcher} 42
+            ^^^^ Use `#{@preferred_method}` instead.
+          end
+        RUBY
+
+        assert_correction(<<~RUBY)
+          it 'does something' do
+            #{@preferred_method}(n).#{matcher} 42
+          end
+        RUBY
+      end
+    end
+
+    define_method(:"test_no_offense_when_using_expect_form_of_#{matcher}_with_block") do
+      if style == :_ || style == :any
+        assert_no_offenses(<<~RUBY)
+          it 'does something' do
+            _ { n }.#{matcher} 42
+          end
+        RUBY
+      else
+        assert_offense(<<~RUBY)
+          it 'does something' do
+            _ { n }.#{matcher} 42
+            ^^^^^^^ Use `#{@preferred_method}` instead.
+          end
+        RUBY
+
+        assert_correction(<<~RUBY)
+          it 'does something' do
+            #{@preferred_method} { n }.#{matcher} 42
+          end
+        RUBY
+      end
     end
 
     define_method(:"test_no_offense_when_using_expect_form_of_#{matcher}_with_value_method") do
-      assert_no_offenses(<<~RUBY)
-        it 'does something' do
-          value(n).#{matcher} 42
-        end
-      RUBY
+      if style == :value || style == :any
+        assert_no_offenses(<<~RUBY)
+          it 'does something' do
+            value(n).#{matcher} 42
+          end
+        RUBY
+      else
+        assert_offense(<<~RUBY)
+          it 'does something' do
+            value(n).#{matcher} 42
+            ^^^^^^^^ Use `#{@preferred_method}` instead.
+          end
+        RUBY
+
+        assert_correction(<<~RUBY)
+          it 'does something' do
+            #{@preferred_method}(n).#{matcher} 42
+          end
+        RUBY
+      end
     end
 
     define_method(:"test_no_offense_when_using_expect_form_of_#{matcher}_with_expect_method") do
-      assert_no_offenses(<<~RUBY)
-        it 'does something' do
-          expect(n).#{matcher} 42
-        end
-      RUBY
+      if style == :expect || style == :any
+        assert_no_offenses(<<~RUBY)
+          it 'does something' do
+            expect(n).#{matcher} 42
+          end
+        RUBY
+      else
+        assert_offense(<<~RUBY)
+          it 'does something' do
+            expect(n).#{matcher} 42
+            ^^^^^^^^^ Use `#{@preferred_method}` instead.
+          end
+        RUBY
+
+        assert_correction(<<~RUBY)
+          it 'does something' do
+            #{@preferred_method}(n).#{matcher} 42
+          end
+        RUBY
+      end
     end
 
     define_method(:"test_no_offense_when_using_expect_form_of_#{matcher}_with_value_method_and_block") do
-      assert_no_offenses(<<~RUBY)
-        it 'does something' do
-          value { n }.#{matcher} 42
-        end
-      RUBY
+      if style == :value || style == :any
+        assert_no_offenses(<<~RUBY)
+          it 'does something' do
+            value { n }.#{matcher} 42
+          end
+        RUBY
+      else
+        assert_offense(<<~RUBY)
+          it 'does something' do
+            value { n }.#{matcher} 42
+            ^^^^^^^^^^^ Use `#{@preferred_method}` instead.
+          end
+        RUBY
+
+        assert_correction(<<~RUBY)
+          it 'does something' do
+            #{@preferred_method} { n }.#{matcher} 42
+          end
+        RUBY
+      end
     end
 
     define_method(:"test_no_offense_when_using_expect_form_of_#{matcher}_with_expect_method_and_block") do
-      assert_no_offenses(<<~RUBY)
-        it 'does something' do
-          expect { n }.#{matcher} 42
-        end
-      RUBY
+      if style == :expect || style == :any
+        assert_no_offenses(<<~RUBY)
+          it 'does something' do
+            expect { n }.#{matcher} 42
+          end
+        RUBY
+      else
+        assert_offense(<<~RUBY)
+          it 'does something' do
+            expect { n }.#{matcher} 42
+            ^^^^^^^^^^^^ Use `#{@preferred_method}` instead.
+          end
+        RUBY
+
+        assert_correction(<<~RUBY)
+          it 'does something' do
+            #{@preferred_method} { n }.#{matcher} 42
+          end
+        RUBY
+      end
     end
   end
 
@@ -316,14 +467,47 @@ class GlobalExpectationsTest < Minitest::Test
     assert_offense(<<~RUBY)
       it 'does something' do
         n.must_be_nil
-        ^ Use `_(n)` instead.
+        ^ Use `#{@preferred_method}(n)` instead.
       end
     RUBY
 
     assert_correction(<<~RUBY)
       it 'does something' do
-        _(n).must_be_nil
+        #{@preferred_method}(n).must_be_nil
       end
     RUBY
+  end
+
+  # Test Case: When PreferredMethod: _
+  class WhenPreferredMethodUnderscore < self
+    def style
+      :_
+    end
+  end
+
+  # Test Case: When PreferredMethod: expect
+  class WhenPreferredMethodExpect < self
+    def style
+      :expect
+    end
+  end
+
+  # Test Case: When PreferredMethod: value
+  class WhenPreferredMethodValue < self
+    def style
+      :value
+    end
+  end
+
+  private
+
+  def configure_enforced_style(style)
+    all_config = RuboCop::Minitest::CONFIG
+    cop_config = all_config['Minitest/GlobalExpectations']
+    cop_config = cop_config.merge('EnforcedStyle' => style)
+    all_config = all_config.merge('Minitest/GlobalExpectations' => cop_config)
+    config = RuboCop::Config.new(all_config)
+    @cop = RuboCop::Cop::Minitest::GlobalExpectations.new(config)
+    @preferred_method = style == :any ? :_ : style
   end
 end
