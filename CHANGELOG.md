@@ -2,6 +2,10 @@
 
 ## master (unreleased)
 
+### Bug fixes
+
+* [#142](https://github.com/rubocop/rubocop-minitest/issues/142): Fix `Minitest/GlobalExpectations` autocorrect when receiver is lambda. ([@gi][])
+
 ## 0.15.2 (2021-10-11)
 
 ### Bug fixes
@@ -246,3 +250,4 @@
 [@tsmmark]: https://github.com/tsmmark
 [@cstyles]: https://github.com/cstyles
 [@ghiculescu]: https://github.com/ghiculescu
+[@gi]: https://github.com/gi

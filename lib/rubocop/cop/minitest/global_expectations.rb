@@ -67,25 +67,27 @@ module RuboCop
 
           message = format(MSG, preferred: preferred_receiver(node))
 
-          add_offense(node.receiver.source_range, message: message) do |corrector|
-            receiver = node.receiver.source_range
-
-            if BLOCK_MATCHERS.include?(node.method_name)
-              corrector.wrap(receiver, '_ { ', ' }')
-            else
-              corrector.wrap(receiver, '_(', ')')
-            end
+          add_offense(node.receiver, message: message) do |corrector|
+            receiver = node.receiver
+            replacement = preferred_receiver(node)
+            corrector.replace(receiver, replacement)
           end
         end
 
         private
 
+        def preferred_method
+          :_
+        end
+
         def preferred_receiver(node)
-          source = node.receiver.source
+          receiver = node.receiver
+
           if BLOCK_MATCHERS.include?(node.method_name)
-            "_ { #{source} }"
+            body = receiver.lambda? ? receiver.body : receiver
+            "#{preferred_method} { #{body.source} }"
           else
-            "_(#{source})"
+            "#{preferred_method}(#{receiver.source})"
           end
         end
       end
