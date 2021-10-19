@@ -256,6 +256,21 @@ class GlobalExpectationsTest < Minitest::Test
       RUBY
     end
 
+    define_method(:"test_registers_offense_when_using_global_#{matcher}_and_block") do
+      assert_offense(<<~RUBY)
+        it 'does something' do
+          -> { n }.#{matcher} 42
+          ^^^^^^^^ Use `_ { n }` instead.
+        end
+      RUBY
+
+      assert_correction(<<~RUBY)
+        it 'does something' do
+          _ { n }.#{matcher} 42
+        end
+      RUBY
+    end
+
     define_method(:"test_no_offense_when_using_expect_form_of_#{matcher}") do
       assert_no_offenses(<<~RUBY)
         it 'does something' do
