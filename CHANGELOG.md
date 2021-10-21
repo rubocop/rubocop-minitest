@@ -5,6 +5,7 @@
 ### Bug fixes
 
 * [#142](https://github.com/rubocop/rubocop-minitest/issues/142): Fix `Minitest/GlobalExpectations` autocorrect when receiver is lambda. ([@gi][])
+* [#150](https://github.com/rubocop/rubocop-minitest/issues/150): Fix a false positive for `Minitest/AssertEmpty` and `RefuteEmpty` cops when using `empty` method with any arguments. ([@koic][])
 
 ## 0.15.2 (2021-10-11)
 

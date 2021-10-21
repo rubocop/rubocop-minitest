@@ -19,6 +19,17 @@ module RuboCop
         extend MinitestCopRule
 
         define_rule :refute, target_method: :empty?
+
+        def on_send(node)
+          return unless node.method?(:refute)
+          return unless (arguments = peel_redundant_parentheses_from(node.arguments))
+          return unless arguments.first.respond_to?(:method?) && arguments.first.method?(:empty?)
+          return unless arguments.first.arguments.empty?
+
+          add_offense(node, message: offense_message(arguments)) do |corrector|
+            autocorrect(corrector, node, arguments)
+          end
+        end
       end
     end
   end
