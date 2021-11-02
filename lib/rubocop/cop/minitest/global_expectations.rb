@@ -6,7 +6,26 @@ module RuboCop
       # This cop checks for deprecated global expectations
       # and autocorrects them to use expect format.
       #
-      # @example
+      # @example EnforcedStyle: _
+      #   # bad
+      #   musts.must_equal expected_musts
+      #   wonts.wont_match expected_wonts
+      #   musts.must_raise TypeError
+      #
+      #   expect(musts).must_equal expected_musts
+      #   expect(wonts).wont_match expected_wonts
+      #   expect { musts }.must_raise TypeError
+      #
+      #   value(musts).must_equal expected_musts
+      #   value(wonts).wont_match expected_wonts
+      #   value { musts }.must_raise TypeError
+      #
+      #   # good
+      #   _(musts).must_equal expected_musts
+      #   _(wonts).wont_match expected_wonts
+      #   _ { musts }.must_raise TypeError
+      #
+      # @example EnforcedStyle: any (default)
       #   # bad
       #   musts.must_equal expected_musts
       #   wonts.wont_match expected_wonts
@@ -16,7 +35,54 @@ module RuboCop
       #   _(musts).must_equal expected_musts
       #   _(wonts).wont_match expected_wonts
       #   _ { musts }.must_raise TypeError
+      #
+      #   expect(musts).must_equal expected_musts
+      #   expect(wonts).wont_match expected_wonts
+      #   expect { musts }.must_raise TypeError
+      #
+      #   value(musts).must_equal expected_musts
+      #   value(wonts).wont_match expected_wonts
+      #   value { musts }.must_raise TypeError
+      #
+      # @example EnforcedStyle: expect
+      #   # bad
+      #   musts.must_equal expected_musts
+      #   wonts.wont_match expected_wonts
+      #   musts.must_raise TypeError
+      #
+      #   _(musts).must_equal expected_musts
+      #   _(wonts).wont_match expected_wonts
+      #   _ { musts }.must_raise TypeError
+      #
+      #   value(musts).must_equal expected_musts
+      #   value(wonts).wont_match expected_wonts
+      #   value { musts }.must_raise TypeError
+      #
+      #   # good
+      #   expect(musts).must_equal expected_musts
+      #   expect(wonts).wont_match expected_wonts
+      #   expect { musts }.must_raise TypeError
+      #
+      # @example EnforcedStyle: value
+      #   # bad
+      #   musts.must_equal expected_musts
+      #   wonts.wont_match expected_wonts
+      #   musts.must_raise TypeError
+      #
+      #   _(musts).must_equal expected_musts
+      #   _(wonts).wont_match expected_wonts
+      #   _ { musts }.must_raise TypeError
+      #
+      #   expect(musts).must_equal expected_musts
+      #   expect(wonts).wont_match expected_wonts
+      #   expect { musts }.must_raise TypeError
+      #
+      #   # good
+      #   value(musts).must_equal expected_musts
+      #   value(wonts).wont_match expected_wonts
+      #   value { musts }.must_raise TypeError
       class GlobalExpectations < Base
+        include ConfigurableEnforcedStyle
         extend AutoCorrector
 
         MSG = 'Use `%<preferred>s` instead.'
@@ -34,50 +100,35 @@ module RuboCop
 
         RESTRICT_ON_SEND = VALUE_MATCHERS + BLOCK_MATCHERS
 
-        VALUE_MATCHERS_STR = VALUE_MATCHERS.map do |m|
-          ":#{m}"
-        end.join(' ').freeze
-
-        BLOCK_MATCHERS_STR = BLOCK_MATCHERS.map do |m|
-          ":#{m}"
-        end.join(' ').freeze
-
         # There are aliases for the `_` method - `expect` and `value`
-        DSL_METHODS_LIST = %w[_ value expect].map do |n|
-          ":#{n}"
-        end.join(' ').freeze
-
-        def_node_matcher :value_global_expectation?, <<~PATTERN
-          (send !(send nil? {#{DSL_METHODS_LIST}} _) {#{VALUE_MATCHERS_STR}} ...)
-        PATTERN
-
-        def_node_matcher :block_global_expectation?, <<~PATTERN
-          (send
-            [
-              !(send nil? {#{DSL_METHODS_LIST}} _)
-              !(block (send nil? {#{DSL_METHODS_LIST}}) _ _)
-            ]
-            {#{BLOCK_MATCHERS_STR}}
-            _
-          )
-        PATTERN
+        DSL_METHODS = %i[_ expect value].freeze
 
         def on_send(node)
-          return unless value_global_expectation?(node) || block_global_expectation?(node)
+          receiver = node.receiver
+          return unless receiver
 
-          message = format(MSG, preferred: preferred_receiver(node))
+          method = block_receiver?(receiver) || value_receiver?(receiver)
+          return if method == preferred_method || (method && style == :any)
 
-          add_offense(node.receiver, message: message) do |corrector|
-            receiver = node.receiver
-            replacement = preferred_receiver(node)
-            corrector.replace(receiver, replacement)
-          end
+          register_offense(node, method)
         end
 
         private
 
+        def_node_matcher :block_receiver?, <<~PATTERN
+          (block (send nil? $#method_allowed?) _ _)
+        PATTERN
+
+        def_node_matcher :value_receiver?, <<~PATTERN
+          (send nil? $#method_allowed? _)
+        PATTERN
+
+        def method_allowed?(method)
+          DSL_METHODS.include?(method)
+        end
+
         def preferred_method
-          :_
+          style == :any ? :_ : style
         end
 
         def preferred_receiver(node)
@@ -88,6 +139,24 @@ module RuboCop
             "#{preferred_method} { #{body.source} }"
           else
             "#{preferred_method}(#{receiver.source})"
+          end
+        end
+
+        def register_offense(node, method)
+          receiver = node.receiver
+
+          if method
+            preferred = preferred_method
+            replacement = receiver.source.sub(method.to_s, preferred_method.to_s)
+          else
+            preferred = preferred_receiver(node)
+            replacement = preferred
+          end
+
+          message = format(MSG, preferred: preferred)
+
+          add_offense(receiver, message: message) do |corrector|
+            corrector.replace(receiver, replacement)
           end
         end
       end

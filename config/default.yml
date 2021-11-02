@@ -103,7 +103,19 @@ Minitest/GlobalExpectations:
   Description: 'This cop checks for deprecated global expectations.'
   StyleGuide: 'https://minitest.rubystyle.guide#global-expectations'
   Enabled: true
+  EnforcedStyle: any
+  Include:
+    - '**/test/**/*'
+    - '**/*_test.rb'
+    - '**/spec/**/*'
+    - '**/*_spec.rb'
+  SupportedStyles:
+    - _
+    - any
+    - expect
+    - value
   VersionAdded: '0.7'
+  VersionChanged: '0.16'
 
 Minitest/LiteralAsActualArgument:
   Description: 'This cop enforces correct order of `expected` and `actual` arguments for `assert_equal`.'
