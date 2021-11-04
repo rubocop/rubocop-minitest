@@ -9,5 +9,5 @@ gemspec
 gem 'bump', require: false
 gem 'rake'
 gem 'rubocop', github: 'rubocop/rubocop'
-gem 'rubocop-performance', '~> 1.11.0'
+gem 'rubocop-performance', '~> 1.12.0'
 gem 'yard', '~> 0.9'
