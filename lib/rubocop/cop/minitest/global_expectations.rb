@@ -81,6 +81,15 @@ module RuboCop
       #   value(musts).must_equal expected_musts
       #   value(wonts).wont_match expected_wonts
       #   value { musts }.must_raise TypeError
+      #
+      # @example ExtensionMatchers: ['must_match_array']
+      #   # bad
+      #   musts.must_match_array expected_musts
+      #
+      #   # good
+      #   _(musts).must_match_array expected_musts
+      #   expect(musts).must_match_array expected_musts
+      #   value(musts).must_match_array expected_musts
       class GlobalExpectations < Base
         include ConfigurableEnforcedStyle
         extend AutoCorrector
@@ -98,12 +107,12 @@ module RuboCop
 
         BLOCK_MATCHERS = %i[must_output must_raise must_be_silent must_throw].freeze
 
-        RESTRICT_ON_SEND = VALUE_MATCHERS + BLOCK_MATCHERS
-
         # There are aliases for the `_` method - `expect` and `value`
         DSL_METHODS = %i[_ expect value].freeze
 
         def on_send(node)
+          return unless matcher_method?(node)
+
           receiver = node.receiver
           return unless receiver
 
@@ -122,6 +131,11 @@ module RuboCop
         def_node_matcher :value_receiver?, <<~PATTERN
           (send nil? $#method_allowed? _)
         PATTERN
+
+        def matcher_method?(node)
+          extension_matchers = (cop_config['ExtensionMatchers'] || []).map(&:to_sym)
+          (VALUE_MATCHERS + BLOCK_MATCHERS + extension_matchers).include?(node.method_name)
+        end
 
         def method_allowed?(method)
           DSL_METHODS.include?(method)

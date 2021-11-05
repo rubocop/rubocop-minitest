@@ -619,6 +619,19 @@ value(wonts).wont_match expected_wonts
 value { musts }.must_raise TypeError
 ----
 
+==== ExtensionMatchers: ['must_match_array']
+
+[source,ruby]
+----
+# bad
+musts.must_match_array expected_musts
+
+# good
+_(musts).must_match_array expected_musts
+expect(musts).must_match_array expected_musts
+value(musts).must_match_array expected_musts
+----
+
 === Configurable attributes
 
 |===

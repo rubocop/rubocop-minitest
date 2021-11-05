@@ -11,7 +11,7 @@ class GlobalExpectationsTest < Minitest::Test
     :any
   end
 
-  RuboCop::Cop::Minitest::GlobalExpectations::VALUE_MATCHERS.each do |matcher|
+  (RuboCop::Cop::Minitest::GlobalExpectations::VALUE_MATCHERS + %w[must_match_array wont_match_array]).each do |matcher|
     define_method(:"test_registers_offense_when_using_global_#{matcher}") do
       assert_offense(<<~RUBY)
         it 'does something' do
@@ -505,6 +505,7 @@ class GlobalExpectationsTest < Minitest::Test
     all_config = RuboCop::Minitest::CONFIG
     cop_config = all_config['Minitest/GlobalExpectations']
     cop_config = cop_config.merge('EnforcedStyle' => style)
+    cop_config = cop_config.merge('ExtensionMatchers' => %w[must_match_array wont_match_array])
     all_config = all_config.merge('Minitest/GlobalExpectations' => cop_config)
     config = RuboCop::Config.new(all_config)
     @cop = RuboCop::Cop::Minitest::GlobalExpectations.new(config)
