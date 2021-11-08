@@ -42,6 +42,7 @@ Style/FormatStringToken:
 Metrics/ClassLength:
   Exclude:
     - test/**/*
+    - tasks/changelog.rb
 
 Layout/EndOfLine:
   EnforcedStyle: lf
