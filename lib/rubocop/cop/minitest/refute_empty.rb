@@ -20,6 +20,7 @@ module RuboCop
 
         define_rule :refute, target_method: :empty?
 
+        remove_method :on_send
         def on_send(node)
           return unless node.method?(:refute)
           return unless (arguments = peel_redundant_parentheses_from(node.arguments))
