@@ -85,6 +85,7 @@ Metrics/BlockLength:
     - 'Rakefile'
     - '**/*.rake'
     - 'test/**/*.rb'
+    - 'rubocop-minitest.gemspec'
 
 Naming/FileName:
   Exclude:
