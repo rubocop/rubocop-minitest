@@ -22,7 +22,8 @@ Gem::Specification.new do |spec|
     'changelog_uri' => 'https://github.com/rubocop/rubocop-minitest/blob/master/CHANGELOG.md',
     'source_code_uri' => 'https://github.com/rubocop/rubocop-minitest',
     'documentation_uri' => "https://docs.rubocop.org/rubocop-minitest/#{RuboCop::Minitest::Version.document_version}",
-    'bug_tracker_uri' => 'https://github.com/rubocop/rubocop-minitest/issues'
+    'bug_tracker_uri' => 'https://github.com/rubocop/rubocop-minitest/issues',
+    'rubygems_mfa_required' => 'true'
   }
 
   # Specify which files should be added to the gem when it is released.
