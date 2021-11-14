@@ -2,6 +2,8 @@
 
 ## master (unreleased)
 
+## 0.16.0 (2021-11-14)
+
 ### New features
 
 * [#147](https://github.com/rubocop/rubocop-minitest/issues/147): Add `EnforcedStyle` config parameter for `Minitest/GlobalExpectations`. ([@gi][])
