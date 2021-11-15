@@ -4,23 +4,8 @@ require 'test_helper'
 
 class ProjectTest < Minitest::Test
   def setup
-    path = File.join(File.dirname(__dir__), 'CHANGELOG.md')
-
-    @changelog = File.read(path)
-    @lines = @changelog.each_line
-    @entries = @lines.grep(/^\*/).map(&:chomp)
-
-    @issues = @entries.map do |entry|
-      entry.match(/\[(?<number>[#\d]+)\]\((?<url>[^)]+)\)/)
-    end.compact
-
-    @bodies = @entries.map do |entry|
-      entry.gsub(/`[^`]+`/, '``').sub(
-        /^\*\s*(?:\[.+?\):\s*)?/, ''
-      ).sub(
-        /\s*\([^)]+\)$/, ''
-      )
-    end
+    load_changelog
+    load_feature_entries
   end
 
   def test_changelog_has_newline_at_end_of_file
@@ -99,5 +84,51 @@ class ProjectTest < Minitest::Test
     @bodies.each do |body|
       assert_match(/[.!]$/, body)
     end
+  end
+
+  def test_feature_entry_has_a_link_to_the_contributors_at_the_end
+    @feature_entries.each do |path|
+      assert_match(/\(\[@\S+\]\[\](?:, \[@\S+\]\[\])*\)$/, File.read(path))
+    end
+  end
+
+  def test_feature_entry_starts_with_new_fix_or_change
+    @feature_entries.each do |path|
+      assert_match(/\A(new|fix|change)_.+/, File.basename(path))
+    end
+  end
+
+  def test_has_a_single_line
+    @feature_entries.each do |path|
+      assert_equal(1, File.foreach(path).count)
+    end
+  end
+
+  private
+
+  def load_changelog
+    path = File.join(File.dirname(__dir__), 'CHANGELOG.md')
+
+    @changelog = File.read(path)
+    @lines = @changelog.each_line
+    @entries = @lines.grep(/^\*/).map(&:chomp)
+
+    @issues = @entries.map do |entry|
+      entry.match(/\[(?<number>[#\d]+)\]\((?<url>[^)]+)\)/)
+    end.compact
+
+    @bodies = @entries.map do |entry|
+      entry.gsub(/`[^`]+`/, '``').sub(
+        /^\*\s*(?:\[.+?\):\s*)?/, ''
+      ).sub(
+        /\s*\([^)]+\)$/, ''
+      )
+    end
+  end
+
+  def load_feature_entries
+    changelog_dir = File.join(File.dirname(__FILE__), '..', 'changelog')
+
+    @feature_entries = Dir["#{changelog_dir}/*.md"]
   end
 end
