@@ -1,1 +1,0 @@
-* [#155](https://github.com/rubocop/rubocop-minitest/issues/155): Provide `assert_offense`, `assert_correction`, and `assert_no_offenses` testing APIs for custom Minitest cop development. ([@koic][])

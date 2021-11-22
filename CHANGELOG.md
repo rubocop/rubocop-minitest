@@ -2,6 +2,10 @@
 
 ## master (unreleased)
 
+### New features
+
+* [#155](https://github.com/rubocop/rubocop-minitest/issues/155): Provide `assert_offense`, `assert_correction`, and `assert_no_offenses` testing APIs for custom Minitest cop development. ([@koic][])
+
 ## 0.16.0 (2021-11-14)
 
 ### New features
