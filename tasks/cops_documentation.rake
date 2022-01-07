@@ -12,6 +12,11 @@ end
 
 task update_cops_documentation: :yard_for_generate_documentation do
   deps = ['Minitest']
+
+  # NOTE: Update `<<next>>` version for docs/modules/ROOT/pages/cops_minitest.adoc
+  # when running release tasks.
+  RuboCop::Minitest::Inject.defaults!
+
   CopsDocumentationGenerator.new(departments: deps).call
 end
 
