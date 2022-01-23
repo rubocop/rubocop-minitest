@@ -30,7 +30,7 @@ module RuboCop
 
           lifecycle_hooks(class_node).each do |hook_node|
             hook_node.each_descendant(:send) do |node|
-              if assertion?(node)
+              if assertion_method?(node)
                 message = format(MSG, assertion: node.method_name, hook: hook_node.method_name)
                 add_offense(node, message: message)
               end

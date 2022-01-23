@@ -10,17 +10,6 @@ module RuboCop
 
       ASSERTION_PREFIXES = %w[assert refute].freeze
 
-      ASSERTION_METHODS = %i[
-        assert assert_empty assert_equal assert_in_delta assert_in_epsilon assert_includes assert_instance_of
-        assert_kind_of assert_match assert_nil assert_operator assert_output assert_path_exists assert_predicate
-        assert_raises assert_respond_to assert_same assert_send assert_silent assert_throws
-        refute refute_empty refute_equal refute_in_delta refute_in_epsilon refute_includes refute_instance_of
-        refute_kind_of refute_match refute_nil refute_operator refute_path_exists refute_predicate
-        refute_respond_to refute_same
-      ].freeze
-
-      FLUNK = 'flunk'
-
       LIFECYCLE_HOOK_METHODS = %i[
         before_setup
         setup
@@ -84,19 +73,18 @@ module RuboCop
             method_def.each_child_node(:send)
           end
 
-        send_nodes.select { |send_node| assertion?(send_node) }
+        send_nodes.select { |send_node| assertion_method?(send_node) }
       end
 
-      def assertion?(node)
-        node.send_type? &&
-          ASSERTION_PREFIXES.any? do |prefix|
-            method_name = node.method_name.to_s
-            method_name == FLUNK || method_name.start_with?(prefix)
-          end
-      end
+      def assertion_method?(node)
+        return false unless node.send_type?
 
-      def assertion_method?(method_name)
-        method_name == FLUNK || ASSERTION_METHODS.include?(method_name)
+        ASSERTION_PREFIXES.any? do |prefix|
+          method_name = node.method_name
+
+          # TODO: Remove the fllowing `to_s` since Ruby 2.7 that supports `Symbol#start_with?`.
+          method_name.to_s.start_with?(prefix) || node.method?(:flunk)
+        end
       end
 
       def lifecycle_hook_method?(node)
