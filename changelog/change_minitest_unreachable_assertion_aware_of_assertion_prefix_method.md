@@ -1,0 +1,1 @@
+* [#158](https://github.com/rubocop/rubocop-minitest/pull/158): Make `Minitest/UnreachableAssertion` aware of `assert` and `refute` prefix methods. ([@koic][])
