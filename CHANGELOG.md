@@ -2,6 +2,8 @@
 
 ## master (unreleased)
 
+## 0.17.1 (2022-01-30)
+
 ### Changes
 
 * [#158](https://github.com/rubocop/rubocop-minitest/pull/158): Make `Minitest/UnreachableAssertion` aware of `assert` and `refute` prefix methods. ([@koic][])
