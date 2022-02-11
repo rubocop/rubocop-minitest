@@ -1,0 +1,1 @@
+* [#159](https://github.com/rubocop/rubocop-minitest/issues/159): Fix a false positive for `Minitest/UnreachableAssertion` when using only one assertion method in `assert_raises` block. ([@koic][])

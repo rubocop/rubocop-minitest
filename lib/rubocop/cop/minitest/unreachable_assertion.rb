@@ -30,7 +30,7 @@ module RuboCop
 
           last_node = body.begin_type? ? body.children.last : body
           return unless last_node.send_type?
-          return unless assertion_method?(last_node)
+          return if !assertion_method?(last_node) || !body.begin_type?
 
           add_offense(last_node, message: format(MSG, assertion_method: last_node.method_name))
         end

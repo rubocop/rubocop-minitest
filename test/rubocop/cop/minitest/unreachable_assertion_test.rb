@@ -40,6 +40,14 @@ class UnreachableAssertionTest < Minitest::Test
     RUBY
   end
 
+  def test_does_not_register_offense_when_using_only_one_assertion_method_in_assert_raises_block
+    assert_no_offenses(<<~RUBY)
+      assert_raises(Minitest::Assertion) do
+        assert_response 200
+      end
+    RUBY
+  end
+
   def test_does_not_register_offense_when_using_empty_block_for_assert_raises
     assert_no_offenses(<<~RUBY)
       assert_raises FooError do
