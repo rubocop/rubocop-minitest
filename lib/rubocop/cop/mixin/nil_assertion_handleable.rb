@@ -5,7 +5,7 @@ module RuboCop
     module Minitest
       # Common functionality for `AssertNil` and `RefuteNil` cops.
       module NilAssertionHandleable
-        MSG = 'Prefer using `%<assertion_type>s_nil(%<preferred_args>s)` over `%<method>s(%<current_args>s)`.'
+        MSG = 'Prefer using `%<assertion_type>s_nil(%<preferred_args>s)`.'
 
         private
 
@@ -22,23 +22,18 @@ module RuboCop
           message_source = message&.source
 
           preferred_args = [actual.source, message_source].compact
-          current_args = if comparison_assertion_method?(node)
-                           ['nil', preferred_args].join(', ')
-                         else
-                           ["#{actual.source}.nil?", message_source].compact.join(', ')
-                         end
 
           format(
             MSG,
             assertion_type: assertion_type,
             preferred_args: preferred_args.join(', '),
-            method: node.method_name, current_args: current_args
+            method: node.method_name
           )
         end
 
         def autocorrect(corrector, node, actual)
           corrector.replace(node.loc.selector, :"#{assertion_type}_nil")
-          if comparison_assertion_method?(node)
+          if comparison_or_predicate_assertion_method?(node)
             corrector.replace(first_and_second_arguments_range(node), actual.source)
           else
             corrector.remove(node.first_argument.loc.dot)
@@ -46,8 +41,8 @@ module RuboCop
           end
         end
 
-        def comparison_assertion_method?(node)
-          node.method?(:"#{assertion_type}_equal")
+        def comparison_or_predicate_assertion_method?(node)
+          node.method?(:"#{assertion_type}_equal") || node.method?(:"#{assertion_type}_predicate")
         end
       end
     end
