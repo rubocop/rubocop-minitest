@@ -4,7 +4,7 @@ module RuboCop
   module Cop
     module Minitest
       # This cop enforces the test to use `refute_nil` instead of using
-      # `refute_equal(nil, something)` or `refute(something.nil?)`.
+      # `refute_equal(nil, something)`, `refute(something.nil?)`, or `refute_predicate(something, :nil?)`.
       #
       # @example
       #   # bad
@@ -12,6 +12,8 @@ module RuboCop
       #   refute_equal(nil, actual, 'message')
       #   refute(actual.nil?)
       #   refute(actual.nil?, 'message')
+      #   refute_predicate(object, :nil?)
+      #   refute_predicate(object, :nil?, 'message')
       #
       #   # good
       #   refute_nil(actual)
@@ -23,12 +25,13 @@ module RuboCop
         extend AutoCorrector
 
         ASSERTION_TYPE = 'refute'
-        RESTRICT_ON_SEND = %i[refute_equal refute].freeze
+        RESTRICT_ON_SEND = %i[refute refute_equal refute_predicate].freeze
 
         def_node_matcher :nil_refutation, <<~PATTERN
           {
             (send nil? :refute_equal nil $_ $...)
             (send nil? :refute (send $_ :nil?) $...)
+            (send nil? :refute_predicate $_ (sym :nil?) $...)
           }
         PATTERN
 

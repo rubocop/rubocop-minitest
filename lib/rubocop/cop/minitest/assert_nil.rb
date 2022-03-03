@@ -4,7 +4,7 @@ module RuboCop
   module Cop
     module Minitest
       # This cop enforces the test to use `assert_nil` instead of using
-      # `assert_equal(nil, something)` or `assert(something.nil?)`.
+      # `assert_equal(nil, something)`, `assert(something.nil?)`, or `assert_predicate(something, :nil?)`.
       #
       # @example
       #   # bad
@@ -12,6 +12,8 @@ module RuboCop
       #   assert_equal(nil, actual, 'message')
       #   assert(object.nil?)
       #   assert(object.nil?, 'message')
+      #   assert_predicate(object, :nil?)
+      #   assert_predicate(object, :nil?, 'message')
       #
       #   # good
       #   assert_nil(actual)
@@ -23,12 +25,13 @@ module RuboCop
         extend AutoCorrector
 
         ASSERTION_TYPE = 'assert'
-        RESTRICT_ON_SEND = %i[assert_equal assert].freeze
+        RESTRICT_ON_SEND = %i[assert assert_equal assert_predicate].freeze
 
         def_node_matcher :nil_assertion, <<~PATTERN
           {
             (send nil? :assert_equal nil $_ $...)
             (send nil? :assert (send $_ :nil?) $...)
+            (send nil? :assert_predicate $_ (sym :nil?) $...)
           }
         PATTERN
 
