@@ -8,7 +8,7 @@ class AssertInDeltaTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           assert_equal(0.2, foo)
-          ^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_in_delta(0.2, foo)` over `assert_equal(0.2, foo)`.
+          ^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_in_delta(0.2, foo)`.
         end
       end
     RUBY
@@ -27,7 +27,7 @@ class AssertInDeltaTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           assert_equal(foo, 0.2)
-          ^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_in_delta(foo, 0.2)` over `assert_equal(foo, 0.2)`.
+          ^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_in_delta(foo, 0.2)`.
         end
       end
     RUBY
@@ -46,7 +46,7 @@ class AssertInDeltaTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           assert_equal(0.2, foo, 'message')
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_in_delta(0.2, foo, 0.001, 'message')` over `assert_equal(0.2, foo, 'message')`.
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_in_delta(0.2, foo, 0.001, 'message')`.
         end
       end
     RUBY

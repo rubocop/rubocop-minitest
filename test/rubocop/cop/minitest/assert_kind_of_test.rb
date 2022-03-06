@@ -8,7 +8,7 @@ class AssertKindOfTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           assert(object.kind_of?(SomeClass))
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_kind_of(SomeClass, object)` over `assert(object.kind_of?(SomeClass))`.
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_kind_of(SomeClass, object)`.
         end
       end
     RUBY
@@ -27,7 +27,7 @@ class AssertKindOfTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           assert(object.kind_of?(SomeClass), 'message')
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_kind_of(SomeClass, object, 'message')` over `assert(object.kind_of?(SomeClass), 'message')`.
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_kind_of(SomeClass, object, 'message')`.
         end
       end
     RUBY

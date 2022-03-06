@@ -8,7 +8,7 @@ class AssertRespondToTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           assert(object.respond_to?(:do_something))
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_respond_to(object, :do_something)` over `assert(object.respond_to?(:do_something))`.
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_respond_to(object, :do_something)`.
         end
       end
     RUBY
@@ -27,7 +27,7 @@ class AssertRespondToTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           assert(object.respond_to?(:do_something), 'message')
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_respond_to(object, :do_something, 'message')` over `assert(object.respond_to?(:do_something), 'message')`.
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_respond_to(object, :do_something, 'message')`.
         end
       end
     RUBY
@@ -46,7 +46,7 @@ class AssertRespondToTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           assert(respond_to?(:do_something))
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_respond_to(self, :do_something)` over `assert(respond_to?(:do_something))`.
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_respond_to(self, :do_something)`.
         end
       end
     RUBY
@@ -65,7 +65,7 @@ class AssertRespondToTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           assert(respond_to?(:do_something), <<~MESSAGE
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_respond_to(self, :do_something, <<~MESSAGE)` over `assert(respond_to?(:do_something), <<~MESSAGE)`.
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_respond_to(self, :do_something, <<~MESSAGE)`.
             message
           MESSAGE
           )
@@ -90,7 +90,7 @@ class AssertRespondToTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           assert((object.respond_to?(:do_something)))
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_respond_to(object, :do_something)` over `assert(object.respond_to?(:do_something))`.
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_respond_to(object, :do_something)`.
         end
       end
     RUBY

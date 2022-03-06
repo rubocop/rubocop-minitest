@@ -8,7 +8,7 @@ class AssertEmptyLiteralTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           assert_equal([], somestuff)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_empty(somestuff)` over `assert_equal([], somestuff)`.
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_empty(somestuff)`.
         end
       end
     RUBY
@@ -27,7 +27,7 @@ class AssertEmptyLiteralTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           assert_equal({}, somestuff)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_empty(somestuff)` over `assert_equal({}, somestuff)`.
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_empty(somestuff)`.
         end
       end
     RUBY

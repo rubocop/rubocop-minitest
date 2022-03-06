@@ -8,7 +8,7 @@ class RefuteIncludesTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           refute(collection.include?(object))
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_includes(collection, object)` over `refute(collection.include?(object))`.
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_includes(collection, object)`.
         end
       end
     RUBY
@@ -27,7 +27,7 @@ class RefuteIncludesTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           refute(collection.include?(object), 'message')
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_includes(collection, object, 'message')` over `refute(collection.include?(object), 'message')`.
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_includes(collection, object, 'message')`.
         end
       end
     RUBY
@@ -46,7 +46,7 @@ class RefuteIncludesTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           refute(collection.include?(object), <<~MESSAGE
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_includes(collection, object, <<~MESSAGE)` over `refute(collection.include?(object), <<~MESSAGE)`.
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_includes(collection, object, <<~MESSAGE)`.
             message
           MESSAGE
           )
@@ -71,7 +71,7 @@ class RefuteIncludesTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           refute((collection.include?(object)))
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_includes(collection, object)` over `refute(collection.include?(object))`.
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_includes(collection, object)`.
         end
       end
     RUBY

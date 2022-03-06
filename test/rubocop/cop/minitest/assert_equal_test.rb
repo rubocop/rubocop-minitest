@@ -8,7 +8,7 @@ class AssertEqualTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           assert('rubocop-minitest' == actual)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_equal('rubocop-minitest', actual)` over `assert('rubocop-minitest' == actual)`.
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_equal('rubocop-minitest', actual)`.
         end
       end
     RUBY
@@ -27,7 +27,7 @@ class AssertEqualTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           assert(expected == actual)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_equal(expected, actual)` over `assert(expected == actual)`.
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_equal(expected, actual)`.
         end
       end
     RUBY
@@ -46,7 +46,7 @@ class AssertEqualTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           assert(obj.expected == other_obj.actual)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_equal(obj.expected, other_obj.actual)` over `assert(obj.expected == other_obj.actual)`.
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_equal(obj.expected, other_obj.actual)`.
         end
       end
     RUBY
@@ -65,7 +65,7 @@ class AssertEqualTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           assert('rubocop-minitest' == actual, 'message')
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_equal('rubocop-minitest', actual, 'message')` over `assert('rubocop-minitest' == actual, 'message')`.
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_equal('rubocop-minitest', actual, 'message')`.
         end
       end
     RUBY
@@ -84,7 +84,7 @@ class AssertEqualTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           assert('rubocop-minitest' == actual, <<~MESSAGE
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_equal('rubocop-minitest', actual, <<~MESSAGE)` over `assert('rubocop-minitest' == actual, <<~MESSAGE)`.
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_equal('rubocop-minitest', actual, <<~MESSAGE)`.
             message
           MESSAGE
           )
@@ -109,7 +109,7 @@ class AssertEqualTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           assert(('rubocop-minitest' == actual))
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_equal('rubocop-minitest', actual)` over `assert('rubocop-minitest' == actual)`.
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_equal('rubocop-minitest', actual)`.
         end
       end
     RUBY

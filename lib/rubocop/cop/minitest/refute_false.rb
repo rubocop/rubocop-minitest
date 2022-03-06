@@ -22,8 +22,8 @@ module RuboCop
         include ArgumentRangeHelper
         extend AutoCorrector
 
-        MSG_FOR_ASSERT_EQUAL = 'Prefer using `refute(%<arguments>s)` over `assert_equal(false, %<arguments>s)`.'
-        MSG_FOR_ASSERT = 'Prefer using `refute(%<arguments>s)` over `assert(!%<arguments>s)`.'
+        MSG_FOR_ASSERT_EQUAL = 'Prefer using `refute(%<arguments>s)`.'
+        MSG_FOR_ASSERT = 'Prefer using `refute(%<arguments>s)`.'
         RESTRICT_ON_SEND = %i[assert_equal assert].freeze
 
         def_node_matcher :assert_equal_with_false, <<~PATTERN

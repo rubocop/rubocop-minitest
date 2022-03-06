@@ -28,8 +28,7 @@ module RuboCop
           include ArgumentRangeHelper
           extend AutoCorrector
 
-          MSG = 'Prefer using `#{preferred_method}(%<new_arguments>s)` over ' \
-                '`#{assertion_method}(%<original_arguments>s)`.'
+          MSG = 'Prefer using `#{preferred_method}(%<new_arguments>s)`.'
           RESTRICT_ON_SEND = %i[#{assertion_method}].freeze
 
           def on_send(node)
@@ -70,12 +69,9 @@ module RuboCop
               message_argument&.source
             ].flatten.compact.join(', ')
 
-            original_arguments = arguments.map(&:source).join(', ')
-
             format(
               MSG,
-              new_arguments: new_arguments,
-              original_arguments: original_arguments
+              new_arguments: new_arguments
             )
           end
 

@@ -8,7 +8,7 @@ class AssertPathExistsTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           assert(File.exist?(path))
-          ^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_path_exists(path)` over `assert(File.exist?(path))`.
+          ^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_path_exists(path)`.
         end
       end
     RUBY
@@ -27,7 +27,7 @@ class AssertPathExistsTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           assert(File.exist?(path), 'message')
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_path_exists(path, 'message')` over `assert(File.exist?(path), 'message')`.
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_path_exists(path, 'message')`.
         end
       end
     RUBY

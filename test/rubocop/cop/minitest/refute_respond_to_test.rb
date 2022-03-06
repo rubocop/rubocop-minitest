@@ -8,7 +8,7 @@ class RefuteRespondToTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           refute(object.respond_to?(:do_something))
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_respond_to(object, :do_something)` over `refute(object.respond_to?(:do_something))`.
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_respond_to(object, :do_something)`.
         end
       end
     RUBY
@@ -27,7 +27,7 @@ class RefuteRespondToTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           refute(object.respond_to?(:do_something), 'message')
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_respond_to(object, :do_something, 'message')` over `refute(object.respond_to?(:do_something), 'message')`.
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_respond_to(object, :do_something, 'message')`.
         end
       end
     RUBY
@@ -46,7 +46,7 @@ class RefuteRespondToTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           refute(respond_to?(:do_something))
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_respond_to(self, :do_something)` over `refute(respond_to?(:do_something))`.
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_respond_to(self, :do_something)`.
         end
       end
     RUBY
@@ -65,7 +65,7 @@ class RefuteRespondToTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           refute(respond_to?(:do_something), <<~MESSAGE
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_respond_to(self, :do_something, <<~MESSAGE)` over `refute(respond_to?(:do_something), <<~MESSAGE)`.
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_respond_to(self, :do_something, <<~MESSAGE)`.
             message
           MESSAGE
           )
@@ -90,7 +90,7 @@ class RefuteRespondToTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           refute((object.respond_to?(:do_something)))
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_respond_to(object, :do_something)` over `refute(object.respond_to?(:do_something))`.
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_respond_to(object, :do_something)`.
         end
       end
     RUBY

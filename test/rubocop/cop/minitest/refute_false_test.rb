@@ -8,7 +8,7 @@ class RefuteFalseTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           assert_equal(false, somestuff)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute(somestuff)` over `assert_equal(false, somestuff)`.
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute(somestuff)`.
         end
       end
     RUBY
@@ -27,7 +27,7 @@ class RefuteFalseTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           assert_equal(false, somestuff, 'message')
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute(somestuff, 'message')` over `assert_equal(false, somestuff, 'message')`.
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute(somestuff, 'message')`.
         end
       end
     RUBY
@@ -46,7 +46,7 @@ class RefuteFalseTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           assert_equal(false, obj.do_something, 'message')
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute(obj.do_something, 'message')` over `assert_equal(false, obj.do_something, 'message')`.
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute(obj.do_something, 'message')`.
         end
       end
     RUBY
@@ -65,7 +65,7 @@ class RefuteFalseTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           assert_equal(false, obj.do_something, <<~MESSAGE
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute(obj.do_something, <<~MESSAGE)` over `assert_equal(false, obj.do_something, <<~MESSAGE)`.
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute(obj.do_something, <<~MESSAGE)`.
             message
           MESSAGE
           )
@@ -90,7 +90,7 @@ class RefuteFalseTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           assert(!test)
-          ^^^^^^^^^^^^^ Prefer using `refute(test)` over `assert(!test)`.
+          ^^^^^^^^^^^^^ Prefer using `refute(test)`.
         end
       end
     RUBY
@@ -109,7 +109,7 @@ class RefuteFalseTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           assert(!test, 'message')
-          ^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute(test, 'message')` over `assert(!test, 'message')`.
+          ^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute(test, 'message')`.
         end
       end
     RUBY

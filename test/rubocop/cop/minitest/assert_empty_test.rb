@@ -8,7 +8,7 @@ class AssertEmptyTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           assert(somestuff.empty?)
-          ^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_empty(somestuff)` over `assert(somestuff.empty?)`.
+          ^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_empty(somestuff)`.
         end
       end
     RUBY
@@ -27,7 +27,7 @@ class AssertEmptyTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           assert(somestuff.empty?, 'message')
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_empty(somestuff, 'message')` over `assert(somestuff.empty?, 'message')`.
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_empty(somestuff, 'message')`.
         end
       end
     RUBY
@@ -46,7 +46,7 @@ class AssertEmptyTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           assert(somestuff.empty?, <<~MESSAGE
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_empty(somestuff, <<~MESSAGE)` over `assert(somestuff.empty?, <<~MESSAGE)`.
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_empty(somestuff, <<~MESSAGE)`.
             message
           MESSAGE
           )
@@ -71,7 +71,7 @@ class AssertEmptyTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           assert((somestuff.empty?))
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_empty(somestuff)` over `assert(somestuff.empty?)`.
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_empty(somestuff)`.
         end
       end
     RUBY

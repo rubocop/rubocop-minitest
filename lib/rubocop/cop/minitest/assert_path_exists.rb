@@ -18,7 +18,7 @@ module RuboCop
       class AssertPathExists < Base
         extend AutoCorrector
 
-        MSG = 'Prefer using `%<good_method>s` over `%<bad_method>s`.'
+        MSG = 'Prefer using `%<good_method>s`.'
         RESTRICT_ON_SEND = %i[assert].freeze
 
         def_node_matcher :assert_file_exists, <<~PATTERN
@@ -32,7 +32,7 @@ module RuboCop
           assert_file_exists(node) do |path, failure_message|
             failure_message = failure_message.first
             good_method = build_good_method(path, failure_message)
-            message = format(MSG, good_method: good_method, bad_method: node.source)
+            message = format(MSG, good_method: good_method)
 
             add_offense(node, message: message) do |corrector|
               corrector.replace(node, good_method)

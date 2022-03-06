@@ -8,7 +8,7 @@ class AssertMatchTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           assert(matcher.match(object))
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_match(matcher, object)` over `assert(matcher.match(object))`.
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_match(matcher, object)`.
         end
       end
     RUBY
@@ -27,7 +27,7 @@ class AssertMatchTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           assert(matcher.match(object), 'message')
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_match(matcher, object, 'message')` over `assert(matcher.match(object), 'message')`.
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_match(matcher, object, 'message')`.
         end
       end
     RUBY
@@ -46,7 +46,7 @@ class AssertMatchTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           assert(matcher.match(object), <<~MESSAGE
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_match(matcher, object, <<~MESSAGE)` over `assert(matcher.match(object), <<~MESSAGE)`.
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_match(matcher, object, <<~MESSAGE)`.
             message
           MESSAGE
           )
@@ -71,7 +71,7 @@ class AssertMatchTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           assert((matcher.match(string)))
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_match(matcher, string)` over `assert(matcher.match(string))`.
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_match(matcher, string)`.
         end
       end
     RUBY

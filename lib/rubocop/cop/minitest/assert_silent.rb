@@ -16,7 +16,7 @@ module RuboCop
       class AssertSilent < Base
         extend AutoCorrector
 
-        MSG = 'Prefer using `assert_silent` over `assert_output("", "")`.'
+        MSG = 'Prefer using `assert_silent`.'
 
         def_node_matcher :assert_silent_candidate?, <<~PATTERN
           (block

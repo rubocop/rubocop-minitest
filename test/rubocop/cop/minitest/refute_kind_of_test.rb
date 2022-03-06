@@ -8,7 +8,7 @@ class RefuteKindOfTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           refute(object.kind_of?(SomeClass))
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_kind_of(SomeClass, object)` over `refute(object.kind_of?(SomeClass))`.
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_kind_of(SomeClass, object)`.
         end
       end
     RUBY
@@ -27,7 +27,7 @@ class RefuteKindOfTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           refute(object.kind_of?(SomeClass), 'message')
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_kind_of(SomeClass, object, 'message')` over `refute(object.kind_of?(SomeClass), 'message')`.
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_kind_of(SomeClass, object, 'message')`.
         end
       end
     RUBY

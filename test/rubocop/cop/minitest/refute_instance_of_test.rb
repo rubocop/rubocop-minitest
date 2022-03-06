@@ -8,7 +8,7 @@ class RefuteInstanceOfTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           refute(object.instance_of?(SomeClass))
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_instance_of(SomeClass, object)` over `refute(object.instance_of?(SomeClass))`.
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_instance_of(SomeClass, object)`.
         end
       end
     RUBY
@@ -27,7 +27,7 @@ class RefuteInstanceOfTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           refute(object.instance_of?(SomeClass), 'message')
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_instance_of(SomeClass, object, 'message')` over `refute(object.instance_of?(SomeClass), 'message')`.
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_instance_of(SomeClass, object, 'message')`.
         end
       end
     RUBY
@@ -46,7 +46,7 @@ class RefuteInstanceOfTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           refute(object.instance_of?(SomeClass), <<~MESSAGE
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_instance_of(SomeClass, object, <<~MESSAGE)` over `refute(object.instance_of?(SomeClass), <<~MESSAGE)`.
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_instance_of(SomeClass, object, <<~MESSAGE)`.
             message
           MESSAGE
           )
@@ -71,7 +71,7 @@ class RefuteInstanceOfTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           refute((object.instance_of?(SomeClass)))
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_instance_of(SomeClass, object)` over `refute(object.instance_of?(SomeClass))`.
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_instance_of(SomeClass, object)`.
         end
       end
     RUBY

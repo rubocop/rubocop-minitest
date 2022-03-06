@@ -18,8 +18,7 @@ module RuboCop
         include ArgumentRangeHelper
         extend AutoCorrector
 
-        MSG = 'Prefer using `assert_empty(%<arguments>s)` over ' \
-              '`assert_equal(%<literal>s, %<arguments>s)`.'
+        MSG = 'Prefer using `assert_empty(%<arguments>s)`.'
         RESTRICT_ON_SEND = %i[assert_equal].freeze
 
         def_node_matcher :assert_equal_with_empty_literal, <<~PATTERN

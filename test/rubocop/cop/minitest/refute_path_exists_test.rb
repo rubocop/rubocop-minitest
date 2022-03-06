@@ -8,7 +8,7 @@ class RefutePathExistsTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           refute(File.exist?(path))
-          ^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_path_exists(path)` over `refute(File.exist?(path))`.
+          ^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_path_exists(path)`.
         end
       end
     RUBY
@@ -27,7 +27,7 @@ class RefutePathExistsTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           refute(File.exist?(path), 'message')
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_path_exists(path, 'message')` over `refute(File.exist?(path), 'message')`.
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_path_exists(path, 'message')`.
         end
       end
     RUBY

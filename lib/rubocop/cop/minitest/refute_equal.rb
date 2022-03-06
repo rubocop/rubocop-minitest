@@ -18,20 +18,19 @@ module RuboCop
         include ArgumentRangeHelper
         extend AutoCorrector
 
-        MSG = 'Prefer using `refute_equal(%<preferred>s)` over ' \
-              '`assert(%<over>s)`.'
+        MSG = 'Prefer using `refute_equal(%<preferred>s)`.'
         RESTRICT_ON_SEND = %i[assert].freeze
 
         def_node_matcher :assert_not_equal, <<~PATTERN
-          (send nil? :assert ${(send $_ :!= $_) (send (send $_ :! ) :== $_) } $... )
+          (send nil? :assert {(send $_ :!= $_) (send (send $_ :! ) :== $_) } $... )
         PATTERN
 
         def on_send(node)
-          preferred, over = process_not_equal(node)
-          return unless preferred && over
+          preferred = process_not_equal(node)
+          return unless preferred
 
-          assert_not_equal(node) do |_, expected, actual|
-            message = format(MSG, preferred: preferred, over: over)
+          assert_not_equal(node) do |expected, actual|
+            message = format(MSG, preferred: preferred)
 
             add_offense(node, message: message) do |corrector|
               corrector.replace(node.loc.selector, 'refute_equal')
@@ -54,11 +53,10 @@ module RuboCop
         end
 
         def process_not_equal(node)
-          assert_not_equal(node) do |over, first_arg, second_arg, rest_args|
+          assert_not_equal(node) do |first_arg, second_arg, rest_args|
             custom_message = rest_args.first
-            preferred = preferred_usage(first_arg, second_arg, custom_message)
-            over = original_usage(over.source, custom_message&.source)
-            return [preferred, over]
+
+            preferred_usage(first_arg, second_arg, custom_message)
           end
         end
       end

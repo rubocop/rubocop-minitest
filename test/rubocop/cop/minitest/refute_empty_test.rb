@@ -8,7 +8,7 @@ class RefuteEmptyTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           refute(somestuff.empty?)
-          ^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_empty(somestuff)` over `refute(somestuff.empty?)`.
+          ^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_empty(somestuff)`.
         end
       end
     RUBY
@@ -27,7 +27,7 @@ class RefuteEmptyTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           refute(somestuff.empty?, 'message')
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_empty(somestuff, 'message')` over `refute(somestuff.empty?, 'message')`.
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_empty(somestuff, 'message')`.
         end
       end
     RUBY
@@ -46,7 +46,7 @@ class RefuteEmptyTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           refute(somestuff.empty?, <<~MESSAGE
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_empty(somestuff, <<~MESSAGE)` over `refute(somestuff.empty?, <<~MESSAGE)`.
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_empty(somestuff, <<~MESSAGE)`.
             message
           MESSAGE
           )
@@ -71,7 +71,7 @@ class RefuteEmptyTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           refute((somestuff.empty?))
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_empty(somestuff)` over `refute(somestuff.empty?)`.
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_empty(somestuff)`.
         end
       end
     RUBY

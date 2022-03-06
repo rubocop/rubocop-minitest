@@ -8,7 +8,7 @@ class RefuteMatchTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           refute(matcher.match(object))
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_match(matcher, object)` over `refute(matcher.match(object))`.
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_match(matcher, object)`.
         end
       end
     RUBY
@@ -27,7 +27,7 @@ class RefuteMatchTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           refute(matcher.match(object), 'message')
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_match(matcher, object, 'message')` over `refute(matcher.match(object), 'message')`.
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_match(matcher, object, 'message')`.
         end
       end
     RUBY
@@ -46,7 +46,7 @@ class RefuteMatchTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           refute(matcher.match(object), <<~MESSAGE
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_match(matcher, object, <<~MESSAGE)` over `refute(matcher.match(object), <<~MESSAGE)`.
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_match(matcher, object, <<~MESSAGE)`.
             message
           MESSAGE
           )
@@ -71,7 +71,7 @@ class RefuteMatchTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           refute((matcher.match(string)))
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_match(matcher, string)` over `refute(matcher.match(string))`.
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_match(matcher, string)`.
         end
       end
     RUBY
