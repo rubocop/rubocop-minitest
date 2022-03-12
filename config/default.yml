@@ -81,6 +81,12 @@ Minitest/AssertRespondTo:
   Enabled: true
   VersionAdded: '0.3'
 
+Minitest/AssertPredicate:
+  Description: 'This cop enforces the test to use `assert_predicate` instead of using `assert(obj.a_predicate_method?)`.'
+  StyleGuide: 'https://minitest.rubystyle.guide/#assert-predicate'
+  Enabled: pending
+  VersionAdded: '<<next>>'
+
 Minitest/AssertSilent:
   Description: "This cop enforces the test to use `assert_silent { ... }` instead of using `assert_output('', '') { ... }`."
   StyleGuide: 'https://github.com/rubocop/minitest-style-guide#assert-silent'
@@ -193,6 +199,12 @@ Minitest/RefutePathExists:
   StyleGuide: 'https://minitest.rubystyle.guide/#refute-path-exists'
   Enabled: 'pending'
   VersionAdded: '0.10'
+
+Minitest/RefutePredicate:
+  Description: 'This cop enforces the test to use `refute_predicate` instead of using `refute(obj.a_predicate_method?)`.'
+  StyleGuide: 'https://minitest.rubystyle.guide/#refute-predicate'
+  Enabled: pending
+  VersionAdded: '<<next>>'
 
 Minitest/RefuteRespondTo:
   Description: 'This cop enforces the test to use `refute_respond_to(object, :do_something)` over `refute(object.respond_to?(:do_something))`.'
