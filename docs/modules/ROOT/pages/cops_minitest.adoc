@@ -262,7 +262,7 @@ assert_match(matcher, string, 'message')
 |===
 
 This cop enforces the test to use `assert_nil` instead of using
-`assert_equal(nil, something)` or `assert(something.nil?)`.
+`assert_equal(nil, something)`, `assert(something.nil?)`, or `assert_predicate(something, :nil?)`.
 
 === Examples
 
@@ -273,6 +273,8 @@ assert_equal(nil, actual)
 assert_equal(nil, actual, 'message')
 assert(object.nil?)
 assert(object.nil?, 'message')
+assert_predicate(object, :nil?)
+assert_predicate(object, :nil?, 'message')
 
 # good
 assert_nil(actual)
@@ -346,6 +348,38 @@ assert_path_exists(path, 'message')
 === References
 
 * https://minitest.rubystyle.guide/#assert-path-exists
+
+== Minitest/AssertPredicate
+
+|===
+| Enabled by default | Safe | Supports autocorrection | Version Added | Version Changed
+
+| Pending
+| Yes
+| Yes
+| 0.18
+| -
+|===
+
+This cop enforces the test to use `assert_predicate`
+instead of using `assert(obj.a_predicate_method?)`.
+
+=== Examples
+
+[source,ruby]
+----
+# bad
+assert(obj.one?)
+assert(obj.one?, 'message')
+
+# good
+assert_predicate(obj, :one?)
+assert_predicate(obj, :one?, 'message')
+----
+
+=== References
+
+* https://minitest.rubystyle.guide/#assert-predicate
 
 == Minitest/AssertRespondTo
 
@@ -1025,7 +1059,7 @@ refute_match(matcher, string, 'message')
 |===
 
 This cop enforces the test to use `refute_nil` instead of using
-`refute_equal(nil, something)` or `refute(something.nil?)`.
+`refute_equal(nil, something)`, `refute(something.nil?)`, or `refute_predicate(something, :nil?)`.
 
 === Examples
 
@@ -1036,6 +1070,8 @@ refute_equal(nil, actual)
 refute_equal(nil, actual, 'message')
 refute(actual.nil?)
 refute(actual.nil?, 'message')
+refute_predicate(object, :nil?)
+refute_predicate(object, :nil?, 'message')
 
 # good
 refute_nil(actual)
@@ -1077,6 +1113,38 @@ refute_path_exists(path, 'message')
 === References
 
 * https://minitest.rubystyle.guide/#refute-path-exists
+
+== Minitest/RefutePredicate
+
+|===
+| Enabled by default | Safe | Supports autocorrection | Version Added | Version Changed
+
+| Pending
+| Yes
+| Yes
+| 0.18
+| -
+|===
+
+This cop enforces the test to use `refute_predicate`
+instead of using `refute(obj.a_predicate_method?)`.
+
+=== Examples
+
+[source,ruby]
+----
+# bad
+refute(obj.one?)
+refute(obj.one?, 'message')
+
+# good
+refute_predicate(obj, :one?)
+refute_predicate(obj, :one?, 'message')
+----
+
+=== References
+
+* https://minitest.rubystyle.guide/#refute-predicate
 
 == Minitest/RefuteRespondTo
 

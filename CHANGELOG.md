@@ -2,6 +2,8 @@
 
 ## master (unreleased)
 
+## 0.18.0 (2022-03-13)
+
 ### New features
 
 * [#161](https://github.com/rubocop/rubocop-minitest/pull/161): Add new `Minitest/AssertPredicate` and `Minitest/RefutePredicate` cops. ([@koic][])

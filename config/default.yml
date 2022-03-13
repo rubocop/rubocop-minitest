@@ -85,7 +85,7 @@ Minitest/AssertPredicate:
   Description: 'This cop enforces the test to use `assert_predicate` instead of using `assert(obj.a_predicate_method?)`.'
   StyleGuide: 'https://minitest.rubystyle.guide/#assert-predicate'
   Enabled: pending
-  VersionAdded: '<<next>>'
+  VersionAdded: '0.18'
 
 Minitest/AssertSilent:
   Description: "This cop enforces the test to use `assert_silent { ... }` instead of using `assert_output('', '') { ... }`."
@@ -204,7 +204,7 @@ Minitest/RefutePredicate:
   Description: 'This cop enforces the test to use `refute_predicate` instead of using `refute(obj.a_predicate_method?)`.'
   StyleGuide: 'https://minitest.rubystyle.guide/#refute-predicate'
   Enabled: pending
-  VersionAdded: '<<next>>'
+  VersionAdded: '0.18'
 
 Minitest/RefuteRespondTo:
   Description: 'This cop enforces the test to use `refute_respond_to(object, :do_something)` over `refute(object.respond_to?(:do_something))`.'
