@@ -2,6 +2,14 @@
 
 ## master (unreleased)
 
+### New features
+
+* [#161](https://github.com/rubocop/rubocop-minitest/pull/161): Add new `Minitest/AssertPredicate` and `Minitest/RefutePredicate` cops. ([@koic][])
+
+### Changes
+
+* [#162](https://github.com/rubocop/rubocop-minitest/pull/162): Make `Minitest/AssertNil` (`Minitest/RefuteNil`) aware of `assert_predicate(obj, :nil?)` (`refute_predicate(obj, :nil?)`). ([@koic][])
+
 ## 0.17.2 (2022-02-12)
 
 ### Bug fixes
