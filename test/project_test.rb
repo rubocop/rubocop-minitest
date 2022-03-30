@@ -104,6 +104,16 @@ class ProjectTest < Minitest::Test
     end
   end
 
+  def test_default_rules_are_sorted_alphabetically
+    previous_key = ''
+    config_default = YAML.load_file('config/default.yml')
+
+    config_default.each_key do |key|
+      assert(previous_key <= key, "Cops should be sorted alphabetically. Please sort #{key}.")
+      previous_key = key
+    end
+  end
+
   private
 
   def load_changelog
