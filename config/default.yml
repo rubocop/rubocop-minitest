@@ -105,6 +105,11 @@ Minitest/AssertionInLifecycleHook:
   Enabled: 'pending'
   VersionAdded: '0.10'
 
+Minitest/DuplicateTestRun:
+  Description: 'This cop detects duplicate test runs caused by one test class inheriting from another.'
+  Enabled: pending
+  VersionAdded: '<<next>>'
+
 Minitest/GlobalExpectations:
   Description: 'This cop checks for deprecated global expectations.'
   StyleGuide: 'https://minitest.rubystyle.guide#global-expectations'
