@@ -2,6 +2,10 @@
 
 ## master (unreleased)
 
+### New features
+
+* [#164](https://github.com/rubocop/rubocop-minitest/pull/164): Add new `Minitest/DuplicateTestRun cop. ([@ignacio-chiazzo][])
+
 ## 0.18.0 (2022-03-13)
 
 ### New features
@@ -286,3 +290,4 @@
 [@cstyles]: https://github.com/cstyles
 [@ghiculescu]: https://github.com/ghiculescu
 [@gi]: https://github.com/gi
+[@ignacio-chiazzo]: https://github.com/ignacio-chiazzo
