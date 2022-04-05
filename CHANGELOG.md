@@ -2,6 +2,8 @@
 
 ## master (unreleased)
 
+## 0.19.0 (2022-04-05)
+
 ### New features
 
 * [#164](https://github.com/rubocop/rubocop-minitest/pull/164): Add new `Minitest/DuplicateTestRun cop. ([@ignacio-chiazzo][])

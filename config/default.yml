@@ -108,7 +108,7 @@ Minitest/AssertionInLifecycleHook:
 Minitest/DuplicateTestRun:
   Description: 'This cop detects duplicate test runs caused by one test class inheriting from another.'
   Enabled: pending
-  VersionAdded: '<<next>>'
+  VersionAdded: '0.19'
 
 Minitest/GlobalExpectations:
   Description: 'This cop checks for deprecated global expectations.'

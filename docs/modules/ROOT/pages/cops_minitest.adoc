@@ -544,6 +544,63 @@ class FooTest < Minitest::Test
 end
 ----
 
+== Minitest/DuplicateTestRun
+
+|===
+| Enabled by default | Safe | Supports autocorrection | Version Added | Version Changed
+
+| Pending
+| Yes
+| No
+| 0.19
+| -
+|===
+
+If a Minitest class inherits from another class,
+it will also inherit its methods causing Minitest to run the parent's tests methods twice.
+
+This cop detects when there are two tests classes, one inherits from the other, and both have tests methods.
+This cop will add an offence to the Child class in such a case.
+
+=== Examples
+
+[source,ruby]
+----
+# bad
+class ParentTest < Minitest::Test
+  def test_parent # it will run this test twice.
+  end
+end
+
+class ChildTest < ParentTest
+  def test_child
+  end
+end
+
+# good
+class ParentTest < Minitest::Test
+  def test_parent
+  end
+end
+
+class ChildTest < Minitest::Test
+  def test_child
+  end
+end
+
+# good
+class ParentTest < Minitest::Test
+end
+
+class ChildTest
+  def test_child
+  end
+
+  def test_parent
+  end
+end
+----
+
 == Minitest/GlobalExpectations
 
 |===
