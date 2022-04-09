@@ -103,4 +103,17 @@ class DuplicateTestRunTest < Minitest::Test
       end
     RUBY
   end
+
+  def test_does_not_throw_error_if_missing_parent_test_class
+    assert_no_offenses(<<~RUBY)
+      class PostmarkAccountServiceTest < ActionDispatch::IntegrationTest
+        test "it handles missing payloads from Postmark Account API errors" do
+          Postmark::AccountApiClient.any_instance.stubs(:create_server).raises(StandardError)
+
+          Rails.logger.expects(:error)
+          PostmarkAccountService.create_server({})
+        end
+      end
+    RUBY
+  end
 end

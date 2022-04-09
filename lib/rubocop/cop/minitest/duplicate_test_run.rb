@@ -63,7 +63,10 @@ module RuboCop
 
         def parent_class_has_test_methods?(class_node)
           parent_class = class_node.parent_class
-          parent_class_node = class_node.parent.each_child_node(:class).detect do |klass|
+
+          return false unless (class_node_parent = class_node.parent)
+
+          parent_class_node = class_node_parent.each_child_node(:class).detect do |klass|
             klass.identifier == parent_class
           end
 
