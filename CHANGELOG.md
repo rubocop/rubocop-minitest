@@ -2,6 +2,10 @@
 
 ## master (unreleased)
 
+### Bug fixes
+
+* [#167](https://github.com/rubocop/rubocop-minitest/pull/167): Fix potential for valid Ruby code to be unparsable in `Minitest/DuplicateTestRun` cop. ([@gjtorikian][])
+
 ## 0.19.0 (2022-04-05)
 
 ### New features
@@ -293,3 +297,4 @@
 [@ghiculescu]: https://github.com/ghiculescu
 [@gi]: https://github.com/gi
 [@ignacio-chiazzo]: https://github.com/ignacio-chiazzo
+[@gjtorikian]: https://github.com/gjtorikian
