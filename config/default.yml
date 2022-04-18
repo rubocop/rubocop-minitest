@@ -107,6 +107,7 @@ Minitest/AssertionInLifecycleHook:
 
 Minitest/DuplicateTestRun:
   Description: 'This cop detects duplicate test runs caused by one test class inheriting from another.'
+  StyleGuide: 'https://minitest.rubystyle.guide/#subclassing-test-cases'
   Enabled: pending
   VersionAdded: '0.19'
 
