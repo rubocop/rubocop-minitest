@@ -97,7 +97,7 @@
 
 ### Changes
 
-* [#129](https://github.com/rubocop/rubocop-minitest/pull/129): Drop Ruby 2.4 support. ([@koic][])
+* [#129](https://github.com/rubocop/rubocop-minitest/pull/129): **(Compatibility)** Drop Ruby 2.4 support. ([@koic][])
 
 ## 0.11.1 (2021-03-31)
 
@@ -167,7 +167,7 @@
 ### Changes
 
 * [#73](https://github.com/rubocop/rubocop-minitest/issues/73): The Minitest department works on file names end with `_test.rb` by default. ([@koic][])
-* [#77](https://github.com/rubocop/rubocop-minitest/pull/77): **(BREAKING)** Drop support for Ruby 2.3. ([@koic][])
+* [#77](https://github.com/rubocop/rubocop-minitest/pull/77): **(Compatibility)** Drop support for Ruby 2.3. ([@koic][])
 
 ## 0.8.1 (2020-04-06)
 
