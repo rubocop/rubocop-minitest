@@ -29,6 +29,9 @@ Naming/PredicateName:
 
 Naming/InclusiveLanguage:
   FlaggedTerms:
+    behaviour:
+      Suggestions:
+        - behavior
     offence:
       Suggestions:
         - offense
