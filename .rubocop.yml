@@ -28,6 +28,8 @@ Naming/PredicateName:
     - def_node_search
 
 Naming/InclusiveLanguage:
+  Enabled: true
+  CheckStrings: true
   FlaggedTerms:
     behaviour:
       Suggestions:

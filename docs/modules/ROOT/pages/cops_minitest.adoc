@@ -560,7 +560,7 @@ If a Minitest class inherits from another class,
 it will also inherit its methods causing Minitest to run the parent's tests methods twice.
 
 This cop detects when there are two tests classes, one inherits from the other, and both have tests methods.
-This cop will add an offence to the Child class in such a case.
+This cop will add an offense to the Child class in such a case.
 
 === Examples
 
