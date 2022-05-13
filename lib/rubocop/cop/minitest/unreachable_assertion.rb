@@ -3,7 +3,7 @@
 module RuboCop
   module Cop
     module Minitest
-      # This cop checks for `assert_raises` has an assertion method at
+      # Checks for `assert_raises` has an assertion method at
       # the bottom of block because the assertion will be never reached.
       #
       # @example

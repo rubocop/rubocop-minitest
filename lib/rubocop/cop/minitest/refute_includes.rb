@@ -3,7 +3,7 @@
 module RuboCop
   module Cop
     module Minitest
-      # This cop enforces the test to use `refute_includes`
+      # Enforces the test to use `refute_includes`
       # instead of using `refute(collection.include?(object))`.
       #
       # @example

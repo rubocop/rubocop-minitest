@@ -3,7 +3,7 @@
 module RuboCop
   module Cop
     module Minitest
-      # This cop enforces the test to use `refute_match`
+      # Enforces the test to use `refute_match`
       # instead of using `refute(matcher.match(string))`.
       #
       # @example

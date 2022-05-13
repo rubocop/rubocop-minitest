@@ -3,7 +3,7 @@
 module RuboCop
   module Cop
     module Minitest
-      # This cop enforces the test to use `refute_predicate`
+      # Enforces the test to use `refute_predicate`
       # instead of using `refute(obj.a_predicate_method?)`.
       #
       # @example

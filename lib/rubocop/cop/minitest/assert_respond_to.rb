@@ -3,7 +3,7 @@
 module RuboCop
   module Cop
     module Minitest
-      # This cop enforces the use of `assert_respond_to(object, :do_something)`
+      # Enforces the use of `assert_respond_to(object, :do_something)`
       # over `assert(object.respond_to?(:do_something))`.
       #
       # @example

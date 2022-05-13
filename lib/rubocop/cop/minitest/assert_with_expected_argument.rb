@@ -3,7 +3,7 @@
 module RuboCop
   module Cop
     module Minitest
-      # This cop tries to detect when a user accidentally used
+      # Tries to detect when a user accidentally used
       # `assert` when they meant to use `assert_equal`.
       #
       # @safety

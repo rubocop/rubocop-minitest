@@ -3,7 +3,7 @@
 module RuboCop
   module Cop
     module Minitest
-      # This cop enforces the test to use `assert_kind_of(Class, object)`
+      # Enforces the test to use `assert_kind_of(Class, object)`
       # over `assert(object.kind_of?(Class))`.
       #
       # @example

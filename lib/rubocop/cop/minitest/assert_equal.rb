@@ -3,7 +3,7 @@
 module RuboCop
   module Cop
     module Minitest
-      # This cop enforces the use of `assert_equal(expected, actual)`
+      # Enforces the use of `assert_equal(expected, actual)`
       # over `assert(expected == actual)`.
       #
       # @example

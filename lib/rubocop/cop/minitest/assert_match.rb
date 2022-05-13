@@ -3,7 +3,7 @@
 module RuboCop
   module Cop
     module Minitest
-      # This cop enforces the test to use `assert_match`
+      # Enforces the test to use `assert_match`
       # instead of using `assert(matcher.match(string))`.
       #
       # @example

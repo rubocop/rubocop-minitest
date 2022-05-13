@@ -3,7 +3,7 @@
 module RuboCop
   module Cop
     module Minitest
-      # This cop enforces the test to use `assert_in_delta`
+      # Enforces the test to use `assert_in_delta`
       # instead of using `assert_equal` to compare floats.
       #
       # @example

@@ -3,7 +3,7 @@
 module RuboCop
   module Cop
     module Minitest
-      # This cop enforces the test to use `assert_predicate`
+      # Enforces the test to use `assert_predicate`
       # instead of using `assert(obj.a_predicate_method?)`.
       #
       # @example

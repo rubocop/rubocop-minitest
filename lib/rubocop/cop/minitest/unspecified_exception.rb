@@ -3,7 +3,7 @@
 module RuboCop
   module Cop
     module Minitest
-      # This cop checks for a specified error in `assert_raises`.
+      # Checks for a specified error in `assert_raises`.
       #
       # @example
       #   # bad

@@ -3,8 +3,7 @@
 module RuboCop
   module Cop
     module Minitest
-      # This cop enforces the test to use `refute_path_exists`
-      # instead of using `refute(File.exist?(path))`.
+      # Enforces the test to use `refute_path_exists` instead of using `refute(File.exist?(path))`.
       #
       # @example
       #   # bad

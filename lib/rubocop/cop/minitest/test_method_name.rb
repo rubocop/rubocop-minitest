@@ -3,7 +3,7 @@
 module RuboCop
   module Cop
     module Minitest
-      # This cop enforces that test method names start with `test_` prefix.
+      # Enforces that test method names start with `test_` prefix.
       # It aims to prevent tests that aren't executed by forgetting to start test method name with `test_`.
       #
       # @example

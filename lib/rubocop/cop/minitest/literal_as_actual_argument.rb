@@ -3,7 +3,7 @@
 module RuboCop
   module Cop
     module Minitest
-      # This cop enforces correct order of expected and
+      # Enforces correct order of expected and
       # actual arguments for `assert_equal`.
       #
       # @example

@@ -3,7 +3,7 @@
 module RuboCop
   module Cop
     module Minitest
-      # This cop enforces the test to use `refute_in_delta`
+      # Enforces the test to use `refute_in_delta`
       # instead of using `refute_equal` to compare floats.
       #
       # @example

@@ -3,7 +3,7 @@
 module RuboCop
   module Cop
     module Minitest
-      # This cop enforces the test to use `assert_nil` instead of using
+      # Enforces the test to use `assert_nil` instead of using
       # `assert_equal(nil, something)`, `assert(something.nil?)`, or `assert_predicate(something, :nil?)`.
       #
       # @example

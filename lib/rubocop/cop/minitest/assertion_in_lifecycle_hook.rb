@@ -3,7 +3,7 @@
 module RuboCop
   module Cop
     module Minitest
-      # This cop checks for usage of assertions in lifecycle hooks.
+      # Checks for usage of assertions in lifecycle hooks.
       #
       # @example
       #   # bad

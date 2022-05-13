@@ -3,7 +3,7 @@
 module RuboCop
   module Cop
     module Minitest
-      # This cop checks for deprecated global expectations
+      # Checks for deprecated global expectations
       # and autocorrects them to use expect format.
       #
       # @example EnforcedStyle: _

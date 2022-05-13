@@ -3,7 +3,7 @@
 module RuboCop
   module Cop
     module Minitest
-      # This cop checks if test cases contain too many assertion calls.
+      # Checks if test cases contain too many assertion calls.
       # The maximum allowed assertion calls is configurable.
       #
       # @example Max: 1

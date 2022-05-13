@@ -3,8 +3,7 @@
 module RuboCop
   module Cop
     module Minitest
-      # This cop enforces the use of `refute(object)`
-      # over `assert_equal(false, object)`.
+      # Enforces the use of `refute(object)` over `assert_equal(false, object)`.
       #
       # @example
       #   # bad

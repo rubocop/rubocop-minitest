@@ -3,7 +3,7 @@
 module RuboCop
   module Cop
     module Minitest
-      # This cop checks for opportunities to use `assert_output`.
+      # Checks for opportunities to use `assert_output`.
       #
       # @example
       #   # bad

@@ -3,7 +3,7 @@
 module RuboCop
   module Cop
     module Minitest
-      # This cop enforces the test to use `refute_nil` instead of using
+      # Enforces the test to use `refute_nil` instead of using
       # `refute_equal(nil, something)`, `refute(something.nil?)`, or `refute_predicate(something, :nil?)`.
       #
       # @example

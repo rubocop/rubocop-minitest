@@ -3,7 +3,7 @@
 module RuboCop
   module Cop
     module Minitest
-      # This cop checks if test cases contain any assertion calls.
+      # Checks if test cases contain any assertion calls.
       #
       # @example
       #   # bad

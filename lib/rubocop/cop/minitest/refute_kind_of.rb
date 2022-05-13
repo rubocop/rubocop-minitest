@@ -3,7 +3,7 @@
 module RuboCop
   module Cop
     module Minitest
-      # This cop enforces the use of `refute_kind_of(Class, object)`
+      # Enforces the use of `refute_kind_of(Class, object)`
       # over `refute(object.kind_of?(Class))`.
       #
       # @example

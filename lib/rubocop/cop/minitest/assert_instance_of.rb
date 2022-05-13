@@ -3,7 +3,7 @@
 module RuboCop
   module Cop
     module Minitest
-      # This cop enforces the test to use `assert_instance_of(Class, object)`
+      # Enforces the test to use `assert_instance_of(Class, object)`
       # over `assert(object.instance_of?(Class))`.
       #
       # @example

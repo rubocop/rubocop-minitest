@@ -3,7 +3,7 @@
 module RuboCop
   module Cop
     module Minitest
-      # This cop enforces the test to use `refute_respond_to(object, :do_something)`
+      # Enforces the test to use `refute_respond_to(object, :do_something)`
       # over `refute(object.respond_to?(:do_something))`.
       #
       # @example

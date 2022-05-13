@@ -3,8 +3,7 @@
 module RuboCop
   module Cop
     module Minitest
-      # This cop enforces to use `refute_empty` instead of
-      # using `refute(object.empty?)`.
+      # Enforces to use `refute_empty` instead of using `refute(object.empty?)`.
       #
       # @example
       #   # bad

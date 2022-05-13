@@ -3,8 +3,7 @@
 module RuboCop
   module Cop
     module Minitest
-      # This cop enforces the test to use `assert_empty`
-      # instead of using `assert(object.empty?)`.
+      # Enforces the test to use `assert_empty` instead of using `assert(object.empty?)`.
       #
       # @example
       #   # bad
