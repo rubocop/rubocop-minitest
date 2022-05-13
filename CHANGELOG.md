@@ -57,7 +57,7 @@
 
 ### Bug fixes
 
-* [#145](https://github.com/rubocop/rubocop-minitest/pull/145): Mark `Minitest/AssertEmptyLiteral` as safe auto-correction. ([@koic][])
+* [#145](https://github.com/rubocop/rubocop-minitest/pull/145): Mark `Minitest/AssertEmptyLiteral` as safe autocorrection. ([@koic][])
 
 ## 0.15.1 (2021-09-26)
 

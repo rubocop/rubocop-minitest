@@ -16,10 +16,10 @@ module RuboCop
       # @param assertion_method [Symbol] Assertion method like `assert` or `refute`.
       # @param target_method [Symbol] Method name offensed by assertion method arguments.
       # @param preferred_method [Symbol] An optional param. Custom method name replaced by
-      #                                  auto-correction. The preferred method name that connects
+      #                                  autocorrection. The preferred method name that connects
       #                                  `assertion_method` and `target_method` with `_` is
       #                                  the default name.
-      # @param inverse [Boolean] An optional param. Order of arguments replaced by auto-correction.
+      # @param inverse [Boolean] An optional param. Order of arguments replaced by autocorrection.
       #
       def define_rule(assertion_method, target_method:, preferred_method: nil, inverse: false)
         preferred_method = "#{assertion_method}_#{target_method.to_s.delete('?')}" if preferred_method.nil?

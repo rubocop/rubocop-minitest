@@ -55,7 +55,7 @@ module RuboCop
     # that there were no offenses. The `assert_offense` method has
     # to do more work by parsing out lines that contain carets.
     #
-    # If the code produces an offense that could not be auto-corrected, you can
+    # If the code produces an offense that could not be autocorrected, you can
     # use `assert_no_corrections` after `assert_offense`.
     #
     # @example `assert_offense` and `assert_no_corrections`
@@ -93,7 +93,7 @@ module RuboCop
       def assert_offense(source, file = nil)
         setup_assertion
 
-        @cop.instance_variable_get(:@options)[:auto_correct] = true
+        @cop.instance_variable_get(:@options)[:autocorrect] = true
 
         expected_annotations = RuboCop::RSpec::ExpectOffense::AnnotatedSource.parse(source)
         if expected_annotations.plain_source == source
