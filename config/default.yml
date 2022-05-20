@@ -218,6 +218,11 @@ Minitest/RefuteRespondTo:
   Enabled: true
   VersionAdded: '0.4'
 
+Minitest/SkipEnsure:
+  Description: 'Checks that `ensure` call even if `skip`.'
+  Enabled: pending
+  VersionAdded: '<<next>>'
+
 Minitest/TestMethodName:
   Description: 'This cop enforces that test method names start with `test_` prefix.'
   Enabled: 'pending'
