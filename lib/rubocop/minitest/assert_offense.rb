@@ -176,7 +176,7 @@ module RuboCop
       end
 
       def ruby_version
-        2.5
+        2.6
       end
     end
   end
