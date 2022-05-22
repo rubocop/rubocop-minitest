@@ -10,8 +10,12 @@ module RuboCop
 
         def on_send(node)
           return unless (arguments = peel_redundant_parentheses_from(node.arguments))
-          return unless arguments.first.respond_to?(:predicate_method?) && arguments.first.predicate_method?
-          return unless arguments.first.arguments.count.zero?
+
+          first_argument = arguments.first
+
+          return if first_argument.block_type? || first_argument.numblock_type?
+          return unless first_argument.respond_to?(:predicate_method?) && first_argument.predicate_method?
+          return unless first_argument.arguments.count.zero?
 
           add_offense(node, message: offense_message(arguments)) do |corrector|
             autocorrect(corrector, node, arguments)
