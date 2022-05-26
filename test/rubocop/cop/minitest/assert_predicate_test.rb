@@ -142,4 +142,14 @@ class AssertPredicateTest < Minitest::Test
       end
     RUBY
   end
+
+  def test_does_not_register_offense_when_using_assert_with_predicate_method_and_numbered_parameters
+    assert_no_offenses(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          assert([1, 2, 3].any? { some_filter_function _1 })
+        end
+      end
+    RUBY
+  end
 end
