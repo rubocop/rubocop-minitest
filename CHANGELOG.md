@@ -2,6 +2,8 @@
 
 ## master (unreleased)
 
+## 0.20.0 (2022-05-29)
+
 ### New features
 
 * [#169](https://github.com/rubocop/rubocop-minitest/issues/169): Add new `Minitest/SkipEnsure` cop. ([@koic][])

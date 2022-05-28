@@ -12,8 +12,7 @@
 | -
 |===
 
-This cop enforces the test to use `assert_empty`
-instead of using `assert(object.empty?)`.
+Enforces the test to use `assert_empty` instead of using `assert(object.empty?)`.
 
 === Examples
 
@@ -44,7 +43,7 @@ assert_empty(object, 'message')
 | 0.11
 |===
 
-This cop enforces the test to use `assert_empty`
+Enforces the test to use `assert_empty`
 instead of using `assert_equal([], object)` or `assert_equal({}, object)`.
 
 === Examples
@@ -71,7 +70,7 @@ assert_empty(object)
 | -
 |===
 
-This cop enforces the use of `assert_equal(expected, actual)`
+Enforces the use of `assert_equal(expected, actual)`
 over `assert(expected == actual)`.
 
 === Examples
@@ -101,7 +100,7 @@ assert_equal("rubocop-minitest", actual)
 | -
 |===
 
-This cop enforces the test to use `assert_in_delta`
+Enforces the test to use `assert_in_delta`
 instead of using `assert_equal` to compare floats.
 
 === Examples
@@ -133,7 +132,7 @@ assert_in_delta(0.2, actual, 0.001, 'message')
 | -
 |===
 
-This cop enforces the test to use `assert_includes`
+Enforces the test to use `assert_includes`
 instead of using `assert(collection.include?(object))`.
 
 === Examples
@@ -165,7 +164,7 @@ assert_includes(collection, object, 'message')
 | -
 |===
 
-This cop enforces the test to use `assert_instance_of(Class, object)`
+Enforces the test to use `assert_instance_of(Class, object)`
 over `assert(object.instance_of?(Class))`.
 
 === Examples
@@ -197,7 +196,7 @@ assert_instance_of(Class, object, 'message')
 | -
 |===
 
-This cop enforces the test to use `assert_kind_of(Class, object)`
+Enforces the test to use `assert_kind_of(Class, object)`
 over `assert(object.kind_of?(Class))`.
 
 === Examples
@@ -229,7 +228,7 @@ assert_kind_of(Class, object, 'message')
 | -
 |===
 
-This cop enforces the test to use `assert_match`
+Enforces the test to use `assert_match`
 instead of using `assert(matcher.match(string))`.
 
 === Examples
@@ -261,7 +260,7 @@ assert_match(matcher, string, 'message')
 | -
 |===
 
-This cop enforces the test to use `assert_nil` instead of using
+Enforces the test to use `assert_nil` instead of using
 `assert_equal(nil, something)`, `assert(something.nil?)`, or `assert_predicate(something, :nil?)`.
 
 === Examples
@@ -297,7 +296,7 @@ assert_nil(actual, 'message')
 | -
 |===
 
-This cop checks for opportunities to use `assert_output`.
+Checks for opportunities to use `assert_output`.
 
 === Examples
 
@@ -329,8 +328,7 @@ assert_output(expected) { puts object.method }
 | -
 |===
 
-This cop enforces the test to use `assert_path_exists`
-instead of using `assert(File.exist?(path))`.
+Enforces the test to use `assert_path_exists` instead of using `assert(File.exist?(path))`.
 
 === Examples
 
@@ -361,7 +359,7 @@ assert_path_exists(path, 'message')
 | -
 |===
 
-This cop enforces the test to use `assert_predicate`
+Enforces the test to use `assert_predicate`
 instead of using `assert(obj.a_predicate_method?)`.
 
 === Examples
@@ -393,7 +391,7 @@ assert_predicate(obj, :one?, 'message')
 | -
 |===
 
-This cop enforces the use of `assert_respond_to(object, :do_something)`
+Enforces the use of `assert_respond_to(object, :do_something)`
 over `assert(object.respond_to?(:do_something))`.
 
 === Examples
@@ -427,7 +425,7 @@ assert_respond_to(self, :do_something)
 | -
 |===
 
-This cop enforces the test to use `assert_silent { ... }`
+Enforces the test to use `assert_silent { ... }`
 instead of using `assert_output('', '') { ... }`.
 
 === Examples
@@ -457,8 +455,7 @@ assert_silent { puts object.do_something }
 | -
 |===
 
-This cop enforces the test to use `assert(actual)`
-instead of using `assert_equal(true, actual)`.
+Enforces the test to use `assert(actual)` instead of using `assert_equal(true, actual)`.
 
 === Examples
 
@@ -489,7 +486,7 @@ assert(actual, 'message')
 | -
 |===
 
-This cop tries to detect when a user accidentally used
+Tries to detect when a user accidentally used
 `assert` when they meant to use `assert_equal`.
 
 === Safety
@@ -523,7 +520,7 @@ assert(foo, 'message')
 | -
 |===
 
-This cop checks for usage of assertions in lifecycle hooks.
+Checks for usage of assertions in lifecycle hooks.
 
 === Examples
 
@@ -601,6 +598,10 @@ class ChildTest
 end
 ----
 
+=== References
+
+* https://minitest.rubystyle.guide/#subclassing-test-cases
+
 == Minitest/GlobalExpectations
 
 |===
@@ -613,7 +614,7 @@ end
 | 0.16
 |===
 
-This cop checks for deprecated global expectations
+Checks for deprecated global expectations
 and autocorrects them to use expect format.
 
 === Examples
@@ -740,7 +741,7 @@ value { musts }.must_raise TypeError
 | -
 |===
 
-This cop enforces correct order of expected and
+Enforces correct order of expected and
 actual arguments for `assert_equal`.
 
 === Examples
@@ -774,7 +775,7 @@ assert_equal [1, 2], foo, 'message'
 | -
 |===
 
-This cop checks if test cases contain too many assertion calls.
+Checks if test cases contain too many assertion calls.
 The maximum allowed assertion calls is configurable.
 
 === Examples
@@ -825,7 +826,7 @@ end
 | -
 |===
 
-This cop checks if test cases contain any assertion calls.
+Checks if test cases contain any assertion calls.
 
 === Examples
 
@@ -857,8 +858,7 @@ end
 | -
 |===
 
-This cop enforces to use `refute_empty` instead of
-using `refute(object.empty?)`.
+Enforces to use `refute_empty` instead of using `refute(object.empty?)`.
 
 === Examples
 
@@ -889,7 +889,7 @@ refute_empty(object, 'message')
 | -
 |===
 
-This cop enforces the use of `refute_equal(expected, object)`
+Enforces the use of `refute_equal(expected, object)`
 over `assert(expected != actual)` or `assert(! expected == actual)`.
 
 === Examples
@@ -920,8 +920,7 @@ refute_equal("rubocop-minitest", actual)
 | -
 |===
 
-This cop enforces the use of `refute(object)`
-over `assert_equal(false, object)`.
+Enforces the use of `refute(object)` over `assert_equal(false, object)`.
 
 === Examples
 
@@ -955,7 +954,7 @@ refute(actual, 'message')
 | -
 |===
 
-This cop enforces the test to use `refute_in_delta`
+Enforces the test to use `refute_in_delta`
 instead of using `refute_equal` to compare floats.
 
 === Examples
@@ -987,7 +986,7 @@ refute_in_delta(0.2, actual, 0.001, 'message')
 | -
 |===
 
-This cop enforces the test to use `refute_includes`
+Enforces the test to use `refute_includes`
 instead of using `refute(collection.include?(object))`.
 
 === Examples
@@ -1019,7 +1018,7 @@ refute_includes(collection, object, 'message')
 | -
 |===
 
-This cop enforces the use of `refute_instance_of(Class, object)`
+Enforces the use of `refute_instance_of(Class, object)`
 over `refute(object.instance_of?(Class))`.
 
 === Examples
@@ -1051,7 +1050,7 @@ refute_instance_of(Class, object, 'message')
 | -
 |===
 
-This cop enforces the use of `refute_kind_of(Class, object)`
+Enforces the use of `refute_kind_of(Class, object)`
 over `refute(object.kind_of?(Class))`.
 
 === Examples
@@ -1083,7 +1082,7 @@ refute_kind_of(Class, object, 'message')
 | -
 |===
 
-This cop enforces the test to use `refute_match`
+Enforces the test to use `refute_match`
 instead of using `refute(matcher.match(string))`.
 
 === Examples
@@ -1115,7 +1114,7 @@ refute_match(matcher, string, 'message')
 | -
 |===
 
-This cop enforces the test to use `refute_nil` instead of using
+Enforces the test to use `refute_nil` instead of using
 `refute_equal(nil, something)`, `refute(something.nil?)`, or `refute_predicate(something, :nil?)`.
 
 === Examples
@@ -1151,8 +1150,7 @@ refute_nil(actual, 'message')
 | -
 |===
 
-This cop enforces the test to use `refute_path_exists`
-instead of using `refute(File.exist?(path))`.
+Enforces the test to use `refute_path_exists` instead of using `refute(File.exist?(path))`.
 
 === Examples
 
@@ -1183,7 +1181,7 @@ refute_path_exists(path, 'message')
 | -
 |===
 
-This cop enforces the test to use `refute_predicate`
+Enforces the test to use `refute_predicate`
 instead of using `refute(obj.a_predicate_method?)`.
 
 === Examples
@@ -1215,7 +1213,7 @@ refute_predicate(obj, :one?, 'message')
 | -
 |===
 
-This cop enforces the test to use `refute_respond_to(object, :do_something)`
+Enforces the test to use `refute_respond_to(object, :do_something)`
 over `refute(object.respond_to?(:do_something))`.
 
 === Examples
@@ -1237,6 +1235,79 @@ refute_respond_to(self, :do_something)
 
 * https://minitest.rubystyle.guide#refute-respond-to
 
+== Minitest/SkipEnsure
+
+|===
+| Enabled by default | Safe | Supports autocorrection | Version Added | Version Changed
+
+| Pending
+| Yes
+| No
+| 0.20
+| -
+|===
+
+Checks that `ensure` call even if `skip`. It is unexpected that `ensure` will be called when skipping test.
+If conditional `skip` is used, it checks that `ensure` is also called conditionally.
+
+On the other hand, it accepts `skip` used in `rescue` because `ensure` may be teardown process to `begin`
+setup process.
+
+=== Examples
+
+[source,ruby]
+----
+# bad
+def test_skip
+  skip 'This test is skipped.'
+
+  assert 'foo'.present?
+ensure
+  do_something
+end
+
+# bad
+def test_conditional_skip
+  skip 'This test is skipped.' if condition
+
+  assert do_something
+ensure
+  do_teardown
+end
+
+# good
+def test_skip
+  skip 'This test is skipped.'
+
+  begin
+    assert 'foo'.present?
+  ensure
+    do_something
+  end
+end
+
+# good
+def test_conditional_skip
+  skip 'This test is skipped.' if condition
+
+  assert do_something
+ensure
+  if condition
+    do_teardown
+  end
+end
+
+# good
+def test_skip_is_used_in_rescue
+  do_setup
+  assert do_something
+rescue
+  skip 'This test is skipped.'
+ensure
+  do_teardown
+end
+----
+
 == Minitest/TestMethodName
 
 |===
@@ -1249,7 +1320,7 @@ refute_respond_to(self, :do_something)
 | -
 |===
 
-This cop enforces that test method names start with `test_` prefix.
+Enforces that test method names start with `test_` prefix.
 It aims to prevent tests that aren't executed by forgetting to start test method name with `test_`.
 
 === Examples
@@ -1289,7 +1360,7 @@ end
 | -
 |===
 
-This cop checks for `assert_raises` has an assertion method at
+Checks for `assert_raises` has an assertion method at
 the bottom of block because the assertion will be never reached.
 
 === Examples
@@ -1321,7 +1392,7 @@ assert_equal('foo', obj.bar)
 | -
 |===
 
-This cop checks for a specified error in `assert_raises`.
+Checks for a specified error in `assert_raises`.
 
 === Examples
 
