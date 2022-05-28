@@ -2,6 +2,18 @@
 
 ## master (unreleased)
 
+### New features
+
+* [#169](https://github.com/rubocop/rubocop-minitest/issues/169): Add new `Minitest/SkipEnsure` cop. ([@koic][])
+
+### Bug fixes
+
+* [#172](https://github.com/rubocop/rubocop-minitest/issues/172): Fix a false positive for `Minitest/AssertPredicate` and `Minitest/RefutePredicate` when using numbered parameters. ([@koic][])
+
+### Changes
+
+* [#168](https://github.com/rubocop/rubocop-minitest/pull/168): **(Compatibility)** Drop Ruby 2.5 support. ([@koic][])
+
 ## 0.19.1 (2022-04-10)
 
 ### Bug fixes
