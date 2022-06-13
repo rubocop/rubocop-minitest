@@ -152,4 +152,14 @@ class AssertPredicateTest < Minitest::Test
       end
     RUBY
   end
+
+  def test_does_not_raise_error_using_assert_with_block
+    assert_no_offenses(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          assert { true }
+        end
+      end
+    RUBY
+  end
 end
