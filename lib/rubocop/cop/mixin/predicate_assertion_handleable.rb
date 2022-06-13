@@ -13,8 +13,9 @@ module RuboCop
 
           first_argument = arguments.first
 
+          return unless first_argument
           return if first_argument.block_type? || first_argument.numblock_type?
-          return unless first_argument.respond_to?(:predicate_method?) && first_argument.predicate_method?
+          return unless predicate_method?(first_argument)
           return unless first_argument.arguments.count.zero?
 
           add_offense(node, message: offense_message(arguments)) do |corrector|
@@ -36,6 +37,10 @@ module RuboCop
           return arguments unless arguments.first&.begin_type?
 
           peel_redundant_parentheses_from(arguments.first.children)
+        end
+
+        def predicate_method?(first_argument)
+          first_argument.respond_to?(:predicate_method?) && first_argument.predicate_method?
         end
 
         def offense_message(arguments)
