@@ -2,6 +2,8 @@
 
 ## master (unreleased)
 
+## 0.20.1 (2022-06-13)
+
 ### Bug fixes
 
 * [#175](https://github.com/rubocop/rubocop-minitest/pull/175): Fix raise error when using assert with block. ([@ippachi][])
