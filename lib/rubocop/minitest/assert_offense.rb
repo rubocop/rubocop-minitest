@@ -27,7 +27,7 @@ module RuboCop
     #     end
     #   RUBY
     #
-    # Auto-correction can be tested using `assert_correction` after
+    # Autocorrection can be tested using `assert_correction` after
     # `assert_offense`.
     #
     # @example `assert_offense` and `assert_correction`
