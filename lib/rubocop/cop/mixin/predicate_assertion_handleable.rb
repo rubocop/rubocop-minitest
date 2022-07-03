@@ -6,7 +6,6 @@ module RuboCop
       # Common functionality for `Minitest/AssertPredicate` and `Minitest/RefutePredicate` cops.
       module PredicateAssertionHandleable
         MSG = 'Prefer using `%<assertion_type>s_predicate(%<new_arguments>s)`.'
-        RESTRICT_ON_SEND = %i[assert].freeze
 
         def on_send(node)
           return unless (arguments = peel_redundant_parentheses_from(node.arguments))
