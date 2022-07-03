@@ -19,7 +19,7 @@ module RuboCop
         include InDeltaMixin
         extend AutoCorrector
 
-        RESTRICT_ON_SEND = %i[assert_equal].freeze
+        RESTRICT_ON_SEND = %i[assert_equal].freeze # rubocop:disable InternalAffairs/UselessRestrictOnSend
 
         def_node_matcher :equal_floats_call, <<~PATTERN
           (send nil? :assert_equal $_ $_ $...)

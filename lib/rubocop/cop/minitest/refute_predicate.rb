@@ -21,7 +21,7 @@ module RuboCop
         extend AutoCorrector
 
         MSG = 'Prefer using `refute_predicate(%<new_arguments>s)`.'
-        RESTRICT_ON_SEND = %i[refute].freeze
+        RESTRICT_ON_SEND = %i[refute].freeze # rubocop:disable InternalAffairs/UselessRestrictOnSend
 
         private
 
