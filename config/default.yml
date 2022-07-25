@@ -76,6 +76,11 @@ Minitest/AssertPredicate:
   Enabled: pending
   VersionAdded: '0.18'
 
+Minitest/AssertRaisesCompoundBody:
+  Description: 'This cop enforces the block body of `assert_raises { ... }` to be reduced to only the raising code.'
+  Enabled: pending
+  VersionAdded: '<<next>>'
+
 Minitest/AssertRespondTo:
   Description: 'This cop enforces the test to use `assert_respond_to(object, :do_something)` over `assert(object.respond_to?(:do_something))`.'
   StyleGuide: 'https://minitest.rubystyle.guide#assert-responds-to-method'
