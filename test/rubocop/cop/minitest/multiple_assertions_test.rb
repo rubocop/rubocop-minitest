@@ -108,9 +108,7 @@ class MultipleAssertionsTest < Minitest::Test
   private
 
   def configure_max_assertions(max)
-    cop_config = RuboCop::Config.new('Minitest/MultipleAssertions' => {
-                                       'Max' => max
-                                     })
+    cop_config = RuboCop::Config.new('Minitest/MultipleAssertions' => { 'Max' => max })
     @cop = RuboCop::Cop::Minitest::MultipleAssertions.new(cop_config)
   end
 end

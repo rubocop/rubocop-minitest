@@ -52,8 +52,7 @@ class ProjectTest < Minitest::Test
   def test_entry_has_a_valid_url
     @issues.each do |issue|
       number = issue[:number].gsub(/\D/, '')
-      pattern =
-        %r{^https://github\.com/rubocop/rubocop-minitest/(?:issues|pull)/#{number}$}
+      pattern = %r{^https://github\.com/rubocop/rubocop-minitest/(?:issues|pull)/#{number}$}
       assert_match(pattern, issue[:url])
     end
   end
@@ -128,11 +127,7 @@ class ProjectTest < Minitest::Test
     end.compact
 
     @bodies = @entries.map do |entry|
-      entry.gsub(/`[^`]+`/, '``').sub(
-        /^\*\s*(?:\[.+?\):\s*)?/, ''
-      ).sub(
-        /\s*\([^)]+\)$/, ''
-      )
+      entry.gsub(/`[^`]+`/, '``').sub(/^\*\s*(?:\[.+?\):\s*)?/, '').sub(/\s*\([^)]+\)$/, '')
     end
   end
 

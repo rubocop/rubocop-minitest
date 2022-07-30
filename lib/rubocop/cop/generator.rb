@@ -39,13 +39,7 @@ module RuboCop
       private
 
       def test_path
-        File.join(
-          'test',
-          'rubocop',
-          'cop',
-          'minitest',
-          "#{snake_case(badge.cop_name.to_s)}_test.rb"
-        )
+        File.join('test', 'rubocop', 'cop', 'minitest', "#{snake_case(badge.cop_name.to_s)}_test.rb")
       end
 
       def generated_test

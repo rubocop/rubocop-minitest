@@ -44,8 +44,7 @@ module RuboCop
         private
 
         def preferred_usage(first_arg, second_arg, custom_message = nil)
-          [first_arg, second_arg, custom_message]
-            .compact.map(&:source).join(', ')
+          [first_arg, second_arg, custom_message].compact.map(&:source).join(', ')
         end
 
         def original_usage(first_part, custom_message)

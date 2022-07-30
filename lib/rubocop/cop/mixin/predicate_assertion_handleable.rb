@@ -45,10 +45,7 @@ module RuboCop
         def offense_message(arguments)
           message_argument = arguments.last if arguments.first != arguments.last
 
-          new_arguments = [
-            new_arguments(arguments),
-            message_argument&.source
-          ].flatten.compact.join(', ')
+          new_arguments = [new_arguments(arguments), message_argument&.source].flatten.compact.join(', ')
 
           format(MSG, assertion_type: assertion_type, new_arguments: new_arguments)
         end
