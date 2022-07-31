@@ -2,6 +2,10 @@
 
 ## master (unreleased)
 
+### New features
+
+* [#109](https://github.com/rubocop/rubocop-minitest/issues/109): Add new `Minitest/AssertRaisesCompoundBody` cop. ([@fatkodima][])
+
 ## 0.20.1 (2022-06-13)
 
 ### Bug fixes
