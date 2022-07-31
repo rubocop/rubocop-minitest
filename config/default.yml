@@ -79,7 +79,7 @@ Minitest/AssertPredicate:
 Minitest/AssertRaisesCompoundBody:
   Description: 'This cop enforces the block body of `assert_raises { ... }` to be reduced to only the raising code.'
   Enabled: pending
-  VersionAdded: '<<next>>'
+  VersionAdded: '0.21'
 
 Minitest/AssertRespondTo:
   Description: 'This cop enforces the test to use `assert_respond_to(object, :do_something)` over `assert(object.respond_to?(:do_something))`.'

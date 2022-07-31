@@ -25,6 +25,7 @@ based on the https://minitest.rubystyle.guide/[Minitest Style Guide].
 * xref:cops_minitest.adoc#minitestassertoutput[Minitest/AssertOutput]
 * xref:cops_minitest.adoc#minitestassertpathexists[Minitest/AssertPathExists]
 * xref:cops_minitest.adoc#minitestassertpredicate[Minitest/AssertPredicate]
+* xref:cops_minitest.adoc#minitestassertraisescompoundbody[Minitest/AssertRaisesCompoundBody]
 * xref:cops_minitest.adoc#minitestassertrespondto[Minitest/AssertRespondTo]
 * xref:cops_minitest.adoc#minitestassertsilent[Minitest/AssertSilent]
 * xref:cops_minitest.adoc#minitestasserttruthy[Minitest/AssertTruthy]
