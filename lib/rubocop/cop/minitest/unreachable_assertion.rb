@@ -25,7 +25,7 @@ module RuboCop
 
         MSG = 'Unreachable `%<assertion_method>s` detected.'
 
-        def on_block(node)
+        def on_block(node) # rubocop:disable InternalAffairs/NumblockHandler
           return unless node.method?(:assert_raises) && (body = node.body)
 
           last_node = body.begin_type? ? body.children.last : body
