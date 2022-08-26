@@ -1,5 +1,6 @@
 Minitest:
   Enabled: true
+  DocumentationBaseURL: https://docs.rubocop.org/rubocop-minitest
   Include:
     - '**/test/**/*'
     - '**/*_test.rb'
