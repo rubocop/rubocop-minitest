@@ -2,6 +2,10 @@
 
 ## master (unreleased)
 
+### Bug fixes
+
+* [#178](https://github.com/rubocop/rubocop-minitest/pull/178): Fix incorrect documentation URLs when using `rubocop --show-docs-url`. ([@r7kamura][])
+
 ## 0.21.0 (2022-07-31)
 
 ### New features
@@ -327,3 +331,4 @@
 [@ignacio-chiazzo]: https://github.com/ignacio-chiazzo
 [@gjtorikian]: https://github.com/gjtorikian
 [@ippachi]: https://github.com/ippachi
+[@r7kamura]: https://github.com/r7kamura
