@@ -27,6 +27,7 @@ $ rubocop -V
 * Read [how to properly contribute to open source projects on GitHub][2].
 * Fork the project.
 * Use a topic/feature branch to easily amend a pull request later, if necessary.
+* If you are adding a new cop [use the bundled rake task `new_cop` to generate a cop template][7].
 * Write [good commit messages][3].
 * Use the same coding conventions as the rest of the project.
 * Commit and push until you are happy with your contribution.
@@ -67,3 +68,4 @@ Here are a few examples:
 [4]: https://help.github.com/articles/about-pull-requests
 [5]: http://gitready.com/advanced/2009/02/10/squashing-commits-with-rebase.html
 [6]: https://daringfireball.net/projects/markdown/syntax
+[7]: https://docs.rubocop.org/rubocop/development.html
