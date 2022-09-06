@@ -19,7 +19,8 @@ module RuboCop
       #                                  autocorrection. The preferred method name that connects
       #                                  `assertion_method` and `target_method` with `_` is
       #                                  the default name.
-      # @param inverse [Boolean] An optional param. Order of arguments replaced by autocorrection.
+      # @param inverse [Boolean, String] An optional param. Order of arguments replaced by autocorrection.
+      #                                  If string is passed, it becomes a predicate method for the first argument node.
       # @api private
       #
       def define_rule(assertion_method, target_method:, preferred_method: nil, inverse: false)
@@ -78,10 +79,15 @@ module RuboCop
 
           def new_arguments(arguments)
             receiver = correct_receiver(arguments.first.receiver)
-            method_argument = arguments.first.arguments.first&.source
+            method_argument = arguments.first.arguments.first
 
-            new_arguments = [receiver, method_argument].compact
-            new_arguments.reverse! if #{inverse}
+            new_arguments = [receiver, method_argument&.source].compact
+            inverse_condition = if %w[true false].include?('#{inverse}')
+              #{inverse}
+            else
+              method_argument.#{inverse}
+            end
+            new_arguments.reverse! if inverse_condition
             new_arguments
           end
 
