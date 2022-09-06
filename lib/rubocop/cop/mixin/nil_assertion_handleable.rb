@@ -4,6 +4,7 @@ module RuboCop
   module Cop
     module Minitest
       # Common functionality for `AssertNil` and `RefuteNil` cops.
+      # @api private
       module NilAssertionHandleable
         MSG = 'Prefer using `%<assertion_type>s_nil(%<preferred_args>s)`.'
 

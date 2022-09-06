@@ -3,6 +3,7 @@
 module RuboCop
   module Cop
     # Common functionality for `AssertInDelta` and `RefuteInDelta` cops.
+    # @api private
     module InDeltaMixin
       MSG = 'Prefer using `%<good_method>s`.'
 

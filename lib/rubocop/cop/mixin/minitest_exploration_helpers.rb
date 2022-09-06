@@ -5,6 +5,7 @@ require 'set'
 module RuboCop
   module Cop
     # Helper methods for different explorations against test files and test cases.
+    # @api private
     module MinitestExplorationHelpers
       extend NodePattern::Macros
 

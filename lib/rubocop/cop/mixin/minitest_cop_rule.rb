@@ -20,6 +20,7 @@ module RuboCop
       #                                  `assertion_method` and `target_method` with `_` is
       #                                  the default name.
       # @param inverse [Boolean] An optional param. Order of arguments replaced by autocorrection.
+      # @api private
       #
       def define_rule(assertion_method, target_method:, preferred_method: nil, inverse: false)
         preferred_method = "#{assertion_method}_#{target_method.to_s.delete('?')}" if preferred_method.nil?

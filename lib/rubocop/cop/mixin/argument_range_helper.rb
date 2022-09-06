@@ -3,6 +3,7 @@
 module RuboCop
   module Cop
     # Methods that calculate and return `Parser::Source::Ranges`.
+    # @api private
     module ArgumentRangeHelper
       include RangeHelp
 

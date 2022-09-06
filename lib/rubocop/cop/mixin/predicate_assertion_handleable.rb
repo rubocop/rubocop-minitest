@@ -4,6 +4,7 @@ module RuboCop
   module Cop
     module Minitest
       # Common functionality for `Minitest/AssertPredicate` and `Minitest/RefutePredicate` cops.
+      # @api private
       module PredicateAssertionHandleable
         MSG = 'Prefer using `%<assertion_type>s_predicate(%<new_arguments>s)`.'
 
