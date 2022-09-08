@@ -85,7 +85,7 @@ Minitest/AssertRaisesCompoundBody:
 Minitest/AssertRaisesWithRegexpArgument:
   Description: 'This cop enforces checks for regular expression literals passed to `assert_raises`.'
   Enabled: pending
-  VersionAdded: '<<next>>'
+  VersionAdded: '0.22'
 
 Minitest/AssertRespondTo:
   Description: 'This cop enforces the test to use `assert_respond_to(object, :do_something)` over `assert(object.respond_to?(:do_something))`.'

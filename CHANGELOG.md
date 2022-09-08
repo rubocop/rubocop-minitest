@@ -2,6 +2,8 @@
 
 ## master (unreleased)
 
+## 0.22.0 (2022-09-08)
+
 ### New features
 
 * [#179](https://github.com/rubocop/rubocop-minitest/pull/179): New `Minitest/AssertRaisesWithRegexpArgument` cop checks for regular expression literals passed to `assert_raises`. ([@rwstauner][])
