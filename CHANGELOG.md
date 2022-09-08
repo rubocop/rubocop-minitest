@@ -2,6 +2,14 @@
 
 ## master (unreleased)
 
+### New features
+
+* [#179](https://github.com/rubocop/rubocop-minitest/pull/179): New `Minitest/AssertRaisesWithRegexpArgument` cop checks for regular expression literals passed to `assert_raises`. ([@rwstauner][])
+
+### Bug fixes
+
+* [#181](https://github.com/rubocop/rubocop-minitest/pull/181): Fix an incorrect autocorrect for `Minitest/AssertMatch` when `assert` with `match` and RHS is a regexp literal. ([@koic][])
+
 ## 0.21.1 (2022-08-28)
 
 ### Bug fixes
@@ -334,3 +342,4 @@
 [@gjtorikian]: https://github.com/gjtorikian
 [@ippachi]: https://github.com/ippachi
 [@r7kamura]: https://github.com/r7kamura
+[@rwstauner]: https://github.com/rwstauner
