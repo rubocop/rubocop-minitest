@@ -22,6 +22,44 @@ class AssertMatchTest < Minitest::Test
     RUBY
   end
 
+  def test_registers_offense_when_using_assert_with_match_and_lhs_is_regexp_literal
+    assert_offense(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          assert(/regexp/.match(object))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_match(/regexp/, object)`.
+        end
+      end
+    RUBY
+
+    assert_correction(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          assert_match(/regexp/, object)
+        end
+      end
+    RUBY
+  end
+
+  def test_registers_offense_when_using_assert_with_match_and_rhs_is_regexp_literal
+    assert_offense(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          assert(object.match(/regexp/))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_match(/regexp/, object)`.
+        end
+      end
+    RUBY
+
+    assert_correction(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          assert_match(/regexp/, object)
+        end
+      end
+    RUBY
+  end
+
   def test_registers_offense_when_using_assert_with_match_and_message
     assert_offense(<<~RUBY, @cop)
       class FooTest < Minitest::Test

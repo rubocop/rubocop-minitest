@@ -18,7 +18,7 @@ module RuboCop
       class AssertMatch < Base
         extend MinitestCopRule
 
-        define_rule :assert, target_method: :match
+        define_rule :assert, target_method: :match, inverse: 'regexp_type?'
       end
     end
   end
