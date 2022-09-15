@@ -36,7 +36,8 @@ module RuboCop
           def on_send(node)
             return unless node.method?(:#{assertion_method})
             return unless (arguments = peel_redundant_parentheses_from(node.arguments))
-            return unless arguments.first.respond_to?(:method?) && arguments.first.method?(:#{target_method})
+            return unless arguments.first&.call_type?
+            return if arguments.first.arguments.empty? || !arguments.first.method?(:#{target_method})
 
             add_offense(node, message: offense_message(arguments)) do |corrector|
               autocorrect(corrector, node, arguments)
