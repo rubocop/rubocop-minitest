@@ -132,4 +132,24 @@ class AssertMatchTest < Minitest::Test
       end
     RUBY
   end
+
+  def test_does_not_register_offense_when_using_assert_with_no_arguments_match_call
+    assert_no_offenses(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          assert(matcher.match)
+        end
+      end
+    RUBY
+  end
+
+  def test_does_not_register_offense_when_using_assert_with_no_arguments_match_safe_navigation_call
+    assert_no_offenses(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          assert(matcher&.match)
+        end
+      end
+    RUBY
+  end
 end
