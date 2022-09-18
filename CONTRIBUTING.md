@@ -27,6 +27,7 @@ $ rubocop -V
 * Read [how to properly contribute to open source projects on GitHub][2].
 * Fork the project.
 * Use a topic/feature branch to easily amend a pull request later, if necessary.
+* If you are adding a new cop [use the bundled rake task `new_cop` to generate a cop template][7].
 * Write [good commit messages][3].
 * Use the same coding conventions as the rest of the project.
 * Commit and push until you are happy with your contribution.
@@ -59,7 +60,6 @@ Here are a few examples:
 * If the change has a related GitHub issue (e.g. a bug fix for a reported issue), put a link to the issue as `[#123](https://github.com/rubocop/rubocop-minitest/issues/123): `.
 * Describe the brief of the change. The sentence should end with a punctuation.
 * At the end of the entry, add an implicit link to your GitHub user page as `([@username][])`.
-* Alternatively, you may modify the CHANGELOG file directly, but this may result in conflicts later on. Also, if this is your first contribution to RuboCop Minitest project, add a link definition for the implicit link to the bottom of the changelog as `[@username]: https://github.com/username`.
 
 [1]: https://github.com/rubocop/rubocop-minitest/issues
 [2]: https://www.gun.io/blog/how-to-github-fork-branch-and-pull-request
@@ -67,3 +67,4 @@ Here are a few examples:
 [4]: https://help.github.com/articles/about-pull-requests
 [5]: http://gitready.com/advanced/2009/02/10/squashing-commits-with-rebase.html
 [6]: https://daringfireball.net/projects/markdown/syntax
+[7]: https://docs.rubocop.org/rubocop/development.html
