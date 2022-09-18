@@ -2,6 +2,10 @@
 
 ## master (unreleased)
 
+### Bug fixes
+
+* [#183](https://github.com/rubocop/rubocop-minitest/issues/183): Fix an error for `Minitest/AssertMatch` when using `assert` with no arguments `match`. ([@koic][])
+
 ## 0.22.0 (2022-09-08)
 
 ### New features
