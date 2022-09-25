@@ -85,6 +85,15 @@ class ProjectTest < Minitest::Test
     end
   end
 
+  def test_feature_entry_has_a_link_to_the_issue_or_pull_request_address_at_the_beginning
+    repo = 'rubocop/rubocop-minitest'
+    address_pattern = %r{\A\* \[#\d+\]\(https://github\.com/#{repo}/(issues|pull)/\d+\):}
+
+    @feature_entries.each do |path|
+      assert_match(address_pattern, File.read(path))
+    end
+  end
+
   def test_feature_entry_has_a_link_to_the_contributors_at_the_end
     @feature_entries.each do |path|
       assert_match(/\(\[@\S+\]\[\](?:, \[@\S+\]\[\])*\)$/, File.read(path))
