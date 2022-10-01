@@ -1,0 +1,1 @@
+* [#185](https://github.com/rubocop/rubocop-minitest/pull/185): Fix an incorrect autocorrect for `Minitest/RefuteMatch` when `refute` with `match` and RHS is a regexp literal. ([@koic][])
