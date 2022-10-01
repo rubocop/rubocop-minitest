@@ -2,6 +2,10 @@
 
 ## master (unreleased)
 
+### Bug fixes
+
+* [#185](https://github.com/rubocop/rubocop-minitest/pull/185): Fix an incorrect autocorrect for `Minitest/RefuteMatch` when `refute` with `match` and RHS is a regexp literal. ([@koic][])
+
 ## 0.22.1 (2022-09-18)
 
 ### Bug fixes
