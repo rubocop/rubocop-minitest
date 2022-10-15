@@ -122,6 +122,11 @@ Minitest/DuplicateTestRun:
   Enabled: pending
   VersionAdded: '0.19'
 
+Minitest/EmptyLineBeforeAssertionMethods:
+  Description: 'Add empty line before assertion methods.'
+  Enabled: pending
+  VersionAdded: '<<next>>'
+
 Minitest/GlobalExpectations:
   Description: 'This cop checks for deprecated global expectations.'
   StyleGuide: 'https://minitest.rubystyle.guide#global-expectations'
