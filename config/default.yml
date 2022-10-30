@@ -125,7 +125,7 @@ Minitest/DuplicateTestRun:
 Minitest/EmptyLineBeforeAssertionMethods:
   Description: 'Add empty line before assertion methods.'
   Enabled: pending
-  VersionAdded: '<<next>>'
+  VersionAdded: '0.23'
 
 Minitest/GlobalExpectations:
   Description: 'This cop checks for deprecated global expectations.'

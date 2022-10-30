@@ -33,6 +33,7 @@ based on the https://minitest.rubystyle.guide/[Minitest Style Guide].
 * xref:cops_minitest.adoc#minitestassertwithexpectedargument[Minitest/AssertWithExpectedArgument]
 * xref:cops_minitest.adoc#minitestassertioninlifecyclehook[Minitest/AssertionInLifecycleHook]
 * xref:cops_minitest.adoc#minitestduplicatetestrun[Minitest/DuplicateTestRun]
+* xref:cops_minitest.adoc#minitestemptylinebeforeassertionmethods[Minitest/EmptyLineBeforeAssertionMethods]
 * xref:cops_minitest.adoc#minitestglobalexpectations[Minitest/GlobalExpectations]
 * xref:cops_minitest.adoc#minitestliteralasactualargument[Minitest/LiteralAsActualArgument]
 * xref:cops_minitest.adoc#minitestmultipleassertions[Minitest/MultipleAssertions]

@@ -675,6 +675,34 @@ end
 
 * https://minitest.rubystyle.guide/#subclassing-test-cases
 
+== Minitest/EmptyLineBeforeAssertionMethods
+
+|===
+| Enabled by default | Safe | Supports autocorrection | Version Added | Version Changed
+
+| Pending
+| Yes
+| Yes
+| 0.23
+| -
+|===
+
+Enforces empty line before assertion methods because it separates assertion phase.
+
+=== Examples
+
+[source,ruby]
+----
+# bad
+do_something
+assert_equal(expected, actual)
+
+# good
+do_something
+
+assert_equal(expected, actual)
+----
+
 == Minitest/GlobalExpectations
 
 |===
