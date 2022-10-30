@@ -2,6 +2,10 @@
 
 ## master (unreleased)
 
+### New features
+
+* [#157](https://github.com/rubocop/rubocop-minitest/issues/157): Add new `Minitest/EmptyLineBeforeAssertionMethods` cop. ([@koic][])
+
 ## 0.22.2 (2022-10-01)
 
 ### Bug fixes
