@@ -172,7 +172,33 @@ module RuboCop
           file = file.path
         end
 
-        RuboCop::ProcessedSource.new(source, ruby_version, file)
+        processed_source = RuboCop::ProcessedSource.new(source, ruby_version, file)
+
+        # Follow up https://github.com/rubocop/rubocop/pull/10987.
+        # When support for RuboCop 1.37.1 ends, this condition can be removed.
+        if processed_source.respond_to?(:config) && processed_source.respond_to?(:registry)
+          processed_source.config = configuration
+          processed_source.registry = registry
+        end
+
+        processed_source
+      end
+
+      def configuration
+        @configuration ||= if defined?(config)
+                             config
+                           else
+                             RuboCop::Config.new({}, "#{Dir.pwd}/.rubocop.yml")
+                           end
+      end
+
+      def registry
+        @registry ||= begin
+          cops = configuration.keys.map { |cop| RuboCop::Cop::Registry.global.find_by_cop_name(cop) }
+          cops << cop_class if defined?(cop_class) && !cops.include?(cop_class)
+          cops.compact!
+          RuboCop::Cop::Registry.new(cops)
+        end
       end
 
       def ruby_version
