@@ -1,0 +1,1 @@
+* [#190](https://github.com/rubocop/rubocop-minitest/issues/190): Fix an incorrect autocorrect for `Minitest/EmptyLineBeforeAssertionMethods` when using method call with source code comment before assertion method. ([@koic][])
