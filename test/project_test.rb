@@ -22,6 +22,7 @@ class ProjectTest < Minitest::Test
 
   def test_changelog_has_link_definitions_for_all_implicit_links
     implicit_link_names = @changelog.scan(/\[([^\]]+)\]\[\]/).flatten.uniq
+
     implicit_link_names.each do |name|
       assert_includes(
         @changelog, "[#{name}]: http",

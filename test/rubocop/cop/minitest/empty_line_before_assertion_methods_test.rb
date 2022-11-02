@@ -109,6 +109,46 @@ class EmptyLineBeforeAssertionMethodsTest < Minitest::Test
     RUBY
   end
 
+  def test_registers_offense_when_using_statement_before_assertion_method_used_in_block
+    assert_offense(<<~RUBY)
+      def test_do_something
+        set = Set.new([1,2,3])
+        set.each do |thing|
+        ^^^^^^^^^^^^^^^^^^^ Add empty line before assertion.
+          refute_nil(thing)
+        end
+      end
+    RUBY
+
+    assert_correction(<<~RUBY)
+      def test_do_something
+        set = Set.new([1,2,3])
+
+        set.each do |thing|
+          refute_nil(thing)
+        end
+      end
+    RUBY
+  end
+
+  def test_registers_offense_when_using_statement_before_single_line_assertion_method_used_in_block
+    assert_offense(<<~RUBY)
+      def test_do_something
+        set = Set.new([1,2,3])
+        set.each { |thing| refute_nil(thing) }
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Add empty line before assertion.
+      end
+    RUBY
+
+    assert_correction(<<~RUBY)
+      def test_do_something
+        set = Set.new([1,2,3])
+
+        set.each { |thing| refute_nil(thing) }
+      end
+    RUBY
+  end
+
   def test_does_not_register_offense_when_using_empty_line_before_assertion_methods
     assert_no_offenses(<<~RUBY)
       def test_do_something
@@ -171,6 +211,36 @@ class EmptyLineBeforeAssertionMethodsTest < Minitest::Test
         assert_not foo
         assert bar
       end
+    RUBY
+  end
+
+  def test_registers_offense_when_using_assertion_method_before_assertion_method_used_in_block
+    assert_no_offenses(<<~RUBY)
+      def test_do_something
+        set = Set.new([1,2,3])
+
+        refute_nil(set)
+        set.each do |thing|
+          refute_nil(thing)
+        end
+      end
+    RUBY
+  end
+
+  def test_does_not_register_offense_when_using_statement_before_non_assertion_method_used_in_block
+    assert_no_offenses(<<~RUBY)
+      def test_do_something
+        set = Set.new([1,2,3])
+        set.each do |thing|
+          do_something(thing)
+        end
+      end
+    RUBY
+  end
+
+  def test_does_not_register_offense_when_using_only_non_assertion_method
+    assert_no_offenses(<<~RUBY)
+      do_something(thing)
     RUBY
   end
 end

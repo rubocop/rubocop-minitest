@@ -23,18 +23,26 @@ module RuboCop
         MSG = 'Add empty line before assertion.'
 
         def on_send(node)
-          return unless assertion_method?(node)
-          return unless (previous_line_node = node.left_sibling)
+          return unless (assertion_method = assertion_method(node))
+          return unless (previous_line_node = assertion_method.left_sibling)
           return unless previous_line_node.is_a?(RuboCop::AST::Node)
-          return if accept_previous_line?(previous_line_node, node)
+          return if accept_previous_line?(previous_line_node, assertion_method)
 
           previous_line_node = previous_line_node.arguments.last if use_heredoc_argument?(previous_line_node)
-          return unless no_empty_line?(previous_line_node, node)
+          return unless no_empty_line?(previous_line_node, assertion_method)
 
-          register_offense(node, previous_line_node)
+          register_offense(assertion_method, previous_line_node)
         end
 
         private
+
+        def assertion_method(node)
+          if assertion_method?(node)
+            node
+          elsif node.parent&.block_type? && assertion_method?(node.parent.body)
+            node.parent
+          end
+        end
 
         def accept_previous_line?(previous_line_node, node)
           return true if previous_line_node.args_type? || node.parent.basic_conditional?
