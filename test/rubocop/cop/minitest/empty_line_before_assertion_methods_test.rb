@@ -149,6 +149,32 @@ class EmptyLineBeforeAssertionMethodsTest < Minitest::Test
     RUBY
   end
 
+  def test_registers_offense_when_using_statement_before_assertion_method_used_in_rescue
+    assert_offense(<<~'RUBY')
+      def test_do_something
+        yaml_load_paths.each do |path|
+          YAML.load_file(path)
+        rescue Psych::Exception => e
+          do_something
+          flunk("Error loading #{path}: #{e.inspect}")
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Add empty line before assertion.
+        end
+      end
+    RUBY
+
+    assert_correction(<<~'RUBY')
+      def test_do_something
+        yaml_load_paths.each do |path|
+          YAML.load_file(path)
+        rescue Psych::Exception => e
+          do_something
+
+          flunk("Error loading #{path}: #{e.inspect}")
+        end
+      end
+    RUBY
+  end
+
   def test_does_not_register_offense_when_using_empty_line_before_assertion_methods
     assert_no_offenses(<<~RUBY)
       def test_do_something
@@ -233,6 +259,18 @@ class EmptyLineBeforeAssertionMethodsTest < Minitest::Test
         set = Set.new([1,2,3])
         set.each do |thing|
           do_something(thing)
+        end
+      end
+    RUBY
+  end
+
+  def test_does_not_register_offense_when_using_rescue_before_assertion_method
+    assert_no_offenses(<<~'RUBY')
+      def test_do_something
+        yaml_load_paths.each do |path|
+          YAML.load_file(path)
+        rescue Psych::Exception => e
+          flunk("Error loading #{path}: #{e.inspect}")
         end
       end
     RUBY

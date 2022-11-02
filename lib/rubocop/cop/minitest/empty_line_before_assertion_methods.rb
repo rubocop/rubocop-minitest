@@ -25,7 +25,7 @@ module RuboCop
         def on_send(node)
           return unless (assertion_method = assertion_method(node))
           return unless (previous_line_node = assertion_method.left_sibling)
-          return unless previous_line_node.is_a?(RuboCop::AST::Node)
+          return if node.parent.resbody_type?
           return if accept_previous_line?(previous_line_node, assertion_method)
 
           previous_line_node = previous_line_node.arguments.last if use_heredoc_argument?(previous_line_node)
@@ -45,7 +45,8 @@ module RuboCop
         end
 
         def accept_previous_line?(previous_line_node, node)
-          return true if previous_line_node.args_type? || node.parent.basic_conditional?
+          return true if !previous_line_node.is_a?(RuboCop::AST::Node) ||
+                         previous_line_node.args_type? || node.parent.basic_conditional?
 
           previous_line_node.send_type? && assertion_method?(previous_line_node)
         end
