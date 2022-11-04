@@ -18,6 +18,7 @@ module RuboCop
       #
       class EmptyLineBeforeAssertionMethods < Base
         include MinitestExplorationHelpers
+        include RangeHelp
         extend AutoCorrector
 
         MSG = 'Add empty line before assertion.'
@@ -74,7 +75,7 @@ module RuboCop
             range = if heredoc?(previous_line_node)
                       previous_line_node.loc.heredoc_end
                     else
-                      previous_line_node
+                      range_by_whole_lines(previous_line_node.source_range, include_final_newline: true)
                     end
 
             corrector.insert_after(range, "\n")

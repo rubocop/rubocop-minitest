@@ -21,6 +21,24 @@ class EmptyLineBeforeAssertionMethodsTest < Minitest::Test
     RUBY
   end
 
+  def test_registers_offense_when_using_method_call_with_comment_before_assertion_method
+    assert_offense(<<~RUBY)
+      def test_do_something
+        do_something # comment
+        assert_equal(expected, actual)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Add empty line before assertion.
+      end
+    RUBY
+
+    assert_correction(<<~RUBY)
+      def test_do_something
+        do_something # comment
+
+        assert_equal(expected, actual)
+      end
+    RUBY
+  end
+
   def test_registers_offense_when_using_method_call_with_line_breaked_args_before_assertion_method
     assert_offense(<<~RUBY)
       def test_do_something
