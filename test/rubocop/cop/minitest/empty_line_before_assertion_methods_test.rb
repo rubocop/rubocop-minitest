@@ -167,6 +167,70 @@ class EmptyLineBeforeAssertionMethodsTest < Minitest::Test
     RUBY
   end
 
+  def test_registers_offense_when_using_non_assertion_method_used_in_single_line_block_before_assertion_method
+    assert_offense(<<~RUBY)
+      def test_do_something
+        set.each { |thing| do_something(thing) }
+        assert_equal 'This is really bad', error.message
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Add empty line before assertion.
+      end
+    RUBY
+
+    assert_correction(<<~RUBY)
+      def test_do_something
+        set.each { |thing| do_something(thing) }
+
+        assert_equal 'This is really bad', error.message
+      end
+    RUBY
+  end
+
+  def test_registers_offense_when_using_non_assertion_method_used_in_multi_line_block_before_assertion_method
+    assert_offense(<<~RUBY)
+      def test_do_something
+        set.each do |thing|
+          refute_nil(thing)
+
+          do_something(thing)
+        end
+        assert_equal 'This is really bad', error.message
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Add empty line before assertion.
+      end
+    RUBY
+
+    assert_correction(<<~RUBY)
+      def test_do_something
+        set.each do |thing|
+          refute_nil(thing)
+
+          do_something(thing)
+        end
+
+        assert_equal 'This is really bad', error.message
+      end
+    RUBY
+  end
+
+  def test_registers_offense_when_using_empty_block_before_assertion_method
+    assert_offense(<<~RUBY)
+      def test_do_something
+        set.each do |thing|
+        end
+        assert_equal 'This is really bad', error.message
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Add empty line before assertion.
+      end
+    RUBY
+
+    assert_correction(<<~RUBY)
+      def test_do_something
+        set.each do |thing|
+        end
+
+        assert_equal 'This is really bad', error.message
+      end
+    RUBY
+  end
+
   def test_registers_offense_when_using_statement_before_assertion_method_used_in_rescue
     assert_offense(<<~'RUBY')
       def test_do_something
@@ -258,7 +322,7 @@ class EmptyLineBeforeAssertionMethodsTest < Minitest::Test
     RUBY
   end
 
-  def test_registers_offense_when_using_assertion_method_before_assertion_method_used_in_block
+  def test_does_not_register_offense_when_using_assertion_method_before_assertion_method_used_in_block
     assert_no_offenses(<<~RUBY)
       def test_do_something
         set = Set.new([1,2,3])
@@ -278,6 +342,28 @@ class EmptyLineBeforeAssertionMethodsTest < Minitest::Test
         set.each do |thing|
           do_something(thing)
         end
+      end
+    RUBY
+  end
+
+  def test_does_not_register_offense_when_using_assertion_method_used_in_single_line_block_before_assertion_method
+    assert_no_offenses(<<~RUBY)
+      def test_do_something
+        set.each { |thing| refute_nil(thing) }
+        assert_equal 'This is really bad', error.message
+      end
+    RUBY
+  end
+
+  def test_does_not_register_offense_when_using_assertion_method_used_in_multi_line_block_before_assertion_method
+    assert_no_offenses(<<~RUBY)
+      def test_do_something
+        set.each do |thing|
+          do_something
+
+          refute_nil(thing)
+        end
+        assert_equal 'This is really bad', error.message
       end
     RUBY
   end

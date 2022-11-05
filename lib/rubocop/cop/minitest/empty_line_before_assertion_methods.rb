@@ -23,6 +23,7 @@ module RuboCop
 
         MSG = 'Add empty line before assertion.'
 
+        # rubocop:disable Metrics/CyclomaticComplexity
         def on_send(node)
           return unless (assertion_method = assertion_method(node))
           return unless (previous_line_node = assertion_method.left_sibling)
@@ -30,19 +31,20 @@ module RuboCop
           return if accept_previous_line?(previous_line_node, assertion_method)
 
           previous_line_node = previous_line_node.arguments.last if use_heredoc_argument?(previous_line_node)
+          return if use_assertion_method_at_last_of_block?(previous_line_node)
           return unless no_empty_line?(previous_line_node, assertion_method)
 
           register_offense(assertion_method, previous_line_node)
         end
+        # rubocop:enable Metrics/CyclomaticComplexity
 
         private
 
         def assertion_method(node)
-          if assertion_method?(node)
-            node
-          elsif node.parent&.block_type? && assertion_method?(node.parent.body)
-            node.parent
-          end
+          return node if assertion_method?(node)
+          return unless (parent = node.parent)
+
+          node.parent if parent.block_type? && parent.body && assertion_method?(parent.body)
         end
 
         def accept_previous_line?(previous_line_node, node)
@@ -54,6 +56,16 @@ module RuboCop
 
         def use_heredoc_argument?(node)
           node.respond_to?(:arguments) && heredoc?(node.arguments.last)
+        end
+
+        def use_assertion_method_at_last_of_block?(node)
+          return false if !node.block_type? || !node.body
+
+          if node.body.begin_type?
+            assertion_method?(node.body.children.last)
+          else
+            assertion_method?(node.body)
+          end
         end
 
         def heredoc?(last_argument)
