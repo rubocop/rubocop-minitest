@@ -1,1 +1,0 @@
-* [#189](https://github.com/rubocop/rubocop-minitest/issues/189): Fix a false negative for `Minitest/EmptyLineBeforeAssertionMethods` when using assertion method used in block before assertion method. ([@koic][])
