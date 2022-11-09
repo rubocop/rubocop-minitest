@@ -43,8 +43,10 @@ module RuboCop
         def assertion_method(node)
           return node if assertion_method?(node)
           return unless (parent = node.parent)
+          return unless parent.block_type?
+          return if parent.method?(:test)
 
-          node.parent if parent.block_type? && parent.body && assertion_method?(parent.body)
+          node.parent if parent.body && assertion_method?(parent.body)
         end
 
         def accept_previous_line?(previous_line_node, node)
