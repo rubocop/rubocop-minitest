@@ -385,4 +385,14 @@ class EmptyLineBeforeAssertionMethodsTest < Minitest::Test
       do_something(thing)
     RUBY
   end
+
+  def test_does_not_register_offense_when_using_assertion_method_as_first_line_in_test_block_at_top_of_class
+    assert_no_offenses(<<~RUBY)
+      class FooTest < Minitest::Test
+        test "do something" do
+          assert_equal(expected, actual)
+        end
+      end
+    RUBY
+  end
 end
