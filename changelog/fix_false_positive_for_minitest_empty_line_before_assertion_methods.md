@@ -1,1 +1,0 @@
-* [#189](https://github.com/rubocop/rubocop-minitest/issues/189): Fix a false positive for `Minitest/EmptyLineBeforeAssertionMethods` when using an assertion method as the first line within a test block([@ryanquanz][])
