@@ -4,6 +4,9 @@ require 'test_helper'
 
 class ProjectTest < Minitest::Test
   def setup
+    @issues = []
+    @bodies = []
+
     load_changelog
     load_feature_entries
   end
@@ -133,18 +136,24 @@ class ProjectTest < Minitest::Test
     @lines = @changelog.each_line
     @entries = @lines.grep(/^\*/).map(&:chomp)
 
-    @issues = @entries.map do |entry|
-      entry.match(/\[(?<number>[#\d]+)\]\((?<url>[^)]+)\)/)
-    end.compact
-
-    @bodies = @entries.map do |entry|
-      entry.gsub(/`[^`]+`/, '``').sub(/^\*\s*(?:\[.+?\):\s*)?/, '').sub(/\s*\([^)]+\)$/, '')
-    end
+    prepare_changelog_entries(@entries)
   end
 
   def load_feature_entries
     changelog_dir = File.join(File.dirname(__FILE__), '..', 'changelog')
 
     @feature_entries = Dir["#{changelog_dir}/*.md"]
+
+    prepare_changelog_entries(@feature_entries)
+  end
+
+  def prepare_changelog_entries(entries)
+    @issues += entries.map do |entry|
+      entry.match(/\[(?<number>[#\d]+)\]\((?<url>[^)]+)\)/)
+    end.compact
+
+    @bodies += entries.map do |entry|
+      entry.gsub(/`[^`]+`/, '``').sub(/^\*\s*(?:\[.+?\):\s*)?/, '').sub(/\s*\([^)]+\)$/, '')
+    end
   end
 end
