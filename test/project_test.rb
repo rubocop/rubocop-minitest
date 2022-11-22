@@ -144,7 +144,7 @@ class ProjectTest < Minitest::Test
 
     @feature_entries = Dir["#{changelog_dir}/*.md"]
 
-    prepare_changelog_entries(@feature_entries)
+    prepare_changelog_entries(@feature_entries.map { |path| File.read(path) })
   end
 
   def prepare_changelog_entries(entries)
