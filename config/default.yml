@@ -239,6 +239,11 @@ Minitest/SkipEnsure:
   Enabled: pending
   VersionAdded: '0.20'
 
+Minitest/SkipWithoutReason:
+  Description: 'Checks for skipped tests missing the skipping reason.'
+  Enabled: pending
+  VersionAdded: '<<next>>'
+
 Minitest/TestMethodName:
   Description: 'This cop enforces that test method names start with `test_` prefix.'
   Enabled: 'pending'
