@@ -112,7 +112,7 @@ class RefutePredicateTest < Minitest::Test
     RUBY
   end
 
-  def test_does_not_registers_offense_when_using_refute_with_non_predicate_method
+  def test_does_not_register_offense_when_using_refute_with_non_predicate_method
     assert_no_offenses(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
@@ -122,7 +122,7 @@ class RefutePredicateTest < Minitest::Test
     RUBY
   end
 
-  def test_does_not_registers_offense_when_using_refute_with_local_variable
+  def test_does_not_register_offense_when_using_refute_with_local_variable
     assert_no_offenses(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something

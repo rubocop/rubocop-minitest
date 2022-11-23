@@ -43,6 +43,9 @@ Naming/InclusiveLanguage:
     offence:
       Suggestions:
         - offense
+    does_not_registers:
+      Suggestions:
+        - does_not_register
 
 Style/FormatStringToken:
   # Because we parse a lot of source codes from strings. Percent arrays
