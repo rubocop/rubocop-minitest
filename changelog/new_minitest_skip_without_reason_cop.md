@@ -1,1 +1,0 @@
-* [#198](https://github.com/rubocop/rubocop-minitest/issues/198): Add new `Minitest/SkipWithoutReason` cop. ([@fatkodima][])
