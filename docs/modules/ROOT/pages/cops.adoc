@@ -51,6 +51,7 @@ based on the https://minitest.rubystyle.guide/[Minitest Style Guide].
 * xref:cops_minitest.adoc#minitestrefutepredicate[Minitest/RefutePredicate]
 * xref:cops_minitest.adoc#minitestrefuterespondto[Minitest/RefuteRespondTo]
 * xref:cops_minitest.adoc#minitestskipensure[Minitest/SkipEnsure]
+* xref:cops_minitest.adoc#minitestskipwithoutreason[Minitest/SkipWithoutReason]
 * xref:cops_minitest.adoc#minitesttestmethodname[Minitest/TestMethodName]
 * xref:cops_minitest.adoc#minitestunreachableassertion[Minitest/UnreachableAssertion]
 * xref:cops_minitest.adoc#minitestunspecifiedexception[Minitest/UnspecifiedException]

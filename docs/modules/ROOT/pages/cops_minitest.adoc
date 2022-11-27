@@ -1409,6 +1409,42 @@ ensure
 end
 ----
 
+== Minitest/SkipWithoutReason
+
+|===
+| Enabled by default | Safe | Supports autocorrection | Version Added | Version Changed
+
+| Pending
+| Yes
+| No
+| 0.24
+| -
+|===
+
+Checks for skipped tests missing the skipping reason.
+
+=== Examples
+
+[source,ruby]
+----
+# bad
+skip
+skip('')
+
+# bad
+if condition?
+  skip
+else
+  skip
+end
+
+# good
+skip("Reason why the test was skipped")
+
+# good
+skip if condition?
+----
+
 == Minitest/TestMethodName
 
 |===

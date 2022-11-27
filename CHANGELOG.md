@@ -2,6 +2,8 @@
 
 ## master (unreleased)
 
+## 0.24.0 (2022-11-27)
+
 ### New features
 
 * [#198](https://github.com/rubocop/rubocop-minitest/issues/198): Add new `Minitest/SkipWithoutReason` cop. ([@fatkodima][])
