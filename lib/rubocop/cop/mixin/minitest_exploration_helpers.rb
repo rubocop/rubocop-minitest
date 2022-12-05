@@ -38,7 +38,7 @@ module RuboCop
 
         # Support Active Support's `test 'example' { ... }` method.
         # https://api.rubyonrails.org/classes/ActiveSupport/Testing/Declarative.html
-        test_blocks = class_node.each_descendant(:block).select { |block_node| block_node.method?(:test) }
+        test_blocks = class_node.each_descendant(:block).select { |block| block.method?(:test) || block.method?(:it) }
 
         test_cases + test_blocks
       end
