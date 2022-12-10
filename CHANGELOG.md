@@ -2,6 +2,10 @@
 
 ## master (unreleased)
 
+### New features
+
+* [#200](https://github.com/rubocop/rubocop-minitest/issues/200): Support `it` testing block for minitest/spec. ([@koic][])
+
 ## 0.24.0 (2022-11-27)
 
 ### New features
