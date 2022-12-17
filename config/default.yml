@@ -85,7 +85,9 @@ Minitest/AssertRaisesCompoundBody:
 Minitest/AssertRaisesWithRegexpArgument:
   Description: 'This cop enforces checks for regular expression literals passed to `assert_raises`.'
   Enabled: pending
+  Severity: warning
   VersionAdded: '0.22'
+  VersionChanged: '<<next>>'
 
 Minitest/AssertRespondTo:
   Description: 'This cop enforces the test to use `assert_respond_to(object, :do_something)` over `assert(object.respond_to?(:do_something))`.'
@@ -108,8 +110,10 @@ Minitest/AssertTruthy:
 Minitest/AssertWithExpectedArgument:
   Description: 'This cop tries to detect when a user accidentally used `assert` when they meant to use `assert_equal`.'
   Enabled: pending
+  Severity: warning
   Safe: false
   VersionAdded: '0.11'
+  VersionChanged: '<<next>>'
 
 Minitest/AssertionInLifecycleHook:
   Description: 'This cop checks for usage of assertions in lifecycle hooks.'
@@ -131,6 +135,7 @@ Minitest/GlobalExpectations:
   Description: 'This cop checks for deprecated global expectations.'
   StyleGuide: 'https://minitest.rubystyle.guide#global-expectations'
   Enabled: true
+  Severity: warning
   EnforcedStyle: any
   Include:
     - '**/test/**/*'
@@ -143,7 +148,7 @@ Minitest/GlobalExpectations:
     - expect
     - value
   VersionAdded: '0.7'
-  VersionChanged: '0.16'
+  VersionChanged: '<<next>>'
 
 Minitest/LiteralAsActualArgument:
   Description: 'This cop enforces correct order of `expected` and `actual` arguments for `assert_equal`.'
@@ -237,7 +242,9 @@ Minitest/RefuteRespondTo:
 Minitest/SkipEnsure:
   Description: 'Checks that `ensure` call even if `skip`.'
   Enabled: pending
+  Severity: warning
   VersionAdded: '0.20'
+  VersionChanged: '<<next>>'
 
 Minitest/TestMethodName:
   Description: 'This cop enforces that test method names start with `test_` prefix.'
@@ -247,7 +254,9 @@ Minitest/TestMethodName:
 Minitest/UnreachableAssertion:
   Description: 'This cop checks for an `assert_raises` block containing any unreachable assertions.'
   Enabled: pending
+  Severity: warning
   VersionAdded: '0.14'
+  VersionChanged: '<<next>>'
 
 Minitest/UnspecifiedException:
   Description: 'This cop checks for a specified error in `assert_raises`.'
