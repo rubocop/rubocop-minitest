@@ -47,6 +47,26 @@ class AssertWithExpectedArgumentTest < Minitest::Test
     RUBY
   end
 
+  def test_does_not_register_offense_when_second_argument_is_a_variable_named_message
+    assert_no_offenses(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          assert([], message)
+        end
+      end
+    RUBY
+  end
+
+  def test_does_not_register_offense_when_second_argument_is_a_variable_named_msg
+    assert_no_offenses(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          assert([], msg)
+        end
+      end
+    RUBY
+  end
+
   def test_does_not_register_offense_when_second_argument_is_an_interpolated_string
     assert_no_offenses(<<~'RUBY')
       class FooTest < Minitest::Test
