@@ -2,6 +2,10 @@
 
 ## master (unreleased)
 
+### Changes
+
+* [#206](https://github.com/rubocop/rubocop-minitest/issues/206): Make `Minitest/AssertWithExpectedArgument` aware of message variable. ([@koic][])
+
 ## 0.25.0 (2022-12-10)
 
 ### New features
