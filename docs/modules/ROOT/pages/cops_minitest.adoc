@@ -562,6 +562,9 @@ assert(actual, 'message')
 Tries to detect when a user accidentally used
 `assert` when they meant to use `assert_equal`.
 
+NOTE: The second argument to the `assert` method named `message` and `msg` is allowed.
+      Because their names are inferred as message arguments.
+
 === Safety
 
 This cop is unsafe because it is not possible to determine
@@ -579,6 +582,8 @@ assert(expected, actual)
 assert_equal(3, my_list.length)
 assert_equal(expected, actual)
 assert(foo, 'message')
+assert(foo, message)
+assert(foo, msg)
 ----
 
 == Minitest/AssertionInLifecycleHook
