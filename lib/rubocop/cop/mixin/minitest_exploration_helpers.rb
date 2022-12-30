@@ -78,7 +78,7 @@ module RuboCop
       end
 
       def assertion_method?(node)
-        return false unless node.send_type?
+        return false if !node.send_type? && !node.block_type?
 
         ASSERTION_PREFIXES.any? do |prefix|
           method_name = node.method_name

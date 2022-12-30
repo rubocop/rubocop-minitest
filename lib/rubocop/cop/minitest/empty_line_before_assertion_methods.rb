@@ -53,7 +53,7 @@ module RuboCop
           return true if !previous_line_node.is_a?(RuboCop::AST::Node) ||
                          previous_line_node.args_type? || node.parent.basic_conditional?
 
-          previous_line_node.send_type? && assertion_method?(previous_line_node)
+          assertion_method?(previous_line_node)
         end
 
         def use_heredoc_argument?(node)

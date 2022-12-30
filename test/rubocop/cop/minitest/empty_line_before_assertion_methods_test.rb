@@ -395,4 +395,15 @@ class EmptyLineBeforeAssertionMethodsTest < Minitest::Test
       end
     RUBY
   end
+
+  def test_does_not_register_offense_when_using_assert_raises_with_block_arg_before_assertion_method
+    assert_no_offenses(<<~RUBY)
+      def test_do_something
+        assert_raises(CustomError) do
+          do_something
+        end
+        assert(thing)
+      end
+    RUBY
+  end
 end
