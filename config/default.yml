@@ -265,6 +265,12 @@ Minitest/SkipWithoutReason:
   Enabled: pending
   VersionAdded: '0.24'
 
+Minitest/TestFileName:
+  Description: 'Checks if test file names start with `test_` or end with `_test.rb`.'
+  StyleGuide: 'https://minitest.rubystyle.guide/#file-naming'
+  Enabled: pending
+  VersionAdded: '<<next>>'
+
 Minitest/TestMethodName:
   Description: 'This cop enforces that test method names start with `test_` prefix.'
   Enabled: 'pending'
