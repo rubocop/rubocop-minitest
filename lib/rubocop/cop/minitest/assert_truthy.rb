@@ -5,6 +5,9 @@ module RuboCop
     module Minitest
       # Enforces the test to use `assert(actual)` instead of using `assert_equal(true, actual)`.
       #
+      # @safety
+      #   This cop's autocorrection is unsafe because true might be expected instead of truthy.
+      #
       # @example
       #   # bad
       #   assert_equal(true, actual)
