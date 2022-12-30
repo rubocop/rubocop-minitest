@@ -181,6 +181,11 @@ Minitest/NoAssertions:
   Enabled: false
   VersionAdded: '0.12'
 
+Minitest/NoTestCases:
+  Description: 'Checks if test class contains any test cases.'
+  Enabled: false
+  VersionAdded: '<<next>>'
+
 Minitest/NonPublicTestMethod:
   Description: 'Detects non `public` (marked as `private` or `protected`) test methods.'
   Enabled: pending
