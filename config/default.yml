@@ -93,6 +93,12 @@ Minitest/AssertRespondTo:
   Enabled: true
   VersionAdded: '0.3'
 
+Minitest/AssertSame:
+  Description: 'Enforces the use of `assert_same(expected, actual)` over `assert(expected.equal?(actual))`.'
+  StyleGuide: 'https://minitest.rubystyle.guide#assert-same'
+  Enabled: pending
+  VersionAdded: '<<next>>'
+
 Minitest/AssertSilent:
   Description: "This cop enforces the test to use `assert_silent { ... }` instead of using `assert_output('', '') { ... }`."
   StyleGuide: 'https://github.com/rubocop/minitest-style-guide#assert-silent'
@@ -235,6 +241,12 @@ Minitest/RefuteRespondTo:
   StyleGuide: 'https://minitest.rubystyle.guide#refute-respond-to'
   Enabled: true
   VersionAdded: '0.4'
+
+Minitest/RefuteSame:
+  Description: 'Enforces the use of `refute_same(expected, actual)` over `refute(expected.equal?(actual))`.'
+  StyleGuide: 'https://minitest.rubystyle.guide#refute-same'
+  Enabled: pending
+  VersionAdded: '<<next>>'
 
 Minitest/SkipEnsure:
   Description: 'Checks that `ensure` call even if `skip`.'
