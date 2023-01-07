@@ -58,16 +58,15 @@ class Changelog
 
     def str_to_filename(str)
       str
-        .downcase
         .split
-        .each { |s| s.gsub!(/\W/, '') }
         .reject(&:empty?)
+        .map { |s| prettify(s) }
         .inject do |result, word|
-        s = "#{result}_#{word}"
-        return result if s.length > MAX_LENGTH
+          s = "#{result}_#{word}"
+          return result if s.length > MAX_LENGTH
 
-        s
-      end
+          s
+        end
     end
 
     def github_user
@@ -75,6 +74,21 @@ class Changelog
       warn 'Set your username with `git config --global credential.username "myusernamehere"`' if user.empty?
 
       user
+    end
+
+    private
+
+    def prettify(str)
+      str.gsub!(/\W/, '_')
+
+      # Separate word boundaries by `_`.
+      str.gsub!(/([A-Z]+)(?=[A-Z][a-z])|([a-z\d])(?=[A-Z])/) do
+        (Regexp.last_match(1) || Regexp.last_match(2)) << '_'
+      end
+
+      str.gsub!(/\A_+|_+\z/, '')
+      str.downcase!
+      str
     end
   end
 
@@ -151,9 +165,14 @@ class Changelog
 
   # @return [Hash<type, Array<String>]]
   def parse_release(unreleased)
-    unreleased.lines.map(&:chomp).reject(&:empty?).slice_before(HEADER).to_h do |header, *entries|
-      [HEADER.match(header)[1], entries]
-    end
+    unreleased
+      .lines
+      .map(&:chomp)
+      .reject(&:empty?)
+      .slice_before(HEADER)
+      .to_h do |header, *entries|
+        [HEADER.match(header)[1], entries]
+      end
   end
 
   def parse_entries(path_content_map)
