@@ -30,7 +30,6 @@ module RuboCop
       class TestMethodName < Base
         include MinitestExplorationHelpers
         include DefNode
-        extend AutoCorrector
 
         MSG = 'Test method name should start with `test_` prefix.'
 
@@ -40,11 +39,7 @@ module RuboCop
           class_elements(class_node).each do |node|
             next unless offense?(node)
 
-            test_method_name = node.loc.name
-
-            add_offense(test_method_name) do |corrector|
-              corrector.replace(test_method_name, "test_#{node.method_name}")
-            end
+            add_offense(node.loc.name)
           end
         end
 

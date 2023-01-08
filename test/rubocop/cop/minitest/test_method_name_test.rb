@@ -16,18 +16,6 @@ class TestMethodNameTest < Minitest::Test
         end
       end
     RUBY
-
-    assert_correction(<<~RUBY)
-      class FooTest < Minitest::Test
-        def test_do_something
-          assert_equal(expected, actual)
-        end
-
-        def test_do_something_else
-          assert_equal(expected, actual)
-        end
-      end
-    RUBY
   end
 
   def test_registers_offense_when_test_method_without_prefix_with_multiple_assertions
@@ -40,20 +28,6 @@ class TestMethodNameTest < Minitest::Test
 
         def do_something_else
             ^^^^^^^^^^^^^^^^^ Test method name should start with `test_` prefix.
-          assert_equal(expected, actual)
-          assert_equal expected, actual
-        end
-      end
-    RUBY
-
-    assert_correction(<<~RUBY)
-      class FooTest < Minitest::Test
-        def test_do_something
-          assert_equal(expected, actual)
-          assert_equal expected, actual
-        end
-
-        def test_do_something_else
           assert_equal(expected, actual)
           assert_equal expected, actual
         end

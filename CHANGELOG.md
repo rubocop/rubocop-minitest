@@ -2,6 +2,10 @@
 
 ## master (unreleased)
 
+### Changes
+
+* [#xxx](https://github.com/rubocop/rubocop-minitest/pull/xxx): Do not autocorrect for `Minitest/TestMethodName`. ([@jamiemccarthy][])
+
 ## 0.25.1 (2022-12-25)
 
 ### Changes
@@ -398,3 +402,4 @@
 [@r7kamura]: https://github.com/r7kamura
 [@rwstauner]: https://github.com/rwstauner
 [@ryanquanz]: https://github.com/ryanquanz
+[@jamiemccarthy]: https://github.com/jamiemccarthy
