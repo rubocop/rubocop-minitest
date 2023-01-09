@@ -1,0 +1,1 @@
+* [#204](https://github.com/rubocop/rubocop-minitest/pull/204): Raise severity of `Minitest/AssertRaisesWithRegexpArgument`, `Minitest/AssertWithExpectedArgument`, `Minitest/GlobalExpectations`, `Minitest/SkipEnsure`, and `Minitest/UnreachableAssertion` cops to warning. ([@koic][])
