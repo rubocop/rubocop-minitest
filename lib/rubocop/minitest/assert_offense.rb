@@ -70,6 +70,8 @@ module RuboCop
     #   RUBY
     #
     #   assert_no_corrections
+    #
+    # rubocop:disable Metrics/ModuleLength
     module AssertOffense
       private
 
@@ -77,6 +79,16 @@ module RuboCop
         cop_name = self.class.to_s.delete_suffix('Test')
 
         @cop = RuboCop::Cop::Minitest.const_get(cop_name).new
+      end
+
+      def format_offense(source, **replacements)
+        replacements.each do |keyword, value|
+          value = value.to_s
+          source = source.gsub("%{#{keyword}}", value)
+                         .gsub("^{#{keyword}}", '^' * value.size)
+                         .gsub("_{#{keyword}}", ' ' * value.size)
+        end
+        source
       end
 
       def assert_no_offenses(source, file = nil)
@@ -90,11 +102,12 @@ module RuboCop
         assert_equal(source, actual_annotations.to_s)
       end
 
-      def assert_offense(source, file = nil)
+      def assert_offense(source, file = nil, **replacements)
         setup_assertion
 
         @cop.instance_variable_get(:@options)[:autocorrect] = true
 
+        source = format_offense(source, **replacements)
         expected_annotations = RuboCop::RSpec::ExpectOffense::AnnotatedSource.parse(source)
         if expected_annotations.plain_source == source
           raise 'Use `assert_no_offenses` to assert that no offenses are found'
@@ -205,5 +218,6 @@ module RuboCop
         2.6
       end
     end
+    # rubocop:enable Metrics/ModuleLength
   end
 end
