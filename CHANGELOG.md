@@ -2,6 +2,21 @@
 
 ## master (unreleased)
 
+### New features
+
+* [#215](https://github.com/rubocop/rubocop-minitest/issues/215): Add new `Minitest/AssertSame` and `Minitest/RefuteSame` cops. ([@tejasbubane][])
+* [#213](https://github.com/rubocop/rubocop-minitest/issues/213): Add new `Minitest/TestFileName` cop. ([@tejasbubane][])
+* [#205](https://github.com/rubocop/rubocop-minitest/issues/205): Add new `Minitest/UselessAssertion` cop. ([@fatkodima][])
+
+### Bug fixes
+
+* [#210](https://github.com/rubocop/rubocop-minitest/issues/210): Fix a false positive for `Minitest/EmptyLineBeforeAssertionMethodsTest` when using assertion method with block arg before other assertion method. ([@koic][])
+
+### Changes
+
+* [#209](https://github.com/rubocop/rubocop-minitest/issues/209): Mark `Minitest/AssertTruthy` as unsafe autocorrection. ([@koic][])
+* [#204](https://github.com/rubocop/rubocop-minitest/pull/204): Raise severity of `Minitest/AssertRaisesWithRegexpArgument`, `Minitest/AssertWithExpectedArgument`, `Minitest/GlobalExpectations`, `Minitest/SkipEnsure`, and `Minitest/UnreachableAssertion` cops to warning. ([@koic][])
+
 ## 0.25.1 (2022-12-25)
 
 ### Changes

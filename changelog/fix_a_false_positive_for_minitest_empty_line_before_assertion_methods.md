@@ -1,1 +1,0 @@
-* [#210](https://github.com/rubocop/rubocop-minitest/issues/210): Fix a false positive for `Minitest/EmptyLineBeforeAssertionMethodsTest` when using assertion method with block arg before other assertion method. ([@koic][])
