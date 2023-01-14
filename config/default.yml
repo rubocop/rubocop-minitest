@@ -87,7 +87,7 @@ Minitest/AssertRaisesWithRegexpArgument:
   Enabled: pending
   Severity: warning
   VersionAdded: '0.22'
-  VersionChanged: '<<next>>'
+  VersionChanged: '0.26'
 
 Minitest/AssertRespondTo:
   Description: 'This cop enforces the test to use `assert_respond_to(object, :do_something)` over `assert(object.respond_to?(:do_something))`.'
@@ -99,7 +99,7 @@ Minitest/AssertSame:
   Description: 'Enforces the use of `assert_same(expected, actual)` over `assert(expected.equal?(actual))`.'
   StyleGuide: 'https://minitest.rubystyle.guide#assert-same'
   Enabled: pending
-  VersionAdded: '<<next>>'
+  VersionAdded: '0.26'
 
 Minitest/AssertSilent:
   Description: "This cop enforces the test to use `assert_silent { ... }` instead of using `assert_output('', '') { ... }`."
@@ -113,7 +113,7 @@ Minitest/AssertTruthy:
   Enabled: true
   SafeAutoCorrect: false
   VersionAdded: '0.2'
-  VersionChanged: '<<next>>'
+  VersionChanged: '0.26'
 
 Minitest/AssertWithExpectedArgument:
   Description: 'This cop tries to detect when a user accidentally used `assert` when they meant to use `assert_equal`.'
@@ -121,7 +121,7 @@ Minitest/AssertWithExpectedArgument:
   Severity: warning
   Safe: false
   VersionAdded: '0.11'
-  VersionChanged: '<<next>>'
+  VersionChanged: '0.26'
 
 Minitest/AssertionInLifecycleHook:
   Description: 'This cop checks for usage of assertions in lifecycle hooks.'
@@ -156,7 +156,7 @@ Minitest/GlobalExpectations:
     - expect
     - value
   VersionAdded: '0.7'
-  VersionChanged: '<<next>>'
+  VersionChanged: '0.26'
 
 Minitest/LiteralAsActualArgument:
   Description: 'This cop enforces correct order of `expected` and `actual` arguments for `assert_equal`.'
@@ -251,14 +251,14 @@ Minitest/RefuteSame:
   Description: 'Enforces the use of `refute_same(expected, actual)` over `refute(expected.equal?(actual))`.'
   StyleGuide: 'https://minitest.rubystyle.guide#refute-same'
   Enabled: pending
-  VersionAdded: '<<next>>'
+  VersionAdded: '0.26'
 
 Minitest/SkipEnsure:
   Description: 'Checks that `ensure` call even if `skip`.'
   Enabled: pending
   Severity: warning
   VersionAdded: '0.20'
-  VersionChanged: '<<next>>'
+  VersionChanged: '0.26'
 
 Minitest/SkipWithoutReason:
   Description: 'Checks for skipped tests missing the skipping reason.'
@@ -269,7 +269,7 @@ Minitest/TestFileName:
   Description: 'Checks if test file names start with `test_` or end with `_test.rb`.'
   StyleGuide: 'https://minitest.rubystyle.guide/#file-naming'
   Enabled: pending
-  VersionAdded: '<<next>>'
+  VersionAdded: '0.26'
 
 Minitest/TestMethodName:
   Description: 'This cop enforces that test method names start with `test_` prefix.'
@@ -281,7 +281,7 @@ Minitest/UnreachableAssertion:
   Enabled: pending
   Severity: warning
   VersionAdded: '0.14'
-  VersionChanged: '<<next>>'
+  VersionChanged: '0.26'
 
 Minitest/UnspecifiedException:
   Description: 'This cop checks for a specified error in `assert_raises`.'
@@ -292,4 +292,4 @@ Minitest/UnspecifiedException:
 Minitest/UselessAssertion:
   Description: 'Detects useless assertions (assertions that either always pass or always fail).'
   Enabled: pending
-  VersionAdded: '<<next>>'
+  VersionAdded: '0.26'

@@ -2,6 +2,8 @@
 
 ## master (unreleased)
 
+## 0.26.0 (2023-01-15)
+
 ### New features
 
 * [#215](https://github.com/rubocop/rubocop-minitest/issues/215): Add new `Minitest/AssertSame` and `Minitest/RefuteSame` cops. ([@tejasbubane][])

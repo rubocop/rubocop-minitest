@@ -426,7 +426,7 @@ end
 | Yes
 | No
 | 0.22
-| -
+| 0.26
 |===
 
 Checks for `assert_raises` with arguments of regular expression literals.
@@ -451,6 +451,16 @@ exception = assert_raises FooError do
 end
 assert_match(/some message/, exception.message)
 ----
+
+=== Configurable attributes
+
+|===
+| Name | Default value | Configurable values
+
+| Severity
+| `warning`
+| String
+|===
 
 == Minitest/AssertRespondTo
 
@@ -485,6 +495,39 @@ assert_respond_to(self, :do_something)
 === References
 
 * https://minitest.rubystyle.guide#assert-responds-to-method
+
+== Minitest/AssertSame
+
+|===
+| Enabled by default | Safe | Supports autocorrection | Version Added | Version Changed
+
+| Pending
+| Yes
+| Yes
+| 0.26
+| -
+|===
+
+Enforces the use of `assert_same(expected, actual)`
+over `assert(expected.equal?(actual))`.
+
+NOTE: Use `assert_same` only when there is a need to compare by identity.
+      Otherwise, use `assert_equal`.
+
+=== Examples
+
+[source,ruby]
+----
+# bad
+assert(expected.equal?(actual))
+
+# good
+assert_same(expected, actual)
+----
+
+=== References
+
+* https://minitest.rubystyle.guide#assert-same
 
 == Minitest/AssertSilent
 
@@ -523,12 +566,16 @@ assert_silent { puts object.do_something }
 
 | Enabled
 | Yes
-| Yes
+| Yes (Unsafe)
 | 0.2
-| -
+| 0.26
 |===
 
 Enforces the test to use `assert(actual)` instead of using `assert_equal(true, actual)`.
+
+=== Safety
+
+This cop's autocorrection is unsafe because true might be expected instead of truthy.
 
 === Examples
 
@@ -556,7 +603,7 @@ assert(actual, 'message')
 | No
 | No
 | 0.11
-| -
+| 0.26
 |===
 
 Tries to detect when a user accidentally used
@@ -585,6 +632,16 @@ assert(foo, 'message')
 assert(foo, message)
 assert(foo, msg)
 ----
+
+=== Configurable attributes
+
+|===
+| Name | Default value | Configurable values
+
+| Severity
+| `warning`
+| String
+|===
 
 == Minitest/AssertionInLifecycleHook
 
@@ -717,7 +774,7 @@ assert_equal(expected, actual)
 | Yes
 | Yes
 | 0.7
-| 0.16
+| 0.26
 |===
 
 Checks for deprecated global expectations
@@ -821,6 +878,10 @@ value { musts }.must_raise TypeError
 
 |===
 | Name | Default value | Configurable values
+
+| Severity
+| `warning`
+| String
 
 | EnforcedStyle
 | `any`
@@ -1341,6 +1402,39 @@ refute_respond_to(self, :do_something)
 
 * https://minitest.rubystyle.guide#refute-respond-to
 
+== Minitest/RefuteSame
+
+|===
+| Enabled by default | Safe | Supports autocorrection | Version Added | Version Changed
+
+| Pending
+| Yes
+| Yes
+| 0.26
+| -
+|===
+
+Enforces the use of `refute_same(expected, object)`
+over `refute(expected.equal?(actual))`.
+
+NOTE: Use `refute_same` only when there is a need to compare by identity.
+      Otherwise, use `refute_equal`.
+
+=== Examples
+
+[source,ruby]
+----
+# bad
+refute(expected.equal?(actual))
+
+# good
+refute_same(expected, actual)
+----
+
+=== References
+
+* https://minitest.rubystyle.guide#refute-same
+
 == Minitest/SkipEnsure
 
 |===
@@ -1350,7 +1444,7 @@ refute_respond_to(self, :do_something)
 | Yes
 | No
 | 0.20
-| -
+| 0.26
 |===
 
 Checks that `ensure` call even if `skip`. It is unexpected that `ensure` will be called when skipping test.
@@ -1414,6 +1508,16 @@ ensure
 end
 ----
 
+=== Configurable attributes
+
+|===
+| Name | Default value | Configurable values
+
+| Severity
+| `warning`
+| String
+|===
+
 == Minitest/SkipWithoutReason
 
 |===
@@ -1449,6 +1553,38 @@ skip("Reason why the test was skipped")
 # good
 skip if condition?
 ----
+
+== Minitest/TestFileName
+
+|===
+| Enabled by default | Safe | Supports autocorrection | Version Added | Version Changed
+
+| Pending
+| Yes
+| No
+| 0.26
+| -
+|===
+
+Checks if test file names start with `test_` or end with `_test.rb`.
+Files which define classes having names ending with `Test` are checked.
+Not following this convention may result in tests not being run.
+
+=== Examples
+
+[source,ruby]
+----
+# bad
+my_class.rb
+
+# good
+my_class_test.rb
+test_my_class.rb
+----
+
+=== References
+
+* https://minitest.rubystyle.guide/#file-naming
 
 == Minitest/TestMethodName
 
@@ -1499,7 +1635,7 @@ end
 | Yes
 | No
 | 0.14
-| -
+| 0.26
 |===
 
 Checks for `assert_raises` has an assertion method at
@@ -1521,6 +1657,16 @@ assert_raises FooError do
 end
 assert_equal('foo', obj.bar)
 ----
+
+=== Configurable attributes
+
+|===
+| Name | Default value | Configurable values
+
+| Severity
+| `warning`
+| String
+|===
 
 == Minitest/UnspecifiedException
 
@@ -1552,3 +1698,33 @@ assert_raises(FooException, 'This should have raised') { raise FooException }
 === References
 
 * https://minitest.rubystyle.guide#unspecified-exception
+
+== Minitest/UselessAssertion
+
+|===
+| Enabled by default | Safe | Supports autocorrection | Version Added | Version Changed
+
+| Pending
+| Yes
+| No
+| 0.26
+| -
+|===
+
+Detects useless assertions (assertions that either always pass or always fail).
+
+=== Examples
+
+[source,ruby]
+----
+# bad
+assert true
+assert_equal @foo, @foo
+assert_nil [foo, bar]
+
+# good
+assert something
+assert_equal foo, bar
+assert_nil foo
+assert false, "My message"
+----

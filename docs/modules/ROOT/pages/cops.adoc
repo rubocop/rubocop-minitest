@@ -28,6 +28,7 @@ based on the https://minitest.rubystyle.guide/[Minitest Style Guide].
 * xref:cops_minitest.adoc#minitestassertraisescompoundbody[Minitest/AssertRaisesCompoundBody]
 * xref:cops_minitest.adoc#minitestassertraiseswithregexpargument[Minitest/AssertRaisesWithRegexpArgument]
 * xref:cops_minitest.adoc#minitestassertrespondto[Minitest/AssertRespondTo]
+* xref:cops_minitest.adoc#minitestassertsame[Minitest/AssertSame]
 * xref:cops_minitest.adoc#minitestassertsilent[Minitest/AssertSilent]
 * xref:cops_minitest.adoc#minitestasserttruthy[Minitest/AssertTruthy]
 * xref:cops_minitest.adoc#minitestassertwithexpectedargument[Minitest/AssertWithExpectedArgument]
@@ -50,10 +51,13 @@ based on the https://minitest.rubystyle.guide/[Minitest Style Guide].
 * xref:cops_minitest.adoc#minitestrefutepathexists[Minitest/RefutePathExists]
 * xref:cops_minitest.adoc#minitestrefutepredicate[Minitest/RefutePredicate]
 * xref:cops_minitest.adoc#minitestrefuterespondto[Minitest/RefuteRespondTo]
+* xref:cops_minitest.adoc#minitestrefutesame[Minitest/RefuteSame]
 * xref:cops_minitest.adoc#minitestskipensure[Minitest/SkipEnsure]
 * xref:cops_minitest.adoc#minitestskipwithoutreason[Minitest/SkipWithoutReason]
+* xref:cops_minitest.adoc#minitesttestfilename[Minitest/TestFileName]
 * xref:cops_minitest.adoc#minitesttestmethodname[Minitest/TestMethodName]
 * xref:cops_minitest.adoc#minitestunreachableassertion[Minitest/UnreachableAssertion]
 * xref:cops_minitest.adoc#minitestunspecifiedexception[Minitest/UnspecifiedException]
+* xref:cops_minitest.adoc#minitestuselessassertion[Minitest/UselessAssertion]
 
 // END_COP_LIST
