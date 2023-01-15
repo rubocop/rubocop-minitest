@@ -50,8 +50,9 @@ module RuboCop
         private
 
         def assertions_count(node)
-          base = assertion_method?(node) ? 1 : 0
-          base + node.each_child_node.sum { |c| assertions_count(c) }
+          node.each_descendant(:send).count do |send_node|
+            assertion_method?(send_node)
+          end
         end
 
         def max_assertions

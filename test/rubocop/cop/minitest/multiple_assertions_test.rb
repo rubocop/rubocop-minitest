@@ -19,6 +19,20 @@ class MultipleAssertionsTest < Minitest::Test
     RUBY
   end
 
+  def test_registers_offense_when_multiple_expectations_with_block
+    assert_offense(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_asserts_three_times
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Test case has too many assertions [3/1].
+          assert_equal(foo, bar)
+          assert_raises(SomeError) do
+            assert_equal(baz, bar)
+          end
+        end
+      end
+    RUBY
+  end
+
   def test_checks_when_inheriting_some_class_and_class_name_ending_with_test
     assert_offense(<<~RUBY)
       class FooTest < ActiveSupport::TestCase
