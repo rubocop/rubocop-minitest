@@ -44,4 +44,8 @@ class TestFileNameTest < Minitest::Test
       class Foo; end
     RUBY
   end
+
+  def test_does_not_register_offense_files_without_classes
+    assert_no_offenses('', 'lib/foo.rb')
+  end
 end

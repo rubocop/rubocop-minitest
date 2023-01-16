@@ -29,6 +29,7 @@ module RuboCop
         private
 
         def test_file?(node)
+          return false unless node
           return true if node.class_type? && test_class?(node)
 
           node.each_descendant(:class).any? { |class_node| test_class?(class_node) }
