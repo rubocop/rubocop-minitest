@@ -21,7 +21,8 @@ module RuboCop
         MSG = 'Test file path should start with `test_` or end with `_test.rb`.'
 
         def on_new_investigation
-          return unless test_file?(processed_source.ast)
+          return unless (ast = processed_source.ast)
+          return unless test_file?(ast)
 
           add_global_offense(MSG) unless valid_file_name?
         end
