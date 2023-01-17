@@ -175,6 +175,12 @@ Minitest/NoAssertions:
   Enabled: false
   VersionAdded: '0.12'
 
+Minitest/NonPublicTestMethod:
+  Description: 'Detects non `public` (marked as `private` or `protected`) test methods.'
+  Enabled: pending
+  Severity: warning
+  VersionAdded: '<<next>>'
+
 Minitest/RefuteEmpty:
   Description: 'This cop enforces to use `refute_empty` instead of using `refute(object.empty?)`.'
   StyleGuide: 'https://minitest.rubystyle.guide#refute-empty'
