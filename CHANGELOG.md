@@ -2,6 +2,11 @@
 
 ## master (unreleased)
 
+### Bug fixes
+
+* [#225](https://github.com/rubocop/rubocop-minitest/issues/225): Fix an error for `Minitest/TestFileName` when using empty file. ([@koic][])
+* [#223](https://github.com/rubocop/rubocop-minitest/issues/223): Fix a false positive for `Minitest/MultipleAssertions` when using assertion method with block. ([@fatkodima][])
+
 ## 0.26.0 (2023-01-15)
 
 ### New features
