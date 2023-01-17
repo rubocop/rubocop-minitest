@@ -7,6 +7,7 @@ module RuboCop
     # Helper methods for different explorations against test files and test cases.
     # @api private
     module MinitestExplorationHelpers
+      include DefNode
       extend NodePattern::Macros
 
       ASSERTION_PREFIXES = %w[assert refute].freeze
@@ -27,20 +28,24 @@ module RuboCop
       end
 
       def test_case?(node)
-        return false unless node&.def_type? && test_case_name?(node.method_name)
+        return false unless node&.def_type? && test_method?(node)
 
         class_ancestor = node.each_ancestor(:class).first
         test_class?(class_ancestor)
       end
 
       def test_cases(class_node)
-        test_cases = class_def_nodes(class_node).select { |def_node| test_case_name?(def_node.method_name) }
+        test_cases = class_def_nodes(class_node).select { |def_node| test_method?(def_node) }
 
         # Support Active Support's `test 'example' { ... }` method.
         # https://api.rubyonrails.org/classes/ActiveSupport/Testing/Declarative.html
         test_blocks = class_node.each_descendant(:block).select { |block| block.method?(:test) || block.method?(:it) }
 
         test_cases + test_blocks
+      end
+
+      def test_method?(def_node)
+        test_case_name?(def_node.method_name) && !def_node.arguments? && !non_public?(def_node)
       end
 
       def lifecycle_hooks(class_node)
