@@ -2,6 +2,8 @@
 
 ## master (unreleased)
 
+## 0.26.1 (2023-01-17)
+
 ### Bug fixes
 
 * [#225](https://github.com/rubocop/rubocop-minitest/issues/225): Fix an error for `Minitest/TestFileName` when using empty file. ([@koic][])
