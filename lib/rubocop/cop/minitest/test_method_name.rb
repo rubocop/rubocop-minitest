@@ -37,7 +37,7 @@ module RuboCop
         def on_class(class_node)
           return unless test_class?(class_node)
 
-          class_elements(class_node).each do |node|
+          class_def_nodes(class_node).each do |node|
             next unless offense?(node)
 
             test_method_name = node.loc.name
@@ -49,17 +49,6 @@ module RuboCop
         end
 
         private
-
-        def class_elements(class_node)
-          class_def = class_node.body
-          return [] unless class_def
-
-          if class_def.def_type?
-            [class_def]
-          else
-            class_def.each_child_node(:def).to_a
-          end
-        end
 
         def offense?(node)
           return false if assertions(node).none?
