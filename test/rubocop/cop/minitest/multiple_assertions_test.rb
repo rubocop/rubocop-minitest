@@ -23,8 +23,7 @@ class MultipleAssertionsTest < Minitest::Test
     assert_offense(<<~RUBY)
       class FooTest < Minitest::Test
         def test_asserts_three_times
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Test case has too many assertions [3/1].
-          assert_equal(foo, bar)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Test case has too many assertions [2/1].
           assert_raises(SomeError) do
             assert_equal(baz, bar)
           end
