@@ -1,0 +1,1 @@
+* [#231](https://github.com/rubocop/rubocop-minitest/pull/231): Change what is considered a test case by `rubocop-minitest` (`public` method without arguments with `test_` name prefix). ([@fatkodima][])
