@@ -12,14 +12,16 @@ module RuboCop
 
       ASSERTION_PREFIXES = %w[assert refute].freeze
 
-      LIFECYCLE_HOOK_METHODS = %i[
+      LIFECYCLE_HOOK_METHODS_IN_ORDER = %i[
         before_setup
         setup
         after_setup
         before_teardown
         teardown
         after_teardown
-      ].to_set.freeze
+      ].freeze
+
+      LIFECYCLE_HOOK_METHODS = LIFECYCLE_HOOK_METHODS_IN_ORDER.to_set.freeze
 
       private
 

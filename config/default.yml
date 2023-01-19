@@ -158,6 +158,12 @@ Minitest/GlobalExpectations:
   VersionAdded: '0.7'
   VersionChanged: '0.26'
 
+Minitest/LifecycleHooksOrder:
+  Description: 'Checks that lifecycle hooks are declared in the order in which they will be executed.'
+  StyleGuide: 'https://minitest.rubystyle.guide/#hooks-ordering'
+  Enabled: pending
+  VersionAdded: '<<next>>'
+
 Minitest/LiteralAsActualArgument:
   Description: 'This cop enforces correct order of `expected` and `actual` arguments for `assert_equal`.'
   StyleGuide: 'https://minitest.rubystyle.guide/#assert-equal-arguments-order'
