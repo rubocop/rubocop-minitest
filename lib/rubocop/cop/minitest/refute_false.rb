@@ -5,6 +5,16 @@ module RuboCop
     module Minitest
       # Enforces the use of `refute(object)` over `assert_equal(false, object)`.
       #
+      # @safety
+      #   This cop is unsafe because it cannot detect failure when second argument is `nil`.
+      #   False positives cannot be prevented when this is a variable or method return value.
+      #
+      #   [source,ruby]
+      #   ----
+      #   assert_equal(false, nil) # failure
+      #   refute(nil)              # success
+      #   ----
+      #
       # @example
       #   # bad
       #   assert_equal(false, actual)
