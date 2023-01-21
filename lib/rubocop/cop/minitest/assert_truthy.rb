@@ -6,7 +6,14 @@ module RuboCop
       # Enforces the test to use `assert(actual)` instead of using `assert_equal(true, actual)`.
       #
       # @safety
-      #   This cop's autocorrection is unsafe because true might be expected instead of truthy.
+      #   This cop is unsafe because true might be expected instead of truthy.
+      #   False positives cannot be prevented when this is a variable or method return value.
+      #
+      #   [source,ruby]
+      #   ----
+      #   assert_equal(true, 'truthy') # failure
+      #   assert('truthy')             # success
+      #   ----
       #
       # @example
       #   # bad
