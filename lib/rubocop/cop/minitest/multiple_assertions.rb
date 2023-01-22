@@ -49,12 +49,6 @@ module RuboCop
 
         private
 
-        def assertions_count(node)
-          node.each_descendant(:send).count do |send_node|
-            assertion_method?(send_node)
-          end
-        end
-
         def max_assertions
           Integer(cop_config.fetch('Max', 3))
         end

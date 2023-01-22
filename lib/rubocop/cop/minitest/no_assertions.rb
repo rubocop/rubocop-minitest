@@ -35,13 +35,6 @@ module RuboCop
             add_offense(node.block_type? ? node.loc.expression : node.loc.name)
           end
         end
-
-        private
-
-        def assertions_count(node)
-          base = assertion_method?(node) ? 1 : 0
-          base + node.each_child_node.sum { |c| assertions_count(c) }
-        end
       end
     end
   end
