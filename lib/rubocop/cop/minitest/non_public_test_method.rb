@@ -45,7 +45,7 @@ module RuboCop
         MSG = 'Non `public` test method detected. Make it `public` for it to run.'
 
         def on_class(node)
-          test_cases(node).each do |test_case|
+          test_cases(node, visibility_check: false).each do |test_case|
             add_offense(test_case) if non_public?(test_case) && assertions(test_case).any?
           end
         end
