@@ -86,6 +86,12 @@ module RuboCop
         send_nodes.select { |send_node| assertion_method?(send_node) }
       end
 
+      def assertions_count(node)
+        node.each_descendant(:send).count do |send_node|
+          assertion_method?(send_node)
+        end
+      end
+
       def assertion_method?(node)
         return false if !node.send_type? && !node.block_type?
 
