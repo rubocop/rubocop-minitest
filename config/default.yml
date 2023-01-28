@@ -111,9 +111,9 @@ Minitest/AssertTruthy:
   Description: 'This cop enforces the test to use `assert(actual)` instead of using `assert_equal(true, actual)`.'
   StyleGuide: 'https://minitest.rubystyle.guide#assert-truthy'
   Enabled: true
-  SafeAutoCorrect: false
+  Safe: false
   VersionAdded: '0.2'
-  VersionChanged: '0.26'
+  VersionChanged: '<<next>>'
 
 Minitest/AssertWithExpectedArgument:
   Description: 'This cop tries to detect when a user accidentally used `assert` when they meant to use `assert_equal`.'
