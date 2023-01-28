@@ -197,7 +197,9 @@ Minitest/RefuteFalse:
   Description: 'Check if your test uses `refute(actual)` instead of `assert_equal(false, actual)`.'
   StyleGuide: 'https://minitest.rubystyle.guide#refute-false'
   Enabled: true
+  Safe: false
   VersionAdded: '0.3'
+  VersionChanged: '<<next>>'
 
 Minitest/RefuteInDelta:
   Description: 'This cop enforces the test to use `refute_in_delta` instead of using `refute_equal` to compare floats.'
