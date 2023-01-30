@@ -44,6 +44,13 @@ class UselessAssertionTest < Minitest::Test
         #{matcher} false, "My message"
       RUBY
     end
+
+    define_method("test_#{matcher}_no_offenses_when_executing_command") do
+      assert_no_offenses(<<~RUBY)
+        #{matcher} `ls`
+        #{matcher} %x{ls}
+      RUBY
+    end
   end
 
   %i[

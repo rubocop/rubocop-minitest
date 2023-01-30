@@ -46,7 +46,7 @@ module RuboCop
 
           case node.method_name
           when *SINGLE_ASSERTION_ARGUMENT_METHODS
-            actual.nil? && expected&.literal?
+            actual.nil? && expected&.literal? && !expected.xstr_type?
           when *TWO_ASSERTION_ARGUMENTS_METHODS
             return false unless expected || actual
             return false if expected.source != actual.source
