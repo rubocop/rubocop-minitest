@@ -2,6 +2,8 @@
 
 ## master (unreleased)
 
+## 0.27.0 (2023-01-30)
+
 ### New features
 
 * [#220](https://github.com/rubocop/rubocop-minitest/issues/220): Add new `Minitest/NonPublicTestMethod` cop. ([@fatkodima][])

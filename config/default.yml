@@ -113,7 +113,7 @@ Minitest/AssertTruthy:
   Enabled: true
   Safe: false
   VersionAdded: '0.2'
-  VersionChanged: '<<next>>'
+  VersionChanged: '0.27'
 
 Minitest/AssertWithExpectedArgument:
   Description: 'This cop tries to detect when a user accidentally used `assert` when they meant to use `assert_equal`.'
@@ -179,7 +179,7 @@ Minitest/NonPublicTestMethod:
   Description: 'Detects non `public` (marked as `private` or `protected`) test methods.'
   Enabled: pending
   Severity: warning
-  VersionAdded: '<<next>>'
+  VersionAdded: '0.27'
 
 Minitest/RefuteEmpty:
   Description: 'This cop enforces to use `refute_empty` instead of using `refute(object.empty?)`.'
@@ -199,7 +199,7 @@ Minitest/RefuteFalse:
   Enabled: true
   Safe: false
   VersionAdded: '0.3'
-  VersionChanged: '<<next>>'
+  VersionChanged: '0.27'
 
 Minitest/RefuteInDelta:
   Description: 'This cop enforces the test to use `refute_in_delta` instead of using `refute_equal` to compare floats.'

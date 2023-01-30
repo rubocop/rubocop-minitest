@@ -565,17 +565,24 @@ assert_silent { puts object.do_something }
 | Enabled by default | Safe | Supports autocorrection | Version Added | Version Changed
 
 | Enabled
-| Yes
+| No
 | Yes (Unsafe)
 | 0.2
-| 0.26
+| 0.27
 |===
 
 Enforces the test to use `assert(actual)` instead of using `assert_equal(true, actual)`.
 
 === Safety
 
-This cop's autocorrection is unsafe because true might be expected instead of truthy.
+This cop is unsafe because true might be expected instead of truthy.
+False positives cannot be prevented when this is a variable or method return value.
+
+[source,ruby]
+----
+assert_equal(true, 'truthy') # failure
+assert('truthy')             # success
+----
 
 === Examples
 
@@ -1013,6 +1020,67 @@ class FooTest < Minitest::Test
 end
 ----
 
+== Minitest/NonPublicTestMethod
+
+|===
+| Enabled by default | Safe | Supports autocorrection | Version Added | Version Changed
+
+| Pending
+| Yes
+| No
+| 0.27
+| -
+|===
+
+Detects non `public` (marked as `private` or `protected`) test methods.
+Minitest runs only test methods which are `public`.
+
+=== Examples
+
+[source,ruby]
+----
+# bad
+class FooTest
+  private # or protected
+  def test_does_something
+    assert_equal 42, do_something
+  end
+end
+
+# good
+class FooTest
+  def test_does_something
+    assert_equal 42, do_something
+  end
+end
+
+# good (not a test case name)
+class FooTest
+  private # or protected
+  def does_something
+    assert_equal 42, do_something
+  end
+end
+
+# good (no assertions)
+class FooTest
+  private # or protected
+  def test_does_something
+    do_something
+  end
+end
+----
+
+=== Configurable attributes
+
+|===
+| Name | Default value | Configurable values
+
+| Severity
+| `warning`
+| String
+|===
+
 == Minitest/RefuteEmpty
 
 |===
@@ -1081,13 +1149,24 @@ refute_equal("rubocop-minitest", actual)
 | Enabled by default | Safe | Supports autocorrection | Version Added | Version Changed
 
 | Enabled
-| Yes
-| Yes
+| No
+| Yes (Unsafe)
 | 0.3
-| -
+| 0.27
 |===
 
 Enforces the use of `refute(object)` over `assert_equal(false, object)`.
+
+=== Safety
+
+This cop is unsafe because it cannot detect failure when second argument is `nil`.
+False positives cannot be prevented when this is a variable or method return value.
+
+[source,ruby]
+----
+assert_equal(false, nil) # failure
+refute(nil)              # success
+----
 
 === Examples
 
