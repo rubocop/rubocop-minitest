@@ -28,28 +28,33 @@ module RuboCop
       end
 
       def test_case?(node)
-        return false unless node&.def_type? && test_method?(node)
+        return false unless (node&.def_type? && test_method?(node)) ||
+                            (node&.block_type? && test_block?(node))
 
         class_ancestor = node.each_ancestor(:class).first
         test_class?(class_ancestor)
       end
 
       def test_cases(class_node, visibility_check: true)
-        test_cases = class_def_nodes(class_node).select do |def_node|
+        test_methods = class_def_nodes(class_node).select do |def_node|
           test_method?(def_node, visibility_check: visibility_check)
         end
 
         # Support Active Support's `test 'example' { ... }` method.
         # https://api.rubyonrails.org/classes/ActiveSupport/Testing/Declarative.html
-        test_blocks = class_node.each_descendant(:block).select { |block| block.method?(:test) || block.method?(:it) }
+        test_blocks = class_node.each_descendant(:block).select { |block_node| test_block?(block_node) }
 
-        test_cases + test_blocks
+        test_methods + test_blocks
       end
 
       def test_method?(def_node, visibility_check: true)
         return false if visibility_check && non_public?(def_node)
 
         test_case_name?(def_node.method_name) && !def_node.arguments?
+      end
+
+      def test_block?(block_node)
+        block_node.method?(:test) || block_node.method?(:it)
       end
 
       def lifecycle_hooks(class_node)
