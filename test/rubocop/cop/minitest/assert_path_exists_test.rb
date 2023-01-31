@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'test_helper'
+require_relative '../../../test_helper'
 
 class AssertPathExistsTest < Minitest::Test
   def test_registers_offense_when_using_assert_file_exist

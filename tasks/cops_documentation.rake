@@ -2,8 +2,8 @@
 
 require 'yard'
 require 'rubocop'
-require 'rubocop-minitest'
 require 'rubocop/cops_documentation_generator'
+require_relative '../lib/rubocop-minitest'
 
 YARD::Rake::YardocTask.new(:yard_for_generate_documentation) do |task|
   task.files = ['lib/rubocop/cop/**/*.rb']

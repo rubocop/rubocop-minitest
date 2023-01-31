@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'test_helper'
+require_relative '../../../test_helper'
 
 class TestFileNameTest < Minitest::Test
   def test_registers_offense_for_invalid_path

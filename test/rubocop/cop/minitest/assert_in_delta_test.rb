@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'test_helper'
+require_relative '../../../test_helper'
 
 class AssertInDeltaTest < Minitest::Test
   def test_registers_offense_when_using_assert_equal_with_float_as_expected_value

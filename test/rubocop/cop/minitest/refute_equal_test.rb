@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'test_helper'
+require_relative '../../../test_helper'
 
 class RefuteEqualTest < Minitest::Test
   def test_registers_offense_when_using_assert_not_equal_operator_with_string

@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require 'rubocop-minitest'
+require_relative '../lib/rubocop-minitest'
 
 # Require supporting files exposed for testing.
-require 'rubocop/minitest/support'
+require_relative '../lib/rubocop/minitest/support'
 require 'minitest/proveit'
 
 Minitest::Test.class_eval do

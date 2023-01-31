@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'test_helper'
+require_relative '../../../test_helper'
 
 class UselessAssertionTest < Minitest::Test
   %i[assert refute assert_nil refute_nil assert_not assert_empty refute_empty].each do |matcher|

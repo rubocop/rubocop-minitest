@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'test_helper'
+require_relative '../../../test_helper'
 
 class RefuteRespondToTest < Minitest::Test
   def test_registers_offense_when_using_refute_calling_respond_to_method

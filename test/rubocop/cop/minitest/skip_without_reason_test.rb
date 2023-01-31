@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'test_helper'
+require_relative '../../../test_helper'
 
 class SkipWithoutReasonTest < Minitest::Test
   def test_registers_offense_when_skip_without_reason
