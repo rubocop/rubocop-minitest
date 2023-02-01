@@ -79,7 +79,7 @@ class AssertWithExpectedArgumentTest < Minitest::Test
   end
 
   def test_does_not_register_offense_when_using_assert_equal_with_two_arguments
-    assert_no_offenses(<<~'RUBY')
+    assert_no_offenses(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
           assert_equal(3, actual)
