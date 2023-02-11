@@ -9,6 +9,8 @@ module RuboCop
       # @example
       #   # bad
       #   refute(matcher.match(string))
+      #   refute(matcher.match?(string))
+      #   refute(matcher =~ string)
       #   refute(matcher.match(string), 'message')
       #
       #   # good
@@ -18,7 +20,8 @@ module RuboCop
       class RefuteMatch < Base
         extend MinitestCopRule
 
-        define_rule :refute, target_method: :match, inverse: 'regexp_type?'
+        define_rule :refute, target_method: %i[match match? =~],
+                             preferred_method: :refute_match, inverse: 'regexp_type?'
       end
     end
   end

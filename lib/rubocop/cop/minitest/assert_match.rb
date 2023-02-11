@@ -9,6 +9,8 @@ module RuboCop
       # @example
       #   # bad
       #   assert(matcher.match(string))
+      #   assert(matcher.match?(string))
+      #   assert(matcher =~ string)
       #   assert(matcher.match(string), 'message')
       #
       #   # good
@@ -18,7 +20,8 @@ module RuboCop
       class AssertMatch < Base
         extend MinitestCopRule
 
-        define_rule :assert, target_method: :match, inverse: 'regexp_type?'
+        define_rule :assert, target_method: %i[match match? =~],
+                             preferred_method: :assert_match, inverse: 'regexp_type?'
       end
     end
   end
