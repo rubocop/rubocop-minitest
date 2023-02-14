@@ -23,6 +23,11 @@ Minitest/AssertEqual:
   Enabled: true
   VersionAdded: '0.4'
 
+Minitest/AssertEqualClass:
+  Description: 'This cop enforces the test to use `assert_instance_of` instead of using `assert_equal(Class, object.class)`.'
+  Enabled: pending
+  VersionAdded: '<<next>>'
+
 Minitest/AssertInDelta:
   Description: 'This cop enforces the test to use `assert_in_delta` instead of using `assert_equal` to compare floats.'
   StyleGuide: 'https://minitest.rubystyle.guide/#assert-in-delta'
