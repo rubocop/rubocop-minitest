@@ -1,5 +1,14 @@
 # Change log
 
+<!---
+  Do NOT edit this CHANGELOG.md file by hand directly, as it is automatically updated.
+
+  Please add an entry file to the https://github.com/rubocop/rubocop-minitest/blob/master/changelog/
+  named `{change_type}_{change_description}.md` if the new code introduces user-observable changes.
+
+  See https://github.com/rubocop/rubocop-minitest/blob/master/CONTRIBUTING.md#changelog-entry-format for details.
+-->
+
 ## master (unreleased)
 
 ## 0.27.0 (2023-01-30)

@@ -15,11 +15,11 @@ class ProjectTest < Minitest::Test
     assert(@changelog.end_with?("\n"))
   end
 
-  def test_changelog_has_either_entries_headers_or_empty_lines
+  def test_changelog_has_either_entries_headers_empty_lines_or_comments
     non_reference_lines = @lines.take_while { |line| !line.start_with?('[@') }
 
     non_reference_lines.each do |line|
-      assert_match(/^(\*|#|$)/, line)
+      assert_match(/^(\*|#|$|<!---|-->|  )/, line)
     end
   end
 
