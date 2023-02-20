@@ -11,6 +11,14 @@
 
 ## master (unreleased)
 
+### New features
+
+* [#214](https://github.com/rubocop/rubocop-minitest/issues/214): Add new `Minitest/LifecycleHooksOrder` cop. ([@fatkodima][])
+
+### Changes
+
+* [#239](https://github.com/rubocop/rubocop-minitest/issues/239): Enhance `AssertMatch`/`RefuteMatch` to check `match?` and `=~` methods. ([@fatkodima][])
+
 ## 0.27.0 (2023-01-30)
 
 ### New features
