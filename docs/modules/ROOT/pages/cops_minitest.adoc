@@ -237,6 +237,8 @@ instead of using `assert(matcher.match(string))`.
 ----
 # bad
 assert(matcher.match(string))
+assert(matcher.match?(string))
+assert(matcher =~ string)
 assert(matcher.match(string), 'message')
 
 # good
@@ -903,6 +905,66 @@ value { musts }.must_raise TypeError
 
 * https://minitest.rubystyle.guide#global-expectations
 
+== Minitest/LifecycleHooksOrder
+
+|===
+| Enabled by default | Safe | Supports autocorrection | Version Added | Version Changed
+
+| Pending
+| Yes
+| Yes
+| 0.28
+| -
+|===
+
+Checks that lifecycle hooks are declared in the order in which they will be executed.
+
+=== Examples
+
+[source,ruby]
+----
+# bad
+class FooTest < Minitest::Test
+  def teardown; end
+  def setup; end
+end
+
+# good
+class FooTest < Minitest::Test
+  def setup; end
+  def teardown; end
+end
+
+# bad (after test cases)
+class FooTest < Minitest::Test
+  def test_something
+    assert foo
+  end
+  def setup; end
+  def teardown; end
+end
+
+# good
+class FooTest < Minitest::Test
+  def setup; end
+  def teardown; end
+  def test_something
+    assert foo
+  end
+end
+
+# good (after non test case methods)
+class FooTest < Minitest::Test
+  def do_something; end
+  def setup; end
+  def teardown; end
+end
+----
+
+=== References
+
+* https://minitest.rubystyle.guide/#hooks-ordering
+
 == Minitest/LiteralAsActualArgument
 
 |===
@@ -1337,6 +1399,8 @@ instead of using `refute(matcher.match(string))`.
 ----
 # bad
 refute(matcher.match(string))
+refute(matcher.match?(string))
+refute(matcher =~ string)
 refute(matcher.match(string), 'message')
 
 # good

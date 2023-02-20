@@ -11,6 +11,8 @@
 
 ## master (unreleased)
 
+## 0.28.0 (2023-02-20)
+
 ### New features
 
 * [#214](https://github.com/rubocop/rubocop-minitest/issues/214): Add new `Minitest/LifecycleHooksOrder` cop. ([@fatkodima][])
