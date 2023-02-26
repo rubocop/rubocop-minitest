@@ -124,7 +124,7 @@ module RuboCop
       end
 
       def _investigate(cop, processed_source)
-        team = RuboCop::Cop::Team.new([cop], nil, raise_error: true)
+        team = RuboCop::Cop::Team.new([cop], configuration, raise_error: true)
         report = team.investigate(processed_source)
         @last_corrector = report.correctors.first || RuboCop::Cop::Corrector.new(processed_source)
         report.offenses
