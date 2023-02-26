@@ -32,7 +32,7 @@ module RuboCop
 
             next if assertions_count.positive?
 
-            add_offense(node.block_type? ? node.loc.expression : node.loc.name)
+            add_offense(node.block_type? ? node.source_range : node.loc.name)
           end
         end
       end
