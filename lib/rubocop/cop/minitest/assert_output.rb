@@ -36,8 +36,7 @@ module RuboCop
         private
 
         def find_test_case(node)
-          def_ancestor = node.each_ancestor(:def).first
-          def_ancestor if test_case?(def_ancestor)
+          node.each_ancestor.find { |ancestor| test_case?(ancestor) }
         end
 
         def references_gvar?(assertion, gvar_name)

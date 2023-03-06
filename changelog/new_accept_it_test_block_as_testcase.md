@@ -1,0 +1,1 @@
+* [#238](https://github.com/rubocop/rubocop-minitest/pull/238): Support `it`/`test` testing blocks as test cases. ([@fatkodima][])
