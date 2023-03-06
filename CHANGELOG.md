@@ -11,6 +11,10 @@
 
 ## master (unreleased)
 
+### New features
+
+* [#238](https://github.com/rubocop/rubocop-minitest/pull/238): Support `it`/`test` testing blocks as test cases. ([@fatkodima][])
+
 ## 0.28.0 (2023-02-20)
 
 ### New features
