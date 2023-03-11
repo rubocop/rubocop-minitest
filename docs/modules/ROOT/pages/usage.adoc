@@ -19,7 +19,7 @@ cops together with the standard cops.
 
 [source,sh]
 ----
-rubocop --require rubocop-minitest
+$ rubocop --require rubocop-minitest
 ----
 
 == Rake task

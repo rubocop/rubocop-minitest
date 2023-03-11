@@ -10,8 +10,8 @@ The library is based on the guidelines outlined in the community [Minitest Style
 
 Just install the `rubocop-minitest` gem
 
-```bash
-gem install rubocop-minitest
+```sh
+$ gem install rubocop-minitest
 ```
 
 or if you use bundler put this in your `Gemfile`
@@ -46,8 +46,8 @@ cops together with the standard cops.
 
 ### Command line
 
-```bash
-rubocop --require rubocop-minitest
+```sh
+$ rubocop --require rubocop-minitest
 ```
 
 ### Rake task
