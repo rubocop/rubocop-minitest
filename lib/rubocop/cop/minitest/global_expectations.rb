@@ -96,7 +96,9 @@ module RuboCop
           wont_be_kind_of wont_match wont_be_nil wont_be wont_respond_to wont_be_same_as
         ].freeze
 
-        BLOCK_MATCHERS = %i[must_output must_raise must_be_silent must_throw].freeze
+        BLOCK_MATCHERS = %i[
+          must_output must_pattern_match must_raise must_be_silent must_throw wont_pattern_match
+        ].freeze
 
         RESTRICT_ON_SEND = VALUE_MATCHERS + BLOCK_MATCHERS
 
