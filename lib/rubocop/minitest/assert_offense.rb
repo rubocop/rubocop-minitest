@@ -79,7 +79,7 @@ module RuboCop
         cop_name = self.class.to_s.delete_suffix('Test')
         return unless RuboCop::Cop::Minitest.const_defined?(cop_name)
 
-        @cop = RuboCop::Cop::Minitest.const_get(cop_name).new
+        @cop = RuboCop::Cop::Minitest.const_get(cop_name).new(configuration)
       end
 
       def format_offense(source, **replacements)
