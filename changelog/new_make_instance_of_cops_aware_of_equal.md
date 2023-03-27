@@ -1,0 +1,1 @@
+* [#248](https://github.com/rubocop/rubocop-minitest/pull/248): Make `Minitest/AssertInstanceOf` and `Minitest/RefuteInstanceOf` aware of `assert_equal(Class, object.class)` and `refute_equal(Class, object.class)`. ([@koic][])
