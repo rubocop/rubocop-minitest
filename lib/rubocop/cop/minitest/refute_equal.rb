@@ -36,7 +36,7 @@ module RuboCop
               corrector.replace(node.loc.selector, 'refute_equal')
 
               replacement = [expected, actual].map(&:source).join(', ')
-              corrector.replace(first_argument_range(node), replacement)
+              corrector.replace(node.first_argument, replacement)
             end
           end
         end

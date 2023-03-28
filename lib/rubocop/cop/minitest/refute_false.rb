@@ -66,7 +66,7 @@ module RuboCop
           if node.method?(:assert_equal)
             corrector.replace(first_and_second_arguments_range(node), actual.source)
           else
-            corrector.replace(first_argument_range(node), actual.source)
+            corrector.replace(node.first_argument, actual.source)
           end
         end
       end

@@ -28,7 +28,7 @@ module RuboCop
 
           new_arguments = new_arguments(arguments).join(', ')
 
-          corrector.replace(first_argument_range(node), new_arguments)
+          corrector.replace(node.first_argument, new_arguments)
         end
 
         private

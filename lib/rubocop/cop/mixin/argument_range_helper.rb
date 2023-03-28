@@ -9,12 +9,6 @@ module RuboCop
 
       private
 
-      def first_argument_range(node)
-        first_argument = node.first_argument
-
-        range_between(first_argument.source_range.begin_pos, first_argument.source_range.end_pos)
-      end
-
       def first_and_second_arguments_range(node)
         first_argument = node.first_argument
         second_argument = node.arguments[1]
