@@ -2,6 +2,7 @@
 
 require_relative 'mixin/argument_range_helper'
 require_relative 'mixin/in_delta_mixin'
+require_relative 'mixin/instance_of_assertion_handleable'
 require_relative 'mixin/minitest_cop_rule'
 require_relative 'mixin/minitest_exploration_helpers'
 require_relative 'mixin/nil_assertion_handleable'
