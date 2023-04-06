@@ -40,6 +40,7 @@ based on the https://minitest.rubystyle.guide/[Minitest Style Guide].
 * xref:cops_minitest.adoc#minitestliteralasactualargument[Minitest/LiteralAsActualArgument]
 * xref:cops_minitest.adoc#minitestmultipleassertions[Minitest/MultipleAssertions]
 * xref:cops_minitest.adoc#minitestnoassertions[Minitest/NoAssertions]
+* xref:cops_minitest.adoc#minitestnotestcases[Minitest/NoTestCases]
 * xref:cops_minitest.adoc#minitestnonpublictestmethod[Minitest/NonPublicTestMethod]
 * xref:cops_minitest.adoc#minitestrefuteempty[Minitest/RefuteEmpty]
 * xref:cops_minitest.adoc#minitestrefuteequal[Minitest/RefuteEqual]

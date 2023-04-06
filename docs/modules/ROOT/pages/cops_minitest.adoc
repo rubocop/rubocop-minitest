@@ -175,6 +175,10 @@ over `assert(object.instance_of?(Class))`.
 assert(object.instance_of?(Class))
 assert(object.instance_of?(Class), 'message')
 
+# bad
+assert_equal(Class, object.class)
+assert_equal(Class, object.class, 'message')
+
 # good
 assert_instance_of(Class, object)
 assert_instance_of(Class, object, 'message')
@@ -1082,6 +1086,38 @@ class FooTest < Minitest::Test
 end
 ----
 
+== Minitest/NoTestCases
+
+|===
+| Enabled by default | Safe | Supports autocorrection | Version Added | Version Changed
+
+| Disabled
+| Yes
+| No
+| 0.30
+| -
+|===
+
+Checks if test class contains any test cases.
+
+=== Examples
+
+[source,ruby]
+----
+# bad
+class FooTest < Minitest::Test
+  def do_something
+  end
+end
+
+# good
+class FooTest < Minitest::Test
+  def test_something
+    assert true
+  end
+end
+----
+
 == Minitest/NonPublicTestMethod
 
 |===
@@ -1336,6 +1372,10 @@ over `refute(object.instance_of?(Class))`.
 # bad
 refute(object.instance_of?(Class))
 refute(object.instance_of?(Class), 'message')
+
+# bad
+refute_equal(Class, object.class)
+refute_equal(Class, object.class, 'message')
 
 # good
 refute_instance_of(Class, object)
