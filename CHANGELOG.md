@@ -11,6 +11,16 @@
 
 ## master (unreleased)
 
+### New features
+
+* [#248](https://github.com/rubocop/rubocop-minitest/pull/248): Make `Minitest/AssertInstanceOf` and `Minitest/RefuteInstanceOf` aware of `assert_equal(Class, object.class)` and `refute_equal(Class, object.class)`. ([@koic][])
+* [#244](https://github.com/rubocop/rubocop-minitest/pull/244): Make `Minitest/GlobalExpectations` aware of `must_pattern_match` and `wont_pattern_match` matchers. ([@koic][])
+* [#216](https://github.com/rubocop/rubocop-minitest/issues/216): Add new `Minitest/NoTestCases` cop. ([@tejasbubane][])
+
+### Bug fixes
+
+* [#247](https://github.com/rubocop/rubocop-minitest/pull/247): Prevent breaking change for assertion message in test. ([@koic][])
+
 ## 0.29.0 (2023-03-06)
 
 ### New features
