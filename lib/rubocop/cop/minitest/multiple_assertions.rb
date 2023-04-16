@@ -3,7 +3,8 @@
 module RuboCop
   module Cop
     module Minitest
-      # Checks if test cases contain too many assertion calls.
+      # Checks if test cases contain too many assertion calls. If conditional code with assertions
+      # is used, the branch with maximum assertions is counted.
       # The maximum allowed assertion calls is configurable.
       #
       # @example Max: 1
@@ -36,7 +37,7 @@ module RuboCop
           return unless test_class?(class_node)
 
           test_cases(class_node).each do |node|
-            assertions_count = assertions_count(node)
+            assertions_count = assertions_count(node.body)
 
             next unless assertions_count > max_assertions
 
@@ -48,6 +49,29 @@ module RuboCop
         end
 
         private
+
+        def assertions_count(node)
+          return 0 unless node.is_a?(RuboCop::AST::Node)
+
+          assertions =
+            case node.type
+            when :if, :case, :case_match
+              assertions_count_in_branches(node.branches)
+            when :rescue
+              assertions_count(node.body) + assertions_count_in_branches(node.branches)
+            when :block, :numblock
+              assertions_count(node.body)
+            else
+              node.each_child_node.sum { |child| assertions_count(child) }
+            end
+
+          assertions += 1 if assertion_method?(node)
+          assertions
+        end
+
+        def assertions_count_in_branches(branches)
+          branches.map { |branch| assertions_count(branch) }.max
+        end
 
         def max_assertions
           Integer(cop_config.fetch('Max', 3))

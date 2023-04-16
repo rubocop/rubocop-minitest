@@ -22,10 +22,23 @@ class MultipleAssertionsTest < Minitest::Test
   def test_registers_offense_when_multiple_expectations_with_block
     assert_offense(<<~RUBY)
       class FooTest < Minitest::Test
-        def test_asserts_three_times
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Test case has too many assertions [2/1].
+        def test_asserts_two_times
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^ Test case has too many assertions [2/1].
           assert_raises(SomeError) do
             assert_equal(baz, bar)
+          end
+        end
+      end
+    RUBY
+  end
+
+  def test_registers_offense_when_multiple_expectations_with_numblock
+    assert_offense(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_asserts_two_times
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^ Test case has too many assertions [2/1].
+          assert_something do
+            assert_equal(_1, bar)
           end
         end
       end
@@ -93,26 +106,229 @@ class MultipleAssertionsTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_asserts_once
           assert_equal(foo, bar)
-          assert_equal(baz, bar)
         end
 
-        def test_asserts_two_times
+        def test_asserts_four_times
           assert_equal(foo, bar)
-          assert_equal(baz, bar)
+          assert_equal(foo, bar)
+          assert_equal(foo, bar)
+          assert_equal(foo, bar)
         end
       end
     RUBY
 
-    assert_equal({ 'Max' => 2 }, @cop.config_to_allow_offenses[:exclude_limit])
+    assert_equal({ 'Max' => 4 }, @cop.config_to_allow_offenses[:exclude_limit])
   end
 
-  def test_does_not_register_offense_when_multiple_expectations_in_the_test_block
+  def test_registers_offense_when_multiple_assertions_in_the_test_block
     assert_offense(<<~RUBY)
       class FooTest < ActiveSupport::TestCase
         test 'something' do
         ^^^^^^^^^^^^^^^^^^^ Test case has too many assertions [2/1].
           assert_equal(foo, bar)
           assert_empty(array)
+        end
+      end
+    RUBY
+  end
+
+  def test_registers_offense_when_multiple_assertions_inside_conditional
+    assert_offense(<<~RUBY)
+      class FooTest < ActiveSupport::TestCase
+        test 'something' do
+        ^^^^^^^^^^^^^^^^^^^ Test case has too many assertions [2/1].
+          if condition
+            assert_equal(foo, bar) # 1
+            assert_empty(array) # 2
+          else
+            assert_equal(foo, baz)
+          end
+        end
+      end
+    RUBY
+  end
+
+  def test_does_not_register_offense_when_single_assertion_inside_conditional
+    assert_no_offenses(<<~RUBY)
+      class FooTest < ActiveSupport::TestCase
+        test 'something' do
+          if condition
+            assert_equal(foo, bar)
+          else
+            assert_equal(foo, baz)
+          end
+        end
+      end
+    RUBY
+  end
+
+  def test_registers_offense_when_multiple_expectations_inside_case
+    assert_offense(<<~RUBY)
+      class FooTest < ActiveSupport::TestCase
+        test 'something' do
+        ^^^^^^^^^^^^^^^^^^^ Test case has too many assertions [3/1].
+          case
+          when condition1
+            assert_equal(foo, bar)
+            assert_empty(array)
+          when condition2
+            assert_equal(foo, bar) # 1
+            assert_empty(array) # 2
+            assert_equal(foo, baz) # 3
+          else
+            assert_equal(foo, zoo)
+          end
+        end
+      end
+    RUBY
+  end
+
+  def test_does_not_register_offense_when_single_assertion_inside_case
+    assert_no_offenses(<<~RUBY)
+      class FooTest < ActiveSupport::TestCase
+        test 'something' do
+          case
+          when condition1
+            assert_equal(foo, bar)
+          else
+            assert_equal(foo, zoo)
+          end
+        end
+      end
+    RUBY
+  end
+
+  def test_registers_offense_when_multiple_expectations_inside_pattern_matching
+    assert_offense(<<~RUBY)
+      class FooTest < ActiveSupport::TestCase
+        test 'something' do
+        ^^^^^^^^^^^^^^^^^^^ Test case has too many assertions [3/1].
+          case variable
+          in pattern1
+            assert_equal(foo, bar)
+            assert_empty(array)
+          in pattern2
+            assert_equal(foo, bar) # 1
+            assert_empty(array) # 2
+            assert_equal(foo, baz) # 3
+          else
+            assert_equal(foo, zoo)
+          end
+        end
+      end
+    RUBY
+  end
+
+  def test_does_not_register_offense_when_single_assertion_inside_pattern_matching
+    assert_no_offenses(<<~RUBY)
+      class FooTest < ActiveSupport::TestCase
+        test 'something' do
+          case variable
+          in pattern1
+            assert_equal(foo, bar)
+          in pattern2
+            assert_equal(foo, baz)
+          end
+        end
+      end
+    RUBY
+  end
+
+  def test_registers_offense_when_multiple_expectations_inside_rescue
+    assert_offense(<<~RUBY)
+      class FooTest < ActiveSupport::TestCase
+        test 'something' do
+        ^^^^^^^^^^^^^^^^^^^ Test case has too many assertions [3/1].
+          do_something
+        rescue Foo
+          assert_equal(foo, bar)
+          assert_empty(array)
+        rescue Bar
+          assert_equal(foo, bar) # 1
+          assert_empty(array) # 2
+          assert_equal(foo, baz) # 3
+        end
+      end
+    RUBY
+  end
+
+  def test_does_not_register_offense_when_single_assertion_inside_rescue
+    assert_no_offenses(<<~RUBY)
+      class FooTest < ActiveSupport::TestCase
+        test 'something' do
+          do_something
+        rescue Foo
+          assert_equal(foo, bar)
+        end
+      end
+    RUBY
+  end
+
+  def test_registers_offense_when_complex_structure_with_multiple_assertions
+    configure_max_assertions(2)
+
+    assert_offense(<<~RUBY)
+      class FooTest < ActiveSupport::TestCase
+        test 'something' do
+        ^^^^^^^^^^^^^^^^^^^ Test case has too many assertions [4/2].
+          if condition1
+            assert foo
+          elsif condition2
+            assert foo
+          else
+            begin
+              do_something
+              assert foo # 1
+            rescue Foo
+              assert foo
+              assert foo
+            rescue Bar
+              # noop
+            rescue Zoo
+              case
+              when condition
+                assert foo # 2
+                assert foo # 3
+                assert foo # 4
+              else
+                assert foo
+                assert foo
+              end
+            else
+              assert foo
+            end
+          end
+        end
+      end
+    RUBY
+  end
+
+  def test_does_not_register_offense_when_complex_structure_with_single_assertion
+    assert_no_offenses(<<~RUBY)
+      class FooTest < ActiveSupport::TestCase
+        test 'something' do
+          if condition1
+            assert foo
+          elsif condition2
+            assert foo
+          else
+            begin
+              do_something
+            rescue Foo
+              assert foo
+            rescue Bar
+              # noop
+            rescue Zoo
+              case
+              when condition
+                assert foo
+              else
+                assert foo
+              end
+            else
+              assert foo
+            end
+          end
         end
       end
     RUBY
