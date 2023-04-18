@@ -216,7 +216,7 @@ module RuboCop
       end
 
       def ruby_version
-        2.6
+        RuboCop::TargetRuby::DEFAULT_VERSION
       end
     end
     # rubocop:enable Metrics/ModuleLength
