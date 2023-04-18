@@ -156,9 +156,9 @@ class ProjectTest < Minitest::Test
   end
 
   def prepare_changelog_entries(entries)
-    @issues += entries.map do |entry|
+    @issues += entries.filter_map do |entry|
       entry.match(/\[(?<number>[#\d]+)\]\((?<url>[^)]+)\)/)
-    end.compact
+    end
 
     @bodies += entries.map do |entry|
       entry.gsub(/`[^`]+`/, '``').sub(/^\*\s*(?:\[.+?\):\s*)?/, '').sub(/\s*\([^)]+\)$/, '')
