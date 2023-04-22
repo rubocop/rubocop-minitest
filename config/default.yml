@@ -272,6 +272,12 @@ Minitest/RefuteSame:
   Enabled: pending
   VersionAdded: '0.26'
 
+Minitest/ReturnInTestCase:
+  Description: 'Enforces the use of `skip` instead of `return` in test cases.'
+  StyleGuide: 'https://minitest.rubystyle.guide/#skipping-runnable-methods'
+  Enabled: pending
+  VersionAdded: '<<next>>'
+
 Minitest/SkipEnsure:
   Description: 'Checks that `ensure` call even if `skip`.'
   Enabled: pending
