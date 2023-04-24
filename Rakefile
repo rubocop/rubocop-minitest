@@ -19,10 +19,9 @@ require 'rubocop/rake_task'
 require 'rake/testtask'
 require_relative 'lib/rubocop/cop/generator'
 
-Rake::TestTask.new do |t|
-  t.libs << 'test'
-  t.libs << 'lib'
-  t.test_files = FileList['test/**/*_test.rb']
+desc 'Run tests'
+task :test do
+  system("bundle exec minitest-queue #{Dir.glob('test/**/*_test.rb').shelljoin}")
 end
 
 desc 'Run RuboCop over itself'

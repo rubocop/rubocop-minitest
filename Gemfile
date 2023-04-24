@@ -12,6 +12,7 @@ gem 'minitest-proveit'
 gem 'rake'
 gem 'rubocop', github: 'rubocop/rubocop'
 gem 'rubocop-performance', '~> 1.15.0'
+gem 'test-queue'
 gem 'yard', '~> 0.9'
 
 local_gemfile = File.expand_path('Gemfile.local', __dir__)
