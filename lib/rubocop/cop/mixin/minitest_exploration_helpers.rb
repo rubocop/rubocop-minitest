@@ -34,7 +34,7 @@ module RuboCop
                             (node&.block_type? && test_block?(node))
 
         class_ancestor = node.each_ancestor(:class).first
-        test_class?(class_ancestor)
+        class_ancestor && test_class?(class_ancestor)
       end
 
       def test_cases(class_node, visibility_check: true)
