@@ -3,7 +3,7 @@
 module RuboCop
   module Cop
     module Minitest
-      # Enforces the use of `skip` instead of `return` in test cases.
+      # Enforces the use of `skip` instead of `return` in test methods.
       #
       # @example
       #   # bad
@@ -18,7 +18,7 @@ module RuboCop
       #     assert_equal(42, something)
       #   end
       #
-      class ReturnInTestCase < Base
+      class ReturnInTestMethod < Base
         include MinitestExplorationHelpers
         extend AutoCorrector
 
