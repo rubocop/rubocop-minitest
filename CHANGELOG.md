@@ -11,6 +11,15 @@
 
 ## master (unreleased)
 
+### New features
+
+* [#236](https://github.com/rubocop/rubocop-minitest/issues/236): Add new `Minitest/ReturnInTestMethod` cop. ([@fatkodima][])
+
+### Changes
+
+* [#250](https://github.com/rubocop/rubocop-minitest/pull/250): **(Breaking)** Drop Ruby 2.6 support. ([@koic][])
+* [#249](https://github.com/rubocop/rubocop-minitest/pull/249): Handle assertions in conditionals branches in `Minitest/MultipleAssertions` cop. ([@fatkodima][])
+
 ## 0.30.0 (2023-04-06)
 
 ### New features
