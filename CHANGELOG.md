@@ -11,6 +11,8 @@
 
 ## master (unreleased)
 
+## 0.31.0 (2023-05-06)
+
 ### New features
 
 * [#236](https://github.com/rubocop/rubocop-minitest/issues/236): Add new `Minitest/ReturnInTestMethod` cop. ([@fatkodima][])

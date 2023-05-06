@@ -55,6 +55,7 @@ based on the https://minitest.rubystyle.guide/[Minitest Style Guide].
 * xref:cops_minitest.adoc#minitestrefutepredicate[Minitest/RefutePredicate]
 * xref:cops_minitest.adoc#minitestrefuterespondto[Minitest/RefuteRespondTo]
 * xref:cops_minitest.adoc#minitestrefutesame[Minitest/RefuteSame]
+* xref:cops_minitest.adoc#minitestreturnintestmethod[Minitest/ReturnInTestMethod]
 * xref:cops_minitest.adoc#minitestskipensure[Minitest/SkipEnsure]
 * xref:cops_minitest.adoc#minitestskipwithoutreason[Minitest/SkipWithoutReason]
 * xref:cops_minitest.adoc#minitesttestfilename[Minitest/TestFileName]

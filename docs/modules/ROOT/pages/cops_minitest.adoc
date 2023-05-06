@@ -1015,7 +1015,8 @@ assert_equal [1, 2], foo, 'message'
 | -
 |===
 
-Checks if test cases contain too many assertion calls.
+Checks if test cases contain too many assertion calls. If conditional code with assertions
+is used, the branch with maximum assertions is counted.
 The maximum allowed assertion calls is configurable.
 
 === Examples
@@ -1617,6 +1618,41 @@ refute_same(expected, actual)
 === References
 
 * https://minitest.rubystyle.guide#refute-same
+
+== Minitest/ReturnInTestMethod
+
+|===
+| Enabled by default | Safe | Supports autocorrection | Version Added | Version Changed
+
+| Pending
+| Yes
+| Yes
+| 0.31
+| -
+|===
+
+Enforces the use of `skip` instead of `return` in test methods.
+
+=== Examples
+
+[source,ruby]
+----
+# bad
+def test_something
+  return if condition?
+  assert_equal(42, something)
+end
+
+# good
+def test_something
+  skip if condition?
+  assert_equal(42, something)
+end
+----
+
+=== References
+
+* https://minitest.rubystyle.guide/#skipping-runnable-methods
 
 == Minitest/SkipEnsure
 

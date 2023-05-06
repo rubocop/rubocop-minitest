@@ -276,7 +276,7 @@ Minitest/ReturnInTestMethod:
   Description: 'Enforces the use of `skip` instead of `return` in test methods.'
   StyleGuide: 'https://minitest.rubystyle.guide/#skipping-runnable-methods'
   Enabled: pending
-  VersionAdded: '<<next>>'
+  VersionAdded: '0.31'
 
 Minitest/SkipEnsure:
   Description: 'Checks that `ensure` call even if `skip`.'
