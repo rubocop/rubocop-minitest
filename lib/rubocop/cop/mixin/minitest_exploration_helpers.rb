@@ -105,8 +105,7 @@ module RuboCop
         ASSERTION_PREFIXES.any? do |prefix|
           method_name = node.method_name
 
-          # TODO: Remove the fllowing `to_s` since Ruby 2.7 that supports `Symbol#start_with?`.
-          method_name.to_s.start_with?(prefix) || node.method?(:flunk)
+          method_name.start_with?(prefix) || node.method?(:flunk)
         end
       end
 
