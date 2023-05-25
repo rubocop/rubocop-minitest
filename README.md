@@ -3,7 +3,7 @@
 [![Gem Version](https://badge.fury.io/rb/rubocop-minitest.svg)](https://badge.fury.io/rb/rubocop-minitest)
 [![CircleCI](https://circleci.com/gh/rubocop/rubocop-minitest.svg?style=svg)](https://circleci.com/gh/rubocop/rubocop-minitest)
 
-A [RuboCop](https://github.com/rubocop/rubocop) extension focused on enforcing Minitest best practices and coding conventions.
+A [RuboCop](https://github.com/rubocop/rubocop) extension focused on enforcing [Minitest](https://github.com/minitest/minitest) best practices and coding conventions.
 The library is based on the guidelines outlined in the community [Minitest Style Guide](https://minitest.rubystyle.guide).
 
 ## Installation
