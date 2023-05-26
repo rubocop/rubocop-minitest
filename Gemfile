@@ -11,7 +11,7 @@ gem 'minitest', '~> 5.11'
 gem 'minitest-proveit'
 gem 'rake'
 gem 'rubocop', github: 'rubocop/rubocop'
-gem 'rubocop-performance', '~> 1.15.0'
+gem 'rubocop-performance', '~> 1.18.0'
 gem 'test-queue'
 gem 'yard', '~> 0.9'
 
