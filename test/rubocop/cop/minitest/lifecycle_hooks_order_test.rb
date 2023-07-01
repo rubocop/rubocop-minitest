@@ -3,7 +3,6 @@
 require_relative '../../../test_helper'
 
 class LifecycleHooksOrderTest < Minitest::Test
-  # rubocop:disable Metrics/MethodLength
   def test_registers_offense_when_hooks_are_not_correctly_ordered
     assert_offense(<<~RUBY)
       class FooTest < Minitest::Test
@@ -56,7 +55,6 @@ class LifecycleHooksOrderTest < Minitest::Test
       end
     RUBY
   end
-  # rubocop:enable Metrics/MethodLength
 
   def test_registers_offense_when_hooks_are_not_before_test_cases
     assert_offense(<<~RUBY)
