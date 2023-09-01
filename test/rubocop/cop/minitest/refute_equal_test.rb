@@ -79,61 +79,31 @@ class RefuteEqualTest < Minitest::Test
     RUBY
   end
 
-  def test_registers_offense_when_using_negate_equals
-    assert_offense(<<~RUBY)
+  def test_does_not_register_offense_when_using_negate_equals
+    assert_no_offenses(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
-          assert(! 'rubocop-minitest' == object)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_equal('rubocop-minitest', object)`.
-        end
-      end
-    RUBY
-
-    assert_correction(<<~RUBY)
-      class FooTest < Minitest::Test
-        def test_do_something
-          refute_equal('rubocop-minitest', object)
+          assert(!'rubocop-minitest' == object)
         end
       end
     RUBY
   end
 
-  def test_registers_offense_when_using_negate_equals_with_message
-    assert_offense(<<~RUBY)
+  def test_does_not_register_offense_when_using_negate_equals_with_message
+    assert_no_offenses(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
-          assert(! 'rubocop-minitest' == object, 'message')
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_equal('rubocop-minitest', object, 'message')`.
-        end
-      end
-    RUBY
-
-    assert_correction(<<~RUBY)
-      class FooTest < Minitest::Test
-        def test_do_something
-          refute_equal('rubocop-minitest', object, 'message')
+          assert(!'rubocop-minitest' == object, 'message')
         end
       end
     RUBY
   end
 
-  def test_registers_offense_when_using_refute_equal_operator_with_heredoc_message
-    assert_offense(<<~RUBY)
+  def test_does_not_register_offense_when_using_refute_equal_operator_with_heredoc_message
+    assert_no_offenses(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
           assert(!'rubocop-minitest' == actual, <<~MESSAGE
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_equal('rubocop-minitest', actual, <<~MESSAGE)`.
-            message
-          MESSAGE
-          )
-        end
-      end
-    RUBY
-
-    assert_correction(<<~RUBY)
-      class FooTest < Minitest::Test
-        def test_do_something
-          refute_equal('rubocop-minitest', actual, <<~MESSAGE
             message
           MESSAGE
           )

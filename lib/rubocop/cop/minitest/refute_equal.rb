@@ -9,7 +9,6 @@ module RuboCop
       # @example
       #   # bad
       #   assert("rubocop-minitest" != actual)
-      #   assert(! "rubocop-minitest" == actual)
       #
       #   # good
       #   refute_equal("rubocop-minitest", actual)
@@ -22,7 +21,7 @@ module RuboCop
         RESTRICT_ON_SEND = %i[assert].freeze
 
         def_node_matcher :assert_not_equal, <<~PATTERN
-          (send nil? :assert {(send $_ :!= $_) (send (send $_ :! ) :== $_) } $... )
+          (send nil? :assert (send $_ :!= $_) $... )
         PATTERN
 
         def on_send(node)
