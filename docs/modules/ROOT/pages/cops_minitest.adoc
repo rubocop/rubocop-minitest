@@ -1232,7 +1232,6 @@ over `assert(expected != actual)` or `assert(! expected == actual)`.
 ----
 # bad
 assert("rubocop-minitest" != actual)
-assert(! "rubocop-minitest" == actual)
 
 # good
 refute_equal("rubocop-minitest", actual)
