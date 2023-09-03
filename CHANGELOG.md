@@ -11,6 +11,10 @@
 
 ## master (unreleased)
 
+### Bug fixes
+
+* [#256](https://github.com/rubocop/rubocop-minitest/issues/256): Fix a false positive for `Minitest/RefuteEqual` when `assert(!expected == actual)`. ([@koic][])
+
 ## 0.31.0 (2023-05-06)
 
 ### New features
