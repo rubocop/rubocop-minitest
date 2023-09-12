@@ -30,20 +30,25 @@ module RuboCop
         def on_send(node)
           assert_file_exists(node) do |path, failure_message|
             failure_message = failure_message.first
-            good_method = build_good_method(path, failure_message)
+            good_method = build_good_method(node, path, failure_message)
             message = format(MSG, good_method: good_method)
 
             add_offense(node, message: message) do |corrector|
-              corrector.replace(node, good_method)
+              corrector.replace(node.loc.selector, 'assert_path_exists')
+              corrector.replace(node.first_argument, path.source)
             end
           end
         end
 
         private
 
-        def build_good_method(path, message)
+        def build_good_method(node, path, message)
           args = [path.source, message&.source].compact.join(', ')
-          "assert_path_exists(#{args})"
+          if node.parenthesized?
+            "assert_path_exists(#{args})"
+          else
+            "assert_path_exists #{args}"
+          end
         end
       end
     end
