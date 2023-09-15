@@ -41,6 +41,12 @@ class ProjectTest < Minitest::Test
     end
   end
 
+  def test_entry_has_one_space_between_the_period_and_the_parentheses_enclosing_contributor_name
+    @entries.each do |entry|
+      assert_match(/\. \(\[/, entry)
+    end
+  end
+
   def test_entry_has_a_link_to_the_contributors_at_the_end
     @entries.each do |entry|
       assert_match(/\(\[@\S+\]\[\](?:, \[@\S+\]\[\])*\)$/, entry)
