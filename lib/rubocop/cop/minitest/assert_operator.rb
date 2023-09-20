@@ -1,0 +1,53 @@
+# frozen_string_literal: true
+
+module RuboCop
+  module Cop
+    module Minitest
+      # Enforces the use of `assert_operator(expected, :<, actual)` over `assert(expected < actual)`.
+      #
+      # @example
+      #
+      #   # bad
+      #   assert(expected < actual)
+      #
+      #   # good
+      #   assert_operator(expected, :<, actual)
+      #
+      class AssertOperator < Base
+        extend AutoCorrector
+
+        MSG = 'Prefer using `assert_operator(%<new_arguments>s)`.'
+        RESTRICT_ON_SEND = %i[assert].freeze
+
+        def on_send(node)
+          return unless node.first_argument.operator_method?
+
+          new_arguments = build_new_arguments(node)
+
+          add_offense(node, message: format(MSG, new_arguments: new_arguments)) do |corrector|
+            corrector.replace(node.loc.selector, 'assert_operator')
+
+            corrector.replace(range_of_arguments(node), new_arguments)
+          end
+        end
+
+        private
+
+        def build_new_arguments(node)
+          lhs, op, rhs = *node.first_argument
+          new_arguments = "#{lhs.source}, :#{op}, #{rhs.source}"
+
+          if node.arguments.count == 2
+            new_arguments << ", #{node.last_argument.source}"
+          else
+            new_arguments
+          end
+        end
+
+        def range_of_arguments(node)
+          node.first_argument.source_range.begin.join(node.last_argument.source_range.end)
+        end
+      end
+    end
+  end
+end

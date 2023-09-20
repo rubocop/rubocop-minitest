@@ -136,7 +136,7 @@ class ProjectTest < Minitest::Test
     config_default = YAML.load_file('config/default.yml')
 
     config_default.each_key do |key|
-      assert(previous_key <= key, "Cops should be sorted alphabetically. Please sort #{key}.")
+      assert_operator(previous_key, :<=, key, "Cops should be sorted alphabetically. Please sort #{key}.")
       previous_key = key
     end
   end
