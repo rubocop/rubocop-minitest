@@ -63,7 +63,7 @@ Minitest/AssertOperator:
   Description: 'This cop enforces the use of `assert_operator(expected, :<, actual)` over `assert(expected < actual)`.'
   StyleGuide: 'https://minitest.rubystyle.guide#assert-operator'
   Enabled: pending
-  VersionAdded: '<<next>>'
+  VersionAdded: '0.32'
 
 Minitest/AssertOutput:
   Description: 'This cop checks for opportunities to use `assert_output`.'
@@ -258,7 +258,7 @@ Minitest/RefuteOperator:
   Description: 'This cop enforces the use of `refute_operator(expected, :<, actual)` over `refute(expected < actual)`.'
   StyleGuide: 'https://minitest.rubystyle.guide#refute-operator'
   Enabled: pending
-  VersionAdded: '<<next>>'
+  VersionAdded: '0.32'
 
 Minitest/RefutePathExists:
   Description: 'This cop enforces the test to use `refute_path_exists` instead of using `refute(File.exist?(path))`.'

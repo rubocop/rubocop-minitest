@@ -11,6 +11,8 @@
 
 ## master (unreleased)
 
+## 0.32.0 (2023-09-23)
+
 ### New features
 
 * [#255](https://github.com/rubocop/rubocop-minitest/issues/255): Add new `Minitest/AssertOperator` and `Minitest/RefuteOperator` cops. ([@koic][])

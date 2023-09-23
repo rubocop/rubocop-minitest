@@ -290,6 +290,35 @@ assert_nil(actual, 'message')
 
 * https://minitest.rubystyle.guide#assert-nil
 
+== Minitest/AssertOperator
+
+|===
+| Enabled by default | Safe | Supports autocorrection | Version Added | Version Changed
+
+| Pending
+| Yes
+| Yes
+| 0.32
+| -
+|===
+
+Enforces the use of `assert_operator(expected, :<, actual)` over `assert(expected < actual)`.
+
+=== Examples
+
+[source,ruby]
+----
+# bad
+assert(expected < actual)
+
+# good
+assert_operator(expected, :<, actual)
+----
+
+=== References
+
+* https://minitest.rubystyle.guide#assert-operator
+
 == Minitest/AssertOutput
 
 |===
@@ -1487,6 +1516,35 @@ refute_nil(actual, 'message')
 === References
 
 * https://minitest.rubystyle.guide#refute-nil
+
+== Minitest/RefuteOperator
+
+|===
+| Enabled by default | Safe | Supports autocorrection | Version Added | Version Changed
+
+| Pending
+| Yes
+| Yes
+| 0.32
+| -
+|===
+
+Enforces the use of `refute_operator(expected, :<, actual)` over `refute(expected < actual)`.
+
+=== Examples
+
+[source,ruby]
+----
+# bad
+refute(expected < actual)
+
+# good
+refute_operator(expected, :<, actual)
+----
+
+=== References
+
+* https://minitest.rubystyle.guide#refute-operator
 
 == Minitest/RefutePathExists
 
