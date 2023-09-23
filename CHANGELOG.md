@@ -11,6 +11,14 @@
 
 ## master (unreleased)
 
+### New features
+
+* [#255](https://github.com/rubocop/rubocop-minitest/issues/255): Add new `Minitest/AssertOperator` and `Minitest/RefuteOperator` cops. ([@koic][])
+
+### Bug fixes
+
+* [#259](https://github.com/rubocop/rubocop-minitest/pull/259): Fix autocorrection for `Minitest/LiteralAsActualArgument`, `Minitest/AssertPathExists`, and `Minitest/RefutePathExists` cops to preserve the presence or absence of argument parentheses. ([@koic][])
+
 ## 0.31.1 (2023-09-03)
 
 ### Bug fixes

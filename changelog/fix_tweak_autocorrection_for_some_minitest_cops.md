@@ -1,1 +1,0 @@
-* [#259](https://github.com/rubocop/rubocop-minitest/pull/259): Fix autocorrection for `Minitest/LiteralAsActualArgument`, `Minitest/AssertPathExists`, and `Minitest/RefutePathExists` cops to preserve the presence or absence of argument parentheses. ([@koic][])
