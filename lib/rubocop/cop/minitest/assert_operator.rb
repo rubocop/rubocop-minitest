@@ -20,7 +20,8 @@ module RuboCop
         RESTRICT_ON_SEND = %i[assert].freeze
 
         def on_send(node)
-          return unless node.first_argument.operator_method?
+          first_argument = node.first_argument
+          return unless first_argument.respond_to?(:operator_method?) && first_argument.operator_method?
 
           new_arguments = build_new_arguments(node)
 

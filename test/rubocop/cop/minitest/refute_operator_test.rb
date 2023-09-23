@@ -69,4 +69,16 @@ class RefuteOperatorTest < Minitest::Test
       end
     RUBY
   end
+
+  def test_does_not_register_offense_when_using_refute_with_variable
+    assert_no_offenses(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          var = do_something
+
+          refute(var)
+        end
+      end
+    RUBY
+  end
 end
