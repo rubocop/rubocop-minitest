@@ -11,6 +11,10 @@
 
 ## master (unreleased)
 
+### Bug fixes
+
+* [#261](https://github.com/rubocop/rubocop-minitest/issues/261): Fix an error for `Minitest/AssertOperator` and `Minitest/RefuteOperator` when using variable argument. ([@koic][])
+
 ## 0.32.0 (2023-09-23)
 
 ### New features
