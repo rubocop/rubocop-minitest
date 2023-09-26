@@ -18,10 +18,14 @@ module RuboCop
 
         MSG = 'Prefer using `assert_operator(%<new_arguments>s)`.'
         RESTRICT_ON_SEND = %i[assert].freeze
+        ALLOWED_OPERATORS = [:[]].freeze
 
         def on_send(node)
           first_argument = node.first_argument
           return unless first_argument.respond_to?(:operator_method?) && first_argument.operator_method?
+
+          operator = first_argument.to_a[1]
+          return if ALLOWED_OPERATORS.include?(operator)
 
           new_arguments = build_new_arguments(node)
 

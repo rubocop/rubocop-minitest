@@ -81,4 +81,14 @@ class AssertOperatorTest < Minitest::Test
       end
     RUBY
   end
+
+  def test_does_not_consider_brackets_to_be_an_offense
+    assert_no_offenses(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          assert(array_of_booleans[42])
+        end
+      end
+    RUBY
+  end
 end
