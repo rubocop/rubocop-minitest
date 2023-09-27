@@ -22,7 +22,7 @@ module RuboCop
 
         def on_send(node)
           first_argument = node.first_argument
-          return unless first_argument.respond_to?(:operator_method?) && first_argument.operator_method?
+          return unless first_argument.respond_to?(:binary_operation?) && first_argument.binary_operation?
 
           operator = first_argument.to_a[1]
           return if ALLOWED_OPERATORS.include?(operator)
