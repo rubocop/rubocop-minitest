@@ -11,6 +11,8 @@
 
 ## master (unreleased)
 
+## 0.32.2 (2023-09-27)
+
 ### Bug fixes
 
 * [#263](https://github.com/rubocop/rubocop-minitest/pull/263): Fix an error for `Minitest/AssertOperator` and `Minitest/RefuteOperator` when using unary operation argument. ([@koic][])
