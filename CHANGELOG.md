@@ -15,6 +15,10 @@
 
 * [#263](https://github.com/rubocop/rubocop-minitest/pull/263): Fix an error for `Minitest/AssertOperator` and `Minitest/RefuteOperator` when using unary operation argument. ([@koic][])
 
+### Changes
+
+* [#264](https://github.com/rubocop/rubocop-minitest/pull/264): Make `Minitest/AssertOperator` and `Minitest/RefuteOperator` allow index access with `[]`. ([@flavorjones][])
+
 ## 0.32.1 (2023-09-24)
 
 ### Bug fixes
@@ -512,3 +516,4 @@
 [@r7kamura]: https://github.com/r7kamura
 [@rwstauner]: https://github.com/rwstauner
 [@ryanquanz]: https://github.com/ryanquanz
+[@flavorjones]: https://github.com/flavorjones
