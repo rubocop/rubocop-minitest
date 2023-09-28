@@ -9,6 +9,7 @@ module RuboCop
       # @example
       #   # bad
       #   assert("rubocop-minitest" != actual)
+      #   refute("rubocop-minitest" == actual)
       #
       #   # good
       #   refute_equal("rubocop-minitest", actual)
@@ -18,17 +19,20 @@ module RuboCop
         extend AutoCorrector
 
         MSG = 'Prefer using `refute_equal(%<preferred>s)`.'
-        RESTRICT_ON_SEND = %i[assert].freeze
+        RESTRICT_ON_SEND = %i[assert refute].freeze
 
-        def_node_matcher :assert_not_equal, <<~PATTERN
-          (send nil? :assert (send $_ :!= $_) $... )
+        def_node_matcher :assert_not_equal_or_refute_equal, <<~PATTERN
+          {
+            (send nil? :assert (send $_ :!= $_) $...)
+            (send nil? :refute (send $_ :== $_) $...)
+          }
         PATTERN
 
         def on_send(node)
           preferred = process_not_equal(node)
           return unless preferred
 
-          assert_not_equal(node) do |expected, actual|
+          assert_not_equal_or_refute_equal(node) do |expected, actual|
             message = format(MSG, preferred: preferred)
 
             add_offense(node, message: message) do |corrector|
@@ -51,7 +55,7 @@ module RuboCop
         end
 
         def process_not_equal(node)
-          assert_not_equal(node) do |first_arg, second_arg, rest_args|
+          assert_not_equal_or_refute_equal(node) do |first_arg, second_arg, rest_args|
             custom_message = rest_args.first
 
             preferred_usage(first_arg, second_arg, custom_message)
