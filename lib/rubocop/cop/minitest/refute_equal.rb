@@ -10,6 +10,8 @@ module RuboCop
       #   # bad
       #   assert("rubocop-minitest" != actual)
       #   refute("rubocop-minitest" == actual)
+      #   assert_operator("rubocop-minitest", :!=, actual)
+      #   refute_operator("rubocop-minitest", :==, actual)
       #
       #   # good
       #   refute_equal("rubocop-minitest", actual)
@@ -19,48 +21,38 @@ module RuboCop
         extend AutoCorrector
 
         MSG = 'Prefer using `refute_equal(%<preferred>s)`.'
-        RESTRICT_ON_SEND = %i[assert refute].freeze
+        RESTRICT_ON_SEND = %i[assert refute assert_operator refute_operator].freeze
 
-        def_node_matcher :assert_not_equal_or_refute_equal, <<~PATTERN
+        def_node_matcher :refute_equal, <<~PATTERN
           {
             (send nil? :assert (send $_ :!= $_) $...)
             (send nil? :refute (send $_ :== $_) $...)
+            (send nil? :assert_operator $_ (sym :!=) $_ $...)
+            (send nil? :refute_operator $_ (sym :==) $_ $...)
           }
         PATTERN
 
+        # rubocop:disable Metrics/AbcSize
         def on_send(node)
-          preferred = process_not_equal(node)
-          return unless preferred
-
-          assert_not_equal_or_refute_equal(node) do |expected, actual|
+          refute_equal(node) do |expected, actual, rest_args|
+            basic_arguments = "#{expected.source}, #{actual.source}"
+            preferred = (message_arg = rest_args.first) ? "#{basic_arguments}, #{message_arg.source}" : basic_arguments
             message = format(MSG, preferred: preferred)
 
             add_offense(node, message: message) do |corrector|
               corrector.replace(node.loc.selector, 'refute_equal')
 
-              replacement = [expected, actual].map(&:source).join(', ')
-              corrector.replace(node.first_argument, replacement)
+              range = if node.method?(:assert) || node.method?(:refute)
+                        node.first_argument
+                      else
+                        node.first_argument.source_range.begin.join(node.arguments[2].source_range.end)
+                      end
+
+              corrector.replace(range, basic_arguments)
             end
           end
         end
-
-        private
-
-        def preferred_usage(first_arg, second_arg, custom_message = nil)
-          [first_arg, second_arg, custom_message].compact.map(&:source).join(', ')
-        end
-
-        def original_usage(first_part, custom_message)
-          [first_part, custom_message].compact.join(', ')
-        end
-
-        def process_not_equal(node)
-          assert_not_equal_or_refute_equal(node) do |first_arg, second_arg, rest_args|
-            custom_message = rest_args.first
-
-            preferred_usage(first_arg, second_arg, custom_message)
-          end
-        end
+        # rubocop:enable Metrics/AbcSize
       end
     end
   end
