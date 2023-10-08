@@ -79,12 +79,12 @@ class RefuteEqualTest < Minitest::Test
     RUBY
   end
 
-  def test_registers_offense_when_using_refute_equal_operator
+  def test_registers_offense_when_using_assert_operator_with_negated_equal_symbol_argument
     assert_offense(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
-          refute('rubocop-minitest' == actual)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_equal('rubocop-minitest', actual)`.
+          assert_operator('rubocop-minitest', :!=, actual)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_equal('rubocop-minitest', actual)`.
         end
       end
     RUBY
@@ -93,6 +93,63 @@ class RefuteEqualTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           refute_equal('rubocop-minitest', actual)
+        end
+      end
+    RUBY
+  end
+
+  def test_registers_offense_when_using_assert_operator_with_negated_equal_symbol_and_message_arguments
+    assert_offense(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          refute_operator('rubocop-minitest', :==, actual, message)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_equal('rubocop-minitest', actual, message)`.
+        end
+      end
+    RUBY
+
+    assert_correction(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          refute_equal('rubocop-minitest', actual, message)
+        end
+      end
+    RUBY
+  end
+
+  def test_registers_offense_when_using_refute_operator_with_equal_symbol_argument
+    assert_offense(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          refute_operator('rubocop-minitest', :==, actual)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_equal('rubocop-minitest', actual)`.
+        end
+      end
+    RUBY
+
+    assert_correction(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          refute_equal('rubocop-minitest', actual)
+        end
+      end
+    RUBY
+  end
+
+  def test_registers_offense_when_using_refute_operator_with_equal_symbol_and_message_arguments
+    assert_offense(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          refute_operator('rubocop-minitest', :==, actual, message)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_equal('rubocop-minitest', actual, message)`.
+        end
+      end
+    RUBY
+
+    assert_correction(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          refute_equal('rubocop-minitest', actual, message)
         end
       end
     RUBY
@@ -136,6 +193,26 @@ class RefuteEqualTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           refute_equal('rubocop-minitest', actual)
+        end
+      end
+    RUBY
+  end
+
+  def test_registers_offense_when_using_assert_operator_with_equal_symbol_argument
+    assert_no_offenses(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          assert_operator('rubocop-minitest', :==, actual)
+        end
+      end
+    RUBY
+  end
+
+  def test_registers_offense_when_using_refute_operator_with_negated_equal_symbol_argument
+    assert_no_offenses(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          refute_operator('rubocop-minitest', :!=, actual)
         end
       end
     RUBY
