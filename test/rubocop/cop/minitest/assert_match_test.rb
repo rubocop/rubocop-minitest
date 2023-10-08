@@ -105,24 +105,35 @@ class AssertMatchTest < Minitest::Test
       RUBY
     end
 
+    # Redundant parentheses should be removed by `Style/RedundantParentheses` cop.
     define_method("test_registers_offense_when_using_assert_with_#{matcher}_in_redundant_parentheses") do
-      assert_offense(<<~RUBY, matcher: matcher)
+      assert_no_offenses(<<~RUBY, matcher: matcher)
         class FooTest < Minitest::Test
           def test_do_something
             assert((matcher.#{matcher}(string)))
-            ^^^^^^^^^^^^^^^^^{matcher}^^^^^^^^^^ Prefer using `assert_match(matcher, string)`.
-          end
-        end
-      RUBY
-
-      assert_correction(<<~RUBY)
-        class FooTest < Minitest::Test
-          def test_do_something
-            assert_match((matcher, string))
           end
         end
       RUBY
     end
+  end
+
+  def test_registers_offense_when_using_assert_operator_with_match_operator
+    assert_offense(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          assert_operator(matcher, :=~, object)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_match(matcher, object)`.
+        end
+      end
+    RUBY
+
+    assert_correction(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          assert_match(matcher, object)
+        end
+      end
+    RUBY
   end
 
   def test_does_not_register_offense_when_using_assert_match
@@ -150,6 +161,16 @@ class AssertMatchTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_do_something
           assert(matcher&.match)
+        end
+      end
+    RUBY
+  end
+
+  def test_does_not_register_offense_when_using_assert_operator_with_mismatch_operator
+    assert_no_offenses(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          assert_operator(matcher, :!~, object)
         end
       end
     RUBY

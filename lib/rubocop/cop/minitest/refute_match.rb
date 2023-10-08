@@ -11,6 +11,7 @@ module RuboCop
       #   refute(matcher.match(string))
       #   refute(matcher.match?(string))
       #   refute(matcher =~ string)
+      #   refute_operator(matcher, :=~, string)
       #   refute(matcher.match(string), 'message')
       #
       #   # good
