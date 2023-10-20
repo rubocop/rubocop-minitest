@@ -66,20 +66,12 @@ class RefuteEmptyTest < Minitest::Test
     RUBY
   end
 
+  # Redundant parentheses should be removed by `Style/RedundantParentheses` cop.
   def test_registers_offense_when_using_refute_with_empty_in_redundant_parentheses
-    assert_offense(<<~RUBY)
+    assert_no_offenses(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
           refute((somestuff.empty?))
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_empty(somestuff)`.
-        end
-      end
-    RUBY
-
-    assert_correction(<<~RUBY)
-      class FooTest < Minitest::Test
-        def test_do_something
-          refute_empty((somestuff))
         end
       end
     RUBY

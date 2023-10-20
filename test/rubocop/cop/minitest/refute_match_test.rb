@@ -106,7 +106,7 @@ class RefuteMatchTest < Minitest::Test
     end
 
     # Redundant parentheses should be removed in another cop.
-    define_method("test_registers_offense_when_using_refute_with_#{matcher}_in_redundant_parentheses") do
+    define_method("test_does_not_register_offense_when_using_refute_with_#{matcher}_in_redundant_parentheses") do
       assert_no_offenses(<<~RUBY, matcher: matcher)
         class FooTest < Minitest::Test
           def test_do_something

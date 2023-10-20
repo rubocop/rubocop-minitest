@@ -22,12 +22,11 @@ module RuboCop
         remove_method :on_send
         def on_send(node)
           return unless node.method?(:assert)
-          return unless (arguments = peel_redundant_parentheses_from(node.arguments))
-          return unless arguments.first.respond_to?(:method?) && arguments.first.method?(:empty?)
-          return unless arguments.first.arguments.empty?
+          return unless node.arguments.first.respond_to?(:method?) && node.arguments.first.method?(:empty?)
+          return unless node.arguments.first.arguments.empty?
 
-          add_offense(node, message: offense_message(arguments)) do |corrector|
-            autocorrect(corrector, node, arguments)
+          add_offense(node, message: offense_message(node.arguments)) do |corrector|
+            autocorrect(corrector, node, node.arguments)
           end
         end
       end

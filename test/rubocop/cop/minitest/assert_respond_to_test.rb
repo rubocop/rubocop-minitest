@@ -85,20 +85,12 @@ class AssertRespondToTest < Minitest::Test
     RUBY
   end
 
+  # Redundant parentheses should be removed by `Style/RedundantParentheses` cop.
   def test_registers_offense_when_using_assert_with_respond_to_in_redundant_parentheses
-    assert_offense(<<~RUBY)
+    assert_no_offenses(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
           assert((object.respond_to?(:do_something)))
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_respond_to(object, :do_something)`.
-        end
-      end
-    RUBY
-
-    assert_correction(<<~RUBY)
-      class FooTest < Minitest::Test
-        def test_do_something
-          assert_respond_to((object, :do_something))
         end
       end
     RUBY
