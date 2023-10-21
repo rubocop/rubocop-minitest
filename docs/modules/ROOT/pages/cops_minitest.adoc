@@ -79,6 +79,7 @@ over `assert(expected == actual)`.
 ----
 # bad
 assert("rubocop-minitest" == actual)
+assert_operator("rubocop-minitest", :==, actual)
 
 # good
 assert_equal("rubocop-minitest", actual)
@@ -243,6 +244,7 @@ instead of using `assert(matcher.match(string))`.
 assert(matcher.match(string))
 assert(matcher.match?(string))
 assert(matcher =~ string)
+assert_operator(matcher, :=~, string)
 assert(matcher.match(string), 'message')
 
 # good
@@ -1261,6 +1263,9 @@ over `assert(expected != actual)` or `assert(! expected == actual)`.
 ----
 # bad
 assert("rubocop-minitest" != actual)
+refute("rubocop-minitest" == actual)
+assert_operator("rubocop-minitest", :!=, actual)
+refute_operator("rubocop-minitest", :==, actual)
 
 # good
 refute_equal("rubocop-minitest", actual)
@@ -1470,6 +1475,8 @@ instead of using `refute(matcher.match(string))`.
 refute(matcher.match(string))
 refute(matcher.match?(string))
 refute(matcher =~ string)
+refute_operator(matcher, :=~, string)
+assert_operator(matcher, :!~, string)
 refute(matcher.match(string), 'message')
 
 # good

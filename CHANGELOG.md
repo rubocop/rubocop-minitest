@@ -11,6 +11,8 @@
 
 ## master (unreleased)
 
+## 0.33.0 (2023-10-21)
+
 ### New features
 
 * [#266](https://github.com/rubocop/rubocop-minitest/pull/266): Make `Minitest/AssertEqual` aware of `assert_operator`. ([@koic][])
