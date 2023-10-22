@@ -53,6 +53,8 @@ $ rubocop --require rubocop-minitest
 ### Rake task
 
 ```ruby
+require 'rubocop/rake_task'
+
 RuboCop::RakeTask.new do |task|
   task.requires << 'rubocop-minitest'
 end
