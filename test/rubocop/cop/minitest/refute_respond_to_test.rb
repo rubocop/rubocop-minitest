@@ -85,20 +85,12 @@ class RefuteRespondToTest < Minitest::Test
     RUBY
   end
 
-  def test_registers_offense_when_using_refute_with_respond_to_in_redundant_parentheses
-    assert_offense(<<~RUBY)
+  # Redundant parentheses should be removed by `Style/RedundantParentheses` cop.
+  def test_does_not_register_offense_when_using_refute_with_respond_to_in_redundant_parentheses
+    assert_no_offenses(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
           refute((object.respond_to?(:do_something)))
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_respond_to(object, :do_something)`.
-        end
-      end
-    RUBY
-
-    assert_correction(<<~RUBY)
-      class FooTest < Minitest::Test
-        def test_do_something
-          refute_respond_to((object, :do_something))
         end
       end
     RUBY

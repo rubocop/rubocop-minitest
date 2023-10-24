@@ -45,13 +45,12 @@ module RuboCop
 
           def on_send(node)
             return unless node.method?(:#{assertion_method})
-            return unless (arguments = peel_redundant_parentheses_from(node.arguments))
-            return unless arguments.first&.call_type?
-            return if arguments.first.arguments.empty? ||
-                      #{target_methods}.none? { |target_method| arguments.first.method?(target_method) }
+            return unless node.arguments.first&.call_type?
+            return if node.arguments.first.arguments.empty? ||
+                      #{target_methods}.none? { |target_method| node.arguments.first.method?(target_method) }
 
-            add_offense(node, message: offense_message(arguments)) do |corrector|
-              autocorrect(corrector, node, arguments)
+            add_offense(node, message: offense_message(node.arguments)) do |corrector|
+              autocorrect(corrector, node, node.arguments)
             end
           end
 
@@ -60,20 +59,10 @@ module RuboCop
 
             new_arguments = new_arguments(arguments).join(', ')
 
-            if enclosed_in_redundant_parentheses?(node)
-              new_arguments = '(' + new_arguments + ')'
-            end
-
             corrector.replace(node.first_argument, new_arguments)
           end
 
           private
-
-          def peel_redundant_parentheses_from(arguments)
-            return arguments unless arguments.first&.begin_type?
-
-            peel_redundant_parentheses_from(arguments.first.children)
-          end
 
           def offense_message(arguments)
             message_argument = arguments.last if arguments.first != arguments.last
@@ -101,10 +90,6 @@ module RuboCop
             end
             new_arguments.reverse! if inverse_condition
             new_arguments
-          end
-
-          def enclosed_in_redundant_parentheses?(node)
-            node.arguments.first.begin_type?
           end
 
           def correct_receiver(receiver)

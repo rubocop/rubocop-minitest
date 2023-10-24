@@ -64,20 +64,12 @@ class RefutePredicateTest < Minitest::Test
     RUBY
   end
 
-  def test_registers_offense_when_using_refute_with_predicate_method_in_redundant_parentheses
-    assert_offense(<<~RUBY)
+  # Redundant parentheses should be removed by `Style/RedundantParentheses` cop.
+  def test_does_not_register_offense_when_using_refute_with_predicate_method_in_redundant_parentheses
+    assert_no_offenses(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
           refute((obj.one?))
-          ^^^^^^^^^^^^^^^^^^ Prefer using `refute_predicate(obj, :one?)`.
-        end
-      end
-    RUBY
-
-    assert_correction(<<~RUBY)
-      class FooTest < Minitest::Test
-        def test_do_something
-          refute_predicate(obj, :one?)
         end
       end
     RUBY
