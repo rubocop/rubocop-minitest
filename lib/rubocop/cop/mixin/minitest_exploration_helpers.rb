@@ -100,6 +100,7 @@ module RuboCop
       end
 
       def assertion_method?(node)
+        return assertion_method?(node.expression) if node.assignment?
         return false if !node.send_type? && !node.block_type? && !node.numblock_type?
 
         ASSERTION_PREFIXES.any? do |prefix|
