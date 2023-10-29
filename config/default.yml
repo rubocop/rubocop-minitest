@@ -198,6 +198,11 @@ Minitest/NonPublicTestMethod:
   Severity: warning
   VersionAdded: '0.27'
 
+Minitest/RedundantMessageArgument:
+  Description: 'Detects redundant message argument in assertion methods.'
+  Enabled: pending
+  VersionAdded: '<<next>>'
+
 Minitest/RefuteEmpty:
   Description: 'This cop enforces to use `refute_empty` instead of using `refute(object.empty?)`.'
   StyleGuide: 'https://minitest.rubystyle.guide#refute-empty'
