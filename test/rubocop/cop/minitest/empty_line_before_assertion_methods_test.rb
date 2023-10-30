@@ -110,18 +110,30 @@ class EmptyLineBeforeAssertionMethodsTest < Minitest::Test
   def test_registers_offense_when_using_method_call_with_block_arg_before_assertion_method
     assert_offense(<<~RUBY)
       def test_do_something
-        block = -> { raise CustomError, 'This is really bad' }
-        error = assert_raises(CustomError, &block)
-        assert_equal 'This is really bad', error.message
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Add empty line before assertion.
+        do_something do
+          do_something_more
+        end
+        assert_equal(expected, actual)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Add empty line before assertion.
       end
     RUBY
 
     assert_correction(<<~RUBY)
       def test_do_something
+        do_something do
+          do_something_more
+        end
+
+        assert_equal(expected, actual)
+      end
+    RUBY
+  end
+
+  def test_does_not_register_offense_when_using_assertion_method_with_assignment_before_assertion_method
+    assert_no_offenses(<<~RUBY)
+      def test_do_something
         block = -> { raise CustomError, 'This is really bad' }
         error = assert_raises(CustomError, &block)
-
         assert_equal 'This is really bad', error.message
       end
     RUBY
