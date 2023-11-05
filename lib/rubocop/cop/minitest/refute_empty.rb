@@ -22,8 +22,8 @@ module RuboCop
         remove_method :on_send
         def on_send(node)
           return unless node.method?(:refute)
-          return unless node.arguments.first.respond_to?(:method?) && node.arguments.first.method?(:empty?)
-          return unless node.arguments.first.arguments.empty?
+          return unless node.first_argument.respond_to?(:method?) && node.first_argument.method?(:empty?)
+          return unless node.first_argument.arguments.empty?
 
           add_offense(node, message: offense_message(node.arguments)) do |corrector|
             autocorrect(corrector, node, node.arguments)

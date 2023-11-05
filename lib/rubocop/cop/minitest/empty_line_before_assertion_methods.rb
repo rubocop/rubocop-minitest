@@ -30,7 +30,7 @@ module RuboCop
           return if node.parent.resbody_type?
           return if accept_previous_line?(previous_line_node, assertion_method)
 
-          previous_line_node = previous_line_node.arguments.last if use_heredoc_argument?(previous_line_node)
+          previous_line_node = previous_line_node.last_argument if use_heredoc_argument?(previous_line_node)
           return if use_assertion_method_at_last_of_block?(previous_line_node)
           return unless no_empty_line?(previous_line_node, assertion_method)
 
@@ -57,7 +57,7 @@ module RuboCop
         end
 
         def use_heredoc_argument?(node)
-          node.respond_to?(:arguments) && heredoc?(node.arguments.last)
+          node.respond_to?(:arguments) && heredoc?(node.last_argument)
         end
 
         def use_assertion_method_at_last_of_block?(node)

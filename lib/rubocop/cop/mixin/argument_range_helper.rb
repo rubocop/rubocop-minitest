@@ -18,7 +18,7 @@ module RuboCop
 
       def all_arguments_range(node)
         first_argument = node.first_argument
-        last_argument = node.arguments.last
+        last_argument = node.last_argument
 
         range_between(first_argument.source_range.begin_pos, last_argument.source_range.end_pos)
       end
