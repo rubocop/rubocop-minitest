@@ -40,7 +40,7 @@ module RuboCop
 
         def build_new_arguments(node)
           lhs, op, rhs = *node.first_argument
-          new_arguments = "#{lhs.source}, :#{op}, #{rhs.source}"
+          new_arguments = +"#{lhs.source}, :#{op}, #{rhs.source}"
 
           if node.arguments.count == 2
             new_arguments << ", #{node.last_argument.source}"
