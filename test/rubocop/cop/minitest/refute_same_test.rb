@@ -85,6 +85,25 @@ class RefuteSameTest < Minitest::Test
     RUBY
   end
 
+  def test_registers_offense_when_using_refute_equal_with_object_id
+    assert_offense(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          refute_equal(expected.object_id, actual.object_id)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_same(expected, actual)`.
+        end
+      end
+    RUBY
+
+    assert_correction(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          refute_same(expected, actual)
+        end
+      end
+    RUBY
+  end
+
   def test_does_not_register_offense_when_using_assert_same
     assert_no_offenses(<<~RUBY)
       class FooTest < Minitest::Test
