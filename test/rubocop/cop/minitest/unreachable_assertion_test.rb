@@ -2,7 +2,7 @@
 
 require_relative '../../../test_helper'
 
-class UnreachableAssertionTest < Minitest::Test
+class UnreachableAssertionTest < RuboCop::Minitest::Test
   def test_registers_offense_when_using_assert_equal_at_bottom_of_assert_raises_block
     assert_offense(<<~RUBY)
       assert_raises FooError do

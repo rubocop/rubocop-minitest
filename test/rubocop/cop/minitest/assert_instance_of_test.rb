@@ -2,7 +2,7 @@
 
 require_relative '../../../test_helper'
 
-class AssertInstanceOfTest < Minitest::Test
+class AssertInstanceOfTest < RuboCop::Minitest::Test
   def test_registers_offense_when_using_assert_with_instance_of
     assert_offense(<<~RUBY)
       class FooTest < Minitest::Test

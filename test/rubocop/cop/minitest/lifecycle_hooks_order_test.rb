@@ -2,7 +2,7 @@
 
 require_relative '../../../test_helper'
 
-class LifecycleHooksOrderTest < Minitest::Test
+class LifecycleHooksOrderTest < RuboCop::Minitest::Test
   def test_registers_offense_when_hooks_are_not_correctly_ordered
     assert_offense(<<~RUBY)
       class FooTest < Minitest::Test

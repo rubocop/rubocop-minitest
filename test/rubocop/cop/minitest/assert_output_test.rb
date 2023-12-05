@@ -2,7 +2,7 @@
 
 require_relative '../../../test_helper'
 
-class AssertOutputTest < Minitest::Test
+class AssertOutputTest < RuboCop::Minitest::Test
   def test_registers_offense_when_mutating_output_global_variable
     assert_offense(<<~RUBY)
       class FooTest < Minitest::Test

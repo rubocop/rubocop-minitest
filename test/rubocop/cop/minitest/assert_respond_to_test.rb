@@ -2,7 +2,7 @@
 
 require_relative '../../../test_helper'
 
-class AssertRespondToTest < Minitest::Test
+class AssertRespondToTest < RuboCop::Minitest::Test
   def test_registers_offense_when_using_assert_calling_respond_to_method
     assert_offense(<<~RUBY)
       class FooTest < Minitest::Test

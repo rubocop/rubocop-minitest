@@ -2,7 +2,7 @@
 
 require_relative '../../../test_helper'
 
-class GlobalExpectationsTest < Minitest::Test
+class GlobalExpectationsTest < RuboCop::Minitest::Test
   def setup
     configure_enforced_style(style)
   end

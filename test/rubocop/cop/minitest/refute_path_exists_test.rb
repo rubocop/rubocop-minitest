@@ -2,7 +2,7 @@
 
 require_relative '../../../test_helper'
 
-class RefutePathExistsTest < Minitest::Test
+class RefutePathExistsTest < RuboCop::Minitest::Test
   def test_registers_offense_when_using_refute_file_exist
     assert_offense(<<~RUBY)
       class FooTest < Minitest::Test

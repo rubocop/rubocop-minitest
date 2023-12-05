@@ -2,7 +2,7 @@
 
 require_relative '../../../test_helper'
 
-class RefuteSameTest < Minitest::Test
+class RefuteSameTest < RuboCop::Minitest::Test
   def test_registers_offense_when_using_equal
     assert_offense(<<~RUBY)
       class FooTest < Minitest::Test

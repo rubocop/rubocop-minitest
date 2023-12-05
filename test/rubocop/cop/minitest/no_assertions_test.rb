@@ -2,7 +2,7 @@
 
 require_relative '../../../test_helper'
 
-class NoAssertionsTest < Minitest::Test
+class NoAssertionsTest < RuboCop::Minitest::Test
   def test_registers_offense_when_no_assertions
     assert_offense(<<~RUBY)
       class FooTest < Minitest::Test

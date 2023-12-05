@@ -2,7 +2,7 @@
 
 require_relative '../../../test_helper'
 
-class AssertPredicateTest < Minitest::Test
+class AssertPredicateTest < RuboCop::Minitest::Test
   def test_registers_offense_when_using_assert_with_predicate_method
     assert_offense(<<~RUBY)
       class FooTest < Minitest::Test

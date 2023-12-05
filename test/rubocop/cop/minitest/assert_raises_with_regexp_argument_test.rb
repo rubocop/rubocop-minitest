@@ -2,7 +2,7 @@
 
 require_relative '../../../test_helper'
 
-class AssertRaisesWithRegexpArgumentTest < Minitest::Test
+class AssertRaisesWithRegexpArgumentTest < RuboCop::Minitest::Test
   def test_registers_offense_with_regexp
     assert_offense(<<~RUBY)
       assert_raises(MyError, /some message/) do

@@ -2,7 +2,7 @@
 
 require_relative '../../../test_helper'
 
-class AssertWithExpectedArgumentTest < Minitest::Test
+class AssertWithExpectedArgumentTest < RuboCop::Minitest::Test
   def test_registers_offense_when_second_argument_is_not_a_string
     assert_offense(<<~RUBY)
       class FooTest < Minitest::Test

@@ -2,7 +2,7 @@
 
 require_relative '../../../test_helper'
 
-class RefuteInDeltaTest < Minitest::Test
+class RefuteInDeltaTest < RuboCop::Minitest::Test
   def test_registers_offense_when_using_refute_equal_with_float_as_expected_value
     assert_offense(<<~RUBY)
       class FooTest < Minitest::Test

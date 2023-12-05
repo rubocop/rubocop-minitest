@@ -2,7 +2,7 @@
 
 require_relative '../../../test_helper'
 
-class MinitestExplorationHelpersTest < Minitest::Test
+class MinitestExplorationHelpersTest < RuboCop::Minitest::Test
   module Helper
     extend RuboCop::Cop::MinitestExplorationHelpers
     class << self

@@ -2,7 +2,7 @@
 
 require_relative '../../../test_helper'
 
-class RefuteOperatorTest < Minitest::Test
+class RefuteOperatorTest < RuboCop::Minitest::Test
   def test_registers_offense_when_using_refute_with_operator_method
     assert_offense(<<~RUBY)
       class FooTest < Minitest::Test

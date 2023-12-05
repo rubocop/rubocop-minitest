@@ -2,7 +2,7 @@
 
 require_relative 'test_helper'
 
-class ProjectTest < Minitest::Test
+class ProjectTest < RuboCop::Minitest::Test
   def setup
     @issues = []
     @bodies = []

@@ -2,7 +2,7 @@
 
 require_relative '../../../test_helper'
 
-class TestMethodNameTest < Minitest::Test
+class TestMethodNameTest < RuboCop::Minitest::Test
   def test_registers_offense_when_test_method_without_prefix
     assert_offense(<<~RUBY)
       class FooTest < Minitest::Test

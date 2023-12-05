@@ -2,7 +2,7 @@
 
 require_relative '../../../test_helper'
 
-class RedundantMessageArgumentTest < Minitest::Test
+class RedundantMessageArgumentTest < RuboCop::Minitest::Test
   def test_registers_offense_when_using_redundant_message_argument_in_assert
     assert_offense(<<~RUBY)
       assert(test, nil)
