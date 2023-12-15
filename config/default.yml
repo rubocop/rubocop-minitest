@@ -192,6 +192,12 @@ Minitest/NoTestCases:
   Enabled: false
   VersionAdded: '0.30'
 
+Minitest/NonExecutableTestMethod:
+  Description: 'Checks uses of test methods outside test class.'
+  Enabled: pending
+  Severity: warning
+  VersionAdded: '<<next>>'
+
 Minitest/NonPublicTestMethod:
   Description: 'Detects non `public` (marked as `private` or `protected`) test methods.'
   Enabled: pending
