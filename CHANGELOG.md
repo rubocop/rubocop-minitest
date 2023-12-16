@@ -11,6 +11,21 @@
 
 ## master (unreleased)
 
+### New features
+
+* [#272](https://github.com/rubocop/rubocop-minitest/pull/272): Add new Minitest/RedundantMessageArgument cop. ([@koic][])
+
+### Bug fixes
+
+* [#275](https://github.com/rubocop/rubocop-minitest/pull/275): Make `Minitest/AssertMatch` aware of `assert_operator` when running with Ruby 2.7. ([@koic][])
+* [#271](https://github.com/rubocop/rubocop-minitest/issues/271): Fix a false positive for `Minitest/EmptyLineBeforeAssertionMethods` and `assert_raises`. ([@fatkodima][])
+
+### Changes
+
+* [#270](https://github.com/rubocop/rubocop-minitest/pull/270): Ignore offenses inside redundant parentheses. ([@sambostock][])
+* [#274](https://github.com/rubocop/rubocop-minitest/pull/274): Require RuboCop AST 1.30.0+. ([@koic][])
+* [#276](https://github.com/rubocop/rubocop-minitest/pull/276): Enhance `AssertSame`/`RefuteSame` to check for `object_id` comparison. ([@fatkodima][])
+
 ## 0.33.0 (2023-10-21)
 
 ### New features
@@ -532,3 +547,4 @@
 [@rwstauner]: https://github.com/rwstauner
 [@ryanquanz]: https://github.com/ryanquanz
 [@flavorjones]: https://github.com/flavorjones
+[@sambostock]: https://github.com/sambostock
