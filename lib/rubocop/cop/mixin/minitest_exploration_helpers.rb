@@ -99,8 +99,9 @@ module RuboCop
         end
       end
 
+      # rubocop:disable Metrics/CyclomaticComplexity
       def assertion_method?(node)
-        return assertion_method?(node.expression) if node.assignment?
+        return assertion_method?(node.expression) if node.assignment? && node.respond_to?(:expression)
         return false if !node.send_type? && !node.block_type? && !node.numblock_type?
 
         ASSERTION_PREFIXES.any? do |prefix|
@@ -109,6 +110,7 @@ module RuboCop
           method_name.start_with?(prefix) || node.method?(:flunk)
         end
       end
+      # rubocop:enable Metrics/CyclomaticComplexity
 
       def lifecycle_hook_method?(node)
         node.def_type? && LIFECYCLE_HOOK_METHODS.include?(node.method_name)
