@@ -11,6 +11,10 @@
 
 ## master (unreleased)
 
+### Bug fixes
+
+* [#281](https://github.com/rubocop/rubocop-minitest/issues/281): Fix an error when assigning a value to an object attribute. ([@koic][])
+
 ## 0.34.0 (2023-12-16)
 
 ### New features
