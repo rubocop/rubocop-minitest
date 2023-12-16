@@ -11,6 +11,8 @@
 
 ## master (unreleased)
 
+## 0.34.0 (2023-12-16)
+
 ### New features
 
 * [#272](https://github.com/rubocop/rubocop-minitest/pull/272): Add new Minitest/RedundantMessageArgument cop. ([@koic][])

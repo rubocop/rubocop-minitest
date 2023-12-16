@@ -196,7 +196,7 @@ Minitest/NonExecutableTestMethod:
   Description: 'Checks uses of test methods outside test class.'
   Enabled: pending
   Severity: warning
-  VersionAdded: '<<next>>'
+  VersionAdded: '0.34'
 
 Minitest/NonPublicTestMethod:
   Description: 'Detects non `public` (marked as `private` or `protected`) test methods.'
@@ -207,7 +207,7 @@ Minitest/NonPublicTestMethod:
 Minitest/RedundantMessageArgument:
   Description: 'Detects redundant message argument in assertion methods.'
   Enabled: pending
-  VersionAdded: '<<next>>'
+  VersionAdded: '0.34'
 
 Minitest/RefuteEmpty:
   Description: 'This cop enforces to use `refute_empty` instead of using `refute(object.empty?)`.'

@@ -557,6 +557,7 @@ NOTE: Use `assert_same` only when there is a need to compare by identity.
 ----
 # bad
 assert(expected.equal?(actual))
+assert_equal(expected.object_id, actual.object_id)
 
 # good
 assert_same(expected, actual)
@@ -1150,6 +1151,52 @@ class FooTest < Minitest::Test
 end
 ----
 
+== Minitest/NonExecutableTestMethod
+
+|===
+| Enabled by default | Safe | Supports autocorrection | Version Added | Version Changed
+
+| Pending
+| Yes
+| No
+| 0.34
+| -
+|===
+
+Checks for the use of test methods outside of a test class.
+
+Test methods should be defined within a test class to ensure their execution.
+
+NOTE: This cop assumes that classes whose superclass name includes the word
+"`Test`" are test classes, in order to prevent false positives.
+
+=== Examples
+
+[source,ruby]
+----
+# bad
+class FooTest < Minitest::Test
+end
+def test_method_should_be_inside_test_class
+end
+
+# good
+class FooTest < Minitest::Test
+  def test_method_should_be_inside_test_class
+  end
+end
+----
+
+=== Configurable attributes
+
+|===
+| Name | Default value | Configurable values
+
+| Severity
+| `warning`
+| String
+|===
+
 == Minitest/NonPublicTestMethod
 
 |===
@@ -1210,6 +1257,33 @@ end
 | `warning`
 | String
 |===
+
+== Minitest/RedundantMessageArgument
+
+|===
+| Enabled by default | Safe | Supports autocorrection | Version Added | Version Changed
+
+| Pending
+| Yes
+| Yes
+| 0.34
+| -
+|===
+
+Detects redundant message argument in assertion methods.
+The message argument `nil` is redundant because it is the default value.
+
+=== Examples
+
+[source,ruby]
+----
+# bad
+assert_equal(expected, actual, nil)
+
+# good
+assert_equal(expected, actual)
+assert_equal(expected, actual, 'message')
+----
 
 == Minitest/RefuteEmpty
 
@@ -1674,6 +1748,7 @@ NOTE: Use `refute_same` only when there is a need to compare by identity.
 ----
 # bad
 refute(expected.equal?(actual))
+refute_equal(expected.object_id, actual.object_id)
 
 # good
 refute_same(expected, actual)
