@@ -15,7 +15,8 @@
 
 ### New features
 
-* [#272](https://github.com/rubocop/rubocop-minitest/pull/272): Add new Minitest/RedundantMessageArgument cop. ([@koic][])
+* [#272](https://github.com/rubocop/rubocop-minitest/pull/272): Add new `Minitest/RedundantMessageArgument` cop. ([@koic][])
+* [#279](https://github.com/rubocop/rubocop-minitest/pull/279): Add new `Minitest/NonExecutableTestMethod` cop. ([@koic][])
 
 ### Bug fixes
 
