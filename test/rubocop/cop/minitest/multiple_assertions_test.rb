@@ -101,6 +101,18 @@ class MultipleAssertionsTest < Minitest::Test
     RUBY
   end
 
+  def test_does_not_register_offense_when_using_assigning_a_value_to_an_object_attribute
+    assert_no_offenses(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_asserts_once
+          obj.value = 42
+
+          assert_equal(foo, bar)
+        end
+      end
+    RUBY
+  end
+
   def test_generates_a_todo_based_on_the_worst_violation
     inspect_source(<<-RUBY, @cop, 'test/foo_test.rb')
       class FooTest < Minitest::Test
