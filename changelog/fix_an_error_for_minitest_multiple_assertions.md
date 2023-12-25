@@ -1,1 +1,0 @@
-* [#283](https://github.com/rubocop/rubocop-minitest/issues/283): Fix an error for `Minitest/MultipleAssertions` when using `||` assigning a value to a variable. ([@koic][])
