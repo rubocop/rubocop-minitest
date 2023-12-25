@@ -11,6 +11,8 @@
 
 ## master (unreleased)
 
+## 0.34.2 (2023-12-25)
+
 ### Bug fixes
 
 * [#283](https://github.com/rubocop/rubocop-minitest/issues/283): Fix an error for `Minitest/MultipleAssertions` when using `||` assigning a value to a variable. ([@koic][])
