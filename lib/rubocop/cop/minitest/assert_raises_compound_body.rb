@@ -37,7 +37,7 @@ module RuboCop
         private
 
         def multi_statement_begin?(node)
-          node.begin_type? && node.children.size > 1
+          node&.begin_type? && node.children.size > 1
         end
       end
     end
