@@ -13,6 +13,14 @@ class AssertRaisesCompoundBodyTest < Minitest::Test
     RUBY
   end
 
+  def test_does_not_register_offense_when_empty_bodies
+    assert_no_offenses(<<~RUBY)
+      assert_raises(MyError) do
+        # nothing to see here...
+      end
+    RUBY
+  end
+
   def test_does_not_register_offense_when_single_statement_bodies
     assert_no_offenses(<<~RUBY)
       assert_raises(MyError) do
