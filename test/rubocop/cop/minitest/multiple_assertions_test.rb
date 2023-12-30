@@ -113,11 +113,51 @@ class MultipleAssertionsTest < Minitest::Test
     RUBY
   end
 
+  def test_assignments_are_not_counted_twice
+    assert_no_offenses(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_asserts_once
+          _ = assert_equal(1, 2)
+        end
+      end
+    RUBY
+  end
+
+  def test_assignments_are_not_counted_complex
+    assert_offense(<<~RUBY)
+      class FooTest < ActiveSupport::TestCase
+        test "#render errors include stack traces" do
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Test case has too many assertions [3/1].
+          err = assert_raises React::ServerRendering::PrerenderError do
+            @renderer.render("NonExistentComponent", {}, nil)
+          end
+    
+          assert_match(/NonExistentComponent/, err.to_s, "it names the component")
+    
+          assert_match(/\n/, err.to_s, "it includes the multi-line backtrace")
+        end
+      end
+    RUBY
+  end
+
   def test_does_not_register_offense_when_using_or_assigning_a_value_to_an_object_attribute
     assert_no_offenses(<<~RUBY)
       class FooTest < Minitest::Test
         def test_asserts_once
           var ||= :value
+
+          assert_equal(foo, bar)
+        end
+      end
+    RUBY
+  end
+
+  def test_does_not_register_offense_when_using_or_assigning_an_assertion_return_value_to_an_object_attribute
+    assert_offense(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_asserts_once
+        ^^^^^^^^^^^^^^^^^^^^^ Test case has too many assertions [2/1].
+          var ||= assert_equal(1, 2)
 
           assert_equal(foo, bar)
         end
