@@ -53,20 +53,25 @@ module RuboCop
         def assertions_count(node)
           return 0 unless node.is_a?(RuboCop::AST::Node)
 
-          assertions =
-            case node.type
-            when :if, :case, :case_match
-              assertions_count_in_branches(node.branches)
-            when :rescue
-              assertions_count(node.body) + assertions_count_in_branches(node.branches)
-            when :block, :numblock
-              assertions_count(node.body)
-            else
-              node.each_child_node.sum { |child| assertions_count(child) }
-            end
-
+          assertions = assertions_count_based_on_type(node)
           assertions += 1 if assertion_method?(node)
           assertions
+        end
+
+        def assertions_count_based_on_type(node)
+          case node.type
+          when :if, :case, :case_match
+            assertions_count_in_branches(node.branches)
+          when :rescue
+            assertions_count(node.body) + assertions_count_in_branches(node.branches)
+          when :block, :numblock
+            assertions_count(node.body)
+          when *RuboCop::AST::Node::ASSIGNMENTS
+            # checking assignment bodies is handled by assertion_method?
+            0
+          else
+            node.each_child_node.sum { |child| assertions_count(child) }
+          end
         end
 
         def assertions_count_in_branches(branches)
