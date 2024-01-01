@@ -123,6 +123,18 @@ class MultipleAssertionsTest < Minitest::Test
     RUBY
   end
 
+  def test_assignments_are_counted_normally
+    assert_offense(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_asserts_twice
+        ^^^^^^^^^^^^^^^^^^^^^^ Test case has too many assertions [2/1].
+          _ = assert_equal(1, 2)
+          _ = assert_equal(1, 2)
+        end
+      end
+    RUBY
+  end
+
   def test_assignments_are_not_counted_complex
     assert_offense(<<~RUBY)
       class FooTest < ActiveSupport::TestCase
@@ -134,6 +146,77 @@ class MultipleAssertionsTest < Minitest::Test
     
           assert_match(/NonExistentComponent/, err.to_s, "it names the component")
     
+          assert_match(/\n/, err.to_s, "it includes the multi-line backtrace")
+        end
+      end
+    RUBY
+  end
+
+  def test_assignments_are_not_counted_but_block_bodies_still_are
+    assert_offense(<<~RUBY)
+      class FooTest < ActiveSupport::TestCase
+        test "#render errors include stack traces" do
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Test case has too many assertions [5/1].
+          err = assert_raises React::ServerRendering::PrerenderError do
+            @renderer.render("NonExistentComponent", {}, nil)
+            assert_equal 1, 1
+            assert_equal 1, 1
+          end
+    
+          assert_match(/NonExistentComponent/, err.to_s, "it names the component")
+    
+          assert_match(/\n/, err.to_s, "it includes the multi-line backtrace")
+        end
+      end
+    RUBY
+  end
+
+  def test_assignments_with_nested_blocks_are_counted_correctly
+    assert_offense(<<~RUBY)
+      class FooTest < ActiveSupport::TestCase
+        test "#render errors include stack traces" do
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Test case has too many assertions [9/1].
+          err = assert_raises React::ServerRendering::PrerenderError do
+            assert_equal 1, 1
+
+            assert_raises React::ServerRendering::PrerenderError do
+              assert_equal 1, 1
+            end
+
+            _ = assert_raises React::ServerRendering::PrerenderError do
+              assert_equal 1, 1
+              assert_equal 1, 1
+            end
+          end
+    
+          assert_match(/NonExistentComponent/, err.to_s, "it names the component")
+    
+          assert_match(/\n/, err.to_s, "it includes the multi-line backtrace")
+        end
+      end
+    RUBY
+  end
+
+  def test_assignments_with_numblocks_are_counted_correctly
+    assert_offense(<<~RUBY)
+      class FooTest < ActiveSupport::TestCase
+        test "#render errors include stack traces" do
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Test case has too many assertions [9/1].
+          err = assert_raises React::ServerRendering::PrerenderError do
+            assert_equal _1, 1
+
+            assert_raises React::ServerRendering::PrerenderError do
+              assert_equal _1, 1
+            end
+
+            _ = assert_raises React::ServerRendering::PrerenderError do
+              assert_equal _1, 1
+              assert_equal _1, 1
+            end
+          end
+
+          assert_match(/NonExistentComponent/, err.to_s, "it names the component")
+
           assert_match(/\n/, err.to_s, "it includes the multi-line backtrace")
         end
       end

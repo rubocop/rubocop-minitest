@@ -67,11 +67,18 @@ module RuboCop
           when :block, :numblock
             assertions_count(node.body)
           when *RuboCop::AST::Node::ASSIGNMENTS
-            # checking assignment bodies is handled by assertion_method?
-            0
+            assertions_count_in_assignment(node)
           else
             node.each_child_node.sum { |child| assertions_count(child) }
           end
+        end
+
+        def assertions_count_in_assignment(node)
+          # checking the direct expression is handled by assertion_method?
+          return 0 unless node.expression.block_type? || node.expression.numblock_type?
+
+          # this will only trigger the branches for :block and :numblock type nodes
+          assertions_count_based_on_type(node.expression)
         end
 
         def assertions_count_in_branches(branches)
