@@ -11,6 +11,11 @@
 
 ## master (unreleased)
 
+### Bug fixes
+
+* [#287](https://github.com/rubocop/rubocop-minitest/issues/287): Don't error on empty blocks when linting `assert_raises`. ([@G-Rath][])
+* [#289](https://github.com/rubocop/rubocop-minitest/issues/289): Don't count assertions twice when their return value is being assigned. ([@G-Rath][])
+
 ## 0.34.2 (2023-12-25)
 
 ### Bug fixes
@@ -563,3 +568,4 @@
 [@ryanquanz]: https://github.com/ryanquanz
 [@flavorjones]: https://github.com/flavorjones
 [@sambostock]: https://github.com/sambostock
+[@G-Rath]: https://github.com/G-Rath
