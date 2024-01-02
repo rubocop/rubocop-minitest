@@ -21,7 +21,7 @@ require_relative 'lib/rubocop/cop/generator'
 
 desc 'Run tests'
 task :test do
-  system("bundle exec minitest-queue #{Dir.glob('test/**/*_test.rb').shelljoin}")
+  system("bundle exec minitest-queue #{Dir.glob('test/**/*_test.rb').shelljoin}", exception: true)
 end
 
 desc 'Run RuboCop over itself'
