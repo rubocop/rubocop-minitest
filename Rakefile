@@ -21,7 +21,9 @@ require_relative 'lib/rubocop/cop/generator'
 
 desc 'Run tests'
 task :test do
-  system("bundle exec minitest-queue #{Dir.glob('test/**/*_test.rb').shelljoin}")
+  error_on_failure = ENV.fetch('ERROR_ON_TEST_FAILURE', 'true') != 'false'
+
+  system("bundle exec minitest-queue #{Dir.glob('test/**/*_test.rb').shelljoin}", exception: error_on_failure)
 end
 
 desc 'Run RuboCop over itself'
