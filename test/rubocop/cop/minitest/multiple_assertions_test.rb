@@ -426,6 +426,8 @@ class MultipleAssertionsTest < Minitest::Test
   end
 
   def test_registers_offense_when_multiple_expectations_inside_pattern_matching
+    skip_unless_rubocop_supports_pattern_matching!
+
     assert_offense(<<~RUBY)
       class FooTest < ActiveSupport::TestCase
         test 'something' do
@@ -447,6 +449,8 @@ class MultipleAssertionsTest < Minitest::Test
   end
 
   def test_registers_offense_when_multiple_expectations_inside_assigned_pattern_matching
+    skip_unless_rubocop_supports_pattern_matching!
+
     assert_offense(<<~RUBY)
       class FooTest < ActiveSupport::TestCase
         test 'something' do
@@ -468,6 +472,8 @@ class MultipleAssertionsTest < Minitest::Test
   end
 
   def test_does_not_register_offense_when_single_assertion_inside_pattern_matching
+    skip_unless_rubocop_supports_pattern_matching!
+
     assert_no_offenses(<<~RUBY)
       class FooTest < ActiveSupport::TestCase
         test 'something' do
@@ -687,5 +693,9 @@ class MultipleAssertionsTest < Minitest::Test
   def configure_max_assertions(max)
     cop_config = RuboCop::Config.new('Minitest/MultipleAssertions' => { 'Max' => max })
     @cop = RuboCop::Cop::Minitest::MultipleAssertions.new(cop_config)
+  end
+
+  def skip_unless_rubocop_supports_pattern_matching!
+    skip if RuboCop::TargetRuby::DEFAULT_VERSION < 2.7
   end
 end
