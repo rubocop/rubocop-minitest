@@ -74,11 +74,21 @@ module RuboCop
         end
 
         def assertions_count_in_assignment(node)
-          # checking the direct expression is handled by assertion_method?
-          return 0 unless node.expression.block_type? || node.expression.numblock_type?
+          return assertions_count_based_on_type(node.expression) unless node.masgn_type?
 
-          # this will only trigger the branches for :block and :numblock type nodes
-          assertions_count_based_on_type(node.expression)
+          rhs = node.children.last
+
+          case rhs.type
+          when :array
+            rhs.children.sum { |child| assertions_count_based_on_type(child) }
+          when :send
+            assertion_method?(rhs) ? 1 : 0
+          else
+            # Play it safe and bail if we don't have any explicit handling for whatever
+            # the RHS type is, since at this point we're already probably dealing with
+            # a pretty exotic situation that's unlikely in the real world.
+            0
+          end
         end
 
         def assertions_count_in_branches(branches)
