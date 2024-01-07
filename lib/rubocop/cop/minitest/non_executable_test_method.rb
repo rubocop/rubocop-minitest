@@ -36,6 +36,8 @@ module RuboCop
           add_offense(node)
         end
 
+        private
+
         def use_test_class?
           root_node = processed_source.ast
 
