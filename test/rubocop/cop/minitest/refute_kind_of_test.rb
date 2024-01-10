@@ -22,12 +22,50 @@ class RefuteKindOfTest < Minitest::Test
     RUBY
   end
 
-  def test_registers_offense_when_using_refute_with_kind_of_and_message
+  def test_registers_offense_when_using_refute_with_is_a
+    assert_offense(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          refute(object.is_a?(SomeClass))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_kind_of(SomeClass, object)`.
+        end
+      end
+    RUBY
+
+    assert_correction(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          refute_kind_of(SomeClass, object)
+        end
+      end
+    RUBY
+  end
+
+  def test_registers_offense_when_using_refute_with_is_a_and_message
     assert_offense(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
           refute(object.kind_of?(SomeClass), 'message')
           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_kind_of(SomeClass, object, 'message')`.
+        end
+      end
+    RUBY
+
+    assert_correction(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          refute_kind_of(SomeClass, object, 'message')
+        end
+      end
+    RUBY
+  end
+
+  def test_registers_offense_when_using_refute_with_kind_of_and_message
+    assert_offense(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          refute(object.is_a?(SomeClass), 'message')
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_kind_of(SomeClass, object, 'message')`.
         end
       end
     RUBY
