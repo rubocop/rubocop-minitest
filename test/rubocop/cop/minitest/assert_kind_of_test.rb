@@ -22,12 +22,50 @@ class AssertKindOfTest < Minitest::Test
     RUBY
   end
 
+  def test_registers_offense_when_using_assert_with_is_a
+    assert_offense(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          assert(object.is_a?(SomeClass))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_kind_of(SomeClass, object)`.
+        end
+      end
+    RUBY
+
+    assert_correction(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          assert_kind_of(SomeClass, object)
+        end
+      end
+    RUBY
+  end
+
   def test_registers_offense_when_using_assert_with_kind_of_and_message
     assert_offense(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
           assert(object.kind_of?(SomeClass), 'message')
           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_kind_of(SomeClass, object, 'message')`.
+        end
+      end
+    RUBY
+
+    assert_correction(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          assert_kind_of(SomeClass, object, 'message')
+        end
+      end
+    RUBY
+  end
+
+  def test_registers_offense_when_using_assert_with_is_a_and_message
+    assert_offense(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          assert(object.is_a?(SomeClass), 'message')
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_kind_of(SomeClass, object, 'message')`.
         end
       end
     RUBY
