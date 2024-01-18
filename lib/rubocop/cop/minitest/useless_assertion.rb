@@ -48,7 +48,7 @@ module RuboCop
           when *SINGLE_ASSERTION_ARGUMENT_METHODS
             actual.nil? && expected&.literal? && !expected.xstr_type?
           when *TWO_ASSERTION_ARGUMENTS_METHODS
-            return false unless expected || actual
+            return false unless expected && actual
             return false if expected.source != actual.source
 
             (expected.variable? && actual.variable?) ||

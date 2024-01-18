@@ -93,6 +93,12 @@ class UselessAssertionTest < Minitest::Test
         #{matcher} x.foo, x.foo
       RUBY
     end
+
+    define_method("test_#{matcher}_no_offense_when_only_single_argument_is_given") do
+      assert_no_offenses(<<~RUBY)
+        #{matcher} foo
+      RUBY
+    end
   end
 
   %i[assert_includes refute_includes].each do |matcher|
