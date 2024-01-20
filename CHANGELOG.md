@@ -11,6 +11,14 @@
 
 ## master (unreleased)
 
+### Bug fixes
+
+* [#299](https://github.com/rubocop/rubocop-minitest/pull/299): Fix an error for `Style/UselessAssertion` when passing a single argument to methods to accept two arguments. ([@earlopain][])
+
+### Changes
+
+* [#298](https://github.com/rubocop/rubocop-minitest/pull/298): Extend `Minitest/AssertKindOf` to also correct `assert(object.is_a?(Class))`. ([@amomchilov][])
+
 ## 0.34.4 (2024-01-09)
 
 ### Bug fixes
@@ -577,3 +585,5 @@
 [@flavorjones]: https://github.com/flavorjones
 [@sambostock]: https://github.com/sambostock
 [@G-Rath]: https://github.com/G-Rath
+[@amomchilov]: https://github.com/amomchilov
+[@earlopain]: https://github.com/earlopain
