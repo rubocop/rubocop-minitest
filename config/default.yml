@@ -46,7 +46,7 @@ Minitest/AssertKindOf:
   StyleGuide: 'https://github.com/rubocop/minitest-style-guide#assert-kind-of'
   Enabled: 'pending'
   VersionAdded: '0.10'
-  VersionChanged: '<<next>>'
+  VersionChanged: '0.34'
 
 Minitest/AssertMatch:
   Description: 'This cop enforces the test to use `assert_match` instead of using `assert(matcher.match(object))`.'
@@ -253,7 +253,7 @@ Minitest/RefuteKindOf:
   StyleGuide: 'https://github.com/rubocop/minitest-style-guide#refute-kind-of'
   Enabled: 'pending'
   VersionAdded: '0.10'
-  VersionChanged: '<<next>>'
+  VersionChanged: '0.34'
 
 Minitest/RefuteMatch:
   Description: 'This cop enforces the test to use `refute_match` instead of using `refute(matcher.match(object))`.'
