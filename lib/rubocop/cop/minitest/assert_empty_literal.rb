@@ -22,7 +22,7 @@ module RuboCop
         RESTRICT_ON_SEND = %i[assert_equal].freeze
 
         def_node_matcher :assert_equal_with_empty_literal, <<~PATTERN
-          (send nil? :assert_equal ${hash array} $...)
+          (send nil? :assert_equal ${hash array} $_+)
         PATTERN
 
         def on_send(node)

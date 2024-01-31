@@ -60,4 +60,14 @@ class AssertEmptyLiteralTest < Minitest::Test
       end
     RUBY
   end
+
+  def test_does_not_register_offense_when_only_passing_empty_hash_to_assert_equal
+    assert_no_offenses(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          assert_equal({})
+        end
+      end
+    RUBY
+  end
 end
