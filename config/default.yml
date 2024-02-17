@@ -146,6 +146,11 @@ Minitest/EmptyLineBeforeAssertionMethods:
   Enabled: pending
   VersionAdded: '0.23'
 
+Minitest/Focus:
+  Description: 'Checks for focused tests.'
+  Enabled: pending
+  VersionAdded: '<<next>>'
+
 Minitest/GlobalExpectations:
   Description: 'This cop checks for deprecated global expectations.'
   StyleGuide: 'https://minitest.rubystyle.guide#global-expectations'
