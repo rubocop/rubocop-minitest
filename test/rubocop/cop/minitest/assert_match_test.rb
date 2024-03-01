@@ -107,7 +107,7 @@ class AssertMatchTest < Minitest::Test
 
     # Redundant parentheses should be removed by `Style/RedundantParentheses` cop.
     define_method("test_registers_offense_when_using_assert_with_#{matcher}_in_redundant_parentheses") do
-      assert_no_offenses(<<~RUBY, matcher: matcher)
+      assert_no_offenses(<<~RUBY)
         class FooTest < Minitest::Test
           def test_do_something
             assert((matcher.#{matcher}(string)))
