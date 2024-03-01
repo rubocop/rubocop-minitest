@@ -149,6 +149,7 @@ Minitest/EmptyLineBeforeAssertionMethods:
 Minitest/Focus:
   Description: 'Checks for focused tests.'
   Enabled: pending
+  AutoCorrect: contextual
   VersionAdded: '<<next>>'
 
 Minitest/GlobalExpectations:
