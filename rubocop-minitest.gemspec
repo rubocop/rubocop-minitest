@@ -32,6 +32,6 @@ Gem::Specification.new do |spec|
   spec.executables = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
-  spec.add_runtime_dependency 'rubocop', '>= 1.39', '< 2.0'
+  spec.add_runtime_dependency 'rubocop', '>= 1.61', '< 2.0'
   spec.add_runtime_dependency 'rubocop-ast', '>= 1.30.0', '< 2.0'
 end
