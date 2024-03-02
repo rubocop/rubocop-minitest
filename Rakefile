@@ -33,10 +33,15 @@ else
   end
 end
 
+desc 'Run tests with Prism'
+task :prism_test do
+  sh('PARSER_ENGINE=parser_prism bundle exec rake test')
+end
+
 desc 'Run RuboCop over itself'
 RuboCop::RakeTask.new(:internal_investigation)
 
-task default: %i[documentation_syntax_check test internal_investigation]
+task default: %i[documentation_syntax_check test prism_test internal_investigation]
 
 desc 'Generate a new cop template'
 task :new_cop, [:cop] do |_task, args|

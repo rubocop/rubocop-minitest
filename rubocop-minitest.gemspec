@@ -33,5 +33,5 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.add_runtime_dependency 'rubocop', '>= 1.61', '< 2.0'
-  spec.add_runtime_dependency 'rubocop-ast', '>= 1.30.0', '< 2.0'
+  spec.add_runtime_dependency 'rubocop-ast', '>= 1.31.1', '< 2.0'
 end

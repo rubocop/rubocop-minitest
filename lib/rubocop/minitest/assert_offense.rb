@@ -186,7 +186,7 @@ module RuboCop
           file = file.path
         end
 
-        processed_source = RuboCop::ProcessedSource.new(source, ruby_version, file)
+        processed_source = RuboCop::ProcessedSource.new(source, ruby_version, file, parser_engine: parser_engine)
 
         # Follow up https://github.com/rubocop/rubocop/pull/10987.
         # When support for RuboCop 1.37.1 ends, this condition can be removed.
@@ -216,7 +216,12 @@ module RuboCop
       end
 
       def ruby_version
-        RuboCop::TargetRuby::DEFAULT_VERSION
+        #  Prism supports parsing Ruby 3.3+.
+        ENV['PARSER_ENGINE'] == 'parser_prism' ? 3.3 : RuboCop::TargetRuby::DEFAULT_VERSION
+      end
+
+      def parser_engine
+        ENV.fetch('PARSER_ENGINE', :parser_whitequark).to_sym
       end
     end
     # rubocop:enable Metrics/ModuleLength
