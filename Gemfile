@@ -9,6 +9,7 @@ gemspec
 gem 'bump', require: false
 gem 'minitest', '~> 5.11'
 gem 'minitest-proveit'
+gem 'prism'
 gem 'rake'
 gem 'rubocop', github: 'rubocop/rubocop'
 gem 'rubocop-performance', '~> 1.18.0'
