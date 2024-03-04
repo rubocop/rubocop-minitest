@@ -2,7 +2,7 @@
 
 require_relative '../../../test_helper'
 
-class SkipWithoutReasonTest < Minitest::Test
+class SkipWithoutReasonTest < RuboCop::Minitest::Test
   def test_registers_offense_when_skip_without_reason
     assert_offense(<<~RUBY)
       skip

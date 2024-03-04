@@ -2,7 +2,7 @@
 
 require_relative '../../../test_helper'
 
-class AssertRaisesCompoundBodyTest < Minitest::Test
+class AssertRaisesCompoundBodyTest < RuboCop::Minitest::Test
   def test_registers_offense_when_multi_statement_bodies
     assert_offense(<<~RUBY)
       assert_raises(MyError) do

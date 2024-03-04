@@ -2,7 +2,7 @@
 
 require_relative '../../../test_helper'
 
-class EmptyLineBeforeAssertionMethodsTest < Minitest::Test
+class EmptyLineBeforeAssertionMethodsTest < RuboCop::Minitest::Test
   def test_registers_offense_when_using_method_call_before_assertion_method
     assert_offense(<<~RUBY)
       def test_do_something

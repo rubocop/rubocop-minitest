@@ -2,7 +2,7 @@
 
 require_relative '../../../test_helper'
 
-class SkipEnsureTest < Minitest::Test
+class SkipEnsureTest < RuboCop::Minitest::Test
   def test_registers_offense_when_using_skip_in_the_method_body
     assert_offense(<<~RUBY)
       def test_skip

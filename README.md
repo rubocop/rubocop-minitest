@@ -95,6 +95,89 @@ Here are the Markdown snippets for the two badges:
 [![Minitest Style Guide](https://img.shields.io/badge/code_style-community-brightgreen.svg)](https://minitest.rubystyle.guide)
 ```
 
+## Using this Gem for testing custom cops
+
+You can use this gem to test your own cops, by using the `RuboCop::Minitest::Test` test class, you'll get `assert_offense`, `assert_correction`, and `assert_no_offense` helpers
+
+```ruby
+
+require "rubocop/minitest/support"
+require "custom_cops/my_cop"
+
+module CustomCops
+  class MyCopTest < RuboCop::Minitest::Test
+    def test_registers_offense
+      assert_offense(<<~RUBY)
+        class FooTest < Minitest::Test
+          def test_do_something
+            assert_equal(nil, somestuff)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_nil(somestuff)`.
+          end
+        end
+      RUBY
+    end
+
+    def test_assert_offense_and_correction
+      assert_offense(<<~RUBY)
+        class FooTest < Minitest::Test
+          def test_do_something
+            assert_equal(nil, somestuff)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_nil(somestuff)`.
+          end
+        end
+      RUBY
+
+      assert_correction(<<~RUBY)
+        class FooTest < Minitest::Test
+          def test_do_something
+            assert_nil(somestuff)
+          end
+        end
+      RUBY
+    end
+
+    def test_assert_offense_and_no_corrections
+      assert_offense(<<~RUBY)
+        class FooTest < Minitest::Test
+          def test_do_something
+            assert_equal(nil, somestuff)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_nil(somestuff)`.
+          end
+        end
+      RUBY
+
+      assert_no_corrections
+    end
+
+    def test_assert_no_offense
+      assert_no_offenses(<<~RUBY)
+        class FooTest < Minitest::Test
+          def test_do_something
+            assert_nil(somestuff)
+          end
+        end
+      RUBY
+    end
+
+    # You can set the `@cop` attribute to override the auto-detected cop and provide configuration options
+    def test_override_cop_configuration
+      cop_config = RuboCop::Config.new('Minitest/MultipleAssertions' => { 'Max' => 1 })
+      @cop = RuboCop::Cop::Minitest::MultipleAssertions.new(cop_config)
+
+      assert_offense(<<~RUBY)
+        class FooTest < Minitest::Test
+          def test_asserts_twice
+          ^^^^^^^^^^^^^^^^^^^^^^ Test case has too many assertions [2/1].
+            assert_equal(foo, bar)
+            assert_empty(array)
+          end
+        end
+      RUBY
+    end
+  end
+end
+```
+
 ## Contributing
 
 Checkout the [contribution guidelines](CONTRIBUTING.md).

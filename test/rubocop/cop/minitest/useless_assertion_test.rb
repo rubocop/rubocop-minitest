@@ -2,7 +2,7 @@
 
 require_relative '../../../test_helper'
 
-class UselessAssertionTest < Minitest::Test
+class UselessAssertionTest < RuboCop::Minitest::Test
   %i[assert refute assert_nil refute_nil assert_not assert_empty refute_empty].each do |matcher|
     define_method("test_#{matcher}_registers_offense_when_using_literals") do
       assert_offense(<<~RUBY, matcher: matcher)

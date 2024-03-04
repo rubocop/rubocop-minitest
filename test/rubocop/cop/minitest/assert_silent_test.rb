@@ -2,7 +2,7 @@
 
 require_relative '../../../test_helper'
 
-class AssertSilentTest < Minitest::Test
+class AssertSilentTest < RuboCop::Minitest::Test
   def test_registers_offense_when_using_assert_output_with_empty_strings
     assert_offense(<<~RUBY)
       class FooTest < Minitest::Test

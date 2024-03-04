@@ -2,7 +2,7 @@
 
 require_relative '../../../test_helper'
 
-class LiteralAsActualArgumentTest < Minitest::Test
+class LiteralAsActualArgumentTest < RuboCop::Minitest::Test
   def test_registers_offense_when_actual_is_basic_literal
     assert_offense(<<~RUBY)
       class FooTest < Minitest::Test

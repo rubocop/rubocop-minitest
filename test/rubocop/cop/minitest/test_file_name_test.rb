@@ -2,7 +2,7 @@
 
 require_relative '../../../test_helper'
 
-class TestFileNameTest < Minitest::Test
+class TestFileNameTest < RuboCop::Minitest::Test
   def test_registers_offense_for_invalid_path
     offenses = inspect_source(<<~RUBY, @cop, 'lib/foo.rb')
       class FooTest < Minitest::Test

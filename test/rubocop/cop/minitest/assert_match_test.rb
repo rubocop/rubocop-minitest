@@ -2,7 +2,7 @@
 
 require_relative '../../../test_helper'
 
-class AssertMatchTest < Minitest::Test
+class AssertMatchTest < RuboCop::Minitest::Test
   %i[match match? =~].each do |matcher|
     define_method("test_registers_offense_when_using_assert_with_#{matcher}") do
       assert_offense(<<~RUBY, matcher: matcher)

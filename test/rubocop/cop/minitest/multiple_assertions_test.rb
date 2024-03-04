@@ -2,7 +2,7 @@
 
 require_relative '../../../test_helper'
 
-class MultipleAssertionsTest < Minitest::Test
+class MultipleAssertionsTest < RuboCop::Minitest::Test
   def setup
     configure_max_assertions(1)
   end

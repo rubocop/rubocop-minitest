@@ -2,7 +2,7 @@
 
 require_relative '../../../test_helper'
 
-class NonPublicTestMethodTest < Minitest::Test
+class NonPublicTestMethodTest < RuboCop::Minitest::Test
   def test_registers_offense_when_using_private_test_method
     assert_offense(<<~RUBY)
       class FooTest < Minitest::Test

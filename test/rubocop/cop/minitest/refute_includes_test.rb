@@ -2,7 +2,7 @@
 
 require_relative '../../../test_helper'
 
-class RefuteIncludesTest < Minitest::Test
+class RefuteIncludesTest < RuboCop::Minitest::Test
   def test_registers_offense_when_using_refute_with_include
     assert_offense(<<~RUBY)
       class FooTest < Minitest::Test

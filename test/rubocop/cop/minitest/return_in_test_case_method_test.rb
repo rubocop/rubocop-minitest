@@ -2,7 +2,7 @@
 
 require_relative '../../../test_helper'
 
-class ReturnInTestMethodTest < Minitest::Test
+class ReturnInTestMethodTest < RuboCop::Minitest::Test
   def test_registers_offense_when_using_return_inside_test_method
     assert_offense(<<~RUBY)
       class FooTest < Minitest::Test
