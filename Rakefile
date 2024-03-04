@@ -29,9 +29,7 @@ if RUBY_ENGINE == 'jruby' || RuboCop::Platform.windows?
 else
   desc 'Run tests'
   task :test do
-    error_on_failure = ENV.fetch('ERROR_ON_TEST_FAILURE', 'true') != 'false'
-
-    system("bundle exec minitest-queue #{Dir.glob('test/**/*_test.rb').shelljoin}", exception: error_on_failure)
+    sh("bundle exec minitest-queue #{Dir.glob('test/**/*_test.rb').shelljoin}")
   end
 end
 
