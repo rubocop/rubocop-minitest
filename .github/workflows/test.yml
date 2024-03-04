@@ -84,5 +84,3 @@ jobs:
           bundler-cache: true
       - name: test
         run: bundle exec rake test
-        env:
-          ERROR_ON_TEST_FAILURE: "false"
