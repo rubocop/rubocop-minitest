@@ -187,14 +187,8 @@ module RuboCop
         end
 
         processed_source = RuboCop::ProcessedSource.new(source, ruby_version, file, parser_engine: parser_engine)
-
-        # Follow up https://github.com/rubocop/rubocop/pull/10987.
-        # When support for RuboCop 1.37.1 ends, this condition can be removed.
-        if processed_source.respond_to?(:config) && processed_source.respond_to?(:registry)
-          processed_source.config = configuration
-          processed_source.registry = registry
-        end
-
+        processed_source.config = configuration
+        processed_source.registry = registry
         processed_source
       end
 
