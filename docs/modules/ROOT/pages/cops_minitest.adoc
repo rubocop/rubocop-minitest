@@ -13,7 +13,7 @@
 
 | Enabled
 | Yes
-| Yes
+| Always
 | 0.2
 | -
 |===
@@ -44,7 +44,7 @@ assert_empty(object, 'message')
 
 | Enabled
 | Yes
-| Yes
+| Always
 | 0.5
 | 0.11
 |===
@@ -71,7 +71,7 @@ assert_empty(object)
 
 | Enabled
 | Yes
-| Yes
+| Always
 | 0.4
 | -
 |===
@@ -102,7 +102,7 @@ assert_equal("rubocop-minitest", actual)
 
 | Pending
 | Yes
-| Yes
+| Always
 | 0.10
 | -
 |===
@@ -134,7 +134,7 @@ assert_in_delta(0.2, actual, 0.001, 'message')
 
 | Enabled
 | Yes
-| Yes
+| Always
 | 0.2
 | -
 |===
@@ -166,7 +166,7 @@ assert_includes(collection, object, 'message')
 
 | Enabled
 | Yes
-| Yes
+| Always
 | 0.4
 | -
 |===
@@ -202,7 +202,7 @@ assert_instance_of(Class, object, 'message')
 
 | Pending
 | Yes
-| Yes
+| Always
 | 0.10
 | 0.34
 |===
@@ -239,7 +239,7 @@ assert_kind_of(Class, object, 'message')
 
 | Enabled
 | Yes
-| Yes
+| Always
 | 0.6
 | -
 |===
@@ -274,7 +274,7 @@ assert_match(matcher, string, 'message')
 
 | Enabled
 | Yes
-| Yes
+| Always
 | 0.1
 | -
 |===
@@ -310,7 +310,7 @@ assert_nil(actual, 'message')
 
 | Pending
 | Yes
-| Yes
+| Always
 | 0.32
 | -
 |===
@@ -371,7 +371,7 @@ assert_output(expected) { puts object.method }
 
 | Pending
 | Yes
-| Yes
+| Always
 | 0.10
 | -
 |===
@@ -402,7 +402,7 @@ assert_path_exists(path, 'message')
 
 | Pending
 | Yes
-| Yes
+| Always
 | 0.18
 | -
 |===
@@ -517,7 +517,7 @@ assert_match(/some message/, exception.message)
 
 | Enabled
 | Yes
-| Yes
+| Always
 | 0.3
 | -
 |===
@@ -551,7 +551,7 @@ assert_respond_to(self, :do_something)
 
 | Pending
 | Yes
-| Yes
+| Always
 | 0.26
 | -
 |===
@@ -585,7 +585,7 @@ assert_same(expected, actual)
 
 | Pending
 | Yes
-| Yes
+| Always
 | 0.10
 | -
 |===
@@ -615,7 +615,7 @@ assert_silent { puts object.do_something }
 
 | Enabled
 | No
-| Yes (Unsafe)
+| Always (Unsafe)
 | 0.2
 | 0.27
 |===
@@ -800,7 +800,7 @@ end
 
 | Pending
 | Yes
-| Yes
+| Always
 | 0.23
 | -
 |===
@@ -821,6 +821,38 @@ do_something
 assert_equal(expected, actual)
 ----
 
+== Minitest/Focus
+
+|===
+| Enabled by default | Safe | Supports autocorrection | Version Added | Version Changed
+
+| Pending
+| Yes
+| Command-line only
+| 0.35
+| -
+|===
+
+Enforces tests are not focused.
+
+=== Examples
+
+[source,ruby]
+----
+# bad
+focus test 'foo' do
+end
+
+# bad
+focus
+test 'foo' do
+end
+
+# good
+test 'foo' do
+end
+----
+
 == Minitest/GlobalExpectations
 
 |===
@@ -828,7 +860,7 @@ assert_equal(expected, actual)
 
 | Enabled
 | Yes
-| Yes
+| Always
 | 0.7
 | 0.26
 |===
@@ -959,7 +991,7 @@ value { musts }.must_raise TypeError
 
 | Pending
 | Yes
-| Yes
+| Always
 | 0.28
 | -
 |===
@@ -1019,7 +1051,7 @@ end
 
 | Pending
 | Yes
-| Yes
+| Always
 | 0.10
 | -
 |===
@@ -1276,7 +1308,7 @@ end
 
 | Pending
 | Yes
-| Yes
+| Always
 | 0.34
 | -
 |===
@@ -1303,7 +1335,7 @@ assert_equal(expected, actual, 'message')
 
 | Enabled
 | Yes
-| Yes
+| Always
 | 0.3
 | -
 |===
@@ -1334,7 +1366,7 @@ refute_empty(object, 'message')
 
 | Enabled
 | Yes
-| Yes
+| Always
 | 0.3
 | -
 |===
@@ -1367,7 +1399,7 @@ refute_equal("rubocop-minitest", actual)
 
 | Enabled
 | No
-| Yes (Unsafe)
+| Always (Unsafe)
 | 0.3
 | 0.27
 |===
@@ -1412,7 +1444,7 @@ refute(actual, 'message')
 
 | Pending
 | Yes
-| Yes
+| Always
 | 0.10
 | -
 |===
@@ -1444,7 +1476,7 @@ refute_in_delta(0.2, actual, 0.001, 'message')
 
 | Enabled
 | Yes
-| Yes
+| Always
 | 0.3
 | -
 |===
@@ -1476,7 +1508,7 @@ refute_includes(collection, object, 'message')
 
 | Enabled
 | Yes
-| Yes
+| Always
 | 0.4
 | -
 |===
@@ -1512,7 +1544,7 @@ refute_instance_of(Class, object, 'message')
 
 | Pending
 | Yes
-| Yes
+| Always
 | 0.10
 | 0.34
 |===
@@ -1549,7 +1581,7 @@ refute_kind_of(Class, object, 'message')
 
 | Enabled
 | Yes
-| Yes
+| Always
 | 0.6
 | -
 |===
@@ -1585,7 +1617,7 @@ refute_match(matcher, string, 'message')
 
 | Enabled
 | Yes
-| Yes
+| Always
 | 0.2
 | -
 |===
@@ -1621,7 +1653,7 @@ refute_nil(actual, 'message')
 
 | Pending
 | Yes
-| Yes
+| Always
 | 0.32
 | -
 |===
@@ -1650,7 +1682,7 @@ refute_operator(expected, :<, actual)
 
 | Pending
 | Yes
-| Yes
+| Always
 | 0.10
 | -
 |===
@@ -1681,7 +1713,7 @@ refute_path_exists(path, 'message')
 
 | Pending
 | Yes
-| Yes
+| Always
 | 0.18
 | -
 |===
@@ -1713,7 +1745,7 @@ refute_predicate(obj, :one?, 'message')
 
 | Enabled
 | Yes
-| Yes
+| Always
 | 0.4
 | -
 |===
@@ -1747,7 +1779,7 @@ refute_respond_to(self, :do_something)
 
 | Pending
 | Yes
-| Yes
+| Always
 | 0.26
 | -
 |===
@@ -1781,7 +1813,7 @@ refute_same(expected, actual)
 
 | Pending
 | Yes
-| Yes
+| Always
 | 0.31
 | -
 |===
@@ -1967,7 +1999,7 @@ test_my_class.rb
 
 | Pending
 | Yes
-| Yes
+| Always
 | 0.10
 | -
 |===

@@ -11,6 +11,8 @@
 
 ## master (unreleased)
 
+## 0.35.0 (2024-03-10)
+
 ### New features
 
 * [#301](https://github.com/rubocop/rubocop-minitest/issues/301): Add new Minitest/Focus cop. ([@jaredmoody][])

@@ -150,7 +150,7 @@ Minitest/Focus:
   Description: 'Checks for focused tests.'
   Enabled: pending
   AutoCorrect: contextual
-  VersionAdded: '<<next>>'
+  VersionAdded: '0.35'
 
 Minitest/GlobalExpectations:
   Description: 'This cop checks for deprecated global expectations.'
