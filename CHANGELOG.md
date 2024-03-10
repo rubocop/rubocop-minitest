@@ -11,6 +11,19 @@
 
 ## master (unreleased)
 
+### New features
+
+* [#301](https://github.com/rubocop/rubocop-minitest/issues/301): Add new Minitest/Focus cop. ([@jaredmoody][])
+
+### Bug fixes
+
+* [#300](https://github.com/rubocop/rubocop-minitest/pull/300): Fix an error for `Minitest/AssertEmptyLiteral` when only passing an empty literal. ([@earlopain][])
+
+### Changes
+
+* [#303](https://github.com/rubocop/rubocop-minitest/pull/303): Require RuboCop 1.61 to use `AutoCorrect: Contextual`. ([@koic][])
+* [#304](https://github.com/rubocop/rubocop-minitest/pull/304): Require RuboCop AST >= 1.31.1 to support Prism as a Ruby Parser. ([@koic][])
+
 ## 0.34.5 (2024-01-20)
 
 ### Bug fixes
@@ -589,3 +602,4 @@
 [@G-Rath]: https://github.com/G-Rath
 [@amomchilov]: https://github.com/amomchilov
 [@earlopain]: https://github.com/earlopain
+[@jaredmoody]: https://github.com/jaredmoody
