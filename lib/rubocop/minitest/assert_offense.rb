@@ -116,9 +116,9 @@ module RuboCop
 
         @processed_source = parse_source!(expected_annotations.plain_source, file)
 
-        offenses = _investigate(@cop, @processed_source)
+        @offenses = _investigate(@cop, @processed_source)
 
-        actual_annotations = expected_annotations.with_offense_annotations(offenses)
+        actual_annotations = expected_annotations.with_offense_annotations(@offenses)
 
         assert_equal(expected_annotations.to_s, actual_annotations.to_s)
       end
@@ -143,7 +143,7 @@ module RuboCop
           break corrected_source if @last_corrector.empty? || corrected_source == @processed_source.buffer.source
 
           if iteration > RuboCop::Runner::MAX_ITERATIONS
-            raise RuboCop::Runner::InfiniteCorrectionLoop.new(@processed_source.path, [])
+            raise RuboCop::Runner::InfiniteCorrectionLoop.new(@processed_source.path, [@offenses])
           end
 
           # Prepare for next loop
@@ -153,6 +153,20 @@ module RuboCop
         end
 
         assert_equal(correction, new_source)
+      end
+
+      def assert_no_corrections
+        raise '`assert_no_corrections` must follow `assert_offense`' unless @processed_source
+
+        return if @last_corrector.empty?
+
+        # This is just here for a pretty diff if the source actually got changed
+        new_source = @last_corrector.rewrite
+        assert_equal(@processed_source.buffer.source, new_source)
+
+        # There is an infinite loop if a corrector is present that did not make
+        # any changes. It will cause the same offense/correction on the next loop.
+        raise RuboCop::Runner::InfiniteCorrectionLoop.new(@processed_source.path, [@offenses])
       end
 
       def setup_assertion
