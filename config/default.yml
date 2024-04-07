@@ -349,3 +349,4 @@ Minitest/UselessAssertion:
   Description: 'Detects useless assertions (assertions that either always pass or always fail).'
   Enabled: pending
   VersionAdded: '0.26'
+  AutoCorrect: contextual
