@@ -117,3 +117,7 @@ Naming/FileName:
 Metrics/ModuleLength:
   Exclude:
     - 'test/**/*.rb'
+
+Performance/StringIdentifierArgument:
+  Exclude:
+    - 'test/**/*.rb'
