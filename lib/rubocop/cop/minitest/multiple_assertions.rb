@@ -28,10 +28,11 @@ module RuboCop
       #   end
       #
       class MultipleAssertions < Base
-        include ConfigurableMax
         include MinitestExplorationHelpers
 
         MSG = 'Test case has too many assertions [%<total>d/%<max>d].'
+
+        exclude_limit 'Max'
 
         def on_class(class_node)
           return unless test_class?(class_node)
