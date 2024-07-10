@@ -11,6 +11,14 @@
 
 ## master (unreleased)
 
+### New features
+
+* [#307](https://github.com/rubocop/rubocop-minitest/pull/307): Make `AssertOffense` support `assert_no_corrections`. ([@koic][])
+
+### Bug fixes
+
+* [#311](https://github.com/rubocop/rubocop-minitest/pull/311): Suppress deprecation warning for `Minitst/MultipleAssertions`. ([@koic][])
+
 ## 0.35.0 (2024-03-10)
 
 ### New features
