@@ -11,6 +11,8 @@
 
 ## master (unreleased)
 
+## 0.35.1 (2024-07-11)
+
 ### New features
 
 * [#307](https://github.com/rubocop/rubocop-minitest/pull/307): Make `AssertOffense` support `assert_no_corrections`. ([@koic][])
