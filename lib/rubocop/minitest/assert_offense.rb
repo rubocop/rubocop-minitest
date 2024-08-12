@@ -75,11 +75,13 @@ module RuboCop
     module AssertOffense
       private
 
-      def setup
-        cop_name = self.class.to_s.delete_suffix('Test')
-        return unless RuboCop::Cop::Minitest.const_defined?(cop_name)
+      def cop
+        @cop ||= begin
+          cop_name = self.class.to_s.delete_suffix('Test')
+          raise "Cop not defined: #{cop_name}" unless RuboCop::Cop::Minitest.const_defined?(cop_name)
 
-        @cop = RuboCop::Cop::Minitest.const_get(cop_name).new(configuration)
+          RuboCop::Cop::Minitest.const_get(cop_name).new(configuration)
+        end
       end
 
       def format_offense(source, **replacements)
@@ -95,7 +97,7 @@ module RuboCop
       def assert_no_offenses(source, file = nil)
         setup_assertion
 
-        offenses = inspect_source(source, @cop, file)
+        offenses = inspect_source(source, cop, file)
 
         expected_annotations = RuboCop::RSpec::ExpectOffense::AnnotatedSource.parse(source)
         actual_annotations = expected_annotations.with_offense_annotations(offenses)
@@ -105,8 +107,7 @@ module RuboCop
 
       def assert_offense(source, file = nil, **replacements)
         setup_assertion
-
-        @cop.instance_variable_get(:@options)[:autocorrect] = true
+        enable_autocorrect
 
         source = format_offense(source, **replacements)
         expected_annotations = RuboCop::RSpec::ExpectOffense::AnnotatedSource.parse(source)
@@ -116,7 +117,7 @@ module RuboCop
 
         @processed_source = parse_source!(expected_annotations.plain_source, file)
 
-        @offenses = _investigate(@cop, @processed_source)
+        @offenses = _investigate(cop, @processed_source)
 
         actual_annotations = expected_annotations.with_offense_annotations(@offenses)
 
@@ -128,6 +129,10 @@ module RuboCop
         report = team.investigate(processed_source)
         @last_corrector = report.correctors.first || RuboCop::Cop::Corrector.new(processed_source)
         report.offenses
+      end
+
+      def enable_autocorrect
+        cop.instance_variable_get(:@options)[:autocorrect] = true
       end
 
       def assert_correction(correction, loop: true)
@@ -149,7 +154,7 @@ module RuboCop
           # Prepare for next loop
           @processed_source = parse_source!(corrected_source, @processed_source.path)
 
-          _investigate(@cop, @processed_source)
+          _investigate(cop, @processed_source)
         end
 
         assert_equal(correction, new_source)
