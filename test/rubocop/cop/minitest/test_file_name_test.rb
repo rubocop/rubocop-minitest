@@ -4,7 +4,7 @@ require_relative '../../../test_helper'
 
 class TestFileNameTest < Minitest::Test
   def test_registers_offense_for_invalid_path
-    offenses = inspect_source(<<~RUBY, @cop, 'lib/foo.rb')
+    offenses = inspect_source(<<~RUBY, cop, 'lib/foo.rb')
       class FooTest < Minitest::Test
       end
     RUBY
@@ -15,7 +15,7 @@ class TestFileNameTest < Minitest::Test
   end
 
   def test_registers_offense_for_namespaced_invalid_path
-    offenses = inspect_source(<<~RUBY, @cop, 'lib/foo/bar.rb')
+    offenses = inspect_source(<<~RUBY, cop, 'lib/foo/bar.rb')
       module Foo
         class BarTest < Minitest::Test
         end
