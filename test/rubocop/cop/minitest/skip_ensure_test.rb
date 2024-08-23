@@ -119,4 +119,13 @@ class SkipEnsureTest < Minitest::Test
       end
     RUBY
   end
+
+  def test_registers_no_offese_when_ensure_only
+    assert_no_offenses(<<~RUBY)
+      def test_ensure_only
+      ensure
+        do_something
+      end
+    RUBY
+  end
 end

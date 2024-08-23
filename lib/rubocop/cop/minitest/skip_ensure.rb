@@ -75,7 +75,9 @@ module RuboCop
         private
 
         def find_skip(node)
-          node.node_parts.first.descendants.detect { |n| n.send_type? && n.receiver.nil? && n.method?(:skip) }
+          return unless (body = node.node_parts.first)
+
+          body.descendants.detect { |n| n.send_type? && n.receiver.nil? && n.method?(:skip) }
         end
 
         def use_skip_in_rescue?(skip_method)
