@@ -75,7 +75,11 @@ module RuboCop
         end
 
         def assertions_count_in_assignment(node)
-          return assertions_count_based_on_type(node.expression) unless node.masgn_type?
+          unless node.masgn_type?
+            return 0 unless node.expression # for-style loop
+
+            return assertions_count_based_on_type(node.expression)
+          end
 
           rhs = node.children.last
 
