@@ -616,6 +616,20 @@ class MultipleAssertionsTest < Minitest::Test
     RUBY
   end
 
+  def test_registers_offense_when_for_style_loop
+    assert_offense(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_asserts_twice
+        ^^^^^^^^^^^^^^^^^^^^^^ Test case has too many assertions [2/1].
+          assert_equal(foo, bar)
+          for baz in [1, 2]
+            assert_equal(baz, 1)
+          end
+        end
+      end
+    RUBY
+  end
+
   def test_registers_offense_when_complex_multiple_assignment_structure_and_multiple_assertions
     skip 'FIXME: The shared `@cop` instance variable causes flaky tests due to state changes.'
 
