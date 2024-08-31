@@ -11,6 +11,8 @@
 
 ## master (unreleased)
 
+## 0.36.0 (2024-08-31)
+
 ### Bug fixes
 
 * [#317](https://github.com/rubocop/rubocop-minitest/pull/317): Fix an error for `Minitest/MultipleAssertions` when using for-style loops. ([@earlopain][])
