@@ -11,6 +11,15 @@
 
 ## master (unreleased)
 
+### Bug fixes
+
+* [#317](https://github.com/rubocop/rubocop-minitest/pull/317): Fix an error for `Minitest/MultipleAssertions` when using for-style loops. ([@earlopain][])
+* [#314](https://github.com/rubocop/rubocop-minitest/pull/314): Fix an error for `Minitest/SkipEnsure` when only `ensure` has a body. ([@earlopain][])
+
+### Changes
+
+* [#314](https://github.com/rubocop/rubocop-minitest/pull/314): **(Breaking)** Raise a useful error when using a Cop in `AssertOffense` if the Cop's class is not defined. ([@brandoncc][])
+
 ## 0.35.1 (2024-07-11)
 
 ### New features
@@ -615,3 +624,4 @@
 [@amomchilov]: https://github.com/amomchilov
 [@earlopain]: https://github.com/earlopain
 [@jaredmoody]: https://github.com/jaredmoody
+[@brandoncc]: https://github.com/brandoncc
