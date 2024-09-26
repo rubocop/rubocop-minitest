@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'minitest/assertions'
-require 'minitest/mock' # includes Assertions#assert_mock
 require 'set'
 
 module RuboCop
@@ -12,8 +10,7 @@ module RuboCop
       include DefNode
       extend NodePattern::Macros
 
-      ASSERTION_REGEXP = /\A(assert|refute)/.freeze
-      MINITEST_ASSERTIONS = ::Minitest::Assertions.instance_methods.grep(ASSERTION_REGEXP)
+      ASSERTION_PREFIXES = %w[assert refute].freeze
 
       LIFECYCLE_HOOK_METHODS_IN_ORDER = %i[
         before_setup
@@ -102,19 +99,19 @@ module RuboCop
         end
       end
 
-      # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+      # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity, Metrics/AbcSize
       def assertion_method?(node)
         return false unless node
         return assertion_method?(node.expression) if node.assignment? && node.respond_to?(:expression)
         return false if !node.send_type? && !node.block_type? && !node.numblock_type?
 
-        MINITEST_ASSERTIONS.any? do |assertion_method|
+        ASSERTION_PREFIXES.any? do |prefix|
           method_name = node.method_name
 
-          method_name == assertion_method || node.method?(:flunk)
+          (method_name.start_with?(prefix) && !node.receiver) || node.method?(:flunk)
         end
       end
-      # rubocop:enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+      # rubocop:enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity, Metrics/AbcSize
 
       def lifecycle_hook_method?(node)
         node.def_type? && LIFECYCLE_HOOK_METHODS.include?(node.method_name)

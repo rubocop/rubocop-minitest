@@ -328,7 +328,7 @@ class EmptyLineBeforeAssertionMethodsTest < Minitest::Test
   def test_does_not_register_offense_when_using_assertion_methods_which_are_continuous_without_empty_line
     assert_no_offenses(<<~RUBY)
       def test_do_something
-        assert foo
+        assert_not foo
         assert bar
       end
     RUBY
