@@ -7,6 +7,17 @@ class MultipleAssertionsTest < Minitest::Test
     configure_max_assertions(1)
   end
 
+  def test_checks_only_genuine_assertion_methods
+    assert_no_offenses(<<~RUBY)
+      class FooTest < Minitest::Test
+        # assertion 'look-alike' method
+        def test_asserts_once
+          assert_equal(:assert_equal, Bar.assert_but_not_a_minitest_assertion)
+        end
+      end
+    RUBY
+  end
+
   def test_registers_offense_when_multiple_expectations
     assert_offense(<<~RUBY)
       class FooTest < Minitest::Test
@@ -37,7 +48,7 @@ class MultipleAssertionsTest < Minitest::Test
       class FooTest < Minitest::Test
         def test_asserts_two_times
         ^^^^^^^^^^^^^^^^^^^^^^^^^^ Test case has too many assertions [2/1].
-          assert_something do
+          assert do
             assert_equal(_1, bar)
           end
         end

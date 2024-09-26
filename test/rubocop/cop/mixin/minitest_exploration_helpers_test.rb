@@ -24,6 +24,10 @@ class MinitestExplorationHelpersTest < Minitest::Test
     end
   RUBY
 
+  def test_MINITEST_ASSERTIONS # rubocop:disable Naming/MethodName
+    assert_equal 38, RuboCop::Cop::MinitestExplorationHelpers::MINITEST_ASSERTIONS.size
+  end
+
   def test_test_case_returns_true_for_test_case
     assert Helper.test_case?(method_node(:test_public))
   end
