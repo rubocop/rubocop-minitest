@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative 'mixin/argument_range_helper'
+require_relative 'mixin/assert_refute_match_helper'
 require_relative 'mixin/in_delta_mixin'
 require_relative 'mixin/instance_of_assertion_handleable'
 require_relative 'mixin/minitest_cop_rule'

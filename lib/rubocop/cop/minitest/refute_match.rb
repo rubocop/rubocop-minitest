@@ -21,12 +21,13 @@ module RuboCop
       #
       class RefuteMatch < Base
         include ArgumentRangeHelper
+        include AssertRefuteMatchHelper
         extend AutoCorrector
 
         MSG = 'Prefer using `refute_match(%<preferred>s)`.'
         RESTRICT_ON_SEND = %i[refute refute_operator assert_operator].freeze
 
-        def_node_matcher :refute_match, <<~PATTERN
+        def_node_matcher :match_assertion, <<~PATTERN
           {
             (send nil? :refute (send $_ {:match :match? :=~} $_) $...)
             (send nil? :refute_operator $_ (sym :=~) $_ $...)
@@ -34,36 +35,18 @@ module RuboCop
           }
         PATTERN
 
-        # rubocop:disable Metrics/AbcSize
         def on_send(node)
-          refute_match(node) do |expected, actual, rest_args|
-            basic_arguments = order_expected_and_actual(expected, actual)
-            preferred = (message_arg = rest_args.first) ? "#{basic_arguments}, #{message_arg.source}" : basic_arguments
-            message = format(MSG, preferred: preferred)
-
-            add_offense(node, message: message) do |corrector|
-              corrector.replace(node.loc.selector, 'refute_match')
-
-              range = if node.method?(:refute)
-                        node.first_argument
-                      else
-                        node.first_argument.source_range.begin.join(node.arguments[2].source_range.end)
-                      end
-
-              corrector.replace(range, basic_arguments)
-            end
-          end
+          check_match_assertion(node)
         end
-        # rubocop:enable Metrics/AbcSize
 
         private
 
-        def order_expected_and_actual(expected, actual)
-          if actual.regexp_type?
-            [actual, expected]
-          else
-            [expected, actual]
-          end.map(&:source).join(', ')
+        def basic_preferred_assertion_method_name
+          :refute
+        end
+
+        def preferred_assertion_method_name
+          :refute_match
         end
       end
     end
