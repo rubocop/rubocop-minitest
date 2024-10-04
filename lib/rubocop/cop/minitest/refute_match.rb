@@ -19,6 +19,24 @@ module RuboCop
       #   refute_match(matcher, string)
       #   refute_match(matcher, string, 'message')
       #
+      # @example OnlyRegexpLiteral: false (default)
+      #   # bad
+      #   refute /.../.match?(object)
+      #   refute object.match?(/.../)
+      #   refute matcher.match?(object)
+      #
+      #   # good
+      #   refute_match(/.../, object)
+      #   refute_match(matcher, object)
+      #
+      # @example OnlyRegexpLiteral: true
+      #   # bad
+      #   refute /.../.match?(object)
+      #   refute object.match?(/.../)
+      #
+      #   # good
+      #   refute_match(/.../, object)
+      #   refute_match(matcher, object)
       class RefuteMatch < Base
         include ArgumentRangeHelper
         include AssertRefuteMatchHelper

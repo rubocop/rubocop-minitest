@@ -53,6 +53,7 @@ Minitest/AssertMatch:
   StyleGuide: 'https://minitest.rubystyle.guide#assert-match'
   Enabled: true
   VersionAdded: '0.6'
+  OnlyRegexpLiteral: false
 
 Minitest/AssertNil:
   Description: 'This cop enforces the test to use `assert_nil` instead of using `assert_equal(nil, something)` or `assert(something.nil?)`.'
@@ -266,6 +267,7 @@ Minitest/RefuteMatch:
   StyleGuide: 'https://minitest.rubystyle.guide#refute-match'
   Enabled: true
   VersionAdded: '0.6'
+  OnlyRegexpLiteral: false
 
 Minitest/RefuteNil:
   Description: 'This cop enforces the test to use `refute_nil` instead of using `refute_equal(nil, something)` or `refute(something.nil?)`.'

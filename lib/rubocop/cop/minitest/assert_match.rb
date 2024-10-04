@@ -18,6 +18,25 @@ module RuboCop
       #   assert_match(regex, string)
       #   assert_match(matcher, string, 'message')
       #
+      # @example OnlyRegexpLiteral: false (default)
+      #   # bad
+      #   assert /.../.match?(object)
+      #   assert object.match?(/.../)
+      #   assert matcher.match?(object)
+      #
+      #   # good
+      #   assert_match(/.../, object)
+      #   assert_match(matcher, object)
+      #
+      # @example OnlyRegexpLiteral: true
+      #   # bad
+      #   assert /.../.match?(object)
+      #   assert object.match?(/.../)
+      #
+      #   # good
+      #   assert_match(/.../, object)
+      #   assert_match(matcher, object)
+      #
       class AssertMatch < Base
         include ArgumentRangeHelper
         include AssertRefuteMatchHelper

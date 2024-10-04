@@ -8,12 +8,23 @@ module RuboCop
 
       def check_match_assertion(node)
         match_assertion(node) do |expected, actual, rest_args|
-          basic_arguments = order_expected_and_actual(expected, actual)
+          basic_argument_nodes = order_expected_and_actual(expected, actual)
+          next if allowed_matcher?(basic_argument_nodes.first)
+
+          basic_arguments = basic_argument_nodes.map(&:source).join(', ')
 
           add_offense(node, message: format_message(basic_arguments, rest_args)) do |corrector|
             corrector.replace(node.loc.selector, preferred_assertion_method_name)
             corrector.replace(assertion_arguments_range(node), basic_arguments)
           end
+        end
+      end
+
+      def allowed_matcher?(matcher_node)
+        if cop_config['OnlyRegexpLiteral']
+          !matcher_node.regexp_type?
+        else
+          false
         end
       end
 
@@ -36,7 +47,7 @@ module RuboCop
           [actual, expected]
         else
           [expected, actual]
-        end.map(&:source).join(', ')
+        end
       end
     end
   end
