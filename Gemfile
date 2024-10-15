@@ -12,7 +12,7 @@ gem 'minitest-proveit'
 gem 'prism'
 gem 'rake'
 gem 'rubocop', github: 'rubocop/rubocop'
-gem 'rubocop-performance', '~> 1.21.0'
+gem 'rubocop-performance', '~> 1.22.0'
 gem 'test-queue'
 gem 'yard', '~> 0.9'
 
