@@ -131,7 +131,7 @@ class MultipleAssertionsTest < Minitest::Test
     assert_offense(<<~RUBY)
       class FooTest < Minitest::Test
         def test_all_types_of_assignment
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Test case has too many assertions [8/1].
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Test case has too many assertions [9/1].
           # lvasgn
           foo = assert_equal(1, 1)
           # ivasgn
