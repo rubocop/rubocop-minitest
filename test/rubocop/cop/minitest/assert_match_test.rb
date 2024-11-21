@@ -175,4 +175,76 @@ class AssertMatchTest < Minitest::Test
       end
     RUBY
   end
+
+  def test_does_not_register_offense_when_neither_receiver_nor_first_argument_is_a_regexp_and_only_regexp_is_enabled
+    enable_only_regexp
+
+    assert_no_offenses(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          assert matcher.match?(object)
+        end
+      end
+    RUBY
+  end
+
+  def test_does_not_register_offense_when_receiver_and_arguments_are_string_literals_and_only_regexp_is_enabled
+    enable_only_regexp
+
+    assert_no_offenses(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          assert "...".match?("...")
+        end
+      end
+    RUBY
+  end
+
+  def test_does_register_offense_when_receiver_is_a_regexp_literal_and_only_regexp_is_enabled
+    enable_only_regexp
+
+    assert_offense(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          assert /.../.match?(object)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_match(/.../, object)`.
+        end
+      end
+    RUBY
+
+    assert_correction(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          assert_match /.../, object
+        end
+      end
+    RUBY
+  end
+
+  def test_does_register_offense_when_first_argument_is_a_regexp_literal_and_only_regexp_is_enabled
+    enable_only_regexp
+
+    assert_offense(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          assert object.match?(/.../)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_match(/.../, object)`.
+        end
+      end
+    RUBY
+
+    assert_correction(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          assert_match /.../, object
+        end
+      end
+    RUBY
+  end
+
+  private
+
+  def enable_only_regexp
+    @configuration = RuboCop::Config.new({ 'Minitest/AssertMatch' => { 'OnlyRegexpLiteral' => true } })
+  end
 end
