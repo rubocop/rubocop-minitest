@@ -86,10 +86,10 @@ module RuboCop
 
         def valid_conditional_skip?(skip_method, ensure_node)
           if_node = skip_method.ancestors.detect(&:if_type?)
-          return false unless ensure_node.body.if_type?
+          return false unless ensure_node.branch.if_type?
 
-          match_keyword = ensure_node.body.if? ? if_node.if? : if_node.unless?
-          match_keyword && ensure_node.body.condition == if_node.condition
+          match_keyword = ensure_node.branch.if? ? if_node.if? : if_node.unless?
+          match_keyword && ensure_node.branch.condition == if_node.condition
         end
       end
     end
