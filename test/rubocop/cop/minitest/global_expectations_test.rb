@@ -3,6 +3,10 @@
 require_relative '../../../test_helper'
 
 class GlobalExpectationsTest < Minitest::Test
+  UNDERSCORE_ANY_STYLES = %i[_ any].freeze
+  VALUE_ANY_STYLES = %i[value any].freeze
+  EXPECT_ANY_STYLES = %i[expect any].freeze
+
   def setup
     configure_enforced_style(style)
   end
@@ -164,7 +168,7 @@ class GlobalExpectationsTest < Minitest::Test
     end
 
     define_method(:"test_no_offense_when_using_expect_form_of_#{matcher}") do
-      if style == :_ || style == :any
+      if UNDERSCORE_ANY_STYLES.include?(style)
         assert_no_offenses(<<~RUBY)
           it 'does something' do
             _(n).#{matcher} 42
@@ -187,7 +191,7 @@ class GlobalExpectationsTest < Minitest::Test
     end
 
     define_method(:"test_no_offense_when_using_expect_form_of_#{matcher}_with_value_method") do
-      if style == :value || style == :any
+      if VALUE_ANY_STYLES.include?(style)
         assert_no_offenses(<<~RUBY)
           it 'does something' do
             value(n).#{matcher} 42
@@ -210,7 +214,7 @@ class GlobalExpectationsTest < Minitest::Test
     end
 
     define_method(:"test_no_offense_when_using_expect_form_of_#{matcher}_with_expect_method") do
-      if style == :expect || style == :any
+      if EXPECT_ANY_STYLES.include?(style)
         assert_no_offenses(<<~RUBY)
           it 'does something' do
             expect(n).#{matcher} 42
@@ -325,7 +329,7 @@ class GlobalExpectationsTest < Minitest::Test
     end
 
     define_method(:"test_no_offense_when_using_expect_form_of_#{matcher}") do
-      if style == :_ || style == :any
+      if UNDERSCORE_ANY_STYLES.include?(style)
         assert_no_offenses(<<~RUBY)
           it 'does something' do
             _(n).#{matcher} 42
@@ -348,7 +352,7 @@ class GlobalExpectationsTest < Minitest::Test
     end
 
     define_method(:"test_no_offense_when_using_expect_form_of_#{matcher}_with_block") do
-      if style == :_ || style == :any
+      if UNDERSCORE_ANY_STYLES.include?(style)
         assert_no_offenses(<<~RUBY)
           it 'does something' do
             _ { n }.#{matcher} 42
@@ -371,7 +375,7 @@ class GlobalExpectationsTest < Minitest::Test
     end
 
     define_method(:"test_no_offense_when_using_expect_form_of_#{matcher}_with_value_method") do
-      if style == :value || style == :any
+      if VALUE_ANY_STYLES.include?(style)
         assert_no_offenses(<<~RUBY)
           it 'does something' do
             value(n).#{matcher} 42
@@ -394,7 +398,7 @@ class GlobalExpectationsTest < Minitest::Test
     end
 
     define_method(:"test_no_offense_when_using_expect_form_of_#{matcher}_with_expect_method") do
-      if style == :expect || style == :any
+      if EXPECT_ANY_STYLES.include?(style)
         assert_no_offenses(<<~RUBY)
           it 'does something' do
             expect(n).#{matcher} 42
@@ -417,7 +421,7 @@ class GlobalExpectationsTest < Minitest::Test
     end
 
     define_method(:"test_no_offense_when_using_expect_form_of_#{matcher}_with_value_method_and_block") do
-      if style == :value || style == :any
+      if VALUE_ANY_STYLES.include?(style)
         assert_no_offenses(<<~RUBY)
           it 'does something' do
             value { n }.#{matcher} 42
@@ -440,7 +444,7 @@ class GlobalExpectationsTest < Minitest::Test
     end
 
     define_method(:"test_no_offense_when_using_expect_form_of_#{matcher}_with_expect_method_and_block") do
-      if style == :expect || style == :any
+      if EXPECT_ANY_STYLES.include?(style)
         assert_no_offenses(<<~RUBY)
           it 'does something' do
             expect { n }.#{matcher} 42
