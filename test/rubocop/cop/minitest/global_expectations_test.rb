@@ -506,7 +506,7 @@ class GlobalExpectationsTest < Minitest::Test
   private
 
   def configure_enforced_style(style)
-    all_config = RuboCop::Minitest::CONFIG
+    all_config = YAML.safe_load(RuboCop::Minitest.const_get(:CONFIG_DEFAULT).read).freeze
     cop_config = all_config['Minitest/GlobalExpectations']
     cop_config = cop_config.merge('EnforcedStyle' => style)
     all_config = all_config.merge('Minitest/GlobalExpectations' => cop_config)
