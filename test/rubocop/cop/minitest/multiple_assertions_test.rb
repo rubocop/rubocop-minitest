@@ -7,6 +7,17 @@ class MultipleAssertionsTest < Minitest::Test
     configure_max_assertions(1)
   end
 
+  def test_checks_only_assertion_methods_with_no_receiver
+    assert_no_offenses(<<~RUBY)
+      class FooTest < Minitest::Test
+        # assert_something has a receiver 
+        def test_asserts_once
+          assert_equal(foo, Bar.assert_something)
+        end
+      end
+    RUBY
+  end
+
   def test_registers_offense_when_multiple_expectations
     assert_offense(<<~RUBY)
       class FooTest < Minitest::Test
