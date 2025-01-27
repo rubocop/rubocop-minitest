@@ -36,7 +36,7 @@ module RuboCop
         private
 
         def inside_block?(node)
-          node.ancestors.any?(&:block_type?) || node.ancestors.any?(&:numblock_type?)
+          node.ancestors.any?(&:any_block_type?)
         end
       end
     end

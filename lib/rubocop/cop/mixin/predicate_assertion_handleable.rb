@@ -9,8 +9,7 @@ module RuboCop
         MSG = 'Prefer using `%<assertion_type>s_predicate(%<new_arguments>s)`.'
 
         def on_send(node)
-          return unless node.first_argument
-          return if node.first_argument.block_type? || node.first_argument.numblock_type?
+          return if node.first_argument&.any_block_type?
           return unless predicate_method?(node.first_argument)
           return unless node.first_argument.arguments.count.zero?
 
