@@ -3,8 +3,7 @@
 # Require this file to load code that supports testing using Minitest.
 
 require 'rubocop'
-require 'minitest/autorun'
-require 'minitest/pride'
+require 'minitest'
 require_relative 'assert_offense'
 
 Minitest::Test.include RuboCop::Minitest::AssertOffense
