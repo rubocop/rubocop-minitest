@@ -36,7 +36,7 @@ module RuboCop
 
         def on_send(node)
           assert_with_two_arguments?(node) do |_expected, message|
-            return if message.str_type? || message.dstr_type? || MESSAGE_VARIABLES.include?(message.source)
+            return if message.type?(:str, :dstr) || MESSAGE_VARIABLES.include?(message.source)
 
             arguments = node.arguments.map(&:source).join(', ')
             add_offense(node, message: format(MSG, arguments: arguments))

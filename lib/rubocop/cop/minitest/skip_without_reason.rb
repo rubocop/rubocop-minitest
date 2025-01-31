@@ -49,7 +49,7 @@ module RuboCop
         def conditional_parent(node)
           return unless (parent = node.parent)
 
-          if parent.if_type? || parent.case_type?
+          if parent.type?(:if, :case)
             parent
           elsif parent.when_type?
             parent.parent

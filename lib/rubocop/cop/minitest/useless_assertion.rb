@@ -67,7 +67,7 @@ module RuboCop
         def empty_composite?(node)
           return true if node.str_type? && node.value.empty?
 
-          (node.array_type? || node.hash_type?) && node.children.empty?
+          node.type?(:array, :hash) && node.children.empty?
         end
       end
     end
