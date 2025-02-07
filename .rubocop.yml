@@ -12,6 +12,10 @@ AllCops:
   TargetRubyVersion: 2.7
   SuggestExtensions: false
 
+Minitest:
+  Include:
+    - lib/rubocop/minitest/assert_offense.rb
+
 InternalAffairs/NodeMatcherDirective:
   Enabled: false
 

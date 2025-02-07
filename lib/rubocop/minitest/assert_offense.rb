@@ -167,6 +167,7 @@ module RuboCop
 
         # This is just here for a pretty diff if the source actually got changed
         new_source = @last_corrector.rewrite
+
         assert_equal(@processed_source.buffer.source, new_source)
 
         # There is an infinite loop if a corrector is present that did not make
