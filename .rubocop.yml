@@ -1,11 +1,13 @@
-inherit_from: .rubocop_todo.yml
-
 # This is the configuration used to check the rubocop source code.
 
-require:
-  - rubocop/cop/internal_affairs
-  - rubocop-performance
+inherit_from: .rubocop_todo.yml
+
+plugins:
+  - rubocop-internal_affairs
   - rubocop-minitest
+
+require:
+  - rubocop-performance
 
 AllCops:
   NewCops: enable

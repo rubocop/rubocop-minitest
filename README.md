@@ -30,13 +30,13 @@ ways to do this:
 Put this into your `.rubocop.yml`.
 
 ```yaml
-require: rubocop-minitest
+plugins: rubocop-minitest
 ```
 
 Alternatively, use the following array notation when specifying multiple extensions.
 
 ```yaml
-require:
+plugins:
   - rubocop-other-extension
   - rubocop-minitest
 ```
@@ -44,10 +44,13 @@ require:
 Now you can run `rubocop` and it will automatically load the RuboCop Minitest
 cops together with the standard cops.
 
+> [!NOTE]
+> The plugin system is supported in RuboCop 1.72+. In earlier versions, use `require` instead of `plugins`.
+
 ### Command line
 
 ```sh
-$ rubocop --require rubocop-minitest
+$ rubocop --plugin rubocop-minitest
 ```
 
 ### Rake task
@@ -56,7 +59,7 @@ $ rubocop --require rubocop-minitest
 require 'rubocop/rake_task'
 
 RuboCop::RakeTask.new do |task|
-  task.requires << 'rubocop-minitest'
+  task.plugins << 'rubocop-minitest'
 end
 ```
 
