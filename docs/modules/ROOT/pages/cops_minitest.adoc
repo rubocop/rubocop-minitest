@@ -6,6 +6,7 @@
 
 = Minitest
 
+[#minitestassertempty]
 == Minitest/AssertEmpty
 
 |===
@@ -20,6 +21,7 @@
 
 Enforces the test to use `assert_empty` instead of using `assert(object.empty?)`.
 
+[#examples-minitestassertempty]
 === Examples
 
 [source,ruby]
@@ -33,10 +35,12 @@ assert_empty(object)
 assert_empty(object, 'message')
 ----
 
+[#references-minitestassertempty]
 === References
 
 * https://minitest.rubystyle.guide#assert-empty
 
+[#minitestassertemptyliteral]
 == Minitest/AssertEmptyLiteral
 
 |===
@@ -52,6 +56,7 @@ assert_empty(object, 'message')
 Enforces the test to use `assert_empty`
 instead of using `assert_equal([], object)` or `assert_equal({}, object)`.
 
+[#examples-minitestassertemptyliteral]
 === Examples
 
 [source,ruby]
@@ -64,6 +69,7 @@ assert_equal({}, object)
 assert_empty(object)
 ----
 
+[#minitestassertequal]
 == Minitest/AssertEqual
 
 |===
@@ -79,6 +85,7 @@ assert_empty(object)
 Enforces the use of `assert_equal(expected, actual)`
 over `assert(expected == actual)`.
 
+[#examples-minitestassertequal]
 === Examples
 
 [source,ruby]
@@ -91,10 +98,12 @@ assert_operator("rubocop-minitest", :==, actual)
 assert_equal("rubocop-minitest", actual)
 ----
 
+[#references-minitestassertequal]
 === References
 
 * https://minitest.rubystyle.guide#assert-equal-arguments-order
 
+[#minitestassertindelta]
 == Minitest/AssertInDelta
 
 |===
@@ -110,6 +119,7 @@ assert_equal("rubocop-minitest", actual)
 Enforces the test to use `assert_in_delta`
 instead of using `assert_equal` to compare floats.
 
+[#examples-minitestassertindelta]
 === Examples
 
 [source,ruby]
@@ -123,10 +133,12 @@ assert_in_delta(0.2, actual)
 assert_in_delta(0.2, actual, 0.001, 'message')
 ----
 
+[#references-minitestassertindelta]
 === References
 
 * https://minitest.rubystyle.guide/#assert-in-delta
 
+[#minitestassertincludes]
 == Minitest/AssertIncludes
 
 |===
@@ -142,6 +154,7 @@ assert_in_delta(0.2, actual, 0.001, 'message')
 Enforces the test to use `assert_includes`
 instead of using `assert(collection.include?(object))`.
 
+[#examples-minitestassertincludes]
 === Examples
 
 [source,ruby]
@@ -155,10 +168,12 @@ assert_includes(collection, object)
 assert_includes(collection, object, 'message')
 ----
 
+[#references-minitestassertincludes]
 === References
 
 * https://minitest.rubystyle.guide#assert-includes
 
+[#minitestassertinstanceof]
 == Minitest/AssertInstanceOf
 
 |===
@@ -174,6 +189,7 @@ assert_includes(collection, object, 'message')
 Enforces the test to use `assert_instance_of(Class, object)`
 over `assert(object.instance_of?(Class))`.
 
+[#examples-minitestassertinstanceof]
 === Examples
 
 [source,ruby]
@@ -191,10 +207,12 @@ assert_instance_of(Class, object)
 assert_instance_of(Class, object, 'message')
 ----
 
+[#references-minitestassertinstanceof]
 === References
 
 * https://minitest.rubystyle.guide#assert-instance-of
 
+[#minitestassertkindof]
 == Minitest/AssertKindOf
 
 |===
@@ -210,6 +228,7 @@ assert_instance_of(Class, object, 'message')
 Enforces the test to use `assert_kind_of(Class, object)`
 over `assert(object.kind_of?(Class))`.
 
+[#examples-minitestassertkindof]
 === Examples
 
 [source,ruby]
@@ -228,10 +247,12 @@ assert_kind_of(Class, object)
 assert_kind_of(Class, object, 'message')
 ----
 
+[#references-minitestassertkindof]
 === References
 
 * https://github.com/rubocop/minitest-style-guide#assert-kind-of
 
+[#minitestassertmatch]
 == Minitest/AssertMatch
 
 |===
@@ -247,6 +268,7 @@ assert_kind_of(Class, object, 'message')
 Enforces the test to use `assert_match`
 instead of using `assert(matcher.match(string))`.
 
+[#examples-minitestassertmatch]
 === Examples
 
 [source,ruby]
@@ -263,10 +285,12 @@ assert_match(regex, string)
 assert_match(matcher, string, 'message')
 ----
 
+[#references-minitestassertmatch]
 === References
 
 * https://minitest.rubystyle.guide#assert-match
 
+[#minitestassertnil]
 == Minitest/AssertNil
 
 |===
@@ -282,6 +306,7 @@ assert_match(matcher, string, 'message')
 Enforces the test to use `assert_nil` instead of using
 `assert_equal(nil, something)`, `assert(something.nil?)`, or `assert_predicate(something, :nil?)`.
 
+[#examples-minitestassertnil]
 === Examples
 
 [source,ruby]
@@ -299,10 +324,12 @@ assert_nil(actual)
 assert_nil(actual, 'message')
 ----
 
+[#references-minitestassertnil]
 === References
 
 * https://minitest.rubystyle.guide#assert-nil
 
+[#minitestassertoperator]
 == Minitest/AssertOperator
 
 |===
@@ -317,6 +344,7 @@ assert_nil(actual, 'message')
 
 Enforces the use of `assert_operator(expected, :<, actual)` over `assert(expected < actual)`.
 
+[#examples-minitestassertoperator]
 === Examples
 
 [source,ruby]
@@ -328,10 +356,12 @@ assert(expected < actual)
 assert_operator(expected, :<, actual)
 ----
 
+[#references-minitestassertoperator]
 === References
 
 * https://minitest.rubystyle.guide#assert-operator
 
+[#minitestassertoutput]
 == Minitest/AssertOutput
 
 |===
@@ -346,6 +376,7 @@ assert_operator(expected, :<, actual)
 
 Checks for opportunities to use `assert_output`.
 
+[#examples-minitestassertoutput]
 === Examples
 
 [source,ruby]
@@ -360,10 +391,12 @@ assert_match expected, $stdout.read
 assert_output(expected) { puts object.method }
 ----
 
+[#references-minitestassertoutput]
 === References
 
 * https://minitest.rubystyle.guide/#assert-output
 
+[#minitestassertpathexists]
 == Minitest/AssertPathExists
 
 |===
@@ -378,6 +411,7 @@ assert_output(expected) { puts object.method }
 
 Enforces the test to use `assert_path_exists` instead of using `assert(File.exist?(path))`.
 
+[#examples-minitestassertpathexists]
 === Examples
 
 [source,ruby]
@@ -391,10 +425,12 @@ assert_path_exists(path)
 assert_path_exists(path, 'message')
 ----
 
+[#references-minitestassertpathexists]
 === References
 
 * https://minitest.rubystyle.guide/#assert-path-exists
 
+[#minitestassertpredicate]
 == Minitest/AssertPredicate
 
 |===
@@ -410,6 +446,7 @@ assert_path_exists(path, 'message')
 Enforces the test to use `assert_predicate`
 instead of using `assert(obj.a_predicate_method?)`.
 
+[#examples-minitestassertpredicate]
 === Examples
 
 [source,ruby]
@@ -423,10 +460,12 @@ assert_predicate(obj, :one?)
 assert_predicate(obj, :one?, 'message')
 ----
 
+[#references-minitestassertpredicate]
 === References
 
 * https://minitest.rubystyle.guide/#assert-predicate
 
+[#minitestassertraisescompoundbody]
 == Minitest/AssertRaisesCompoundBody
 
 |===
@@ -441,6 +480,7 @@ assert_predicate(obj, :one?, 'message')
 
 Enforces the block body of `assert_raises { ... }` to be reduced to only the raising code.
 
+[#examples-minitestassertraisescompoundbody]
 === Examples
 
 [source,ruby]
@@ -465,6 +505,7 @@ assert_raises(MyError) do
 end
 ----
 
+[#minitestassertraiseswithregexpargument]
 == Minitest/AssertRaisesWithRegexpArgument
 
 |===
@@ -484,6 +525,7 @@ Either way, it's not the argument that `exception.message` is compared to.
 The raised exception is returned and can be used
 to match against a regular expression.
 
+[#examples-minitestassertraiseswithregexpargument]
 === Examples
 
 [source,ruby]
@@ -500,6 +542,7 @@ end
 assert_match(/some message/, exception.message)
 ----
 
+[#configurable-attributes-minitestassertraiseswithregexpargument]
 === Configurable attributes
 
 |===
@@ -510,6 +553,7 @@ assert_match(/some message/, exception.message)
 | String
 |===
 
+[#minitestassertrespondto]
 == Minitest/AssertRespondTo
 
 |===
@@ -525,6 +569,7 @@ assert_match(/some message/, exception.message)
 Enforces the use of `assert_respond_to(object, :do_something)`
 over `assert(object.respond_to?(:do_something))`.
 
+[#examples-minitestassertrespondto]
 === Examples
 
 [source,ruby]
@@ -540,10 +585,12 @@ assert_respond_to(object, :do_something, 'message')
 assert_respond_to(self, :do_something)
 ----
 
+[#references-minitestassertrespondto]
 === References
 
 * https://minitest.rubystyle.guide#assert-responds-to-method
 
+[#minitestassertsame]
 == Minitest/AssertSame
 
 |===
@@ -562,6 +609,7 @@ over `assert(expected.equal?(actual))`.
 NOTE: Use `assert_same` only when there is a need to compare by identity.
       Otherwise, use `assert_equal`.
 
+[#examples-minitestassertsame]
 === Examples
 
 [source,ruby]
@@ -574,10 +622,12 @@ assert_equal(expected.object_id, actual.object_id)
 assert_same(expected, actual)
 ----
 
+[#references-minitestassertsame]
 === References
 
 * https://minitest.rubystyle.guide#assert-same
 
+[#minitestassertsilent]
 == Minitest/AssertSilent
 
 |===
@@ -593,6 +643,7 @@ assert_same(expected, actual)
 Enforces the test to use `assert_silent { ... }`
 instead of using `assert_output('', '') { ... }`.
 
+[#examples-minitestassertsilent]
 === Examples
 
 [source,ruby]
@@ -604,10 +655,12 @@ assert_output('', '') { puts object.do_something }
 assert_silent { puts object.do_something }
 ----
 
+[#references-minitestassertsilent]
 === References
 
 * https://github.com/rubocop/minitest-style-guide#assert-silent
 
+[#minitestasserttruthy]
 == Minitest/AssertTruthy
 
 |===
@@ -622,6 +675,7 @@ assert_silent { puts object.do_something }
 
 Enforces the test to use `assert(actual)` instead of using `assert_equal(true, actual)`.
 
+[#safety-minitestasserttruthy]
 === Safety
 
 This cop is unsafe because true might be expected instead of truthy.
@@ -633,6 +687,7 @@ assert_equal(true, 'truthy') # failure
 assert('truthy')             # success
 ----
 
+[#examples-minitestasserttruthy]
 === Examples
 
 [source,ruby]
@@ -646,10 +701,12 @@ assert(actual)
 assert(actual, 'message')
 ----
 
+[#references-minitestasserttruthy]
 === References
 
 * https://minitest.rubystyle.guide#assert-truthy
 
+[#minitestassertwithexpectedargument]
 == Minitest/AssertWithExpectedArgument
 
 |===
@@ -668,11 +725,13 @@ Tries to detect when a user accidentally used
 NOTE: The second argument to the `assert` method named `message` and `msg` is allowed.
       Because their names are inferred as message arguments.
 
+[#safety-minitestassertwithexpectedargument]
 === Safety
 
 This cop is unsafe because it is not possible to determine
 whether the second argument of `assert` is a message or not.
 
+[#examples-minitestassertwithexpectedargument]
 === Examples
 
 [source,ruby]
@@ -689,6 +748,7 @@ assert(foo, message)
 assert(foo, msg)
 ----
 
+[#configurable-attributes-minitestassertwithexpectedargument]
 === Configurable attributes
 
 |===
@@ -699,6 +759,7 @@ assert(foo, msg)
 | String
 |===
 
+[#minitestassertioninlifecyclehook]
 == Minitest/AssertionInLifecycleHook
 
 |===
@@ -713,6 +774,7 @@ assert(foo, msg)
 
 Checks for usage of assertions in lifecycle hooks.
 
+[#examples-minitestassertioninlifecyclehook]
 === Examples
 
 [source,ruby]
@@ -732,6 +794,7 @@ class FooTest < Minitest::Test
 end
 ----
 
+[#minitestduplicatetestrun]
 == Minitest/DuplicateTestRun
 
 |===
@@ -750,6 +813,7 @@ it will also inherit its methods causing Minitest to run the parent's tests meth
 This cop detects when there are two tests classes, one inherits from the other, and both have tests methods.
 This cop will add an offense to the Child class in such a case.
 
+[#examples-minitestduplicatetestrun]
 === Examples
 
 [source,ruby]
@@ -789,10 +853,12 @@ class ChildTest
 end
 ----
 
+[#references-minitestduplicatetestrun]
 === References
 
 * https://minitest.rubystyle.guide/#subclassing-test-cases
 
+[#minitestemptylinebeforeassertionmethods]
 == Minitest/EmptyLineBeforeAssertionMethods
 
 |===
@@ -807,6 +873,7 @@ end
 
 Enforces empty line before assertion methods because it separates assertion phase.
 
+[#examples-minitestemptylinebeforeassertionmethods]
 === Examples
 
 [source,ruby]
@@ -821,6 +888,7 @@ do_something
 assert_equal(expected, actual)
 ----
 
+[#minitestfocus]
 == Minitest/Focus
 
 |===
@@ -835,6 +903,7 @@ assert_equal(expected, actual)
 
 Enforces tests are not focused.
 
+[#examples-minitestfocus]
 === Examples
 
 [source,ruby]
@@ -853,6 +922,7 @@ test 'foo' do
 end
 ----
 
+[#minitestglobalexpectations]
 == Minitest/GlobalExpectations
 
 |===
@@ -868,8 +938,10 @@ end
 Checks for deprecated global expectations
 and autocorrects them to use expect format.
 
+[#examples-minitestglobalexpectations]
 === Examples
 
+[#enforcedstyle_-any-_default_-minitestglobalexpectations]
 ==== EnforcedStyle: any (default)
 
 [source,ruby]
@@ -893,6 +965,7 @@ value(wonts).wont_match expected_wonts
 value { musts }.must_raise TypeError
 ----
 
+[#enforcedstyle_-_-minitestglobalexpectations]
 ==== EnforcedStyle: _
 
 [source,ruby]
@@ -916,6 +989,7 @@ _(wonts).wont_match expected_wonts
 _ { musts }.must_raise TypeError
 ----
 
+[#enforcedstyle_-expect-minitestglobalexpectations]
 ==== EnforcedStyle: expect
 
 [source,ruby]
@@ -939,6 +1013,7 @@ expect(wonts).wont_match expected_wonts
 expect { musts }.must_raise TypeError
 ----
 
+[#enforcedstyle_-value-minitestglobalexpectations]
 ==== EnforcedStyle: value
 
 [source,ruby]
@@ -962,6 +1037,7 @@ value(wonts).wont_match expected_wonts
 value { musts }.must_raise TypeError
 ----
 
+[#configurable-attributes-minitestglobalexpectations]
 === Configurable attributes
 
 |===
@@ -980,10 +1056,12 @@ value { musts }.must_raise TypeError
 | Array
 |===
 
+[#references-minitestglobalexpectations]
 === References
 
 * https://minitest.rubystyle.guide#global-expectations
 
+[#minitestlifecyclehooksorder]
 == Minitest/LifecycleHooksOrder
 
 |===
@@ -998,6 +1076,7 @@ value { musts }.must_raise TypeError
 
 Checks that lifecycle hooks are declared in the order in which they will be executed.
 
+[#examples-minitestlifecyclehooksorder]
 === Examples
 
 [source,ruby]
@@ -1040,10 +1119,12 @@ class FooTest < Minitest::Test
 end
 ----
 
+[#references-minitestlifecyclehooksorder]
 === References
 
 * https://minitest.rubystyle.guide/#hooks-ordering
 
+[#minitestliteralasactualargument]
 == Minitest/LiteralAsActualArgument
 
 |===
@@ -1059,6 +1140,7 @@ end
 Enforces correct order of expected and
 actual arguments for `assert_equal`.
 
+[#examples-minitestliteralasactualargument]
 === Examples
 
 [source,ruby]
@@ -1074,10 +1156,12 @@ assert_equal [1, 2], foo
 assert_equal [1, 2], foo, 'message'
 ----
 
+[#references-minitestliteralasactualargument]
 === References
 
 * https://minitest.rubystyle.guide/#assert-equal-arguments-order
 
+[#minitestmultipleassertions]
 == Minitest/MultipleAssertions
 
 |===
@@ -1094,8 +1178,10 @@ Checks if test cases contain too many assertion calls. If conditional code with 
 is used, the branch with maximum assertions is counted.
 The maximum allowed assertion calls is configurable.
 
+[#examples-minitestmultipleassertions]
 === Examples
 
+[#max_-1-minitestmultipleassertions]
 ==== Max: 1
 
 [source,ruby]
@@ -1120,6 +1206,7 @@ class FooTest < Minitest::Test
 end
 ----
 
+[#configurable-attributes-minitestmultipleassertions]
 === Configurable attributes
 
 |===
@@ -1130,6 +1217,7 @@ end
 | Integer
 |===
 
+[#minitestnoassertions]
 == Minitest/NoAssertions
 
 |===
@@ -1144,6 +1232,7 @@ end
 
 Checks if test cases contain any assertion calls.
 
+[#examples-minitestnoassertions]
 === Examples
 
 [source,ruby]
@@ -1162,6 +1251,7 @@ class FooTest < Minitest::Test
 end
 ----
 
+[#minitestnotestcases]
 == Minitest/NoTestCases
 
 |===
@@ -1176,6 +1266,7 @@ end
 
 Checks if test class contains any test cases.
 
+[#examples-minitestnotestcases]
 === Examples
 
 [source,ruby]
@@ -1194,6 +1285,7 @@ class FooTest < Minitest::Test
 end
 ----
 
+[#minitestnonexecutabletestmethod]
 == Minitest/NonExecutableTestMethod
 
 |===
@@ -1213,6 +1305,7 @@ Test methods should be defined within a test class to ensure their execution.
 NOTE: This cop assumes that classes whose superclass name includes the word
 "`Test`" are test classes, in order to prevent false positives.
 
+[#examples-minitestnonexecutabletestmethod]
 === Examples
 
 [source,ruby]
@@ -1230,6 +1323,7 @@ class FooTest < Minitest::Test
 end
 ----
 
+[#configurable-attributes-minitestnonexecutabletestmethod]
 === Configurable attributes
 
 |===
@@ -1240,6 +1334,7 @@ end
 | String
 |===
 
+[#minitestnonpublictestmethod]
 == Minitest/NonPublicTestMethod
 
 |===
@@ -1255,6 +1350,7 @@ end
 Detects non `public` (marked as `private` or `protected`) test methods.
 Minitest runs only test methods which are `public`.
 
+[#examples-minitestnonpublictestmethod]
 === Examples
 
 [source,ruby]
@@ -1291,6 +1387,7 @@ class FooTest
 end
 ----
 
+[#configurable-attributes-minitestnonpublictestmethod]
 === Configurable attributes
 
 |===
@@ -1301,6 +1398,7 @@ end
 | String
 |===
 
+[#minitestredundantmessageargument]
 == Minitest/RedundantMessageArgument
 
 |===
@@ -1316,6 +1414,7 @@ end
 Detects redundant message argument in assertion methods.
 The message argument `nil` is redundant because it is the default value.
 
+[#examples-minitestredundantmessageargument]
 === Examples
 
 [source,ruby]
@@ -1328,6 +1427,7 @@ assert_equal(expected, actual)
 assert_equal(expected, actual, 'message')
 ----
 
+[#minitestrefuteempty]
 == Minitest/RefuteEmpty
 
 |===
@@ -1342,6 +1442,7 @@ assert_equal(expected, actual, 'message')
 
 Enforces to use `refute_empty` instead of using `refute(object.empty?)`.
 
+[#examples-minitestrefuteempty]
 === Examples
 
 [source,ruby]
@@ -1355,10 +1456,12 @@ refute_empty(object)
 refute_empty(object, 'message')
 ----
 
+[#references-minitestrefuteempty]
 === References
 
 * https://minitest.rubystyle.guide#refute-empty
 
+[#minitestrefuteequal]
 == Minitest/RefuteEqual
 
 |===
@@ -1374,6 +1477,7 @@ refute_empty(object, 'message')
 Enforces the use of `refute_equal(expected, object)`
 over `assert(expected != actual)` or `assert(! expected == actual)`.
 
+[#examples-minitestrefuteequal]
 === Examples
 
 [source,ruby]
@@ -1388,10 +1492,12 @@ refute_operator("rubocop-minitest", :==, actual)
 refute_equal("rubocop-minitest", actual)
 ----
 
+[#references-minitestrefuteequal]
 === References
 
 * https://minitest.rubystyle.guide#refute-equal
 
+[#minitestrefutefalse]
 == Minitest/RefuteFalse
 
 |===
@@ -1406,6 +1512,7 @@ refute_equal("rubocop-minitest", actual)
 
 Enforces the use of `refute(object)` over `assert_equal(false, object)`.
 
+[#safety-minitestrefutefalse]
 === Safety
 
 This cop is unsafe because it cannot detect failure when second argument is `nil`.
@@ -1417,6 +1524,7 @@ assert_equal(false, nil) # failure
 refute(nil)              # success
 ----
 
+[#examples-minitestrefutefalse]
 === Examples
 
 [source,ruby]
@@ -1433,10 +1541,12 @@ refute(actual)
 refute(actual, 'message')
 ----
 
+[#references-minitestrefutefalse]
 === References
 
 * https://minitest.rubystyle.guide#refute-false
 
+[#minitestrefuteindelta]
 == Minitest/RefuteInDelta
 
 |===
@@ -1452,6 +1562,7 @@ refute(actual, 'message')
 Enforces the test to use `refute_in_delta`
 instead of using `refute_equal` to compare floats.
 
+[#examples-minitestrefuteindelta]
 === Examples
 
 [source,ruby]
@@ -1465,10 +1576,12 @@ refute_in_delta(0.2, actual)
 refute_in_delta(0.2, actual, 0.001, 'message')
 ----
 
+[#references-minitestrefuteindelta]
 === References
 
 * https://minitest.rubystyle.guide/#refute-in-delta
 
+[#minitestrefuteincludes]
 == Minitest/RefuteIncludes
 
 |===
@@ -1484,6 +1597,7 @@ refute_in_delta(0.2, actual, 0.001, 'message')
 Enforces the test to use `refute_includes`
 instead of using `refute(collection.include?(object))`.
 
+[#examples-minitestrefuteincludes]
 === Examples
 
 [source,ruby]
@@ -1497,10 +1611,12 @@ refute_includes(collection, object)
 refute_includes(collection, object, 'message')
 ----
 
+[#references-minitestrefuteincludes]
 === References
 
 * https://minitest.rubystyle.guide#refute-includes
 
+[#minitestrefuteinstanceof]
 == Minitest/RefuteInstanceOf
 
 |===
@@ -1516,6 +1632,7 @@ refute_includes(collection, object, 'message')
 Enforces the use of `refute_instance_of(Class, object)`
 over `refute(object.instance_of?(Class))`.
 
+[#examples-minitestrefuteinstanceof]
 === Examples
 
 [source,ruby]
@@ -1533,10 +1650,12 @@ refute_instance_of(Class, object)
 refute_instance_of(Class, object, 'message')
 ----
 
+[#references-minitestrefuteinstanceof]
 === References
 
 * https://minitest.rubystyle.guide#refute-instance-of
 
+[#minitestrefutekindof]
 == Minitest/RefuteKindOf
 
 |===
@@ -1552,6 +1671,7 @@ refute_instance_of(Class, object, 'message')
 Enforces the use of `refute_kind_of(Class, object)`
 over `refute(object.kind_of?(Class))`.
 
+[#examples-minitestrefutekindof]
 === Examples
 
 [source,ruby]
@@ -1570,10 +1690,12 @@ refute_kind_of(Class, object)
 refute_kind_of(Class, object, 'message')
 ----
 
+[#references-minitestrefutekindof]
 === References
 
 * https://github.com/rubocop/minitest-style-guide#refute-kind-of
 
+[#minitestrefutematch]
 == Minitest/RefuteMatch
 
 |===
@@ -1589,6 +1711,7 @@ refute_kind_of(Class, object, 'message')
 Enforces the test to use `refute_match`
 instead of using `refute(matcher.match(string))`.
 
+[#examples-minitestrefutematch]
 === Examples
 
 [source,ruby]
@@ -1606,10 +1729,12 @@ refute_match(matcher, string)
 refute_match(matcher, string, 'message')
 ----
 
+[#references-minitestrefutematch]
 === References
 
 * https://minitest.rubystyle.guide#refute-match
 
+[#minitestrefutenil]
 == Minitest/RefuteNil
 
 |===
@@ -1625,6 +1750,7 @@ refute_match(matcher, string, 'message')
 Enforces the test to use `refute_nil` instead of using
 `refute_equal(nil, something)`, `refute(something.nil?)`, or `refute_predicate(something, :nil?)`.
 
+[#examples-minitestrefutenil]
 === Examples
 
 [source,ruby]
@@ -1642,10 +1768,12 @@ refute_nil(actual)
 refute_nil(actual, 'message')
 ----
 
+[#references-minitestrefutenil]
 === References
 
 * https://minitest.rubystyle.guide#refute-nil
 
+[#minitestrefuteoperator]
 == Minitest/RefuteOperator
 
 |===
@@ -1660,6 +1788,7 @@ refute_nil(actual, 'message')
 
 Enforces the use of `refute_operator(expected, :<, actual)` over `refute(expected < actual)`.
 
+[#examples-minitestrefuteoperator]
 === Examples
 
 [source,ruby]
@@ -1671,10 +1800,12 @@ refute(expected < actual)
 refute_operator(expected, :<, actual)
 ----
 
+[#references-minitestrefuteoperator]
 === References
 
 * https://minitest.rubystyle.guide#refute-operator
 
+[#minitestrefutepathexists]
 == Minitest/RefutePathExists
 
 |===
@@ -1689,6 +1820,7 @@ refute_operator(expected, :<, actual)
 
 Enforces the test to use `refute_path_exists` instead of using `refute(File.exist?(path))`.
 
+[#examples-minitestrefutepathexists]
 === Examples
 
 [source,ruby]
@@ -1702,10 +1834,12 @@ refute_path_exists(path)
 refute_path_exists(path, 'message')
 ----
 
+[#references-minitestrefutepathexists]
 === References
 
 * https://minitest.rubystyle.guide/#refute-path-exists
 
+[#minitestrefutepredicate]
 == Minitest/RefutePredicate
 
 |===
@@ -1721,6 +1855,7 @@ refute_path_exists(path, 'message')
 Enforces the test to use `refute_predicate`
 instead of using `refute(obj.a_predicate_method?)`.
 
+[#examples-minitestrefutepredicate]
 === Examples
 
 [source,ruby]
@@ -1734,10 +1869,12 @@ refute_predicate(obj, :one?)
 refute_predicate(obj, :one?, 'message')
 ----
 
+[#references-minitestrefutepredicate]
 === References
 
 * https://minitest.rubystyle.guide/#refute-predicate
 
+[#minitestrefuterespondto]
 == Minitest/RefuteRespondTo
 
 |===
@@ -1753,6 +1890,7 @@ refute_predicate(obj, :one?, 'message')
 Enforces the test to use `refute_respond_to(object, :do_something)`
 over `refute(object.respond_to?(:do_something))`.
 
+[#examples-minitestrefuterespondto]
 === Examples
 
 [source,ruby]
@@ -1768,10 +1906,12 @@ refute_respond_to(object, :do_something, 'message')
 refute_respond_to(self, :do_something)
 ----
 
+[#references-minitestrefuterespondto]
 === References
 
 * https://minitest.rubystyle.guide#refute-respond-to
 
+[#minitestrefutesame]
 == Minitest/RefuteSame
 
 |===
@@ -1790,6 +1930,7 @@ over `refute(expected.equal?(actual))`.
 NOTE: Use `refute_same` only when there is a need to compare by identity.
       Otherwise, use `refute_equal`.
 
+[#examples-minitestrefutesame]
 === Examples
 
 [source,ruby]
@@ -1802,10 +1943,12 @@ refute_equal(expected.object_id, actual.object_id)
 refute_same(expected, actual)
 ----
 
+[#references-minitestrefutesame]
 === References
 
 * https://minitest.rubystyle.guide#refute-same
 
+[#minitestreturnintestmethod]
 == Minitest/ReturnInTestMethod
 
 |===
@@ -1820,6 +1963,7 @@ refute_same(expected, actual)
 
 Enforces the use of `skip` instead of `return` in test methods.
 
+[#examples-minitestreturnintestmethod]
 === Examples
 
 [source,ruby]
@@ -1837,10 +1981,12 @@ def test_something
 end
 ----
 
+[#references-minitestreturnintestmethod]
 === References
 
 * https://minitest.rubystyle.guide/#skipping-runnable-methods
 
+[#minitestskipensure]
 == Minitest/SkipEnsure
 
 |===
@@ -1859,6 +2005,7 @@ If conditional `skip` is used, it checks that `ensure` is also called conditiona
 On the other hand, it accepts `skip` used in `rescue` because `ensure` may be teardown process to `begin`
 setup process.
 
+[#examples-minitestskipensure]
 === Examples
 
 [source,ruby]
@@ -1914,6 +2061,7 @@ ensure
 end
 ----
 
+[#configurable-attributes-minitestskipensure]
 === Configurable attributes
 
 |===
@@ -1924,6 +2072,7 @@ end
 | String
 |===
 
+[#minitestskipwithoutreason]
 == Minitest/SkipWithoutReason
 
 |===
@@ -1938,6 +2087,7 @@ end
 
 Checks for skipped tests missing the skipping reason.
 
+[#examples-minitestskipwithoutreason]
 === Examples
 
 [source,ruby]
@@ -1960,6 +2110,7 @@ skip("Reason why the test was skipped")
 skip if condition?
 ----
 
+[#minitesttestfilename]
 == Minitest/TestFileName
 
 |===
@@ -1976,6 +2127,7 @@ Checks if test file names start with `test_` or end with `_test.rb`.
 Files which define classes having names ending with `Test` are checked.
 Not following this convention may result in tests not being run.
 
+[#examples-minitesttestfilename]
 === Examples
 
 [source,ruby]
@@ -1988,10 +2140,12 @@ my_class_test.rb
 test_my_class.rb
 ----
 
+[#references-minitesttestfilename]
 === References
 
 * https://minitest.rubystyle.guide/#file-naming
 
+[#minitesttestmethodname]
 == Minitest/TestMethodName
 
 |===
@@ -2007,6 +2161,7 @@ test_my_class.rb
 Enforces that test method names start with `test_` prefix.
 It aims to prevent tests that aren't executed by forgetting to start test method name with `test_`.
 
+[#examples-minitesttestmethodname]
 === Examples
 
 [source,ruby]
@@ -2032,6 +2187,7 @@ class FooTest < Minitest::Test
 end
 ----
 
+[#minitestunreachableassertion]
 == Minitest/UnreachableAssertion
 
 |===
@@ -2047,6 +2203,7 @@ end
 Checks for `assert_raises` has an assertion method at
 the bottom of block because the assertion will be never reached.
 
+[#examples-minitestunreachableassertion]
 === Examples
 
 [source,ruby]
@@ -2064,6 +2221,7 @@ end
 assert_equal('foo', obj.bar)
 ----
 
+[#configurable-attributes-minitestunreachableassertion]
 === Configurable attributes
 
 |===
@@ -2074,6 +2232,7 @@ assert_equal('foo', obj.bar)
 | String
 |===
 
+[#minitestunspecifiedexception]
 == Minitest/UnspecifiedException
 
 |===
@@ -2088,6 +2247,7 @@ assert_equal('foo', obj.bar)
 
 Checks for a specified error in `assert_raises`.
 
+[#examples-minitestunspecifiedexception]
 === Examples
 
 [source,ruby]
@@ -2101,10 +2261,12 @@ assert_raises(FooException) { raise FooException }
 assert_raises(FooException, 'This should have raised') { raise FooException }
 ----
 
+[#references-minitestunspecifiedexception]
 === References
 
 * https://minitest.rubystyle.guide#unspecified-exception
 
+[#minitestuselessassertion]
 == Minitest/UselessAssertion
 
 |===
@@ -2119,6 +2281,7 @@ assert_raises(FooException, 'This should have raised') { raise FooException }
 
 Detects useless assertions (assertions that either always pass or always fail).
 
+[#examples-minitestuselessassertion]
 === Examples
 
 [source,ruby]

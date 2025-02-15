@@ -11,6 +11,8 @@
 
 ## master (unreleased)
 
+## 0.37.0 (2025-02-16)
+
 ### New features
 
 * [#329](https://github.com/rubocop/rubocop-minitest/pull/329): Pluginfy RuboCop Performance. ([@koic][])
