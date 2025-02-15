@@ -11,6 +11,10 @@
 
 ## master (unreleased)
 
+### Bug fixes
+
+* [#330](https://github.com/rubocop/rubocop-minitest/pull/330): Update `add_dependency` of RuboCop to 1.72 for plugin support. ([@koic][])
+
 ## 0.37.0 (2025-02-16)
 
 ### New features
