@@ -11,6 +11,14 @@
 
 ## master (unreleased)
 
+### New features
+
+* [#329](https://github.com/rubocop/rubocop-minitest/pull/329): Pluginfy RuboCop Performance. ([@koic][])
+
+### Changes
+
+* [#328](https://github.com/rubocop/rubocop-minitest/pull/328): Remove "minitest/autorun" and "minitest/pride" requirement from "rubocop/minitest/support". ([@bquorning][])
+
 ## 0.36.0 (2024-08-31)
 
 ### Bug fixes
@@ -627,3 +635,4 @@
 [@earlopain]: https://github.com/earlopain
 [@jaredmoody]: https://github.com/jaredmoody
 [@brandoncc]: https://github.com/brandoncc
+[@bquorning]: https://github.com/bquorning
