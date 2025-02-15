@@ -23,7 +23,8 @@ Gem::Specification.new do |spec|
     'source_code_uri' => 'https://github.com/rubocop/rubocop-minitest',
     'documentation_uri' => "https://docs.rubocop.org/rubocop-minitest/#{RuboCop::Minitest::Version.document_version}",
     'bug_tracker_uri' => 'https://github.com/rubocop/rubocop-minitest/issues',
-    'rubygems_mfa_required' => 'true'
+    'rubygems_mfa_required' => 'true',
+    'default_lint_roller_plugin' => 'RuboCop::Minitest::Plugin'
   }
 
   spec.files = Dir['LICENSE.txt', 'README.md', 'config/**/*', 'lib/**/*']
@@ -32,6 +33,7 @@ Gem::Specification.new do |spec|
   spec.executables = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
+  spec.add_dependency 'lint_roller', '~> 1.1'
   spec.add_dependency 'rubocop', '>= 1.61', '< 2.0'
   spec.add_dependency 'rubocop-ast', '>= 1.38.0', '< 2.0'
 end
