@@ -144,4 +144,14 @@ class RefutePredicateTest < Minitest::Test
       end
     RUBY
   end
+
+  def test_does_not_register_offense_when_using_refute_with_predicate_method_and_it_parameter
+    assert_no_offenses(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          refute([1, 2, 3].any? { some_filter_function it })
+        end
+      end
+    RUBY
+  end
 end

@@ -34,6 +34,6 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.add_dependency 'lint_roller', '~> 1.1'
-  spec.add_dependency 'rubocop', '>= 1.72.1', '< 2.0'
+  spec.add_dependency 'rubocop', '>= 1.75.0', '< 2.0'
   spec.add_dependency 'rubocop-ast', '>= 1.38.0', '< 2.0'
 end

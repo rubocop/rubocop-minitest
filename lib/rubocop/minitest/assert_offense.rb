@@ -230,8 +230,8 @@ module RuboCop
       end
 
       def ruby_version
-        #  Prism supports parsing Ruby 3.3+.
-        ENV['PARSER_ENGINE'] == 'parser_prism' ? 3.3 : RuboCop::TargetRuby::DEFAULT_VERSION
+        # Prism is the default backend parser for Ruby 3.4+.
+        ENV['PARSER_ENGINE'] == 'parser_prism' ? 3.4 : RuboCop::TargetRuby::DEFAULT_VERSION
       end
 
       def parser_engine
