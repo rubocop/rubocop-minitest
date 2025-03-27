@@ -55,8 +55,7 @@ module RuboCop
           return unless test_methods?(class_node)
           return unless parent_class_has_test_methods?(class_node)
 
-          message = format(MSG)
-          add_offense(class_node, message: message)
+          add_offense(class_node)
         end
 
         private
