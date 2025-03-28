@@ -45,6 +45,19 @@ class MultipleAssertionsTest < Minitest::Test
     RUBY
   end
 
+  def test_registers_offense_when_multiple_expectations_with_itblock
+    assert_offense(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_asserts_two_times
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^ Test case has too many assertions [2/1].
+          assert_something do
+            assert_equal(it, bar)
+          end
+        end
+      end
+    RUBY
+  end
+
   def test_checks_when_inheriting_some_class_and_class_name_ending_with_test
     assert_offense(<<~RUBY)
       class FooTest < ActiveSupport::TestCase
@@ -257,6 +270,32 @@ class MultipleAssertionsTest < Minitest::Test
             _ = assert_raises React::ServerRendering::PrerenderError do
               assert_equal _1, 1
               assert_equal _1, 1
+            end
+          end
+
+          assert_match(/NonExistentComponent/, err.to_s, "it names the component")
+
+          assert_match(/\n/, err.to_s, "it includes the multi-line backtrace")
+        end
+      end
+    RUBY
+  end
+
+  def test_assignments_with_itblocks_are_counted_correctly
+    assert_offense(<<~RUBY)
+      class FooTest < ActiveSupport::TestCase
+        test "#render errors include stack traces" do
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Test case has too many assertions [9/1].
+          err = assert_raises React::ServerRendering::PrerenderError do
+            assert_equal it, 1
+
+            assert_raises React::ServerRendering::PrerenderError do
+              assert_equal it, 1
+            end
+
+            _ = assert_raises React::ServerRendering::PrerenderError do
+              assert_equal it, 1
+              assert_equal it, 1
             end
           end
 

@@ -100,4 +100,20 @@ class ReturnInTestMethodTest < Minitest::Test
       end
     RUBY
   end
+
+  def test_does_not_register_offense_when_using_return_inside_itblock
+    assert_no_offenses(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_foo
+          Foo.class_eval do
+            it.extend(ClassMethods)
+            def foo
+              return 100
+            end
+          end
+          assert_equal 100, Foo.new.foo
+        end
+      end
+    RUBY
+  end
 end

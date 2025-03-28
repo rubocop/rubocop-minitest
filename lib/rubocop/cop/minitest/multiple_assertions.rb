@@ -65,7 +65,7 @@ module RuboCop
             assertions_count_in_branches(node.branches)
           when :rescue
             assertions_count(node.body) + assertions_count_in_branches(node.branches)
-          when :block, :numblock
+          when :block, :numblock, :itblock
             assertions_count(node.body)
           when *RuboCop::AST::Node::ASSIGNMENTS
             assertions_count_in_assignment(node)
