@@ -11,6 +11,8 @@
 
 ## master (unreleased)
 
+## 0.38.0 (2025-04-01)
+
 ### New features
 
 * [#331](https://github.com/rubocop/rubocop-minitest/pull/331): Support `it` block parameter in `Rails` cops. ([@koic][])
