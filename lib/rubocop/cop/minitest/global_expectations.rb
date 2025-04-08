@@ -87,20 +87,10 @@ module RuboCop
 
         MSG = 'Use `%<preferred>s` instead.'
 
-        VALUE_MATCHERS = %i[
-          must_be_empty must_equal must_be_close_to must_be_within_delta
-          must_be_within_epsilon must_include must_be_instance_of must_be_kind_of
-          must_match must_be_nil must_be must_respond_to must_be_same_as
-          path_must_exist path_wont_exist wont_be_empty wont_equal wont_be_close_to
-          wont_be_within_delta wont_be_within_epsilon wont_include wont_be_instance_of
-          wont_be_kind_of wont_match wont_be_nil wont_be wont_respond_to wont_be_same_as
-        ].freeze
+        VALUE_MATCHERS = MinitestExplorationHelpers::VALUE_MATCHERS
+        BLOCK_MATCHERS = MinitestExplorationHelpers::BLOCK_MATCHERS
 
-        BLOCK_MATCHERS = %i[
-          must_output must_pattern_match must_raise must_be_silent must_throw wont_pattern_match
-        ].freeze
-
-        RESTRICT_ON_SEND = VALUE_MATCHERS + BLOCK_MATCHERS
+        RESTRICT_ON_SEND = MinitestExplorationHelpers::MATCHER_METHODS
 
         # There are aliases for the `_` method - `expect` and `value`
         DSL_METHODS = %i[_ expect value].freeze

@@ -78,6 +78,30 @@ class NoAssertionsTest < Minitest::Test
     RUBY
   end
 
+  def test_register_no_offense_if_test_has_must_be_empty_assertion
+    assert_no_offenses(<<~RUBY)
+      class FooTest < Minitest::Test
+        describe 'foo' do
+          it 'must have good data' do
+            _(invalid_recs).must_be_empty ->{ do_something }
+          end
+        end
+      end
+    RUBY
+  end
+
+  def test_register_no_offense_if_test_has_must_include_assertion
+    assert_no_offenses(<<~RUBY)
+      class FooTest < Minitest::Test
+        describe 'foo' do
+          it 'must include [false, true]' do
+            value([false, true]).must_include value
+          end
+        end
+      end
+    RUBY
+  end
+
   def test_register_no_offense_for_unrelated_methods
     assert_no_offenses(<<~RUBY)
       class FooTest < Minitest::Test
