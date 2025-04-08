@@ -10,7 +10,22 @@ module RuboCop
       include DefNode
       extend NodePattern::Macros
 
-      ASSERTION_PREFIXES = %w[assert refute].freeze
+      VALUE_MATCHERS = %i[
+        must_be_empty must_equal must_be_close_to must_be_within_delta
+        must_be_within_epsilon must_include must_be_instance_of must_be_kind_of
+        must_match must_be_nil must_be must_respond_to must_be_same_as
+        path_must_exist path_wont_exist wont_be_empty wont_equal wont_be_close_to
+        wont_be_within_delta wont_be_within_epsilon wont_include wont_be_instance_of
+        wont_be_kind_of wont_match wont_be_nil wont_be wont_respond_to wont_be_same_as
+      ].freeze
+
+      BLOCK_MATCHERS = %i[
+        must_output must_pattern_match must_raise must_be_silent must_throw wont_pattern_match
+      ].freeze
+
+      MATCHER_METHODS = VALUE_MATCHERS + BLOCK_MATCHERS
+
+      ASSERTION_PREFIXES = %i[assert refute].freeze
 
       LIFECYCLE_HOOK_METHODS_IN_ORDER = %i[
         before_setup
@@ -99,17 +114,18 @@ module RuboCop
         end
       end
 
+      # rubocop:disable Metrics/CyclomaticComplexity
       def assertion_method?(node)
         return false unless node
         return assertion_method?(node.expression) if node.assignment? && node.respond_to?(:expression)
         return false unless node.type?(:send, :any_block)
 
-        ASSERTION_PREFIXES.any? do |prefix|
-          method_name = node.method_name
+        method_name = node.method_name
+        assertion_method = ASSERTION_PREFIXES.any? { |prefix| method_name.start_with?(prefix.to_s) }
 
-          method_name.start_with?(prefix) || node.method?(:flunk)
-        end
+        assertion_method || node.method?(:flunk) || MATCHER_METHODS.include?(method_name)
       end
+      # rubocop:enable Metrics/CyclomaticComplexity
 
       def lifecycle_hook_method?(node)
         node.def_type? && LIFECYCLE_HOOK_METHODS.include?(node.method_name)
