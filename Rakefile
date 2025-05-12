@@ -17,7 +17,7 @@ end
 
 require 'rubocop/rake_task'
 require 'rake/testtask'
-require_relative 'lib/rubocop/cop/generator'
+require 'rubocop/cop/minitest_generator'
 
 # JRuby and Windows don't support fork, so we can't use minitest-queue.
 if RUBY_ENGINE == 'jruby' || RuboCop::Platform.windows?

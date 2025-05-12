@@ -1,12 +1,14 @@
 # frozen_string_literal: true
 
+require 'rubocop/cop/generator'
+
 module RuboCop
   module Cop
     # Source and test generator for new cops
     #
     # This generator will take a cop name and generate a source file
     # and test file when given a valid qualified cop name.
-    class Generator
+    module MinitestGenerator
       TEST_TEMPLATE = <<~TEST
         # frozen_string_literal: true
 
@@ -48,3 +50,5 @@ module RuboCop
     end
   end
 end
+
+RuboCop::Cop::Generator.include(RuboCop::Cop::MinitestGenerator)
