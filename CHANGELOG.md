@@ -11,6 +11,11 @@
 
 ## master (unreleased)
 
+### Bug fixes
+
+* [#332](https://github.com/rubocop/rubocop-minitest/issues/332): Fix false positives for `Minitest/NoAssertions` when using matcher methods. ([@koic][])
+* [#334](https://github.com/rubocop/rubocop-minitest/issues/334): Fix minitest extension for the cop generator. ([@rafaelfranca][])
+
 ## 0.38.0 (2025-04-01)
 
 ### New features
@@ -650,3 +655,4 @@
 [@jaredmoody]: https://github.com/jaredmoody
 [@brandoncc]: https://github.com/brandoncc
 [@bquorning]: https://github.com/bquorning
+[@rafaelfranca]: https://github.com/rafaelfranca
