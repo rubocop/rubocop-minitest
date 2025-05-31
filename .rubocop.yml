@@ -19,7 +19,7 @@ Minitest:
 InternalAffairs/NodeMatcherDirective:
   Enabled: false
 
-Naming/PredicateName:
+Naming/PredicatePrefix:
   # Method define macros for dynamically generated method.
   MethodDefinitionMacros:
     - define_method
