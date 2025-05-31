@@ -11,6 +11,8 @@
 
 ## master (unreleased)
 
+## 0.38.1 (2025-05-31)
+
 ### Bug fixes
 
 * [#332](https://github.com/rubocop/rubocop-minitest/issues/332): Fix false positives for `Minitest/NoAssertions` when using matcher methods. ([@koic][])
