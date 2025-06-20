@@ -11,7 +11,7 @@ module RuboCop
         def on_send(node)
           return if node.first_argument&.any_block_type?
           return unless predicate_method?(node.first_argument)
-          return unless node.first_argument.arguments.count.zero?
+          return unless node.first_argument.arguments.none?
 
           add_offense(node, message: offense_message(node.arguments)) do |corrector|
             autocorrect(corrector, node, node.arguments)
