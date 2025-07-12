@@ -5,6 +5,7 @@ require_relative '../../../test_helper'
 class MinitestExplorationHelpersTest < Minitest::Test
   module Helper
     extend RuboCop::Cop::MinitestExplorationHelpers
+
     class << self
       public :test_case?
     end
