@@ -745,6 +745,16 @@ class MultipleAssertionsTest < Minitest::Test
     RUBY
   end
 
+  def test_does_not_register_offense_with_receiver
+    assert_no_offenses(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_asserts_once
+          assert_equal(foo, Bar.assert_something)
+        end
+      end
+    RUBY
+  end
+
   private
 
   def configure_max_assertions(max)
