@@ -11,6 +11,8 @@
 
 ## master (unreleased)
 
+## 0.38.2 (2025-08-30)
+
 ### Bug fixes
 
 * [#321](https://github.com/rubocop/rubocop-minitest/issues/321): Fix false positives for `Minitest/MultipleAssertions` when the assertion has a receiver. ([@earlopain][])
