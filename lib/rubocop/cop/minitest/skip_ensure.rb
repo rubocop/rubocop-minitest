@@ -3,11 +3,12 @@
 module RuboCop
   module Cop
     module Minitest
-      # Checks that `ensure` call even if `skip`. It is unexpected that `ensure` will be called when skipping test.
-      # If conditional `skip` is used, it checks that `ensure` is also called conditionally.
+      # Checks that code in an `ensure` block does not run when the test is skipped.
+      # If `skip` is conditional, the `ensure` block must also be conditional,
+      # using the negation of the skip condition so that it runs only when the test runs.
       #
-      # On the other hand, it accepts `skip` used in `rescue` because `ensure` may be teardown process to `begin`
-      # setup process.
+      # On the other hand, `skip` used inside a `rescue` clause is accepted,
+      # because the `ensure` block may serve as teardown for resources created in the `begin` setup.
       #
       # @example
       #
@@ -46,7 +47,7 @@ module RuboCop
       #
       #     assert do_something
       #   ensure
-      #     if condition
+      #     unless condition
       #       do_teardown
       #     end
       #   end
