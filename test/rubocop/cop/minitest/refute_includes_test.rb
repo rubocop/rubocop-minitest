@@ -22,6 +22,63 @@ class RefuteIncludesTest < Minitest::Test
     RUBY
   end
 
+  def test_registers_offense_when_using_refute_with_key
+    assert_offense(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          refute(collection.key?(object))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_includes(collection, object)`.
+        end
+      end
+    RUBY
+
+    assert_correction(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          refute_includes(collection, object)
+        end
+      end
+    RUBY
+  end
+
+  def test_registers_offense_when_using_refute_with_has_key
+    assert_offense(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          refute(collection.has_key?(object))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_includes(collection, object)`.
+        end
+      end
+    RUBY
+
+    assert_correction(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          refute_includes(collection, object)
+        end
+      end
+    RUBY
+  end
+
+  def test_registers_offense_when_using_refute_with_member
+    assert_offense(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          refute(collection.member?(object))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_includes(collection, object)`.
+        end
+      end
+    RUBY
+
+    assert_correction(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          refute_includes(collection, object)
+        end
+      end
+    RUBY
+  end
+
   def test_registers_offense_when_using_refute_with_include_and_message
     assert_offense(<<~RUBY)
       class FooTest < Minitest::Test
