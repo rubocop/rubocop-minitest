@@ -22,6 +22,63 @@ class AssertIncludesTest < Minitest::Test
     RUBY
   end
 
+  def test_registers_offense_when_using_assert_with_key
+    assert_offense(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          assert(collection.key?(object))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_includes(collection, object)`.
+        end
+      end
+    RUBY
+
+    assert_correction(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          assert_includes(collection, object)
+        end
+      end
+    RUBY
+  end
+
+  def test_registers_offense_when_using_assert_with_has_key
+    assert_offense(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          assert(collection.has_key?(object))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_includes(collection, object)`.
+        end
+      end
+    RUBY
+
+    assert_correction(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          assert_includes(collection, object)
+        end
+      end
+    RUBY
+  end
+
+  def test_registers_offense_when_using_assert_with_member
+    assert_offense(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          assert(collection.member?(object))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_includes(collection, object)`.
+        end
+      end
+    RUBY
+
+    assert_correction(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          assert_includes(collection, object)
+        end
+      end
+    RUBY
+  end
+
   def test_registers_offense_when_using_assert_with_include_and_message
     assert_offense(<<~RUBY)
       class FooTest < Minitest::Test
