@@ -3,6 +3,10 @@
 require_relative '../../../test_helper'
 
 class DuplicateTestRunTest < Minitest::Test
+  def config
+    RuboCop::Config.new('Minitest' => { 'AdditionalTestBaseClasses' => ['ParentTest'] })
+  end
+
   def test_registers_offense_when_parent_and_child_have_tests_methods
     assert_offense(<<~RUBY)
       class ParentTest < Minitest::Test
@@ -89,7 +93,11 @@ class DuplicateTestRunTest < Minitest::Test
   end
 
   def test_does_not_register_offense_if_the_class_is_not_a_test_class
-    assert_no_offenses(<<~RUBY)
+    # Use a cop without ParentTest in AdditionalTestBaseClasses
+    cop_config = RuboCop::Config.new('Minitest' => { 'AdditionalTestBaseClasses' => [] })
+    cop_instance = RuboCop::Cop::Minitest::DuplicateTestRun.new(cop_config)
+
+    offenses = inspect_source(<<~RUBY, cop_instance)
       class ParentTest < ExampleClass
         def test_child_asserts_twice
           assert_equal(1, 1)
@@ -102,6 +110,8 @@ class DuplicateTestRunTest < Minitest::Test
         end
       end
     RUBY
+
+    assert_empty offenses
   end
 
   def test_does_not_throw_error_if_missing_parent_test_class
