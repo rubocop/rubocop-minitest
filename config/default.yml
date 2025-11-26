@@ -4,6 +4,9 @@ Minitest:
   Include:
     - '**/test/**/*'
     - '**/*_test.rb'
+  # Additional test base class names to recognize as test classes.
+  # Example: ['MyCustomBase', 'ApplicationTestCase']
+  AdditionalTestBaseClasses: []
 
 Minitest/AssertEmpty:
   Description: 'This cop enforces the test to use `assert_empty` instead of using `assert(object.empty?)`.'

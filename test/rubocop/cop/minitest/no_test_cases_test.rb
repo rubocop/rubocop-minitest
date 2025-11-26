@@ -45,4 +45,33 @@ class NoTestCases < Minitest::Test
       end
     RUBY
   end
+
+  def test_does_not_register_offense_for_non_test_parent_class
+    assert_no_offenses(<<~RUBY)
+      class FooTest < ApplicationRecord
+        def perform; end
+      end
+    RUBY
+  end
+
+  def test_registers_offense_with_additional_test_base_classes_configuration
+    cop_config = RuboCop::Config.new('Minitest/NoTestCases' => { 'AdditionalTestBaseClasses' => ['MyCustomBase'] })
+    cop_instance = RuboCop::Cop::Minitest::NoTestCases.new(cop_config)
+
+    offenses = inspect_source(<<~RUBY, cop_instance)
+      class FooTest < MyCustomBase
+      end
+    RUBY
+
+    assert_equal 1, offenses.size
+    assert_equal 'Test class should have test cases.', offenses.first.message
+  end
+
+  def test_does_not_register_offense_without_additional_test_base_classes_configuration
+    assert_no_offenses(<<~RUBY)
+      class FooTest < MyCustomBase
+        def perform; end
+      end
+    RUBY
+  end
 end
