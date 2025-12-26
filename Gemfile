@@ -7,6 +7,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 gemspec
 
 gem 'bump', require: false
+gem 'irb'
 gem 'minitest', '~> 5.11'
 gem 'minitest-proveit'
 gem 'prism'
