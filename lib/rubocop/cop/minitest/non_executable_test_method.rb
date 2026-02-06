@@ -31,7 +31,8 @@ module RuboCop
 
         def on_def(node)
           return if !test_method?(node) || !use_test_class?
-          return if node.left_siblings.none? { |sibling| possible_test_class?(sibling) }
+          return if inside_test_class?(node)
+          return if (node.left_siblings + node.right_siblings).none? { |sibling| possible_test_class?(sibling) }
 
           add_offense(node)
         end
@@ -42,6 +43,10 @@ module RuboCop
           root_node = processed_source.ast
 
           root_node.each_descendant(:class).any? { |class_node| test_class?(class_node) }
+        end
+
+        def inside_test_class?(node)
+          node.each_ancestor(:class).any? { |class_node| test_class?(class_node) }
         end
 
         def possible_test_class?(node)
