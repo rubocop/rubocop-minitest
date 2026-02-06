@@ -13,13 +13,24 @@ class NonExecutableTestMethodTest < Minitest::Test
     RUBY
   end
 
-  def test_registers_offense_when_test_method_is_defined_outside_active_support_test_case_class
+  def test_registers_offense_when_test_method_is_defined_after_active_support_test_case_class
     assert_offense(<<~RUBY)
       class FooTest < ActiveSupport::TestCase
       end
 
       def test_foo
       ^^^^^^^^^^^^ Test method should be defined inside a test class to ensure execution.
+      end
+    RUBY
+  end
+
+  def test_registers_offense_when_test_method_is_defined_before_active_support_test_case_class
+    assert_offense(<<~RUBY)
+      def test_foo
+      ^^^^^^^^^^^^ Test method should be defined inside a test class to ensure execution.
+      end
+
+      class FooTest < ActiveSupport::TestCase
       end
     RUBY
   end
@@ -151,6 +162,28 @@ class NonExecutableTestMethodTest < Minitest::Test
         def test_should_not_be_unsigned
           column = SetTest.columns_hash["set_column"]
           assert_not_predicate column, :unsigned?
+        end
+      end
+    RUBY
+  end
+
+  def test_does_not_register_offense_when_test_method_inside_test_class_follows_nested_test_class
+    assert_no_offenses(<<~RUBY)
+      class FooTest < Minitest::Test
+        class BarTest < Minitest::Test
+        end
+        def test_foo
+        end
+      end
+    RUBY
+  end
+
+  def test_does_not_register_offense_when_test_method_inside_test_class_precedes_nested_test_class
+    assert_no_offenses(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_foo
+        end
+        class BarTest < Minitest::Test
         end
       end
     RUBY
