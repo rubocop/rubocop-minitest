@@ -26,7 +26,7 @@ module RuboCop
             ...)
         PATTERN
 
-        def on_block(node) # rubocop:disable InternalAffairs/NumblockHandler
+        def on_block(node) # rubocop:disable InternalAffairs/NumblockHandler, InternalAffairs/ItblockHandler
           return unless assert_silent_candidate?(node)
 
           send_node = node.send_node

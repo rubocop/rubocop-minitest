@@ -28,7 +28,7 @@ module RuboCop
       class AssertRaisesCompoundBody < Base
         MSG = 'Reduce `assert_raises` block body to contain only the raising code.'
 
-        def on_block(node) # rubocop:disable InternalAffairs/NumblockHandler
+        def on_block(node) # rubocop:disable InternalAffairs/NumblockHandler, InternalAffairs/ItblockHandler
           return unless node.method?(:assert_raises) && multi_statement_begin?(node.body)
 
           add_offense(node)
