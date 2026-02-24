@@ -11,9 +11,11 @@
 
 ## master (unreleased)
 
+## 0.39.1 (2026-02-24)
+
 ### Bug fixes
 
-* [#347](https://github.com/rubocop/rubocop-minitest/pull/347): Fix false positives in `Minitest/AssertIncludes` and `Minitest/RefuteIncludes` cops. ([@koic][])
+* [#347](https://github.com/rubocop/rubocop-minitest/pull/347): Fix false positives in `Minitest/AssertIncludes` and `Minitest/RefuteIncludes` cops for `key?` and `has_key?` used with `assert` or `refute`. ([@koic][])
 
 ## 0.39.0 (2026-02-24)
 
