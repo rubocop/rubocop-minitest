@@ -11,6 +11,8 @@
 
 ## master (unreleased)
 
+## 0.39.0 (2026-02-24)
+
 ### Changes
 
 * [#344](https://github.com/rubocop/rubocop-minitest/issues/344): Disable `Minitest/AssertEmptyLiteral` by default. ([@koic][])

@@ -46,15 +46,22 @@ assert_empty(object, 'message')
 |===
 | Enabled by default | Safe | Supports autocorrection | Version Added | Version Changed
 
-| Enabled
+| Disabled
 | Yes
 | Always
 | 0.5
-| 0.11
+| 0.39
 |===
 
 Enforces the test to use `assert_empty`
 instead of using `assert_equal([], object)` or `assert_equal({}, object)`.
+
+NOTE: Using `assert_empty` makes it impossible to indicate that the expected value is
+the literal `[]` or `{}`. Since this removes the ability to express the difference
+between those literals, it is disabled by default in consideration of that drawback.
+Since the role of replacing the originally intended `assert([], empty_list)` with
+`assert_equal([], empty_list)` is handled by `Minitest/AssertWithExpectedArgumentTest`,
+this cop may be removed in the future.
 
 [#examples-minitestassertemptyliteral]
 === Examples
@@ -738,10 +745,12 @@ whether the second argument of `assert` is a message or not.
 ----
 # bad
 assert(3, my_list.length)
+assert([], empty_list)
 assert(expected, actual)
 
 # good
 assert_equal(3, my_list.length)
+assert_equal([], empty_list)
 assert_equal(expected, actual)
 assert(foo, 'message')
 assert(foo, message)
@@ -2018,11 +2027,12 @@ end
 | 0.26
 |===
 
-Checks that `ensure` call even if `skip`. It is unexpected that `ensure` will be called when skipping test.
-If conditional `skip` is used, it checks that `ensure` is also called conditionally.
+Checks that code in an `ensure` block does not run when the test is skipped.
+If `skip` is conditional, the `ensure` block must also be conditional,
+using the negation of the skip condition so that it runs only when the test runs.
 
-On the other hand, it accepts `skip` used in `rescue` because `ensure` may be teardown process to `begin`
-setup process.
+On the other hand, `skip` used inside a `rescue` clause is accepted,
+because the `ensure` block may serve as teardown for resources created in the `begin` setup.
 
 [#examples-minitestskipensure]
 === Examples
@@ -2064,7 +2074,7 @@ def test_conditional_skip
 
   assert do_something
 ensure
-  if condition
+  unless condition
     do_teardown
   end
 end
