@@ -11,6 +11,11 @@
 
 ## master (unreleased)
 
+### Changes
+
+* [#344](https://github.com/rubocop/rubocop-minitest/issues/344): Disable `Minitest/AssertEmptyLiteral` by default. ([@koic][])
+* [#315](https://github.com/rubocop/rubocop-minitest/issues/315): Make `Minitest/AssertIncludes` and `Minitest/RefuteIncludes` aware of `key?`, `has_key?`, and `member?` alias methods. ([@koic][])
+
 ## 0.38.2 (2025-08-30)
 
 ### Bug fixes
