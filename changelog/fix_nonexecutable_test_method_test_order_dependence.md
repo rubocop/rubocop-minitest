@@ -1,0 +1,1 @@
+* [#345](https://github.com/rubocop/rubocop-minitest/pull/345): **(Breaking)** Fix false positives and negatives in `Minitest/NonExecutableTestMethod` for nested test classes and for test methods defined before the test class. ([@amckinnie][])
