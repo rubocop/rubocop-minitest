@@ -1,0 +1,1 @@
+* [#348](https://github.com/rubocop/rubocop-minitest/pull/348): Add new check to `Minitest/AssertIncludes` to suggest `assert_includes` when using `assert_match` with simple string literals without regex-specific features. ([@bquorning][])
