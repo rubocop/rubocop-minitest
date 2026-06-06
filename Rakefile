@@ -19,18 +19,9 @@ require 'rubocop/rake_task'
 require 'rake/testtask'
 require 'rubocop/cop/minitest_generator'
 
-# JRuby and Windows don't support fork, so we can't use minitest-queue.
-if RUBY_ENGINE == 'jruby' || RuboCop::Platform.windows?
-  Rake::TestTask.new do |t|
-    t.libs << 'test'
-    t.libs << 'lib'
-    t.test_files = FileList['test/**/*_test.rb']
-  end
-else
-  desc 'Run tests'
-  task :test do
-    sh("bundle exec minitest-queue #{Dir.glob('test/**/*_test.rb').shelljoin}")
-  end
+desc 'Run tests'
+task :test do
+  sh("bundle exec ruby -Ilib:test #{Dir.glob('test/**/*_test.rb').shelljoin}")
 end
 
 desc 'Run tests with Prism'
