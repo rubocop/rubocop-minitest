@@ -35,7 +35,7 @@ jobs:
         run: bundle exec rake internal_investigation
 
   jruby:
-    name: JRuby 9.4
+    name: JRuby
     runs-on: ubuntu-latest
     steps:
       - name: checkout
@@ -43,7 +43,7 @@ jobs:
       - name: set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: jruby-9.4
+          ruby-version: 'jruby' # Latest stable JRuby version
           bundler-cache: true
       - name: test
         run: bundle exec rake test
