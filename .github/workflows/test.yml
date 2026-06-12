@@ -15,9 +15,6 @@ jobs:
   main:
     name: Ruby ${{ matrix.ruby }}
     runs-on: ubuntu-latest
-    env:
-      # See https://github.com/tmm1/test-queue#environment-variables
-      TEST_QUEUE_WORKERS: 2
     strategy:
       fail-fast: false
       matrix:
