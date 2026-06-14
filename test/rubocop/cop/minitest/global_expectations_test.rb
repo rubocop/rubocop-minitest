@@ -6,6 +6,7 @@ class GlobalExpectationsTest < Minitest::Test
   UNDERSCORE_ANY_STYLES = %i[_ any].freeze
   VALUE_ANY_STYLES = %i[value any].freeze
   EXPECT_ANY_STYLES = %i[expect any].freeze
+  ALL_CONFIG = YAML.safe_load(File.read("#{__dir__}/../../../../config/default.yml")).freeze
 
   def setup
     configure_enforced_style(style)
@@ -506,10 +507,9 @@ class GlobalExpectationsTest < Minitest::Test
   private
 
   def configure_enforced_style(style)
-    all_config = YAML.safe_load(File.read("#{__dir__}/../../../../config/default.yml")).freeze
-    cop_config = all_config['Minitest/GlobalExpectations']
+    cop_config = ALL_CONFIG['Minitest/GlobalExpectations']
     cop_config = cop_config.merge('EnforcedStyle' => style)
-    all_config = all_config.merge('Minitest/GlobalExpectations' => cop_config)
+    all_config = ALL_CONFIG.merge('Minitest/GlobalExpectations' => cop_config)
     config = RuboCop::Config.new(all_config)
     @cop = RuboCop::Cop::Minitest::GlobalExpectations.new(config)
     @preferred_method = style == :any ? :_ : style
