@@ -16,13 +16,10 @@ rescue Bundler::BundlerError => e
 end
 
 require 'rubocop/rake_task'
-require 'rake/testtask'
 require 'rubocop/cop/minitest_generator'
 
-desc 'Run tests'
-task :test do
-  sh("bundle exec ruby -Ilib:test #{Dir.glob('test/**/*_test.rb').shelljoin}")
-end
+require 'minitest/test_task'
+Minitest::TestTask.create
 
 desc 'Run tests with Prism'
 task :prism_test do
