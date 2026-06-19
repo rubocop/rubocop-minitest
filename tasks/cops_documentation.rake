@@ -7,7 +7,10 @@ require_relative '../lib/rubocop-minitest'
 
 YARD::Rake::YardocTask.new(:yard_for_generate_documentation) do |task|
   task.files = ['lib/rubocop/cop/**/*.rb']
-  task.options = ['--no-output']
+  # `minitest_generator.rb` mixes into `RuboCop::Cop::Generator`, which is defined in
+  # the `rubocop` gem and not parsed here, so YARD emits an undocumentable mixin warning.
+  # It holds no cops to document, so exclude it.
+  task.options = ['--no-output', '--exclude', 'minitest_generator']
 end
 
 task update_cops_documentation: :yard_for_generate_documentation do
