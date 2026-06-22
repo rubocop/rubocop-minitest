@@ -6,7 +6,7 @@ module RuboCop
   module Cop
     # Helper methods for different explorations against test files and test cases.
     # @api private
-    module MinitestExplorationHelpers
+    module MinitestExplorationHelpers # rubocop:disable Metrics/ModuleLength
       include DefNode
       extend NodePattern::Macros
 
@@ -40,8 +40,29 @@ module RuboCop
 
       private
 
+      def additional_test_base_classes
+        return [] unless respond_to?(:cop_config)
+
+        cop_config.fetch('AdditionalTestBaseClasses', [])
+      rescue StandardError
+        []
+      end
+
+      def test_base_classes
+        default_base_classes = %w[
+          Minitest::Test
+          ActiveSupport::TestCase
+          ActionController::TestCase
+          ActionDispatch::IntegrationTest
+        ]
+
+        default_base_classes + additional_test_base_classes
+      end
+
       def test_class?(class_node)
-        class_node.parent_class && class_node.identifier.source.end_with?('Test')
+        return false unless class_node.parent_class
+
+        test_base_classes.include?(class_node.parent_class.source)
       end
 
       def test_case?(node)
