@@ -2,7 +2,7 @@
 
 require_relative '../../../test_helper'
 
-class UnspecifiedExceptionTest < Minitest::Test
+class UnspecifiedExceptionTest < RuboCop::TestCase
   def test_registers_offense_when_using_assert_raises_without_exception
     assert_offense(<<~RUBY)
       class FooTest < Minitest::Test

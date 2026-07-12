@@ -2,7 +2,7 @@
 
 require_relative '../../../test_helper'
 
-class NonExecutableTestMethodTest < Minitest::Test
+class NonExecutableTestMethodTest < RuboCop::TestCase
   def test_registers_offense_when_test_method_is_defined_outside_minitest_test_class
     assert_offense(<<~RUBY)
       class FooTest < Minitest::Test

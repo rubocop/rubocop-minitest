@@ -2,7 +2,7 @@
 
 require_relative '../../../test_helper'
 
-class DuplicateTestRunTest < Minitest::Test
+class DuplicateTestRunTest < RuboCop::TestCase
   def test_registers_offense_when_parent_and_child_have_tests_methods
     assert_offense(<<~RUBY)
       class ParentTest < Minitest::Test
