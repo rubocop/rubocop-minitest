@@ -135,4 +135,24 @@ class RefuteIncludesTest < Minitest::Test
       end
     RUBY
   end
+
+  def test_does_not_register_offense_when_using_refute_with_include_and_keyword_argument
+    assert_no_offenses(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          refute(collection.include?(object, ignore_case: true))
+        end
+      end
+    RUBY
+  end
+
+  def test_does_not_register_offense_when_using_refute_with_include_and_extra_positional_argument
+    assert_no_offenses(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          refute(collection.include?(object, other))
+        end
+      end
+    RUBY
+  end
 end
