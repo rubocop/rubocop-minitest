@@ -105,4 +105,14 @@ class RefuteRespondToTest < Minitest::Test
       end
     RUBY
   end
+
+  def test_does_not_register_offense_when_using_refute_with_respond_to_and_optional_argument
+    assert_no_offenses(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          refute(object.respond_to?(:do_something, true))
+        end
+      end
+    RUBY
+  end
 end
