@@ -364,6 +364,10 @@ class MultipleAssertionsTest < RuboCop::TestCase
         RuboCop::ExcludeLimit.tmp_dir = nil
       end
     else
+      # Unlike `assert_offense`, `inspect_source` does not reset the globally tracked `config_to_allow_offenses`,
+      # so reset it here to keep a preceding test's higher `Max` from leaking into this assertion.
+      setup_assertion
+
       inspect_source(source, 'test/foo_test.rb')
 
       assert_equal({ 'Max' => 4 }, cop.config_to_allow_offenses[:exclude_limit])
