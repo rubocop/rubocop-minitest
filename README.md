@@ -78,6 +78,96 @@ Minitest/AssertNil:
     - test/my_file_to_ignore_test.rb
 ```
 
+## Testing your own cops
+
+This gem provides `RuboCop::TestCase`, a base test case class for testing custom cops with Minitest.
+Require `rubocop/minitest/support` in your test helper, then inherit from `RuboCop::TestCase` to get
+the `assert_offense`, `assert_correction`, `assert_no_corrections`, and `assert_no_offenses` assertions:
+
+```ruby
+require 'rubocop/minitest/support'
+
+module CustomCops
+  class MyCopTest < RuboCop::TestCase
+    def test_registers_offense
+      assert_offense(<<~RUBY)
+        bad_method
+        ^^^^^^^^^^ Use `good_method` instead of `bad_method`.
+      RUBY
+
+      assert_correction(<<~RUBY)
+        good_method
+      RUBY
+    end
+
+    def test_does_not_register_offense
+      assert_no_offenses(<<~RUBY)
+        good_method
+      RUBY
+    end
+  end
+end
+```
+
+The cop under test is derived from the test class name: `CustomCops::MyCopTest` resolves
+`CustomCops::MyCop`, then `RuboCop::Cop::Minitest::MyCop`. Define a `cop_class` method in
+the test class to specify the cop explicitly:
+
+```ruby
+class MyCopTest < RuboCop::TestCase
+  private
+
+  def cop_class
+    CustomCops::MyCop
+  end
+end
+```
+
+The configuration for the cop under test and the target Ruby version can be specified
+by overriding `cop_config`, `other_cops`, or `target_ruby_version` in the test class:
+
+```ruby
+class MyCopTest < RuboCop::TestCase
+  private
+
+  def cop_config
+    { 'Max' => 1 }
+  end
+
+  def target_ruby_version
+    3.0
+  end
+end
+```
+
+To change them for a single test, assign them in the test method. This makes it
+possible for tests targeting different Ruby versions to live in the same test class:
+
+```ruby
+class MyCopTest < RuboCop::TestCase
+  def test_registers_offense_on_ruby31
+    self.target_ruby_version = 3.1
+
+    assert_offense(<<~RUBY)
+      bad_method
+      ^^^^^^^^^^ Use `good_method` instead of `bad_method`.
+    RUBY
+  end
+
+  def test_does_not_register_offense_on_ruby30
+    self.target_ruby_version = 3.0
+
+    assert_no_offenses(<<~RUBY)
+      bad_method
+    RUBY
+  end
+end
+```
+
+The default configuration of extensions registered as [lint_roller](https://github.com/standardrb/lint_roller) plugins
+is applied automatically. For other extensions, call `RuboCop::ConfigLoader.inject_defaults!('path/to/default.yml')`
+in your test helper.
+
 ## Documentation
 
 You can read a lot more about RuboCop Minitest in its [official docs](https://docs.rubocop.org/rubocop-minitest/).

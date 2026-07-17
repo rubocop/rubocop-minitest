@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
+require 'tmpdir'
 require_relative '../../../test_helper'
 
-class MultipleAssertionsTest < Minitest::Test
+class MultipleAssertionsTest < RuboCop::TestCase
   def setup
     configure_max_assertions(1)
   end
@@ -333,9 +334,7 @@ class MultipleAssertionsTest < Minitest::Test
   end
 
   def test_generates_a_todo_based_on_the_worst_violation
-    skip 'FIXME: The shared `@cop` instance variable causes flaky tests due to state changes.'
-
-    inspect_source(<<-RUBY, @cop, 'test/foo_test.rb')
+    source = <<-RUBY
       class FooTest < Minitest::Test
         def test_asserts_once
           assert_equal(foo, bar)
@@ -350,7 +349,25 @@ class MultipleAssertionsTest < Minitest::Test
       end
     RUBY
 
-    assert_equal({ 'Max' => 4 }, @cop.config_to_allow_offenses[:exclude_limit])
+    # RuboCop >= 1.86.2 tracks exclude limits in tmp files so that
+    # `--auto-gen-config` can run in parallel.
+    # TODO: When support for RuboCop < 1.86.2 ends, this condition can be removed,
+    # keeping only the `RuboCop::ExcludeLimit.tmp_dir` branch.
+    if RuboCop::ExcludeLimit.respond_to?(:tmp_dir=)
+      Dir.mktmpdir do |tmp_dir|
+        RuboCop::ExcludeLimit.tmp_dir = Pathname.new(tmp_dir)
+
+        inspect_source(source, 'test/foo_test.rb')
+
+        assert_equal({ 'Max' => 4 }, RuboCop::ExcludeLimit.read_limits('Minitest/MultipleAssertions'))
+      ensure
+        RuboCop::ExcludeLimit.tmp_dir = nil
+      end
+    else
+      inspect_source(source, 'test/foo_test.rb')
+
+      assert_equal({ 'Max' => 4 }, cop.config_to_allow_offenses[:exclude_limit])
+    end
   end
 
   def test_registers_offense_when_multiple_assertions_in_the_test_block
@@ -576,8 +593,6 @@ class MultipleAssertionsTest < Minitest::Test
   end
 
   def test_registers_offense_when_complex_structure_with_multiple_assertions
-    skip 'FIXME: The shared `@cop` instance variable causes flaky tests due to state changes.'
-
     configure_max_assertions(2)
 
     assert_offense(<<~RUBY)
@@ -617,8 +632,6 @@ class MultipleAssertionsTest < Minitest::Test
   end
 
   def test_registers_offense_when_complex_structure_with_assignments_and_multiple_assertions
-    skip 'FIXME: The shared `@cop` instance variable causes flaky tests due to state changes.'
-
     configure_max_assertions(2)
 
     assert_offense(<<~RUBY)
@@ -672,8 +685,6 @@ class MultipleAssertionsTest < Minitest::Test
   end
 
   def test_registers_offense_when_complex_multiple_assignment_structure_and_multiple_assertions
-    skip 'FIXME: The shared `@cop` instance variable causes flaky tests due to state changes.'
-
     configure_max_assertions(2)
 
     assert_offense(<<~RUBY)
@@ -758,7 +769,6 @@ class MultipleAssertionsTest < Minitest::Test
   private
 
   def configure_max_assertions(max)
-    cop_config = RuboCop::Config.new('Minitest/MultipleAssertions' => { 'Max' => max })
-    @cop = RuboCop::Cop::Minitest::MultipleAssertions.new(cop_config)
+    self.cop_config = { 'Max' => max }
   end
 end

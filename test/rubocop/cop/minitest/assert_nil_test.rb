@@ -2,7 +2,7 @@
 
 require_relative '../../../test_helper'
 
-class AssertNilTest < Minitest::Test
+class AssertNilTest < RuboCop::TestCase
   def test_registers_offense_when_using_assert_equal_with_nil
     assert_offense(<<~RUBY)
       class FooTest < Minitest::Test

@@ -71,17 +71,135 @@ module RuboCop
     #
     #   assert_no_corrections
     #
+    # The cop under test is derived from the test class name: `FooTest` resolves
+    # the `Foo` constant in the test class's namespace, then `RuboCop::Cop::Minitest::Foo`.
+    # Define a `cop_class` method in the test class to specify the cop explicitly:
+    #
+    #   class AssertNilTest < RuboCop::TestCase
+    #     private
+    #
+    #     def cop_class
+    #       RuboCop::Cop::Minitest::AssertNil
+    #     end
+    #   end
+    #
+    # The configuration for the cop under test and the target Ruby version can be specified
+    # by overriding `cop_config`, `other_cops`, or `target_ruby_version` in the test class:
+    #
+    # @example `cop_config` and `target_ruby_version`
+    #
+    #   class MultipleAssertionsTest < RuboCop::TestCase
+    #     private
+    #
+    #     def cop_config
+    #       { 'Max' => 1 }
+    #     end
+    #
+    #     def target_ruby_version
+    #       3.0
+    #     end
+    #   end
+    #
+    # To change them for a single test, assign them in the test method.
+    # This makes it possible for tests targeting different Ruby versions to live in the same test class:
+    #
+    # @example assigning `target_ruby_version` per test
+    #
+    #   class MyCopTest < RuboCop::TestCase
+    #     def test_registers_offense_on_ruby31
+    #       self.target_ruby_version = 3.1
+    #
+    #       assert_offense(<<~RUBY)
+    #         ...
+    #       RUBY
+    #     end
+    #
+    #     def test_does_not_register_offense_on_ruby30
+    #       self.target_ruby_version = 3.0
+    #
+    #       assert_no_offenses(<<~RUBY)
+    #         ...
+    #       RUBY
+    #     end
+    #   end
+    #
     # rubocop:disable Metrics/ModuleLength
     module AssertOffense
+      PLUGIN_INTEGRATION_MUTEX = Mutex.new
+      private_constant :PLUGIN_INTEGRATION_MUTEX
+
+      class << self
+        # Makes the default configuration of extensions registered as lint_roller plugins visible
+        # through `RuboCop::ConfigLoader.default_configuration`.
+        # Guarded by a mutex so that parallel test threads reaching their first assertion at the same time
+        # do not integrate plugins twice or race on the lazy initialization of the default configuration.
+        def integrate_plugins!
+          PLUGIN_INTEGRATION_MUTEX.synchronize do
+            next if @integrated_plugins
+
+            plugins = Gem.loaded_specs.filter_map do |feature_name, feature_specification|
+              feature_name if feature_specification.metadata['default_lint_roller_plugin']
+            end
+            RuboCop::Plugin.integrate_plugins(RuboCop::Config.new, plugins)
+
+            @integrated_plugins = true
+          end
+        end
+      end
+
       private
 
       def cop
         @cop ||= begin
-          cop_name = self.class.to_s.delete_suffix('Test')
-          raise "Cop not defined: #{cop_name}" unless RuboCop::Cop::Minitest.const_defined?(cop_name)
+          unless cop_class
+            raise "Could not determine the cop class under test from `#{self.class}`. " \
+                  'The cop class is derived from the test class name (e.g. `FooTest` resolves `Foo` ' \
+                  "in the test class's namespace, then `RuboCop::Cop::Minitest::Foo`). " \
+                  'Define a `cop_class` method in your test class to specify it explicitly.'
+          end
 
-          RuboCop::Cop::Minitest.const_get(cop_name).new(configuration)
+          cop_class.new(configuration)
         end
+      end
+
+      def cop_class
+        @cop_class ||= derive_cop_class
+      end
+
+      def cop_class=(cop_class)
+        @cop_class = cop_class
+
+        reset_memoization
+      end
+
+      def derive_cop_class
+        klass = self.class
+
+        while klass && klass != ::Minitest::Test
+          candidate = derive_cop_class_from_name(klass.name)
+          return candidate if candidate
+
+          klass = klass.superclass
+        end
+
+        nil
+      end
+
+      def derive_cop_class_from_name(test_class_name)
+        return unless test_class_name
+
+        cop_name = test_class_name.delete_suffix('Test')
+        return if cop_name.empty?
+
+        constant_from(Object, cop_name) || constant_from(RuboCop::Cop::Minitest, cop_name.split('::').last)
+      end
+
+      def constant_from(namespace, constant_name)
+        return unless namespace.const_defined?(constant_name)
+
+        candidate = namespace.const_get(constant_name)
+
+        candidate if candidate.is_a?(Class) && candidate < RuboCop::Cop::Base
       end
 
       def format_offense(source, **replacements)
@@ -97,7 +215,7 @@ module RuboCop
       def assert_no_offenses(source, file = nil)
         setup_assertion
 
-        offenses = inspect_source(source, cop, file)
+        offenses = inspect_source(source, file)
 
         expected_annotations = RuboCop::RSpec::ExpectOffense::AnnotatedSource.parse(source)
         actual_annotations = expected_annotations.with_offense_annotations(offenses)
@@ -180,19 +298,15 @@ module RuboCop
         RuboCop::Formatter::DisabledConfigFormatter.detected_styles = {}
       end
 
-      def inspect_source(source, cop, file = nil)
+      def inspect_source(source, file = nil)
         processed_source = parse_source!(source, file)
         raise 'Error parsing example code' unless processed_source.valid_syntax?
 
         _investigate(cop, processed_source)
       end
 
-      def investigate(cop, processed_source)
-        needed = Hash.new { |h, k| h[k] = [] }
-        Array(cop.class.joining_forces).each { |force| needed[force] << cop }
-        forces = needed.map do |force_class, joining_cops|
-          force_class.new(joining_cops)
-        end
+      def investigate(processed_source)
+        forces = Array(cop.class.joining_forces).map { |force_class| force_class.new([cop]) }
 
         commissioner = RuboCop::Cop::Commissioner.new([cop], forces, raise_error: true)
         commissioner.investigate(processed_source)
@@ -206,7 +320,7 @@ module RuboCop
           file = file.path
         end
 
-        processed_source = RuboCop::ProcessedSource.new(source, ruby_version, file, parser_engine: parser_engine)
+        processed_source = RuboCop::ProcessedSource.new(source, target_ruby_version, file, parser_engine: parser_engine)
         processed_source.config = configuration
         processed_source.registry = registry
         processed_source
@@ -216,22 +330,71 @@ module RuboCop
         @configuration ||= if defined?(config)
                              config
                            else
-                             RuboCop::Config.new({}, "#{Dir.pwd}/.rubocop.yml")
+                             RuboCop::Config.new(configuration_hash, "#{Dir.pwd}/.rubocop.yml")
                            end
+      end
+
+      def configuration_hash
+        RuboCop::Minitest::AssertOffense.integrate_plugins!
+
+        hash = { 'AllCops' => { 'TargetRubyVersion' => target_ruby_version } }
+        if cop_class
+          hash[cop_class.cop_name] = RuboCop::ConfigLoader.default_configuration.for_cop(cop_class).merge(
+            'Enabled' => true, 'AutoCorrect' => 'always'
+          ).merge(cop_config)
+        end
+
+        hash.merge(other_cops)
+      end
+
+      def cop_config
+        @cop_config || {}
+      end
+
+      def cop_config=(config)
+        @cop_config = config
+
+        reset_memoization
+      end
+
+      def other_cops
+        @other_cops || {}
+      end
+
+      def other_cops=(other_cops)
+        @other_cops = other_cops
+
+        reset_memoization
       end
 
       def registry
         @registry ||= begin
           cops = configuration.keys.map { |cop| RuboCop::Cop::Registry.global.find_by_cop_name(cop) }
-          cops << cop_class if defined?(cop_class) && !cops.include?(cop_class)
+          cops << cop_class if cop_class && !cops.include?(cop_class)
           cops.compact!
           RuboCop::Cop::Registry.new(cops)
         end
       end
 
-      def ruby_version
+      def target_ruby_version
         # Prism is the default backend parser for Ruby 3.4+.
-        ENV['PARSER_ENGINE'] == 'parser_prism' ? 3.4 : RuboCop::TargetRuby::DEFAULT_VERSION
+        @target_ruby_version || (ENV['PARSER_ENGINE'] == 'parser_prism' ? 3.4 : RuboCop::TargetRuby::DEFAULT_VERSION)
+      end
+
+      def target_ruby_version=(version)
+        @target_ruby_version = version
+
+        reset_memoization
+      end
+
+      def reset_memoization
+        @cop = nil
+        @configuration = nil
+        @registry = nil
+      end
+
+      def ruby_version
+        target_ruby_version
       end
 
       def parser_engine

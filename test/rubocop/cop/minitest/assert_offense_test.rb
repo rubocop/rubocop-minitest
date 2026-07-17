@@ -16,7 +16,7 @@ class AssertOffenseTest
         RUBY
       end
 
-      assert_includes error.message, 'Cop not defined'
+      assert_includes error.message, 'Could not determine the cop class under test'
     end
   end
 end

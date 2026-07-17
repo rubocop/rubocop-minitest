@@ -1,0 +1,1 @@
+* [#278](https://github.com/rubocop/rubocop-minitest/pull/278): **(Breaking)** Remove the cop argument from `inspect_source` and `investigate` in the Minitest test support; the cop under test is now resolved automatically. The test configuration now merges the default configuration for the cop under test and sets `AllCops: TargetRubyVersion` explicitly. ([@koic][])
