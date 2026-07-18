@@ -128,6 +128,9 @@ module RuboCop
       PLUGIN_INTEGRATION_MUTEX = Mutex.new
       private_constant :PLUGIN_INTEGRATION_MUTEX
 
+      # Initialized here so that reading it under `ruby -w` does not warn before the first assignment.
+      @integrated_plugins = nil
+
       class << self
         # Makes the default configuration of extensions registered as lint_roller plugins visible
         # through `RuboCop::ConfigLoader.default_configuration`.
@@ -348,7 +351,7 @@ module RuboCop
       end
 
       def cop_config
-        @cop_config || {}
+        @cop_config ||= {}
       end
 
       def cop_config=(config)
@@ -358,7 +361,7 @@ module RuboCop
       end
 
       def other_cops
-        @other_cops || {}
+        @other_cops ||= {}
       end
 
       def other_cops=(other_cops)
@@ -378,7 +381,7 @@ module RuboCop
 
       def target_ruby_version
         # Prism is the default backend parser for Ruby 3.4+.
-        @target_ruby_version || (ENV['PARSER_ENGINE'] == 'parser_prism' ? 3.4 : RuboCop::TargetRuby::DEFAULT_VERSION)
+        @target_ruby_version ||= (ENV['PARSER_ENGINE'] == 'parser_prism' ? 3.4 : RuboCop::TargetRuby::DEFAULT_VERSION)
       end
 
       def target_ruby_version=(version)
