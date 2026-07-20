@@ -11,6 +11,15 @@
 
 ## master (unreleased)
 
+### New features
+
+* [#278](https://github.com/rubocop/rubocop-minitest/pull/278): Add new `RuboCop::TestCase` as a stable API for testing custom cops with Minitest. The cop under test is derived from the test class name and can be configured with `cop_class`, `cop_config`, `other_cops`, and `target_ruby_version`. ([@koic][])
+
+### Changes
+
+* [#345](https://github.com/rubocop/rubocop-minitest/pull/345): Fix false positives and negatives in `Minitest/NonExecutableTestMethod` for nested test classes and for test methods defined before the test class. ([@amckinnie][])
+* [#278](https://github.com/rubocop/rubocop-minitest/pull/278): **(Breaking)** Remove the cop argument from `inspect_source` and `investigate` in the Minitest test support; the cop under test is now resolved automatically. The test configuration now merges the default configuration for the cop under test and sets `AllCops: TargetRubyVersion` explicitly. ([@koic][])
+
 ## 0.39.1 (2026-02-24)
 
 ### Bug fixes
@@ -677,3 +686,4 @@
 [@brandoncc]: https://github.com/brandoncc
 [@bquorning]: https://github.com/bquorning
 [@rafaelfranca]: https://github.com/rafaelfranca
+[@amckinnie]: https://github.com/amckinnie
