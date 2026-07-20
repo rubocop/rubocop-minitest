@@ -11,6 +11,8 @@
 
 ## master (unreleased)
 
+## 0.40.0 (2026-07-20)
+
 ### New features
 
 * [#278](https://github.com/rubocop/rubocop-minitest/pull/278): Add new `RuboCop::TestCase` as a stable API for testing custom cops with Minitest. The cop under test is derived from the test class name and can be configured with `cop_class`, `cop_config`, `other_cops`, and `target_ruby_version`. ([@koic][])
