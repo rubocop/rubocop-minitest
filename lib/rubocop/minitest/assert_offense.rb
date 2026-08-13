@@ -188,11 +188,14 @@ module RuboCop
         nil
       end
 
+      VALID_CONSTANT_NAME_RE = /\A[A-Z]\w*(::[A-Z]\w*)*\z/.freeze
+      private_constant :VALID_CONSTANT_NAME_RE
+
       def derive_cop_class_from_name(test_class_name)
         return unless test_class_name
 
         cop_name = test_class_name.delete_suffix('Test')
-        return if cop_name.empty?
+        return unless cop_name.match?(VALID_CONSTANT_NAME_RE)
 
         constant_from(Object, cop_name) || constant_from(RuboCop::Cop::Minitest, cop_name.split('::').last)
       end

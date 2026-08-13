@@ -60,6 +60,12 @@ class RuboCopTestCaseCopResolutionTest < RuboCop::TestCase
   def test_does_not_resolve_constants_that_are_not_cops
     assert_nil(derive_cop_class_from_name('CustomCopsTest'))
   end
+
+  def test_does_not_raise_on_minitest_spec_generated_class_names
+    # `Minitest::Spec.create` names nested `describe` classes after their description,
+    # which don't necessarily create a valid constant path.
+    assert_nil(derive_cop_class_from_name('AssertNilTest::nested description with spaces'))
+  end
 end
 
 class RuboCopTestCaseUnresolvableCopTest < RuboCop::TestCase
@@ -154,6 +160,25 @@ class RuboCopTestCaseParallelExecutionTest < RuboCop::TestCase
 
   def cop_class
     CustomCops::UseFoo
+  end
+end
+
+require 'minitest/spec'
+
+describe CustomCops::UseFoo do
+  # Regression test for #361: nested `describe` names the test class after the
+  # description, which is not a valid constant path.
+  describe 'nested description with spaces' do
+    it 'registers an offense and corrects' do
+      assert_offense(<<~RUBY)
+        bar
+        ^^^ Use `foo` instead of `bar`.
+      RUBY
+
+      assert_correction(<<~RUBY)
+        foo
+      RUBY
+    end
   end
 end
 

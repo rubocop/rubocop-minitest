@@ -1,0 +1,1 @@
+* [#361](https://github.com/rubocop/rubocop-minitest/issues/361): Fix `RuboCop::TestCase` raising `NameError: wrong constant name` when used with Minitest's spec DSL and nested `describe` blocks. ([@bquorning][])
