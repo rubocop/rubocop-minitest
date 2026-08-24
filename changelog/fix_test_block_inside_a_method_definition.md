@@ -1,0 +1,1 @@
+* [#364](https://github.com/rubocop/rubocop-minitest/pull/364): Fix `Minitest/MultipleAssertions`, `Minitest/NoAssertions`, `Minitest/NoTestCases`, and `Minitest/DuplicateTestRun` treating a `test` or `it` block inside a method definition as a test case. ([@moberegger][])

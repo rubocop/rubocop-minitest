@@ -131,4 +131,14 @@ class NoAssertionsTest < RuboCop::TestCase
       end
     RUBY
   end
+
+  def test_register_no_offense_for_a_block_inside_a_method_definition
+    assert_no_offenses(<<~RUBY)
+      class FooTest < Minitest::Test
+        def build_matrix(name)
+          it(name) { do_something }
+        end
+      end
+    RUBY
+  end
 end

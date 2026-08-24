@@ -59,9 +59,16 @@ module RuboCop
 
         # Support Active Support's `test 'example' { ... }` method.
         # https://api.rubyonrails.org/classes/ActiveSupport/Testing/Declarative.html
-        test_blocks = class_node.each_descendant(:block).select { |block_node| test_block?(block_node) }
+        test_methods + test_blocks(class_node)
+      end
 
-        test_methods + test_blocks
+      def test_blocks(node, found = [])
+        return found if node.type?(:any_def)
+
+        found << node if node.block_type? && test_block?(node)
+        node.each_child_node { |child| test_blocks(child, found) }
+
+        found
       end
 
       def test_method?(def_node, visibility_check: true)

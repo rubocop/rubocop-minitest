@@ -770,6 +770,19 @@ class MultipleAssertionsTest < RuboCop::TestCase
     RUBY
   end
 
+  def test_does_not_register_offense_for_a_block_inside_a_method_definition
+    assert_no_offenses(<<~RUBY)
+      class FooTest < Minitest::Test
+        def with_recorded_fixture(name)
+          test(name) do
+            assert_equal(foo, bar)
+            assert_empty(array)
+          end
+        end
+      end
+    RUBY
+  end
+
   private
 
   def configure_max_assertions(max)

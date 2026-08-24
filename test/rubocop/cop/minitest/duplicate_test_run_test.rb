@@ -116,4 +116,19 @@ class DuplicateTestRunTest < RuboCop::TestCase
       end
     RUBY
   end
+
+  def test_does_not_register_offense_when_child_only_has_a_block_inside_a_method_definition
+    assert_no_offenses(<<~RUBY)
+      class ParentTest < Minitest::Test
+        def test_parent
+        end
+      end
+
+      class ChildTest < ParentTest
+        def build_matrix(name)
+          it(name) { assert_equal(1, 1) }
+        end
+      end
+    RUBY
+  end
 end
