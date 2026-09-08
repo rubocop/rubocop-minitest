@@ -1,0 +1,1 @@
+* [#310](https://github.com/rubocop/rubocop-minitest/issues/310): Fix `Minitest/AssertMatch` and `Minitest/RefuteMatch` autocorrecting to the wrong argument order when neither operand is a regexp literal. The offense is still reported, without a correction. ([@pcbeingused333][])
