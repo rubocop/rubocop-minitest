@@ -482,6 +482,22 @@ class GlobalExpectationsTest < RuboCop::TestCase
     RUBY
   end
 
+  def test_does_not_crash_when_receiver_is_itself_a_matcher_call
+    assert_offense(<<~RUBY)
+      it 'does something' do
+        a.must_equal(b).must_equal(c)
+        ^^^^^^^^^^^^^^^ Use `#{@preferred_method}(a.must_equal(b))` instead.
+        ^ Use `#{@preferred_method}(a)` instead.
+      end
+    RUBY
+
+    assert_correction(<<~RUBY)
+      it 'does something' do
+        #{@preferred_method}(a).must_equal(b).must_equal(c)
+      end
+    RUBY
+  end
+
   # Test Case: When PreferredMethod: _
   class WhenPreferredMethodUnderscore < self
     def style

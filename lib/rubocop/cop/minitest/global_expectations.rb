@@ -148,8 +148,18 @@ module RuboCop
           message = format(MSG, preferred: preferred)
 
           add_offense(receiver, message: message) do |corrector|
+            # If the receiver is itself a matcher call (`a.must_equal(b).must_equal(c)`),
+            # it is also offended and will be wrapped by its own correction; replacing
+            # this node's whole range too would overlap that one and raise
+            # `Parser::ClobberingError`. Leave it uncorrected in that case.
+            next if matcher_call?(receiver)
+
             corrector.replace(receiver, replacement)
           end
+        end
+
+        def matcher_call?(node)
+          node.send_type? && RESTRICT_ON_SEND.include?(node.method_name)
         end
       end
     end
