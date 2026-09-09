@@ -1,0 +1,1 @@
+* [#366](https://github.com/rubocop/rubocop-minitest/pull/366): Fix `Minitest/GlobalExpectations` raising `Parser::ClobberingError` when the receiver of a matcher call is itself another matcher call. ([@pcbeingused333][])
