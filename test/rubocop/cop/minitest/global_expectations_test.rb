@@ -482,6 +482,69 @@ class GlobalExpectationsTest < RuboCop::TestCase
     RUBY
   end
 
+  def test_registers_offense_when_receiver_of_value_matcher_is_a_matcher_call
+    assert_offense(<<~RUBY)
+      it 'does something' do
+        n.must_equal(42).must_equal(43)
+        ^ Use `#{@preferred_method}(n)` instead.
+        ^^^^^^^^^^^^^^^^ Use `#{@preferred_method}(n.must_equal(42))` instead.
+      end
+    RUBY
+
+    assert_correction(<<~RUBY)
+      it 'does something' do
+        #{@preferred_method}(#{@preferred_method}(n).must_equal(42)).must_equal(43)
+      end
+    RUBY
+  end
+
+  def test_registers_offense_when_receiver_of_block_matcher_is_a_matcher_call
+    assert_offense(<<~RUBY)
+      it 'does something' do
+        n.must_equal(42).must_raise(TypeError)
+        ^ Use `#{@preferred_method}(n)` instead.
+        ^^^^^^^^^^^^^^^^ Use `#{@preferred_method} { n.must_equal(42) }` instead.
+      end
+    RUBY
+
+    assert_correction(<<~RUBY)
+      it 'does something' do
+        #{@preferred_method} { #{@preferred_method}(n).must_equal(42) }.must_raise(TypeError)
+      end
+    RUBY
+  end
+
+  def test_registers_offense_when_expectation_dsl_wraps_a_matcher_call
+    if UNDERSCORE_ANY_STYLES.include?(style)
+      assert_offense(<<~RUBY)
+        it 'does something' do
+          _(n.must_equal(42)).must_equal(43)
+            ^ Use `#{@preferred_method}(n)` instead.
+        end
+      RUBY
+
+      assert_correction(<<~RUBY)
+        it 'does something' do
+          _(#{@preferred_method}(n).must_equal(42)).must_equal(43)
+        end
+      RUBY
+    else
+      assert_offense(<<~RUBY)
+        it 'does something' do
+          _(n.must_equal(42)).must_equal(43)
+            ^ Use `#{@preferred_method}(n)` instead.
+          ^^^^^^^^^^^^^^^^^^^ Use `#{@preferred_method}` instead.
+        end
+      RUBY
+
+      assert_correction(<<~RUBY)
+        it 'does something' do
+          #{@preferred_method}(#{@preferred_method}(n).must_equal(42)).must_equal(43)
+        end
+      RUBY
+    end
+  end
+
   # Test Case: When PreferredMethod: _
   class WhenPreferredMethodUnderscore < self
     def style

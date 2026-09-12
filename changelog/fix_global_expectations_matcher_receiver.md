@@ -1,0 +1,1 @@
+* [#367](https://github.com/rubocop/rubocop-minitest/pull/367): Fix an error for `Minitest/GlobalExpectations` when the receiver of a matcher call is itself a matcher call. ([@pcbeingused333][], [@koic][])
