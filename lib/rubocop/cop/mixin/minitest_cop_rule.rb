@@ -45,9 +45,11 @@ module RuboCop
 
           def on_send(node)
             return unless node.method?(:#{assertion_method})
-            return unless node.arguments.first&.call_type?
-            return if node.arguments.first.arguments.empty? ||
-                      #{target_methods}.none? { |target_method| node.arguments.first.method?(target_method) }
+
+            receiver = node.arguments.first
+            return unless receiver&.call_type?
+            return if #{target_methods}.none? { |target_method| receiver.method?(target_method) }
+            return unless single_positional_argument?(receiver)
 
             add_offense(node, message: offense_message(node.arguments)) do |corrector|
               autocorrect(corrector, node, node.arguments)
@@ -94,6 +96,19 @@ module RuboCop
 
           def correct_receiver(receiver)
             receiver ? receiver.source : 'self'
+          end
+
+          def single_positional_argument?(receiver)
+            arguments = receiver.arguments
+            return false unless arguments.one?
+
+            argument = arguments.first
+            return false if argument.splat_type? || argument.block_pass_type?
+            !bare_keyword_argument?(argument)
+          end
+
+          def bare_keyword_argument?(argument)
+            argument.hash_type? && !argument.braces?
           end
         RUBY
       end
