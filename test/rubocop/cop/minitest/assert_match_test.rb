@@ -14,13 +14,7 @@ class AssertMatchTest < RuboCop::TestCase
         end
       RUBY
 
-      assert_correction(<<~RUBY)
-        class FooTest < Minitest::Test
-          def test_do_something
-            assert_match(matcher, object)
-          end
-        end
-      RUBY
+      assert_no_corrections
     end
 
     define_method("test_registers_offense_when_using_assert_with_#{matcher}_and_lhs_is_regexp_literal") do
@@ -71,13 +65,7 @@ class AssertMatchTest < RuboCop::TestCase
         end
       RUBY
 
-      assert_correction(<<~RUBY)
-        class FooTest < Minitest::Test
-          def test_do_something
-            assert_match(matcher, object, 'message')
-          end
-        end
-      RUBY
+      assert_no_corrections
     end
 
     define_method("test_registers_offense_when_using_assert_with_#{matcher}_and_heredoc_message") do
@@ -93,16 +81,7 @@ class AssertMatchTest < RuboCop::TestCase
         end
       RUBY
 
-      assert_correction(<<~RUBY)
-        class FooTest < Minitest::Test
-          def test_do_something
-            assert_match(matcher, object, <<~MESSAGE
-              message
-            MESSAGE
-            )
-          end
-        end
-      RUBY
+      assert_no_corrections
     end
 
     # Redundant parentheses should be removed by `Style/RedundantParentheses` cop.
@@ -127,13 +106,26 @@ class AssertMatchTest < RuboCop::TestCase
       end
     RUBY
 
-    assert_correction(<<~RUBY)
+    assert_no_corrections
+  end
+
+  def test_does_not_correct_when_neither_operand_is_a_regexp_literal
+    # `string.match?(regexp_var)` and `regexp.match?(string)` are both valid, so
+    # the cop cannot tell which argument is the pattern. It used to assume the
+    # receiver was the pattern and emit `assert_match(string, regexp)`, which
+    # raises `TypeError` at run time. See rubocop/rubocop-minitest#310.
+    assert_offense(<<~RUBY)
       class FooTest < Minitest::Test
         def test_do_something
-          assert_match(matcher, object)
+          hello = 'Hello World!'
+          greeting = /Hello/
+          assert(hello.match?(greeting))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `assert_match(hello, greeting)`.
         end
       end
     RUBY
+
+    assert_no_corrections
   end
 
   def test_does_not_register_offense_when_using_assert_match
