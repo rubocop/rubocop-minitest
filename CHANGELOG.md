@@ -11,6 +11,17 @@
 
 ## master (unreleased)
 
+### Bug fixes
+
+* [#361](https://github.com/rubocop/rubocop-minitest/issues/361): Fix `RuboCop::TestCase` raising `NameError: wrong constant name` when used with Minitest's spec DSL and nested `describe` blocks. ([@bquorning][])
+* [#367](https://github.com/rubocop/rubocop-minitest/pull/367): Fix an error for `Minitest/GlobalExpectations` when the receiver of a matcher call is itself a matcher call. ([@pcbeingused333][], [@koic][])
+* [#364](https://github.com/rubocop/rubocop-minitest/pull/364): Fix `Minitest/MultipleAssertions`, `Minitest/NoAssertions`, `Minitest/NoTestCases`, and `Minitest/DuplicateTestRun` treating a `test` or `it` block inside a method definition as a test case. ([@moberegger][])
+
+### Changes
+
+* [#363](https://github.com/rubocop/rubocop-minitest/pull/363): Improve `Minitest/MultipleAssertions` performance by removing per-node allocations and a linear matcher-method lookup from the assertion counter. ([@moberegger][])
+* [#360](https://github.com/rubocop/rubocop-minitest/pull/360): Speed up loading rubocop-minitest by lazily loading only the cops and mixins needed for a run. This requires RuboCop 1.89.0+. ([@koic][])
+
 ## 0.40.0 (2026-07-20)
 
 ### New features
@@ -689,3 +700,5 @@
 [@bquorning]: https://github.com/bquorning
 [@rafaelfranca]: https://github.com/rafaelfranca
 [@amckinnie]: https://github.com/amckinnie
+[@moberegger]: https://github.com/moberegger
+[@pcbeingused333]: https://github.com/pcbeingused333

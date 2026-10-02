@@ -1,1 +1,0 @@
-* [#363](https://github.com/rubocop/rubocop-minitest/pull/363): Improve `Minitest/MultipleAssertions` performance by removing per-node allocations and a linear matcher-method lookup from the assertion counter. ([@moberegger][])

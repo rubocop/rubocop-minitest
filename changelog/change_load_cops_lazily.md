@@ -1,1 +1,0 @@
-* [#360](https://github.com/rubocop/rubocop-minitest/pull/360): Speed up loading rubocop-minitest by lazily loading only the cops and mixins needed for a run. This requires RuboCop 1.89.0+. ([@koic][])
