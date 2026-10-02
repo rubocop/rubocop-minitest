@@ -125,6 +125,9 @@ module RuboCop
     #
     # rubocop:disable-next Metrics/ModuleLength
     module AssertOffense
+      VALID_CONSTANT_NAME = /\A[A-Z]\w*(::[A-Z]\w*)*\z/.freeze
+      private_constant :VALID_CONSTANT_NAME
+
       PLUGIN_INTEGRATION_MUTEX = Mutex.new
       private_constant :PLUGIN_INTEGRATION_MUTEX
 
@@ -192,7 +195,7 @@ module RuboCop
         return unless test_class_name
 
         cop_name = test_class_name.delete_suffix('Test')
-        return if cop_name.empty?
+        return unless cop_name.match?(VALID_CONSTANT_NAME)
 
         constant_from(Object, cop_name) || constant_from(RuboCop::Cop::Minitest, cop_name.split('::').last)
       end
