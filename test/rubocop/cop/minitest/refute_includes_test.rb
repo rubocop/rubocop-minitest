@@ -135,4 +135,65 @@ class RefuteIncludesTest < RuboCop::TestCase
       end
     RUBY
   end
+
+  def test_does_not_register_offense_when_using_refute_with_include_and_keyword_argument
+    assert_no_offenses(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          refute(collection.include?(object, some_keyword: true))
+        end
+      end
+    RUBY
+  end
+
+  def test_does_not_register_offense_when_using_refute_with_include_and_extra_positional_argument
+    assert_no_offenses(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          refute(collection.include?(object, other))
+        end
+      end
+    RUBY
+  end
+
+  def test_does_not_register_offense_when_using_refute_with_include_and_splat_argument
+    assert_no_offenses(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          refute(collection.include?(*array))
+        end
+      end
+    RUBY
+  end
+
+  def test_does_not_register_offense_when_using_refute_with_include_and_block_pass
+    assert_no_offenses(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          refute(collection.include?(&block))
+        end
+      end
+    RUBY
+  end
+
+  def test_does_not_register_offense_when_using_refute_with_include_and_bare_keyword_argument
+    assert_no_offenses(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          refute(collection.include?(some_keyword: true))
+        end
+      end
+    RUBY
+  end
+
+  def test_registers_offense_when_using_refute_with_include_and_explicit_hash_argument
+    assert_offense(<<~RUBY)
+      class FooTest < Minitest::Test
+        def test_do_something
+          refute(collection.include?({ key: 1 }))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Prefer using `refute_includes(collection, { key: 1 })`.
+        end
+      end
+    RUBY
+  end
 end
