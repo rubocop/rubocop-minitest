@@ -17,7 +17,7 @@ class LazyLoadingTest < Minitest::Test
       puts "loaded_mixin_files=\#{loaded_mixin_files.size}"
     RUBY
 
-    assert_includes(output, 'registered=55')
+    assert_includes(output, 'registered=56')
     assert_includes(output, 'loaded_cop_files=0')
     assert_includes(output, 'loaded_mixin_files=0')
   end

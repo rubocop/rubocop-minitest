@@ -2139,6 +2139,77 @@ skip("Reason why the test was skipped")
 skip if condition?
 ----
 
+[#minitesttestclassname]
+== Minitest/TestClassName
+
+|===
+| Enabled by default | Safe | Supports autocorrection | Version Added | Version Changed
+
+| Pending
+| Yes
+| No
+| <<next>>
+| -
+|===
+
+Checks that test class names match their paths relative to the nearest
+`test` directory. Namespaces prevent unrelated test files from reopening
+the same class and overwriting tests or lifecycle hooks.
+
+Only classes with a superclass and a name ending in `Test` are checked,
+in files named `*_test.rb` or `test_*.rb` under a `test` directory.
+Acronyms are accepted, for example `HTTPTest` in `http_test.rb`.
+
+`IgnoredDirectories` lists test type directories to omit when they appear
+directly under `test`. Other directories, including nested type directory
+names, must be represented in the class namespace.
+
+This cop does not detect duplicate classes across files. Ignoring test
+type directories can still allow collisions between those directories.
+Use `IgnoredDirectories: []` to include every directory in the namespace.
+
+[#examples-minitesttestclassname]
+=== Examples
+
+[#ignoreddirectories-_default_-minitesttestclassname]
+==== IgnoredDirectories (default)
+
+[source,ruby]
+----
+# bad - test/models/admin/employee_test.rb
+class EmployeeTest < ActiveSupport::TestCase
+end
+
+# good - test/models/admin/employee_test.rb
+class Admin::EmployeeTest < ActiveSupport::TestCase
+end
+
+# good - test/models/employee_test.rb
+class EmployeeTest < ActiveSupport::TestCase
+end
+----
+
+[#ignoreddirectories_-__-minitesttestclassname]
+==== IgnoredDirectories: []
+
+[source,ruby]
+----
+# good - test/models/employee_test.rb
+class Models::EmployeeTest < ActiveSupport::TestCase
+end
+----
+
+[#configurable-attributes-minitesttestclassname]
+=== Configurable attributes
+
+|===
+| Name | Default value | Configurable values
+
+| IgnoredDirectories
+| `models`, `controllers`, `helpers`, `mailers`, `jobs`, `channels`, `integration`, `routing`, `system`
+| Array
+|===
+
 [#minitesttestfilename]
 == Minitest/TestFileName
 
