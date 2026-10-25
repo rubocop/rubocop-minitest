@@ -328,6 +328,41 @@ class GlobalExpectationsTest < RuboCop::TestCase
       RUBY
     end
 
+    define_method(:"test_registers_offense_when_using_global_#{matcher}_and_lambda_do_block") do
+      assert_offense(<<~RUBY)
+        it 'does something' do
+          lambda do
+          ^^^^^^^^^ Use `#{@preferred_method} { n }` instead.
+            n
+          end.#{matcher} 42
+        end
+      RUBY
+
+      assert_correction(<<~RUBY)
+        it 'does something' do
+          #{@preferred_method} do
+            n
+          end.#{matcher} 42
+        end
+      RUBY
+    end
+
+    define_method(:"test_registers_offense_when_using_global_#{matcher}_and_block_with_global_expectation_inside") do
+      assert_offense(<<~RUBY)
+        it 'does something' do
+          -> { n.must_equal 1 }.#{matcher} 42
+               ^ Use `#{@preferred_method}(n)` instead.
+          ^^^^^^^^^^^^^^^^^^^^^ Use `#{@preferred_method} { n.must_equal 1 }` instead.
+        end
+      RUBY
+
+      assert_correction(<<~RUBY)
+        it 'does something' do
+          #{@preferred_method} { #{@preferred_method}(n).must_equal 1 }.#{matcher} 42
+        end
+      RUBY
+    end
+
     define_method(:"test_no_offense_when_using_expect_form_of_#{matcher}") do
       if UNDERSCORE_ANY_STYLES.include?(style)
         assert_no_offenses(<<~RUBY)
