@@ -63,6 +63,7 @@ based on the https://minitest.rubystyle.guide/[Minitest Style Guide].
 * xref:cops_minitest.adoc#minitestreturnintestmethod[Minitest/ReturnInTestMethod]
 * xref:cops_minitest.adoc#minitestskipensure[Minitest/SkipEnsure]
 * xref:cops_minitest.adoc#minitestskipwithoutreason[Minitest/SkipWithoutReason]
+* xref:cops_minitest.adoc#minitesttestclassname[Minitest/TestClassName]
 * xref:cops_minitest.adoc#minitesttestfilename[Minitest/TestFileName]
 * xref:cops_minitest.adoc#minitesttestmethodname[Minitest/TestMethodName]
 * xref:cops_minitest.adoc#minitestunreachableassertion[Minitest/UnreachableAssertion]
