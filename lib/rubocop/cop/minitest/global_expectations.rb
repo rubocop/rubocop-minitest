@@ -163,7 +163,8 @@ module RuboCop
 
         def autocorrect_block_matcher(corrector, receiver)
           if receiver.block_type? && receiver.lambda?
-            corrector.replace(receiver, "#{preferred_method} { #{receiver.body.source} }")
+            lambda_head = receiver.source_range.with(end_pos: receiver.loc.begin.begin_pos)
+            corrector.replace(lambda_head, "#{preferred_method} ")
           else
             corrector.wrap(receiver, "#{preferred_method} { ", ' }')
           end
