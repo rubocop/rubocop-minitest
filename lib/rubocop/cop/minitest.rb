@@ -40,6 +40,7 @@ module RuboCop
       register_cop :AssertTruthy, "#{__dir__}/minitest/assert_truthy"
       register_cop :DuplicateTestRun, "#{__dir__}/minitest/duplicate_test_run"
       register_cop :EmptyLineBeforeAssertionMethods, "#{__dir__}/minitest/empty_line_before_assertion_methods"
+      register_cop :ExpectationImplicitHash, "#{__dir__}/minitest/expectation_implicit_hash"
       register_cop :Focus, "#{__dir__}/minitest/focus"
       register_cop :NonExecutableTestMethod, "#{__dir__}/minitest/non_executable_test_method"
       register_cop :RedundantMessageArgument, "#{__dir__}/minitest/redundant_message_argument"
