@@ -41,6 +41,7 @@ module RuboCop
       register_cop :DuplicateTestRun, "#{__dir__}/minitest/duplicate_test_run"
       register_cop :EmptyLineBeforeAssertionMethods, "#{__dir__}/minitest/empty_line_before_assertion_methods"
       register_cop :Focus, "#{__dir__}/minitest/focus"
+      register_cop :ImplicitExpectationHash, "#{__dir__}/minitest/implicit_expectation_hash"
       register_cop :NonExecutableTestMethod, "#{__dir__}/minitest/non_executable_test_method"
       register_cop :RedundantMessageArgument, "#{__dir__}/minitest/redundant_message_argument"
       register_cop :ReturnInTestMethod, "#{__dir__}/minitest/return_in_test_method"
