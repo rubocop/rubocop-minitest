@@ -146,6 +146,13 @@ Minitest/EmptyLineBeforeAssertionMethods:
   Enabled: pending
   VersionAdded: '0.23'
 
+Minitest/ExpectationImplicitHash:
+  Description: 'Use braces around the expected hash in expectations.'
+  Enabled: pending
+  Severity: warning
+  SafeAutoCorrect: false
+  VersionAdded: '<<next>>'
+
 Minitest/Focus:
   Description: 'Checks for focused tests.'
   Enabled: pending
