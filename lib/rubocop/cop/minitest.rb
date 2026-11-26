@@ -44,6 +44,7 @@ module RuboCop
       register_cop :NonExecutableTestMethod, "#{__dir__}/minitest/non_executable_test_method"
       register_cop :RedundantMessageArgument, "#{__dir__}/minitest/redundant_message_argument"
       register_cop :ReturnInTestMethod, "#{__dir__}/minitest/return_in_test_method"
+      register_cop :TestClassName, "#{__dir__}/minitest/test_class_name"
       register_cop :TestFileName, "#{__dir__}/minitest/test_file_name"
       register_cop :GlobalExpectations, "#{__dir__}/minitest/global_expectations"
       register_cop :LifecycleHooksOrder, "#{__dir__}/minitest/lifecycle_hooks_order"

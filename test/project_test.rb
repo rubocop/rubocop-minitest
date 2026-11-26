@@ -73,7 +73,7 @@ class ProjectTest < Minitest::Test
   def test_entry_has_a_valid_url
     @issues.each do |issue|
       number = issue[:number].gsub(/\D/, '')
-      pattern = %r{^https://github\.com/rubocop/rubocop-minitest/(?:issues|pull)/#{number}$}
+      pattern = %r{^https://github\.com/rubocop/(?:rubocop-minitest|minitest-style-guide)/(?:issues|pull)/#{number}$}
 
       assert_match(pattern, issue[:url])
     end
@@ -110,7 +110,7 @@ class ProjectTest < Minitest::Test
   def test_feature_entry_has_a_link_to_the_issue_or_pull_request_address_at_the_beginning
     skip if @feature_entries.empty?
 
-    repo = 'rubocop/rubocop-minitest'
+    repo = 'rubocop/(?:rubocop-minitest|minitest-style-guide)'
     address_pattern = %r{\A\* \[#\d+\]\(https://github\.com/#{repo}/(issues|pull)/\d+\):}
 
     @feature_entries.each do |path|

@@ -321,6 +321,21 @@ Minitest/SkipWithoutReason:
   Enabled: pending
   VersionAdded: '0.24'
 
+Minitest/TestClassName:
+  Description: 'Checks that test class names match their paths relative to the test directory.'
+  Enabled: pending
+  VersionAdded: '<<next>>'
+  IgnoredDirectories:
+    - models
+    - controllers
+    - helpers
+    - mailers
+    - jobs
+    - channels
+    - integration
+    - routing
+    - system
+
 Minitest/TestFileName:
   Description: 'Checks if test file names start with `test_` or end with `_test.rb`.'
   StyleGuide: 'https://minitest.rubystyle.guide/#file-naming'
