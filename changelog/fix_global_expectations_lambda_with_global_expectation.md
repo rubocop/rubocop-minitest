@@ -1,0 +1,1 @@
+* [#370](https://github.com/rubocop/rubocop-minitest/pull/370): Fix an error for `Minitest/GlobalExpectations` when a lambda receiver of a block matcher contains a global expectation. ([@Starlexxx][])
