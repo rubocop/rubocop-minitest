@@ -171,6 +171,18 @@ Minitest/GlobalExpectations:
   VersionAdded: '0.7'
   VersionChanged: '0.26'
 
+Minitest/ImplicitExpectationHash:
+  Description: 'Use braces around the expected hash in expectations.'
+  Enabled: pending
+  Severity: warning
+  SafeAutoCorrect: false
+  Include:
+    - '**/test/**/*'
+    - '**/*_test.rb'
+    - '**/spec/**/*'
+    - '**/*_spec.rb'
+  VersionAdded: '<<next>>'
+
 Minitest/LifecycleHooksOrder:
   Description: 'Checks that lifecycle hooks are declared in the order in which they will be executed.'
   StyleGuide: 'https://minitest.rubystyle.guide/#hooks-ordering'
